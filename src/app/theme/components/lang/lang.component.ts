@@ -6,21 +6,24 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './lang.component.html',
   styleUrls: ['./lang.component.scss']
 })
-export class LangComponent implements OnInit { 
+export class LangComponent implements OnInit {
   public langName = '';
   constructor(public translateService: TranslateService) { }
 
-  ngOnInit() {  
-   this.langName = this.getLangName(this.translateService.getDefaultLang());  
-  } 
+  ngOnInit() {
+   this.langName = this.getLangName(this.translateService.getDefaultLang());
+  }
 
-  public changeLang(lang:string){ 
-    this.translateService.use(lang); 
-    this.langName = this.getLangName(lang);  
-  } 
+  public changeLang(lang:string){
+    this.translateService.use(lang);
+    this.langName = this.getLangName(lang);
+  }
 
   public getLangName(lang:string){
-    if(lang == 'en'){
+    if (lang == 'es'){
+      return 'Español';
+    }
+    else if(lang == 'en'){
       return 'English';
     }
     else if(lang == 'de'){
@@ -35,9 +38,9 @@ export class LangComponent implements OnInit {
     else if(lang == 'tr'){
       return 'Turkish';
     }
-    else{
-      return 'English';
-    } 
+    else {
+      return 'Español';
+    }
   }
 
 }

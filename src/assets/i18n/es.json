@@ -1,0 +1,53 @@
+{
+  "LOGIN": "Login",
+  "LOGOUT": "Cerrar sesión",
+  "REGISTER": "Registrar",
+  "ACCOUNT": "Cuenta",
+  "SUBMIT_PROPERTY": "Submit property",
+  "MENU": "Menu",
+  "MY_PROPERTIES": "Mis Propiedades",
+  "FAVORITES": "Favoritos",
+  "COMPARE": "Comparar",
+  "EDIT_PROFILE": "Editar Perfil",
+  "LOCK_SCREEN": "Bloquear pantalla",
+  "HELP": "Ayuda",
+  "NAV": {
+    "HOME": "Inicio",
+    "PROPERTIES": "Propiedades",
+    "PAGES": "Páginas",
+    "AGENTS": "Agentes",
+    "AGENT": "Agente",
+    "FAQS": "Faqs",
+    "PRICING": "Precios",
+    "TERMS_CONDITIONS": "Términos y condiciones",
+    "LANDING": "Landing",
+    "404_PAGE": "Página 404",
+    "OTHERS": "Otros",
+    "EXTERNAL_LINK": "Enlace externo",
+    "MENU_ITEM": "Elemento del Menu",
+    "CONTACT": "Contacto",
+    "ABOUT_US": "Acerca de nosotros",
+    "ADMIN": "Admin"
+  },
+  "BTN": {
+    "ADD": "Añadir",
+    "SAVE": "Guardar",
+    "SUBMIT": "Enviar",
+    "CANCEL": "Cancelar",
+    "UPLOAD": "Subir",
+    "REMOVE": "Eliminar",
+    "YES": "Si",
+    "NO": "No",
+    "OK": "OK",
+    "CLEAR": "Limpiar",
+    "ADVANCED": "Avanzado",
+    "HIDE": "Ocultar"
+  },
+  "MESSAGE": {
+    "SURE_DELETE": "¿Estas seguro de querer eliminarlo?",
+    "FILE_SIZE": "El tamaño del fichero no debe superar los {{param}} kb."
+  },
+  "FIELD": {
+    "NAME": "Nombre"
+  }
+}
