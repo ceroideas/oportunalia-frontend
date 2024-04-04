@@ -29,18 +29,18 @@ export class AppService {
     [], // favorites
     []  // locations
   )
- 
-  public url = environment.url + '/assets/data/'; 
+
+  public url = environment.url + '/assets/data/';
   public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
-  
-  constructor(public http:HttpClient, 
-              private bottomSheet: MatBottomSheet, 
+
+  constructor(public http:HttpClient,
+              private bottomSheet: MatBottomSheet,
               private snackBar: MatSnackBar,
               public appSettings:AppSettings,
               public dialog: MatDialog,
               public translateService: TranslateService,
               private domHandlerService: DomHandlerService) { }
-    
+
   public getProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'properties.json');
   }
@@ -51,7 +51,7 @@ export class AppService {
 
   public getFeaturedProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'featured-properties.json');
-  } 
+  }
 
   public getRelatedProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'related-properties.json');
@@ -65,31 +65,31 @@ export class AppService {
     return this.http.get<Location[]>(this.url + 'locations.json');
   }
 
-  public getAddress(lat = 40.714224, lng = -73.961452){ 
+  public getAddress(lat = 40.714224, lng = -73.961452){
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey);
   }
 
-  public getLatLng(address){ 
+  public getLatLng(address){
     return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?key='+this.apiKey+'&address='+address);
   }
 
-  public getFullAddress(lat = 40.714224, lng = -73.961452){ 
-    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey).subscribe(data =>{ 
+  public getFullAddress(lat = 40.714224, lng = -73.961452){
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.apiKey).subscribe(data =>{
       return data['results'][0]['formatted_address'];
     });
   }
 
-  public addToCompare(property:Property, component, direction){ 
+  public addToCompare(property:Property, component, direction){
     if(!this.Data.compareList.filter(item=>item.id == property.id)[0]){
       this.Data.compareList.push(property);
       this.bottomSheet.open(component, {
         direction: direction
-      }).afterDismissed().subscribe(isRedirect=>{  
+      }).afterDismissed().subscribe(isRedirect=>{
         if(isRedirect){
-          this.domHandlerService.winScroll(0, 0); 
-        }        
-      }); 
-    } 
+          this.domHandlerService.winScroll(0, 0);
+        }
+      });
+    }
   }
 
   public addToFavorites(property:Property, direction){
@@ -98,46 +98,46 @@ export class AppService {
       this.snackBar.open('The property "' + property.title + '" has been added to favorites.', '×', {
         verticalPosition: 'top',
         duration: 3000,
-        direction: direction 
-      });  
-    }    
+        direction: direction
+      });
+    }
   }
 
-  public openConfirmDialog(title:string, message:string) {  
-    const dialogData = new ConfirmDialogModel(title, message); 
+  public openConfirmDialog(title:string, message:string) {
+    const dialogData = new ConfirmDialogModel(title, message);
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: dialogData
-    }); 
-    return dialogRef; 
+    });
+    return dialogRef;
   }
 
-  public openAlertDialog(message:string) {   
+  public openAlertDialog(message:string) {
     const dialogRef = this.dialog.open(AlertDialogComponent, {
       maxWidth: "400px",
       data: message
-    }); 
-    return dialogRef; 
+    });
+    return dialogRef;
   }
 
-  public getTranslateValue(key: string, param: string | null = null){  
+  public getTranslateValue(key: string, param: string | null = null){
     let value: string | null = null;
     this.translateService.get(key, { param: param }).subscribe((res: string) => {
       value = res;
-    }) 
-    return value; 
+    })
+    return value;
   }
 
   public getPropertyTypes(){
-    return [ 
-      { id: 1, name: 'Office' },
+    return [
+      { id: 1, name: 'Office' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
       { id: 2, name: 'House' },
       { id: 3, name: 'Apartment' }
     ]
   }
 
   public getPropertyStatuses(){
-    return [ 
+    return [
       { id: 1, name: 'For Sale' },
       { id: 2, name: 'For Rent' },
       { id: 3, name: 'Open House' },
@@ -148,44 +148,44 @@ export class AppService {
   }
 
   public getCities(){
-    return [ 
+    return [
       { id: 1, name: 'New York' },
       { id: 2, name: 'Chicago' },
       { id: 3, name: 'Los Angeles' },
-      { id: 4, name: 'Seattle' } 
+      { id: 4, name: 'Seattle' }
     ]
   }
 
   public getNeighborhoods(){
-    return [      
+    return [
       { id: 1, name: 'Astoria', cityId: 1 },
       { id: 2, name: 'Midtown', cityId: 1 },
-      { id: 3, name: 'Chinatown', cityId: 1 }, 
+      { id: 3, name: 'Chinatown', cityId: 1 },
       { id: 4, name: 'Austin', cityId: 2 },
       { id: 5, name: 'Englewood', cityId: 2 },
-      { id: 6, name: 'Riverdale', cityId: 2 },      
+      { id: 6, name: 'Riverdale', cityId: 2 },
       { id: 7, name: 'Hollywood', cityId: 3 },
       { id: 8, name: 'Sherman Oaks', cityId: 3 },
       { id: 9, name: 'Highland Park', cityId: 3 },
       { id: 10, name: 'Belltown', cityId: 4 },
       { id: 11, name: 'Queen Anne', cityId: 4 },
-      { id: 12, name: 'Green Lake', cityId: 4 }      
+      { id: 12, name: 'Green Lake', cityId: 4 }
     ]
   }
 
   public getStreets(){
-    return [      
+    return [
       { id: 1, name: 'Astoria Street #1', cityId: 1, neighborhoodId: 1},
       { id: 2, name: 'Astoria Street #2', cityId: 1, neighborhoodId: 1},
       { id: 3, name: 'Midtown Street #1', cityId: 1, neighborhoodId: 2 },
       { id: 4, name: 'Midtown Street #2', cityId: 1, neighborhoodId: 2 },
-      { id: 5, name: 'Chinatown Street #1', cityId: 1, neighborhoodId: 3 }, 
+      { id: 5, name: 'Chinatown Street #1', cityId: 1, neighborhoodId: 3 },
       { id: 6, name: 'Chinatown Street #2', cityId: 1, neighborhoodId: 3 },
       { id: 7, name: 'Austin Street #1', cityId: 2, neighborhoodId: 4 },
       { id: 8, name: 'Austin Street #2', cityId: 2, neighborhoodId: 4 },
       { id: 9, name: 'Englewood Street #1', cityId: 2, neighborhoodId: 5 },
       { id: 10, name: 'Englewood Street #2', cityId: 2, neighborhoodId: 5 },
-      { id: 11, name: 'Riverdale Street #1', cityId: 2, neighborhoodId: 6 }, 
+      { id: 11, name: 'Riverdale Street #1', cityId: 2, neighborhoodId: 6 },
       { id: 12, name: 'Riverdale Street #2', cityId: 2, neighborhoodId: 6 },
       { id: 13, name: 'Hollywood Street #1', cityId: 3, neighborhoodId: 7 },
       { id: 14, name: 'Hollywood Street #2', cityId: 3, neighborhoodId: 7 },
@@ -198,16 +198,16 @@ export class AppService {
       { id: 21, name: 'Queen Anne Street #1', cityId: 4, neighborhoodId: 11 },
       { id: 22, name: 'Queen Anne Street #2', cityId: 4, neighborhoodId: 11 },
       { id: 23, name: 'Green Lake Street #1', cityId: 4, neighborhoodId: 12 },
-      { id: 24, name: 'Green Lake Street #2', cityId: 4, neighborhoodId: 12 }      
+      { id: 24, name: 'Green Lake Street #2', cityId: 4, neighborhoodId: 12 }
     ]
   }
 
   public getFeatures(){
-    return [ 
+    return [
       { id: 1, name: 'Air Conditioning', selected: false },
       { id: 2, name: 'Barbeque', selected: false },
       { id: 3, name: 'Dryer', selected: false },
-      { id: 4, name: 'Microwave', selected: false }, 
+      { id: 4, name: 'Microwave', selected: false },
       { id: 5, name: 'Refrigerator', selected: false },
       { id: 6, name: 'TV Cable', selected: false },
       { id: 7, name: 'Sauna', selected: false },
@@ -224,24 +224,24 @@ export class AppService {
   }
 
 
-  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){ 
-   
+  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){
+
     if(params){
 
       if(params.propertyType){
         data = data.filter(property => property.propertyType == params.propertyType.name)
       }
 
-      if(params.propertyStatus && params.propertyStatus.length){       
+      if(params.propertyStatus && params.propertyStatus.length){
         let statuses: any[] = [];
-        params.propertyStatus.forEach((status: any) => { statuses.push(status.name) });           
+        params.propertyStatus.forEach((status: any) => { statuses.push(status.name) });
         let properties: any[] = [];
         data.filter((property: any) =>
-          property.propertyStatus.forEach((status: any) => {             
-            if(statuses.indexOf(status) > -1){                 
+          property.propertyStatus.forEach((status: any) => {
+            if(statuses.indexOf(status) > -1){
               if(!properties.includes(property)){
                 properties.push(property);
-              }                
+              }
             }
           })
         );
@@ -249,7 +249,7 @@ export class AppService {
       }
 
       if(params.price){
-        if(this.appSettings.settings.currency == 'USD'){          
+        if(this.appSettings.settings.currency == 'USD'){
           if(params.price.from){
             data = data.filter(property => {
               if(property.priceDollar.sale && property.priceDollar.sale >= params.price.from ){
@@ -257,7 +257,7 @@ export class AppService {
               }
               if(property.priceDollar.rent && property.priceDollar.rent >= params.price.from ){
                 return true;
-              } 
+              }
               return false;
             });
           }
@@ -268,9 +268,9 @@ export class AppService {
               }
               if(property.priceDollar.rent && property.priceDollar.rent <= params.price.to){
                 return true;
-              } 
+              }
               return false;
-            });          
+            });
           }
         }
         if(this.appSettings.settings.currency == 'EUR'){
@@ -281,7 +281,7 @@ export class AppService {
               }
               if(property.priceEuro.rent && property.priceEuro.rent >= params.price.from ){
                 return true;
-              } 
+              }
               return false;
             });
 
@@ -293,12 +293,12 @@ export class AppService {
               }
               if(property.priceEuro.rent && property.priceEuro.rent <= params.price.to){
                 return true;
-              } 
+              }
               return false;
             });
           }
-        }        
-      }  
+        }
+      }
 
       if(params.city){
         data = data.filter(property => property.city == params.city.name)
@@ -307,33 +307,33 @@ export class AppService {
       if(params.zipCode){
         data = data.filter(property => property.zipCode == params.zipCode)
       }
-      
-      if(params.neighborhood && params.neighborhood.length){       
+
+      if(params.neighborhood && params.neighborhood.length){
         let neighborhoods: any[] = [];
-        params.neighborhood.forEach(item => { neighborhoods.push(item.name) });           
+        params.neighborhood.forEach(item => { neighborhoods.push(item.name) });
         let properties: any[] = [];
         data.filter((property: any) =>
-          property.neighborhood.forEach((item: any) => {             
-            if(neighborhoods.indexOf(item) > -1){                 
+          property.neighborhood.forEach((item: any) => {
+            if(neighborhoods.indexOf(item) > -1){
               if(!properties.includes(property)){
                 properties.push(property);
-              }                
+              }
             }
           })
         );
         data = properties;
       }
 
-      if(params.street && params.street.length){       
+      if(params.street && params.street.length){
         let streets: any[] = [];
-        params.street.forEach(item => { streets.push(item.name) });           
+        params.street.forEach(item => { streets.push(item.name) });
         let properties: any[] = [];
         data.filter(property =>
-          property.street.forEach(item => {             
-            if(streets.indexOf(item) > -1){                 
+          property.street.forEach(item => {
+            if(streets.indexOf(item) > -1){
               if(!properties.includes(property)){
                 properties.push(property);
-              }                
+              }
             }
           })
         );
@@ -347,8 +347,8 @@ export class AppService {
         if(params.bedrooms.to){
           data = data.filter(property => property.bedrooms <= params.bedrooms.to)
         }
-      } 
-      
+      }
+
       if(params.bathrooms){
         if(params.bathrooms.from){
           data = data.filter(property => property.bathrooms >= params.bathrooms.from)
@@ -356,7 +356,7 @@ export class AppService {
         if(params.bathrooms.to){
           data = data.filter(property => property.bathrooms <= params.bathrooms.to)
         }
-      } 
+      }
 
       if(params.garages){
         if(params.garages.from){
@@ -365,7 +365,7 @@ export class AppService {
         if(params.garages.to){
           data = data.filter(property => property.garages <= params.garages.to)
         }
-      } 
+      }
 
       if(params.area){
         if(params.area.from){
@@ -374,7 +374,7 @@ export class AppService {
         if(params.area.to){
           data = data.filter(property => property.area.value <= params.area.to)
         }
-      } 
+      }
 
       if(params.yearBuilt){
         if(params.yearBuilt.from){
@@ -385,37 +385,37 @@ export class AppService {
         }
       }
 
-      if(params.features){       
+      if(params.features){
         let arr: any[] = [];
-        params.features.forEach(feature => { 
+        params.features.forEach(feature => {
           if(feature.selected)
             arr.push(feature.name);
-        });  
+        });
         if(arr.length > 0){
           let properties: any[] = [];
           data.filter(property =>
-            property.features.forEach(feature => {             
-              if(arr.indexOf(feature) > -1){                 
+            property.features.forEach(feature => {
+              if(arr.indexOf(feature) > -1){
                 if(!properties.includes(property)){
                   properties.push(property);
-                }                
+                }
               }
             })
           );
           data = properties;
-        }         
-        
+        }
+
       }
-      
+
     }
 
     // console.log(data)
 
-    //for show more properties mock data 
+    //for show more properties mock data
     for (var index = 0; index < 2; index++) {
-      data = data.concat(data);        
-    }     
-     
+      data = data.concat(data);
+    }
+
     this.sortData(sort, data);
     return this.paginator(data, page, perPage)
   }
@@ -424,20 +424,20 @@ export class AppService {
     if(sort){
       switch (sort) {
         case 'Newest':
-          data = data.sort((a, b)=> {return <any>new Date(b.published) - <any>new Date(a.published)});           
+          data = data.sort((a, b)=> {return <any>new Date(b.published) - <any>new Date(a.published)});
           break;
         case 'Oldest':
-          data = data.sort((a, b)=> {return <any>new Date(a.published) - <any>new Date(b.published)});           
+          data = data.sort((a, b)=> {return <any>new Date(a.published) - <any>new Date(b.published)});
           break;
         case 'Popular':
-          data = data.sort((a, b) => { 
+          data = data.sort((a, b) => {
             if(a.ratingsValue/a.ratingsCount < b.ratingsValue/b.ratingsCount){
               return 1;
             }
             if(a.ratingsValue/a.ratingsCount > b.ratingsValue/b.ratingsCount){
               return -1;
             }
-            return 0; 
+            return 0;
           });
           break;
         case 'Price (Low to High)':
@@ -449,8 +449,8 @@ export class AppService {
               if((a.priceDollar.sale || a.priceDollar.rent) < (b.priceDollar.sale || b.priceDollar.rent)){
                 return -1;
               }
-              return 0;  
-            }) 
+              return 0;
+            })
           }
           if(this.appSettings.settings.currency == 'EUR'){
             data = data.sort((a,b) => {
@@ -460,8 +460,8 @@ export class AppService {
               if((a.priceEuro.sale || a.priceEuro.rent) < (b.priceEuro.sale || b.priceEuro.rent)){
                 return -1;
               }
-              return 0;  
-            }) 
+              return 0;
+            })
           }
           break;
         case 'Price (High to Low)':
@@ -473,8 +473,8 @@ export class AppService {
               if((a.priceDollar.sale || a.priceDollar.rent) > (b.priceDollar.sale || b.priceDollar.rent)){
                 return -1;
               }
-              return 0;  
-            }) 
+              return 0;
+            })
           }
           if(this.appSettings.settings.currency == 'EUR'){
             data = data.sort((a,b) => {
@@ -484,8 +484,8 @@ export class AppService {
               if((a.priceEuro.sale || a.priceEuro.rent) > (b.priceEuro.sale || b.priceEuro.rent)){
                 return -1;
               }
-              return 0;  
-            }) 
+              return 0;
+            })
           }
           break;
         default:
@@ -495,10 +495,10 @@ export class AppService {
     return data;
   }
 
-  public paginator(items, page?, perPage?) { 
+  public paginator(items, page?, perPage?) {
     var page = page || 1,
     perPage = perPage || 4,
-    offset = (page - 1) * perPage,   
+    offset = (page - 1) * perPage,
     paginatedItems = items.slice(offset).slice(0, perPage),
     totalPages = Math.ceil(items.length / perPage);
     return {
@@ -518,41 +518,41 @@ export class AppService {
 
   public getTestimonials(){
     return [
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Mr. Adam Sandler', 
-            position: 'General Director', 
-            image: 'assets/images/profile/adam.jpg' 
+        {
+            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
+            author: 'Mr. Adam Sandler',
+            position: 'General Director',
+            image: 'assets/images/profile/adam.jpg'
         },
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Ashley Ahlberg', 
-            position: 'Housewife', 
-            image: 'assets/images/profile/ashley.jpg' 
+        {
+            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
+            author: 'Ashley Ahlberg',
+            position: 'Housewife',
+            image: 'assets/images/profile/ashley.jpg'
         },
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Bruno Vespa', 
-            position: 'Blogger', 
-            image: 'assets/images/profile/bruno.jpg' 
+        {
+            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
+            author: 'Bruno Vespa',
+            position: 'Blogger',
+            image: 'assets/images/profile/bruno.jpg'
         },
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Mrs. Julia Aniston', 
-            position: 'Marketing Manager', 
-            image: 'assets/images/profile/julia.jpg' 
+        {
+            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
+            author: 'Mrs. Julia Aniston',
+            position: 'Marketing Manager',
+            image: 'assets/images/profile/julia.jpg'
         }
     ];
   }
 
   public getAgents(){
-    return [        
-        { 
+    return [
+        {
             id: 1,
             fullName: 'Lusia Manuel',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'lusia.m@housekey.com',
+            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+            organization: 'oportunalia',
+            email: 'lusia.m@oportunalia.com',
             phone: '(224) 267-1346',
             social: {
               facebook: 'lusia',
@@ -563,14 +563,14 @@ export class AppService {
             },
             ratingsCount: 6,
             ratingsValue: 480,
-            image: 'assets/images/agents/a-1.jpg' 
+            image: 'assets/images/agents/a-1.jpg'
         },
-        { 
+        {
             id: 2,
             fullName: 'Andy Warhol',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'andy.w@housekey.com',
+            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+            organization: 'oportunalia',
+            email: 'andy.w@oportunalia.com',
             phone: '(212) 457-2308',
             social: {
               facebook: '',
@@ -581,14 +581,14 @@ export class AppService {
             },
             ratingsCount: 4,
             ratingsValue: 400,
-            image: 'assets/images/agents/a-2.jpg' 
-        },        
-        { 
+            image: 'assets/images/agents/a-2.jpg'
+        },
+        {
             id: 3,
             fullName: 'Tereza Stiles',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'tereza.s@housekey.com',
+            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+            organization: 'oportunalia',
+            email: 'tereza.s@oportunalia.com',
             phone: '(214) 617-2614',
             social: {
               facebook: '',
@@ -599,14 +599,14 @@ export class AppService {
             },
             ratingsCount: 4,
             ratingsValue: 380,
-            image: 'assets/images/agents/a-3.jpg' 
+            image: 'assets/images/agents/a-3.jpg'
         },
-        { 
+        {
           id: 4,
           fullName: 'Michael Blair',
-          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-          organization: 'HouseKey',
-          email: 'michael.b@housekey.com',
+          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+          organization: 'oportunalia',
+          email: 'michael.b@oportunalia.com',
           phone: '(267) 388-1637',
           social: {
             facebook: '',
@@ -617,14 +617,14 @@ export class AppService {
           },
           ratingsCount: 6,
           ratingsValue: 480,
-          image: 'assets/images/agents/a-4.jpg'  
+          image: 'assets/images/agents/a-4.jpg'
         },
-        { 
+        {
             id: 5,
             fullName: 'Michelle Ormond',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'HouseKey',
-            email: 'michelle.o@housekey.com',
+            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+            organization: 'oportunalia',
+            email: 'michelle.o@oportunalia.com',
             phone: '(267) 388-1637',
             social: {
               facebook: '',
@@ -634,8 +634,8 @@ export class AppService {
               website: 'https://michelle.ormond.com'
             },
             ratingsCount: 6,
-            ratingsValue: 480, 
-            image: 'assets/images/agents/a-5.jpg' 
+            ratingsValue: 480,
+            image: 'assets/images/agents/a-5.jpg'
         }
     ];
   }
@@ -643,9 +643,9 @@ export class AppService {
 
 
   public getClients(){
-    return [  
+    return [
         { name: 'aloha', image: 'assets/images/clients/aloha.png' },
-        { name: 'dream', image: 'assets/images/clients/dream.png' },  
+        { name: 'dream', image: 'assets/images/clients/dream.png' },
         { name: 'congrats', image: 'assets/images/clients/congrats.png' },
         { name: 'best', image: 'assets/images/clients/best.png' },
         { name: 'original', image: 'assets/images/clients/original.png' },

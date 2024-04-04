@@ -3,9 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "housekey": {
+    "oportunalia": {
       "projectType": "application",
-      "schematics": { 
+      "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
           "skipTests": true
@@ -90,10 +90,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "housekey:build:production"
+              "buildTarget": "oportunalia:build:production"
             },
             "development": {
-              "buildTarget": "housekey:build:development"
+              "buildTarget": "oportunalia:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -101,7 +101,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "housekey:build"
+            "buildTarget": "oportunalia:build"
           }
         },
         "test": {
