@@ -5,7 +5,7 @@
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Tipo de propiedad</mat-label>
-                <mat-select placeholder="Select Property Type" formControlName="propertyType">
+                <mat-select placeholder="Selecciona tipo de propiedad" formControlName="propertyType">
                     <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                         {{propertyType.name}}
                     </mat-option>
@@ -16,7 +16,7 @@
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Estado propiedad</mat-label>
-                <mat-select placeholder="Select Property Status" formControlName="propertyStatus" multiple>
+                <mat-select placeholder="Selecciona el estado de la propiedad" formControlName="propertyStatus" multiple>
                     <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus">
                         {{propertyStatus.name}}
                     </mat-option>
@@ -62,14 +62,14 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Zip Code</mat-label>
-                    <input matInput placeholder="exp. 98104" autocomplete="off" formControlName="zipCode">
+                    <mat-label>C&oacute;digo postal</mat-label>
+                    <input matInput placeholder="Ej. 28020" autocomplete="off" formControlName="zipCode">
                 </mat-form-field>
             </div>
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Neighborhood</mat-label>
+                    <mat-label>Barrio</mat-label>
                     <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
                         <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: form.get('city').value?.id" [value]="neighborhood">
                             {{neighborhood.name}}

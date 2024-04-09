@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { matchingPasswords, emailValidator } from 'src/app/theme/utils/app-validators';
 
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, emailValidator])],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      receiveNewsletter: false                            
+      receiveNewsletter: false
     },{validator: matchingPasswords('password', 'confirmPassword')});
   }
 
@@ -36,4 +36,12 @@ export class RegisterComponent implements OnInit {
       this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
   }
+
+
+  registerUser(){
+    console.log("Clic register user");
+  }
+
+
+
 }

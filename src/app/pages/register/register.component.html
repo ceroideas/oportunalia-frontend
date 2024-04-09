@@ -1,13 +1,13 @@
 <div class="p-3">
     <div class="theme-container">
-  
+
       <div fxLayout="row" fxLayoutAlign="center center" class="my-3">
           <mat-card [style.max-width.px]="500" class="p-3">
-            <div fxLayout="column" fxLayoutAlign="center center" class="text-center">  
-              <h1 class="uppercase">Register</h1>  
-              <a mat-button routerLink="/login" color="accent" class="w-100">Already have an account? Sign in!</a>  
+            <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
+              <h1 class="uppercase">Register</h1>
+              <a mat-button routerLink="/login" color="accent" class="w-100">Already have an account? Sign in!</a>
             </div>
-            <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit(registerForm.value)"> 
+            <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit(registerForm.value)">
                 <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <mat-icon matPrefix class="mr-1 text-muted">group</mat-icon>
                     <mat-label>User type</mat-label>
@@ -16,7 +16,7 @@
                             {{type.name}}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="registerForm.controls.userType.errors?.required">User type is required</mat-error>                   
+                    <mat-error *ngIf="registerForm.controls.userType.errors?.required">User type is required</mat-error>
                 </mat-form-field>
                 <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon>
@@ -41,7 +41,7 @@
                   <button mat-icon-button matSuffix (click)="hide = !hide" type="button" class="text-muted">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
-                </mat-form-field> 
+                </mat-form-field>
                 <mat-form-field  appearance="outline" class="w-100 mt-1">
                   <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon>
                   <mat-label>Confirm Password</mat-label>
@@ -51,20 +51,20 @@
                   <button mat-icon-button matSuffix (click)="hide = !hide" type="button" class="text-muted">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
-                </mat-form-field> 
+                </mat-form-field>
                 <mat-slide-toggle formControlName="receiveNewsletter" class="my-2">Receive Newsletter</mat-slide-toggle>
-                <div class="text-center mt-2"> 
-                    <button mat-raised-button color="accent" class="uppercase" type="submit">
+                <div class="text-center mt-2">
+                    <button (click)="registerUser()" mat-raised-button color="accent" class="uppercase" type="submit">
                         Create an Account
                     </button>
-                </div> 
+                </div>
             </form>
-            <div class="divider mt-4"></div> 
+            <div class="divider mt-4"></div>
             <mat-card-actions fxLayoutAlign="center center" class="text-center">
                <small class="my-3">By clicking the "Create an Account" button you agree with our <a mat-button routerLink="/terms-conditions" color="primary" class="mx-2">Terms and conditions</a> </small>
             </mat-card-actions>
           </mat-card>
-      </div> 
-  
+      </div>
+
     </div>
   </div>

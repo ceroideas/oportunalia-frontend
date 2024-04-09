@@ -17,7 +17,8 @@ export class PropertiesToolbarComponent implements OnInit {
   public viewCol: number = 25;
   public counts = [8, 12, 16, 24, 36];
   public count:any;
-  public sortings = ['Sort by Default', 'Newest', 'Oldest', 'Popular', 'Price (Low to High)', 'Price (High to Low)'];
+  //public sortings = ['Sort by Default', 'Newest', 'Oldest', 'Popular', 'Price (Low to High)', 'Price (High to Low)'];
+  public sortings = ['Orden por defecto', 'Nuevo', 'Antiguo', 'Popular', 'Precio: De menor a mayor', 'Precio: De mayor a menor'];
   public sort:any;
 
   constructor() { }
@@ -34,7 +35,7 @@ export class PropertiesToolbarComponent implements OnInit {
   public changeCount(count){
     this.count = count;
     this.onChangeCount.emit(count);
-    // this.getAllProducts(); 
+    // this.getAllProducts();
   }
 
   public changeSorting(sort){

@@ -1,33 +1,33 @@
 <div class="px-3">
   <div class="theme-container">
 
-    <div *ngIf="appService.Data.compareList.length == 0" class="py-5">  
+    <div *ngIf="appService.Data.compareList.length == 0" class="py-5">
       <mat-chip-listbox>
           <mat-chip-option color="warn" highlighted selectable="false" class="uppercase">You have no properties to compare.</mat-chip-option>
       </mat-chip-listbox>
     </div>
-  
-    <div *ngIf="appService.Data.compareList.length > 0" class="compare-carousel py-3"> 
-      
-      <mat-card fxLayout="row" fxLayoutAlign="space-between center" class="compare-toolbar p-3">      
-        <h3 class="uppercase">Compare: {{appService.Data.compareList.length}}</h3>      
+
+    <div *ngIf="appService.Data.compareList.length > 0" class="compare-carousel py-3">
+
+      <mat-card fxLayout="row" fxLayoutAlign="space-between center" class="compare-toolbar p-3">
+        <h3 class="uppercase">Compare: {{appService.Data.compareList.length}}</h3>
         <div fxLayout="row" fxLayoutAlign="center center" *ngIf="config.simulateTouch">
             <button mat-mini-fab color="primary" class="carousel-prev swiper-button-prev swipe-arrow mx-2"><mat-icon>keyboard_arrow_left</mat-icon></button>
-            <button mat-mini-fab color="primary" class="carousel-next swiper-button-next swipe-arrow mx-2"><mat-icon>keyboard_arrow_right</mat-icon></button> 
-        </div> 
+            <button mat-mini-fab color="primary" class="carousel-next swiper-button-next swipe-arrow mx-2"><mat-icon>keyboard_arrow_right</mat-icon></button>
+        </div>
         <button mat-mini-fab color="warn" fxHide="false" fxHide.gt-xs (click)="clear()"><mat-icon>cancel</mat-icon></button>
         <button mat-raised-button color="warn" class="uppercase" fxShow="false" fxShow.gt-xs (click)="clear()">Clear All</button>
       </mat-card>
-      
-      <div class="swiper-container h-100 carousel-outer mt-3" [swiper]="config"> 
-        <div class="swiper-wrapper h-100">      
+
+      <div class="swiper-container h-100 carousel-outer mt-3" [swiper]="config">
+        <div class="swiper-wrapper h-100">
           <div *ngFor="let property of appService.Data.compareList" class="swiper-slide">
 
-            <mat-card class="compare-item">                 
-                <img mat-card-image [src]="property.gallery[0].medium" alt="image"> 
+            <mat-card class="compare-item">
+                <img mat-card-image [src]="property.gallery[0].medium" alt="image">
                 <button mat-icon-button class="remove p-0" (click)="remove(property)">
                   <mat-icon color="warn" class="mat-icon-lg m-0">highlight_off</mat-icon>
-                </button>              
+                </button>
                 <mat-card-content class="p-3">
                     <h2 class="title"><a [routerLink]="['/properties', property.id]">{{property.title}}</a></h2>
                     <p fxLayout="row" fxLayoutAlign="center center" class="address">
@@ -50,19 +50,19 @@
                         <div fxLayout="row" class="item">
                           <span>Property Type:</span>
                           <span>{{property.propertyType}}</span>
-                        </div> 
+                        </div>
                         <div fxLayout="row" class="item">
                           <span>Property Status:</span>
                           <div fxLayout="row wrap" class="list">
                             <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                           </div>
-                        </div> 
+                        </div>
                         <div fxLayout="row" class="item">
                           <span>City:</span>
                           <span>{{property.city}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Zip Code:</span>
+                          <span>C&oacute;digo postal:</span>
                           <span>{{property.zipCode}}</span>
                         </div>
                         <div fxLayout="row" class="item">
@@ -102,22 +102,22 @@
                           <div fxLayout="row wrap" class="list">
                             <span *ngFor="let feature of property.features; let last=last" [class.list-item]="property.features.length > 1" [class.last]="last">{{feature}}</span>
                           </div>
-                        </div> 
+                        </div>
                         <div fxLayout="row" class="item">
                           <span>Published:</span>
                           <span>{{property.published | date:"dd MMMM, yyyy" }}</span>
-                        </div>                         
+                        </div>
                     </div>
                     <p class="uppercase text-center fw-500 mb-2">description</p>
-                    <p>{{property.desc}}</p>                     
-                </mat-card-content> 
-                <mat-card-actions fxLayoutAlign="center center">  
-                    <a [routerLink]="['/properties', property.id]" mat-raised-button color="primary" class="uppercase mb-3">More info</a>                     
-                </mat-card-actions>             
-            </mat-card> 
+                    <p>{{property.desc}}</p>
+                </mat-card-content>
+                <mat-card-actions fxLayoutAlign="center center">
+                    <a [routerLink]="['/properties', property.id]" mat-raised-button color="primary" class="uppercase mb-3">More info</a>
+                </mat-card-actions>
+            </mat-card>
 
           </div>
-        </div>   
+        </div>
       </div>
 
     </div>
