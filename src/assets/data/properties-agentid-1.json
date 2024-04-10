@@ -4,7 +4,7 @@
         "title": "Centrally located office",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Oficina",
-        "propertyStatus": ["For Rent", "No Fees"],
+        "propertyStatus": ["Cesión de remate", "Próximamente"],
         "city": "Los Angeles",
         "zipCode": "90044",
         "neighborhood": ["Hollywood", "Highland Park"],
@@ -29,7 +29,7 @@
         "garages": 2,
         "area": {
             "value": 1500,
-            "unit": "ft²"
+            "unit": "m²"
         },
         "yearBuilt": 2012,
         "ratingsCount": 4,
@@ -106,7 +106,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1180,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 3,
                 "baths": 1,
@@ -117,7 +117,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1200,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 5,
                 "baths": 2,
@@ -143,7 +143,7 @@
         "title": "House with a pool",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Casa",
-        "propertyStatus": ["Sold", "For Sale"],
+        "propertyStatus": ["Finalizada", "Subasta"],
         "city": "Seattle",
         "zipCode": "98108",
         "neighborhood": ["Queen Anne", "Belltown"],
@@ -168,7 +168,7 @@
         "garages": 1,
         "area": {
             "value": 2200,
-            "unit": "ft²"
+            "unit": "m²"
         },
         "yearBuilt": 2007,
         "ratingsCount": 6,
@@ -235,7 +235,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1180,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 3,
                 "baths": 1,
@@ -246,7 +246,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1200,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 5,
                 "baths": 2,

@@ -4,8 +4,8 @@ import { AppService } from '../../app.service';
 import { Property, Pagination, Location } from '../../app.models';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { MediaChange, MediaObserver } from '@ngbracket/ngx-layout'; 
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators'; 
+import { MediaChange, MediaObserver } from '@ngbracket/ngx-layout';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   watcher: Subscription;
-  activeMediaQuery = ''; 
+  activeMediaQuery = '';
 
   public slides: any[] = [];
   public properties: Property[];
@@ -25,10 +25,10 @@ export class HomeComponent implements OnInit {
   public sort: string;
   public searchFields: any;
   public removedSearchField: string | null;
-  public pagination:Pagination = new Pagination(1, 8, null, 2, 0, 0); 
+  public pagination:Pagination = new Pagination(1, 8, null, 2, 0, 0);
   public message: string | null;
   public featuredProperties: Property[];
-  public locations: Location[]; 
+  public locations: Location[];
 
   public settings: Settings;
   constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver) {
@@ -54,17 +54,17 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.getSlides();
     this.getLocations();
-    this.getProperties();  
+    this.getProperties();
     this.getFeaturedProperties();
   }
 
   ngDoCheck(){
-    if(this.settings.loadMore.load){     
-      this.settings.loadMore.load = false;     
-      this.getProperties();  
+    if(this.settings.loadMore.load){
+      this.settings.loadMore.load = false;
+      this.getProperties();
     }
   }
 
@@ -85,26 +85,26 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  public getProperties(){  
-    //console.log('get properties by : ', this.searchFields);  
-    this.appService.getProperties().subscribe(data => {      
-      if(this.properties && this.properties.length > 0){  
+  public getProperties(){
+    //console.log('get properties by : ', this.searchFields);
+    this.appService.getProperties().subscribe(data => {
+      if(this.properties && this.properties.length > 0){
         this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
+        this.pagination.page = this.settings.loadMore.page;
       }
-      let result = this.filterData(data); 
+      let result = this.filterData(data);
       if(result.data.length == 0){
         this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'No Results Found';
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
+        this.message = 'No hay resultados';
         return false;
-      }   
-      if(this.properties && this.properties.length > 0){   
-        this.properties = this.properties.concat(result.data);          
+      }
+      if(this.properties && this.properties.length > 0){
+        this.properties = this.properties.concat(result.data);
       }
       else{
-        this.properties = result.data;  
-      } 
+        this.properties = result.data;
+      }
       this.pagination = result.pagination;
       this.message = null;
 
@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit {
           this.locations.push(loc);
         });
         this.locations = [...this.locations];
-      } 
+      }
       return true;
     })
   }
@@ -139,50 +139,50 @@ export class HomeComponent implements OnInit {
     return this.appService.filterData(data, this.searchFields, this.sort, this.pagination.page, this.pagination.perPage);
   }
 
-  public searchClicked(){ 
+  public searchClicked(){
     this.properties.length = 0;
-    this.getProperties(); 
+    this.getProperties();
   }
-  public searchChanged(event){    
+  public searchChanged(event){
     event.valueChanges.subscribe(() => {
       this.resetLoadMore();
       this.searchFields = event.value;
-      setTimeout(() => {      
+      setTimeout(() => {
         this.removedSearchField = null;
       });
-      if(!this.settings.searchOnBtnClick){     
-        this.properties.length = 0;  
-      }            
-    }); 
-    event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { 
-      if(!this.settings.searchOnBtnClick){     
-        this.getProperties(); 
+      if(!this.settings.searchOnBtnClick){
+        this.properties.length = 0;
       }
-    });       
-  } 
-  public removeSearchField(field){ 
-    this.message = null;   
-    this.removedSearchField = field; 
-  } 
- 
+    });
+    event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
+      if(!this.settings.searchOnBtnClick){
+        this.getProperties();
+      }
+    });
+  }
+  public removeSearchField(field){
+    this.message = null;
+    this.removedSearchField = field;
+  }
+
 
 
   public changeCount(count){
     this.count = count;
-    this.resetLoadMore();   
+    this.resetLoadMore();
     this.properties.length = 0;
     this.getProperties();
 
   }
-  public changeSorting(sort){    
+  public changeSorting(sort){
     this.sort = sort;
-    this.resetLoadMore(); 
+    this.resetLoadMore();
     this.properties.length = 0;
     this.getProperties();
   }
-  public changeViewType(obj){ 
+  public changeViewType(obj){
     this.viewType = obj.viewType;
-    this.viewCol = obj.viewCol; 
+    this.viewCol = obj.viewCol;
   }
 
 
@@ -190,6 +190,6 @@ export class HomeComponent implements OnInit {
     this.appService.getFeaturedProperties().subscribe(properties=>{
       this.featuredProperties = properties;
     })
-  } 
+  }
 
 }

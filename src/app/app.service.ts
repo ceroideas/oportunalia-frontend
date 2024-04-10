@@ -138,12 +138,12 @@ export class AppService {
 
   public getPropertyStatuses(){
     return [
-      { id: 1, name: 'For Sale' },
-      { id: 2, name: 'For Rent' },
-      { id: 3, name: 'Open House' },
-      { id: 4, name: 'No Fees' },
-      { id: 5, name: 'Hot Offer' },
-      { id: 6, name: 'Sold' }
+      { id: 1, name: 'Subasta' },
+      { id: 2, name: 'Cesión de remate' },
+      { id: 3, name: 'Venta directa' },
+      { id: 4, name: 'Próximamente' },
+      { id: 5, name: 'OFERTA' },
+      { id: 6, name: 'Finalizada' }
     ]
   }
 

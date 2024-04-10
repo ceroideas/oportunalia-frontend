@@ -3,7 +3,7 @@
     "title": "Comfortable family house",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
     "propertyType": "Casa",
-    "propertyStatus": ["For Sale", "Open House"],
+    "propertyStatus": ["Subasta", "Venta directa"],
     "city": "Seattle",
     "zipCode": "98104",
     "neighborhood": ["Belltown"],
@@ -28,7 +28,7 @@
     "garages": 1,
     "area": {
         "value": 2100,
-        "unit": "ft²"
+        "unit": "m²"
     },
     "yearBuilt": 2010,
     "ratingsCount": 7,
@@ -105,7 +105,7 @@
             "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
             "area": {
                 "value": 1180,
-                "unit": "ft²"
+                "unit": "m²"
             },
             "rooms": 3,
             "baths": 1,
@@ -116,7 +116,7 @@
             "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
             "area": {
                 "value": 1200,
-                "unit": "ft²"
+                "unit": "m²"
             },
             "rooms": 5,
             "baths": 2,

@@ -4,7 +4,7 @@
         "title": "Modern and quirky flat",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Piso",
-        "propertyStatus": ["For Sale"],
+        "propertyStatus": ["Subasta"],
         "city": "New York",
         "zipCode": "10033",
         "neighborhood": ["Astoria", "Midtown"],
@@ -29,7 +29,7 @@
         "garages": 1,
         "area": {
             "value": 2380,
-            "unit": "ft²"
+            "unit": "m²"
         },
         "yearBuilt": 2007,
         "ratingsCount": 3,
@@ -96,7 +96,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1180,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 3,
                 "baths": 1,
@@ -107,7 +107,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1200,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 5,
                 "baths": 2,
@@ -133,7 +133,7 @@
         "title": "Comfortable family house",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Casa",
-        "propertyStatus": ["For Sale", "Open House"],
+        "propertyStatus": ["Subasta", "Venta directa"],
         "city": "Seattle",
         "zipCode": "98104",
         "neighborhood": ["Belltown"],
@@ -158,7 +158,7 @@
         "garages": 1,
         "area": {
             "value": 2100,
-            "unit": "ft²"
+            "unit": "m²"
         },
         "yearBuilt": 2010,
         "ratingsCount": 7,
@@ -235,7 +235,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1180,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 3,
                 "baths": 1,
@@ -246,7 +246,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1200,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 5,
                 "baths": 2,
@@ -272,7 +272,7 @@
         "title": "Bright and sunny house",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Casa",
-        "propertyStatus": ["For Rent", "No Fees"],
+        "propertyStatus": ["Cesión de remate", "Próximamente"],
         "city": "Chicago",
         "zipCode": "60609",
         "neighborhood": ["Englewood", "Austin"],
@@ -297,7 +297,7 @@
         "garages": 1,
         "area": {
             "value": 1600,
-            "unit": "ft²"
+            "unit": "m²"
         },
         "yearBuilt": 2017,
         "ratingsCount": 5,
@@ -364,7 +364,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1180,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 3,
                 "baths": 1,
@@ -375,7 +375,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1200,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 5,
                 "baths": 2,
@@ -401,7 +401,7 @@
         "title": "Luxury office space",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Oficina",
-        "propertyStatus": ["For Sale", "Hot Offer"],
+        "propertyStatus": ["Subasta", "OFERTA"],
         "city": "New York",
         "zipCode": "10019",
         "neighborhood": ["Englewood", "Austin"],
@@ -426,7 +426,7 @@
         "garages": 1,
         "area": {
             "value": 3200,
-            "unit": "ft²"
+            "unit": "m²"
         },
         "yearBuilt": 2017,
         "ratingsCount": 7,
@@ -503,7 +503,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1180,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 3,
                 "baths": 1,
@@ -514,7 +514,7 @@
                 "desc": "Plan description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
                 "area": {
                     "value": 1200,
-                    "unit": "ft²"
+                    "unit": "m²"
                 },
                 "rooms": 5,
                 "baths": 2,

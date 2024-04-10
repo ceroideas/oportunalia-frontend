@@ -3,21 +3,21 @@ import { SwiperDirective, SwiperConfigInterface, SwiperPaginationInterface } fro
 import { Property } from '../../app.models';
 import { Settings, AppSettings } from '../../app.settings';
 
-import { AppService } from '../../app.service'; 
-import { CompareOverviewComponent } from '../compare-overview/compare-overview.component'; 
+import { AppService } from '../../app.service';
+import { CompareOverviewComponent } from '../compare-overview/compare-overview.component';
 
 @Component({
   selector: 'app-property-item',
   templateUrl: './property-item.component.html',
-  styleUrls: ['./property-item.component.scss'] 
+  styleUrls: ['./property-item.component.scss']
 })
 export class PropertyItemComponent implements OnInit {
   @Input() property: Property;
   @Input() viewType: string = "grid";
-  @Input() viewColChanged: number = 0; 
-  @Input() fullWidthPage: boolean = true;   
+  @Input() viewColChanged: number = 0;
+  @Input() fullWidthPage: boolean = true;
   public column:number = 4;
-  // public address:string; 
+  // public address:string;
   @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
   public config: SwiperConfigInterface = {};
   private pagination: SwiperPaginationInterface = {
@@ -37,28 +37,28 @@ export class PropertyItemComponent implements OnInit {
     //   console.log(data['results'][0]['formatted_address']);
     //   this.address = data['results'][0]['formatted_address'];
     // })
-  } 
- 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}){  
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}){
     if(changes.viewColChanged){
       this.getColumnCount(changes.viewColChanged.currentValue);
       if(!changes.viewColChanged.isFirstChange()){
-        if(this.property.gallery.length > 1){     
-           this.directiveRef.update();  
-        } 
+        if(this.property.gallery.length > 1){
+           this.directiveRef.update();
+        }
       }
-    } 
+    }
 
-    for (let propName in changes) {      
+    for (let propName in changes) {
       // let changedProp = changes[propName];
       // if (!changedProp.isFirstChange()) {
       //   if(this.property.gallery.length > 1){
       //     this.initCarousel();
-      //     this.config.autoHeight = true;       
-      //     this.directiveRef.update();  
-      //   }       
-      // }      
-    }  
+      //     this.config.autoHeight = true;
+      //     this.directiveRef.update();
+      //   }
+      // }
+    }
   }
 
   public getColumnCount(value){
@@ -78,19 +78,19 @@ export class PropertyItemComponent implements OnInit {
 
   public getStatusBgColor(status){
     switch (status) {
-      case 'For Sale':
-        return '#558B2F';  
-      case 'For Rent':
-        return '#1E88E5'; 
-      case 'Open House':
+      case 'Subasta':
+        return '#558B2F';
+      case 'Cesión de remate':
+        return '#1E88E5';
+      case 'Venta directa':
         return '#009688';
-      case 'No Fees':
+      case 'Próximamente':
         return '#FFA000';
-      case 'Hot Offer':
+      case 'OFERTA':
         return '#F44336';
-      case 'Sold':
+      case 'Finalizada':
         return '#000';
-      default: 
+      default:
         return '#01579B';
     }
   }
@@ -99,14 +99,14 @@ export class PropertyItemComponent implements OnInit {
   public initCarousel(){
     this.config = {
       slidesPerView: 1,
-      spaceBetween: 0,         
+      spaceBetween: 0,
       keyboard: false,
       navigation: true,
       pagination: this.pagination,
-      grabCursor: true,        
+      grabCursor: true,
       loop: true,
       preloadImages: false,
-      lazy: true,  
+      lazy: true,
       nested: true,
       // autoplay: {
       //   delay: 5000,
@@ -116,10 +116,10 @@ export class PropertyItemComponent implements OnInit {
       effect: "slide"
     }
   }
-  
+
 
   public addToCompare(){
-    this.appService.addToCompare(this.property, CompareOverviewComponent, (this.settings.rtl) ? 'rtl':'ltr'); 
+    this.appService.addToCompare(this.property, CompareOverviewComponent, (this.settings.rtl) ? 'rtl':'ltr');
   }
 
   public onCompare(){
