@@ -1,8 +1,8 @@
 {
     "id": 3,
-    "title": "Comfortable family house", 
+    "title": "Comfortable family house",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "House",
+    "propertyType": "Casa",
     "propertyStatus": ["For Sale", "Open House"],
     "city": "Seattle",
     "zipCode": "98104",
@@ -12,9 +12,9 @@
         "lat": 47.602760,
         "lng": -122.331440
     },
-    "formattedAddress" : "3rd Ave & James St, Seattle, WA 98104, USA", 
-    "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Fireplace", "Sauna", "TV Cable", "WiFi"],
-    "featured": false, 
+    "formattedAddress" : "3rd Ave & James St, Seattle, WA 98104, USA",
+    "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Cabañas", "Piscina", "TV Cable", "WiFi"],
+    "featured": false,
     "priceDollar": {
         "sale": 2550000,
         "rent": null
@@ -33,7 +33,7 @@
     "yearBuilt": 2010,
     "ratingsCount": 7,
     "ratingsValue": 560,
-    "additionalFeatures": [                
+    "additionalFeatures": [
         {
             "name": "Heat",
             "value": "Natural Gas"
@@ -67,12 +67,12 @@
             "value": "2"
         }
     ],
-    "gallery": [            
+    "gallery": [
         {
             "small": "assets/images/props/house-1/1-small.jpg",
             "medium": "assets/images/props/house-1/1-medium.jpg",
             "big": "assets/images/props/house-1/1-big.jpg"
-        },         
+        },
         {
             "small": "assets/images/props/house-1/2-small.jpg",
             "medium": "assets/images/props/house-1/2-medium.jpg",

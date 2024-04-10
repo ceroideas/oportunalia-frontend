@@ -1,8 +1,8 @@
 {
     "id": 5,
-    "title": "House with a pool", 
+    "title": "House with a pool",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "House",
+    "propertyType": "Casa",
     "propertyStatus": ["Sold", "For Sale"],
     "city": "Seattle",
     "zipCode": "98108",
@@ -12,9 +12,9 @@
         "lat": 47.603230,
         "lng": -122.330276
     },
-    "formattedAddress": "5921 17th Ave S, Seattle, WA 98108, USA", 
-    "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
-    "featured": true, 
+    "formattedAddress": "5921 17th Ave S, Seattle, WA 98108, USA",
+    "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Golf", "Piscina", "TV Cable", "WiFi"],
+    "featured": true,
     "priceDollar": {
         "sale": 4500000,
         "rent": null
@@ -33,7 +33,7 @@
     "yearBuilt": 2007,
     "ratingsCount": 6,
     "ratingsValue": 480,
-    "additionalFeatures": [                
+    "additionalFeatures": [
         {
             "name": "Heat",
             "value": "Natural Gas"

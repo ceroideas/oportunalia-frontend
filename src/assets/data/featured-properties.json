@@ -1,9 +1,9 @@
 [
     {
         "id": 2,
-        "title": "Centrally located office", 
+        "title": "Centrally located office",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "Office",
+        "propertyType": "Oficina",
         "propertyStatus": ["For Rent", "No Fees"],
         "city": "Los Angeles",
         "zipCode": "90044",
@@ -14,7 +14,7 @@
             "lng": -118.293730
         },
         "formattedAddress" : "1052 W 91st St, Los Angeles, CA 90044, USA",
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Refrigerator", "Fireplace", "Sauna", "TV Cable", "WiFi"], 
+        "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Playa", "Cabañas", "Piscina", "TV Cable", "WiFi"],
         "featured": true,
         "priceDollar": {
             "sale": null,
@@ -34,7 +34,7 @@
         "yearBuilt": 2012,
         "ratingsCount": 4,
         "ratingsValue": 400,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -140,9 +140,9 @@
     },
     {
         "id": 4,
-        "title": "Spacious and warm flat", 
+        "title": "Spacious and warm flat",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "Apartment",
+        "propertyType": "Piso",
         "propertyStatus": ["Hot Offer", "No Fees"],
         "city": "Chicago",
         "zipCode": "60604",
@@ -152,9 +152,9 @@
             "lat": 41.878113,
             "lng": -87.629799
         },
-        "formattedAddress": "55 W Jackson Blvd, Chicago, IL 60604, USA", 
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Fireplace", "Sauna", "TV Cable", "WiFi"],
-        "featured": true, 
+        "formattedAddress": "55 W Jackson Blvd, Chicago, IL 60604, USA",
+        "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Cabañas", "Piscina", "TV Cable", "WiFi"],
+        "featured": true,
         "priceDollar": {
             "sale": 1450000,
             "rent": null
@@ -173,7 +173,7 @@
         "yearBuilt": 2002,
         "ratingsCount": 3,
         "ratingsValue": 220,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -274,9 +274,9 @@
     },
     {
         "id": 5,
-        "title": "House with a pool", 
+        "title": "House with a pool",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "House",
+        "propertyType": "Casa",
         "propertyStatus": ["Sold", "For Sale"],
         "city": "Seattle",
         "zipCode": "98108",
@@ -286,9 +286,9 @@
             "lat": 47.603230,
             "lng": -122.330276
         },
-        "formattedAddress": "5921 17th Ave S, Seattle, WA 98108, USA", 
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
-        "featured": true, 
+        "formattedAddress": "5921 17th Ave S, Seattle, WA 98108, USA",
+        "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Golf", "Piscina", "TV Cable", "WiFi"],
+        "featured": true,
         "priceDollar": {
             "sale": 4500000,
             "rent": null
@@ -307,7 +307,7 @@
         "yearBuilt": 2007,
         "ratingsCount": 6,
         "ratingsValue": 480,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -403,9 +403,9 @@
     },
     {
         "id": 6,
-        "title": "Bright and sunny house", 
+        "title": "Bright and sunny house",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "House",
+        "propertyType": "Casa",
         "propertyStatus": ["For Rent", "No Fees"],
         "city": "Chicago",
         "zipCode": "60609",
@@ -415,9 +415,9 @@
             "lat": 41.814080,
             "lng": -87.660410
         },
-        "formattedAddress": "1400 W 44th St, Chicago, IL 60609, USA", 
-        "features": ["Refrigerator", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
-        "featured": true, 
+        "formattedAddress": "1400 W 44th St, Chicago, IL 60609, USA",
+        "features": ["Playa", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Golf", "Piscina", "TV Cable", "WiFi"],
+        "featured": true,
         "priceDollar": {
             "sale": null,
             "rent": 9000
@@ -436,7 +436,7 @@
         "yearBuilt": 2017,
         "ratingsCount": 5,
         "ratingsValue": 400,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -532,9 +532,9 @@
     },
     {
         "id": 8,
-        "title": "Centrally located apartment", 
+        "title": "Centrally located apartment",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "Apartment",
+        "propertyType": "Piso",
         "propertyStatus": ["For Rent", "No Fees"],
         "city": "Los Angeles",
         "zipCode": "90028",
@@ -544,9 +544,9 @@
             "lat": 34.100570,
             "lng": -118.327440
         },
-        "formattedAddress": "1627 Vine St, Los Angeles, CA 90028, USA", 
-        "features": ["Air Conditioning", "Refrigerator", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
-        "featured": true, 
+        "formattedAddress": "1627 Vine St, Los Angeles, CA 90028, USA",
+        "features": ["Campo", "Playa", "Ciudad", "Edificios", "Gimnasio", "Golf", "Piscina", "TV Cable", "WiFi"],
+        "featured": true,
         "priceDollar": {
             "sale": null,
             "rent": 5600
@@ -565,7 +565,7 @@
         "yearBuilt": 2017,
         "ratingsCount": 4,
         "ratingsValue": 380,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -663,5 +663,5 @@
         "published": "2016-03-29 05:20:00",
         "lastUpdate": "2019-06-26 14:20:00",
         "views": 852
-    }    
+    }
 ]

@@ -1,8 +1,8 @@
 {
     "id": 6,
-    "title": "Bright and sunny house", 
+    "title": "Bright and sunny house",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "House",
+    "propertyType": "Casa",
     "propertyStatus": ["For Rent", "No Fees"],
     "city": "Chicago",
     "zipCode": "60609",
@@ -12,9 +12,9 @@
         "lat": 41.814080,
         "lng": -87.660410
     },
-    "formattedAddress": "1400 W 44th St, Chicago, IL 60609, USA", 
-    "features": ["Refrigerator", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
-    "featured": true, 
+    "formattedAddress": "1400 W 44th St, Chicago, IL 60609, USA",
+    "features": ["Playa", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Golf", "Piscina", "TV Cable", "WiFi"],
+    "featured": true,
     "priceDollar": {
         "sale": null,
         "rent": 9000
@@ -33,7 +33,7 @@
     "yearBuilt": 2017,
     "ratingsCount": 5,
     "ratingsValue": 400,
-    "additionalFeatures": [                
+    "additionalFeatures": [
         {
             "name": "Heat",
             "value": "Natural Gas"

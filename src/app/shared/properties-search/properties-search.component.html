@@ -30,7 +30,7 @@
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                         <mat-label>{{(variant == 1) ? 'Price' : 'Price From'}}</mat-label>
-                        <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber>
+                        <input matInput autocomplete="off" placeholder="Desde" formControlName="from" type="text" onlyNumber>
                     </mat-form-field>
                 </div>
                 <div fxFlex="10" class="text-center" [class.pb-3]="variant !== 3">
@@ -39,7 +39,7 @@
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                         <mat-label>{{(variant == 1) ? '' : 'Price To'}}</mat-label>
-                        <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber>
+                        <input matInput autocomplete="off" placeholder="Hasta" formControlName="to" type="text" onlyNumber>
                     </mat-form-field>
                 </div>
             </div>
@@ -51,8 +51,8 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>City</mat-label>
-                    <mat-select placeholder="Select City..." formControlName="city" (selectionChange)="onSelectCity()">
+                    <mat-label>Ciudad</mat-label>
+                    <mat-select placeholder="Selecciona ciudad..." formControlName="city" (selectionChange)="onSelectCity()">
                         <mat-option *ngFor="let city of cities" [value]="city">
                             {{city.name}}
                         </mat-option>
@@ -69,8 +69,8 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Barrio</mat-label>
-                    <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
+                    <mat-label>Vecindario</mat-label>
+                    <mat-select placeholder="Selecciona vecindario..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
                         <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: form.get('city').value?.id" [value]="neighborhood">
                             {{neighborhood.name}}
                         </mat-option>
@@ -80,8 +80,8 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Street</mat-label>
-                    <mat-select placeholder="Select Street..." formControlName="street" multiple>
+                    <mat-label>Calle</mat-label>
+                    <mat-select placeholder="Selecciona calle..." formControlName="street" multiple>
                         <mat-option *ngFor="let street of streets | filterStreets : { neighborhoods:form.get('neighborhood').value, cityId:form.get('city').value?.id } " [value]="street">
                             {{street.name}}
                         </mat-option>
@@ -94,8 +94,8 @@
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                            <mat-label>{{(variant == 1) ? 'Bedrooms' : 'Bedrooms From'}}</mat-label>
-                            <mat-select placeholder="From" formControlName="from">
+                            <mat-label>{{(variant == 1) ? 'Habitaciones' : 'Bedrooms From'}}</mat-label>
+                            <mat-select placeholder="Desde" formControlName="from">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -108,7 +108,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Bedrooms To'}}</mat-label>
-                            <mat-select placeholder="To" formControlName="to">
+                            <mat-select placeholder="Hasta" formControlName="to">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -124,8 +124,8 @@
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                            <mat-label>{{(variant == 1) ? 'Bathrooms' : 'Bathrooms From'}}</mat-label>
-                            <mat-select placeholder="From" formControlName="from">
+                            <mat-label>{{(variant == 1) ? 'Baños' : 'Bathrooms From'}}</mat-label>
+                            <mat-select placeholder="Desde" formControlName="from">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -138,7 +138,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Bathrooms To'}}</mat-label>
-                            <mat-select placeholder="To" formControlName="to">
+                            <mat-select placeholder="Hasta" formControlName="to">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -155,7 +155,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? 'Garages' : 'Garages From'}}</mat-label>
-                            <mat-select placeholder="From" formControlName="from">
+                            <mat-select placeholder="Desde" formControlName="from">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -168,7 +168,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Garages To'}}</mat-label>
-                            <mat-select placeholder="To" formControlName="to">
+                            <mat-select placeholder="Hasta" formControlName="to">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -184,8 +184,8 @@
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                            <mat-label>{{(variant == 1) ? 'Area' : 'Area From'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber>
+                            <mat-label>{{(variant == 1) ? 'Área' : 'Area From'}}</mat-label>
+                            <input matInput autocomplete="off" placeholder="Desde" formControlName="from" type="text" onlyNumber>
                         </mat-form-field>
                     </div>
                     <div fxFlex="10" class="text-center" [class.pb-3]="variant !== 3">
@@ -194,7 +194,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Area To'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber>
+                            <input matInput autocomplete="off" placeholder="Hasta" formControlName="to" type="text" onlyNumber>
                         </mat-form-field>
                     </div>
                 </div>
@@ -206,8 +206,8 @@
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                            <mat-label>{{(variant == 1) ? 'Year Built' : 'Fear Built From'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber maxlength="4">
+                            <mat-label>{{(variant == 1) ? 'Año construcción' : 'Fear Built From'}}</mat-label>
+                            <input matInput autocomplete="off" placeholder="Desde" formControlName="from" type="text" onlyNumber maxlength="4">
                         </mat-form-field>
                     </div>
                     <div fxFlex="10" class="text-center" [class.pb-3]="variant !== 3">
@@ -216,7 +216,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Year Built To'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber maxlength="4">
+                            <input matInput autocomplete="off" placeholder="Hasta" formControlName="to" type="text" onlyNumber maxlength="4">
                         </mat-form-field>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
             </div>
 
             <div fxFlex="100" class="mb-2">
-                <p class="uppercase m-2 fw-500">Features</p>
+                <p class="uppercase m-2 fw-500">Caracter&iacute;sticas</p>
                 <div formArrayName="features" [fxLayout]="(vertical) ? 'column' : 'row wrap'">
                     <div [formGroupName]="i" *ngFor="let control of form['controls'].features['controls']; index as i">
                         <mat-checkbox formControlName="selected">{{features[i].name}}</mat-checkbox>

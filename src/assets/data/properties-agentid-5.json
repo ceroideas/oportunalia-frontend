@@ -1,9 +1,9 @@
 [
     {
         "id": 3,
-        "title": "Comfortable family house", 
+        "title": "Comfortable family house",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "House",
+        "propertyType": "Casa",
         "propertyStatus": ["For Sale", "Open House"],
         "city": "Seattle",
         "zipCode": "98104",
@@ -13,9 +13,9 @@
             "lat": 47.602760,
             "lng": -122.331440
         },
-        "formattedAddress" : "3rd Ave & James St, Seattle, WA 98104, USA", 
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Fireplace", "Sauna", "TV Cable", "WiFi"],
-        "featured": false, 
+        "formattedAddress" : "3rd Ave & James St, Seattle, WA 98104, USA",
+        "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Cabañas", "Piscina", "TV Cable", "WiFi"],
+        "featured": false,
         "priceDollar": {
             "sale": 2550000,
             "rent": null
@@ -34,7 +34,7 @@
         "yearBuilt": 2010,
         "ratingsCount": 7,
         "ratingsValue": 560,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -68,12 +68,12 @@
                 "value": "2"
             }
         ],
-        "gallery": [            
+        "gallery": [
             {
                 "small": "assets/images/props/house-1/1-small.jpg",
                 "medium": "assets/images/props/house-1/1-medium.jpg",
                 "big": "assets/images/props/house-1/1-big.jpg"
-            },         
+            },
             {
                 "small": "assets/images/props/house-1/2-small.jpg",
                 "medium": "assets/images/props/house-1/2-medium.jpg",
@@ -140,9 +140,9 @@
     },
     {
         "id": 7,
-        "title": "Luxury office space", 
+        "title": "Luxury office space",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-        "propertyType": "Office",
+        "propertyType": "Oficina",
         "propertyStatus": ["For Sale", "Hot Offer"],
         "city": "New York",
         "zipCode": "10019",
@@ -152,9 +152,9 @@
             "lat": 40.716761,
             "lng": -73.999958
         },
-        "formattedAddress": "230 W 55th St, New York, NY 10019, USA", 
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
-        "featured": false, 
+        "formattedAddress": "230 W 55th St, New York, NY 10019, USA",
+        "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Golf", "Piscina", "TV Cable", "WiFi"],
+        "featured": false,
         "priceDollar": {
             "sale": 2500000,
             "rent": null
@@ -173,7 +173,7 @@
         "yearBuilt": 2017,
         "ratingsCount": 7,
         "ratingsValue": 700,
-        "additionalFeatures": [                
+        "additionalFeatures": [
             {
                 "name": "Heat",
                 "value": "Natural Gas"
@@ -276,5 +276,5 @@
         "published": "2017-08-12 18:20:00",
         "lastUpdate": "2019-03-29 14:20:00",
         "views": 470
-    }  
+    }
 ]

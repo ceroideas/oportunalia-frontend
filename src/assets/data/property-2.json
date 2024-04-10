@@ -1,8 +1,8 @@
 {
     "id": 2,
-    "title": "Centrally located office", 
+    "title": "Centrally located office",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "Office",
+    "propertyType": "Oficina",
     "propertyStatus": ["For Rent", "No Fees"],
     "city": "Los Angeles",
     "zipCode": "90044",
@@ -13,7 +13,7 @@
         "lng": -118.293730
     },
     "formattedAddress" : "1052 W 91st St, Los Angeles, CA 90044, USA",
-    "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Refrigerator", "Fireplace", "Sauna", "TV Cable", "WiFi"], 
+    "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Playa", "Cabañas", "Piscina", "TV Cable", "WiFi"],
     "featured": true,
     "priceDollar": {
         "sale": null,
@@ -33,7 +33,7 @@
     "yearBuilt": 2012,
     "ratingsCount": 4,
     "ratingsValue": 400,
-    "additionalFeatures": [                
+    "additionalFeatures": [
         {
             "name": "Heat",
             "value": "Natural Gas"

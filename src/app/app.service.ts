@@ -130,9 +130,9 @@ export class AppService {
 
   public getPropertyTypes(){
     return [
-      { id: 1, name: 'Office' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
-      { id: 2, name: 'House' },
-      { id: 3, name: 'Apartment' }
+      { id: 1, name: 'Oficina' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
+      { id: 2, name: 'Casa' },
+      { id: 3, name: 'Piso' }
     ]
   }
 
@@ -204,17 +204,17 @@ export class AppService {
 
   public getFeatures(){
     return [
-      { id: 1, name: 'Air Conditioning', selected: false },
-      { id: 2, name: 'Barbeque', selected: false },
-      { id: 3, name: 'Dryer', selected: false },
-      { id: 4, name: 'Microwave', selected: false },
-      { id: 5, name: 'Refrigerator', selected: false },
+      { id: 1, name: 'Campo', selected: false },
+      { id: 2, name: 'Barbacoa', selected: false },
+      { id: 3, name: 'Ciudad', selected: false },
+      { id: 4, name: 'Edificios', selected: false },
+      { id: 5, name: 'Playa', selected: false },
       { id: 6, name: 'TV Cable', selected: false },
-      { id: 7, name: 'Sauna', selected: false },
+      { id: 7, name: 'Piscina', selected: false },
       { id: 8, name: 'WiFi', selected: false },
-      { id: 9, name: 'Fireplace', selected: false },
-      { id: 10, name: 'Swimming Pool', selected: false },
-      { id: 11, name: 'Gym', selected: false },
+      { id: 9, name: 'Cabañas', selected: false },
+      { id: 10, name: 'Golf', selected: false },
+      { id: 11, name: 'Gimnasio', selected: false },
     ]
   }
 

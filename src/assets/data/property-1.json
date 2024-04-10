@@ -1,8 +1,8 @@
 {
     "id": 1,
-    "title": "Modern and quirky flat", 
+    "title": "Modern and quirky flat",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "Apartment",
+    "propertyType": "Piso",
     "propertyStatus": ["For Sale"],
     "city": "New York",
     "zipCode": "10033",
@@ -13,8 +13,8 @@
         "lng": -73.935100
     },
     "formattedAddress" : "611 W 180th St, New York, NY 10033, USA",
-    "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Refrigerator", "Fireplace", "Swimming Pool", "TV Cable", "WiFi"],
-    "featured": true, 
+    "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Playa", "Cabañas", "Golf", "TV Cable", "WiFi"],
+    "featured": true,
     "priceDollar": {
         "sale": 1300000,
         "rent": null
@@ -33,7 +33,7 @@
     "yearBuilt": 2007,
     "ratingsCount": 3,
     "ratingsValue": 280,
-    "additionalFeatures": [                
+    "additionalFeatures": [
         {
             "name": "Heat",
             "value": "Natural Gas"
@@ -67,7 +67,7 @@
             "value": "2"
         }
     ],
-    "gallery": [         
+    "gallery": [
         {
             "small": "assets/images/props/flat-1/1-small.jpg",
             "medium": "assets/images/props/flat-1/1-medium.jpg",

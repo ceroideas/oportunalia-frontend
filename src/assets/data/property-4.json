@@ -1,8 +1,8 @@
 {
     "id": 4,
-    "title": "Spacious and warm flat", 
+    "title": "Spacious and warm flat",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "Apartment",
+    "propertyType": "Piso",
     "propertyStatus": ["Hot Offer", "No Fees"],
     "city": "Chicago",
     "zipCode": "60604",
@@ -12,9 +12,9 @@
         "lat": 41.878113,
         "lng": -87.629799
     },
-    "formattedAddress": "55 W Jackson Blvd, Chicago, IL 60604, USA", 
-    "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Fireplace", "Sauna", "TV Cable", "WiFi"],
-    "featured": true, 
+    "formattedAddress": "55 W Jackson Blvd, Chicago, IL 60604, USA",
+    "features": ["Campo", "Barbacoa", "Ciudad", "Edificios", "Gimnasio", "Cabañas", "Piscina", "TV Cable", "WiFi"],
+    "featured": true,
     "priceDollar": {
         "sale": 1450000,
         "rent": null
@@ -33,7 +33,7 @@
     "yearBuilt": 2002,
     "ratingsCount": 3,
     "ratingsValue": 220,
-    "additionalFeatures": [                
+    "additionalFeatures": [
         {
             "name": "Heat",
             "value": "Natural Gas"
