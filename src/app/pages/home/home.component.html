@@ -101,6 +101,12 @@
 
 <app-featured-properties [properties]="featuredProperties"></app-featured-properties>
 
+<google-map [center]="center" [zoom]="zoom" [options]="mapOptions" height="800px" width="100%">
+  <map-marker *ngFor="let markerPosition of markerPositions"
+              [position]="markerPosition"
+              [options]="markerOptions"></map-marker>
+</google-map>
+
 <app-our-agents></app-our-agents>
 
 <app-clients></app-clients>

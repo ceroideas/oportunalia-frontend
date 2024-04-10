@@ -17,6 +17,18 @@ export class HomeComponent implements OnInit {
   watcher: Subscription;
   activeMediaQuery = '';
 
+  //center: google.maps.LatLngLiteral = { lat: 40.678178, lng: -73.944158};
+  center: google.maps.LatLngLiteral = { lat: 40.416775, lng: -3.703790};
+  zoom: number = 7;
+  markerOptions: google.maps.MarkerOptions = { draggable: false };
+  markerPositions: google.maps.LatLngLiteral[] = [
+    { lat: 40.416775, lng: -3.703790 }
+  ];
+  mapOptions: google.maps.MapOptions = {
+    fullscreenControl: true,
+    mapTypeControl: true
+  }
+
   public slides: any[] = [];
   public properties: Property[];
   public viewType: string = 'grid';
