@@ -15,32 +15,32 @@ export class HeaderImageComponent implements OnInit {
   @Input('title') title;
   @Input('desc') desc;
   @Input('isHomePage') isHomePage:boolean = false;
-  @Input('fullscreen') fullscreen: boolean = false; 
+  @Input('fullscreen') fullscreen: boolean = false;
   public bgImage;
   public settings: Settings;
   constructor(public appSettings:AppSettings, private sanitizer:DomSanitizer) {
     this.settings = this.appSettings.settings;
     setTimeout(() => {
       this.settings.headerBgImage = true;
-    }); 
+    });
   }
 
   ngOnInit() {
     if(this.contentOffsetToTop){
       setTimeout(() => {
         this.settings.contentOffsetToTop = this.contentOffsetToTop;
-      }); 
-    } 
+      });
+    }
     if(this.backgroundImage){
-      this.bgImage = this.sanitizer.bypassSecurityTrustStyle('url('+this.backgroundImage +')'); 
+      this.bgImage = this.sanitizer.bypassSecurityTrustStyle('url('+this.backgroundImage +')');
     }
   }
 
-  ngOnDestroy(){    
+  ngOnDestroy(){
     setTimeout(() => {
-      this.settings.headerBgImage = false; 
+      this.settings.headerBgImage = false;
       this.settings.contentOffsetToTop = false;
-    });  
+    });
   }
 
 }
