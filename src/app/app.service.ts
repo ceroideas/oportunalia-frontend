@@ -644,11 +644,11 @@ export class AppService {
 
   public getClients(){
     return [
-        { name: 'aloha', image: 'assets/images/clients/aloha.png' },
-        { name: 'dream', image: 'assets/images/clients/dream.png' },
-        { name: 'congrats', image: 'assets/images/clients/congrats.png' },
-        { name: 'best', image: 'assets/images/clients/best.png' },
-        { name: 'original', image: 'assets/images/clients/original.png' },
+        { name: 'idealista', image: 'assets/images/clients/idealista.png' },
+        { name: 'lawyer', image: 'assets/images/clients/lawyer.png' },
+        { name: 'opress', image: 'assets/images/clients/opress.png' },
+        { name: 'vanguardia', image: 'assets/images/clients/vanguardia.png' }
+/*         { name: 'original', image: 'assets/images/clients/original.png' },
         { name: 'retro', image: 'assets/images/clients/retro.png' },
         { name: 'king', image: 'assets/images/clients/king.png' },
         { name: 'love', image: 'assets/images/clients/love.png' },
@@ -656,7 +656,7 @@ export class AppService {
         { name: 'easter', image: 'assets/images/clients/easter.png' },
         { name: 'with', image: 'assets/images/clients/with.png' },
         { name: 'special', image: 'assets/images/clients/special.png' },
-        { name: 'bravo', image: 'assets/images/clients/bravo.png' }
+        { name: 'bravo', image: 'assets/images/clients/bravo.png' } */
     ];
   }
 

@@ -20,14 +20,14 @@ export class ClientsComponent implements OnInit {
     this.config = {
       observer: true,
       slidesPerView: 7,
-      spaceBetween: 16,       
+      spaceBetween: 16,
       keyboard: true,
       navigation: false,
       pagination: false,
-      grabCursor: true,        
+      grabCursor: true,
       loop: false,
       preloadImages: false,
-      lazy: true,  
+      lazy: true,
       autoplay: {
         delay: 6000,
         disableOnInteraction: false
@@ -39,19 +39,19 @@ export class ClientsComponent implements OnInit {
           slidesPerView: 2
         },
         480: {
-          slidesPerView: 3
+          slidesPerView: 2//3
         },
         600: {
-          slidesPerView: 4
+          slidesPerView: 3//4
         },
         960: {
-          slidesPerView: 5
+          slidesPerView: 4//5
         },
         1280: {
-          slidesPerView: 6
+          slidesPerView: 4//6
         },
         1500: {
-          slidesPerView: 7
+          slidesPerView: 4//7
         }
       }
     }
