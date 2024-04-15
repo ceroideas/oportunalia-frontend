@@ -128,7 +128,7 @@ a{
 }
 .social-icon{
     display: inherit;
-    color: inherit;
+    color: #242863;//inherit;
     svg.mat-icon.mat-icon-lg{
         height: 37px;
     }
@@ -665,8 +665,8 @@ main.content-offset-to-top{
 footer{
     position: relative;
     overflow: hidden;
-    background: rgba(33, 33, 33, 0.93);
-    color: #fff;
+    background: #fff;
+    color: #242863;
     &:before{
         content: '';
         position:absolute;

@@ -278,17 +278,17 @@ export class FooterComponent implements OnInit {
     }
     feedbackForm: UntypedFormGroup;
     subscribeForm: UntypedFormGroup;
-
+    anio: number = new Date().getFullYear();
     constructor(public formBuilder: UntypedFormBuilder) { }
 
     ngOnInit() {
-        this.feedbackForm = this.formBuilder.group({ 
-            email: ['', Validators.compose([Validators.required, emailValidator])], 
+        this.feedbackForm = this.formBuilder.group({
+            email: ['', Validators.compose([Validators.required, emailValidator])],
             message: ['', Validators.required]
         });
         this.subscribeForm = this.formBuilder.group({
             email: ['', Validators.compose([Validators.required, emailValidator])]
-        })      
+        })
     }
 
     ngAfterViewInit() {

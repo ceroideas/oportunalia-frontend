@@ -3,7 +3,7 @@
     <div class="px-3">
         <div class="theme-container">
 
-            <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign.gt-sm="center center" class="content border-lighter py-5">
+            <!-- <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign.gt-sm="center center" class="content border-lighter py-5">
                 <div fxFlex="100" fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
                     <h2 class="uppercase">Subscribe our Newsletter</h2>
                     <p class="desc mb-1">Stay up to date with our latest news and properties</p>
@@ -16,14 +16,17 @@
                         <button mat-flat-button type="submit" class="subscribe-btn" color="primary">Subscribe</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
             <div class="py-5 content border-lighter">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
-                    <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="45">
+
+                  <div fxFlex="100" fxFlex.gt-sm="40" fxFlex.sm="45">
                         <a class="logo" routerLink="/"><app-logo></app-logo></a>
-                        <p class="mt-5 mb-3 desc">Oportunalia es una plataforma de comercialización de activos inmobiliarios provenientes de procedimientos judiciales y liquidaciones de concursos de acreedores.</p>
+                        <div class="pb-7"></div>
+                        <div class="pb-7"></div>
+                        <!-- <p class="mt-5 mb-3">Oportunalia es una plataforma de comercialización de activos inmobiliarios provenientes de procedimientos judiciales y liquidaciones de concursos de acreedores.</p>
                         <p fxLayout="row" fxLayoutAlign="start center" class="mt-2">
                             <mat-icon color="primary">location_on</mat-icon>
                             <span class="mx-2">Calle Bas&iacute;lica 17, Oficinas, 28020, Madrid</span>
@@ -39,46 +42,50 @@
                         <p fxLayout="row" fxLayoutAlign="start center" class="mt-1">
                             <mat-icon color="primary">schedule</mat-icon>
                             <span class="mx-2">Lun - Vie / 9:00AM - 6:00PM</span>
-                        </p>
+                        </p> -->
+                        <h2 class="pb-3">S&Iacute;GUENOS EN</h2>
                         <app-social-icons [iconSize]="'lg'" fxLayout="row" fxLayoutAlign="start center" class="desc"></app-social-icons>
-                    </div>
+                  </div>
 
-                    <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="45" ngClass.xs="pt-5">
-                        <h2 class="uppercase">Feedback</h2>
-                        <p class="desc">We want your feedback about everything</p>
-                        <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackFormSubmit(feedbackForm.value)" class="custom-form pt-2">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>E-mail</mat-label>
-                                <input matInput autocomplete="off" formControlName="email">
-                                <mat-error *ngIf="feedbackForm.controls.email.errors?.required">Email is required</mat-error>
-                                <mat-error *ngIf="feedbackForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Message for us</mat-label>
-                                <textarea matInput formControlName="message" rows="6"></textarea>
-                                <mat-error *ngIf="feedbackForm.controls.message.errors?.required">Message is required</mat-error>
-                            </mat-form-field>
-                            <div class="w-100 text-center">
-                                <button mat-flat-button color="primary" class="uppercase" type="submit">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="45" ngClass.xs="pt-5">
+                        <h2 class="pb-3">CONTACTO</h2>
+                        <ul>
+                          <li class="pb-3"><a href="mailto:info@oportunalia.com" target="_blank">info&#64;oportunalia.com</a></li>
+                          <li class="pb-3"><a href="tel:+34911254530" target="_blank">+34 911 254 530</a></li>
+                        </ul>
+                   </div>
 
-                    <div fxFlex="100" fxFlex.gt-sm="30" ngClass.lt-md="pt-5">
-                        <h2 class="uppercase mb-3">Our location</h2>
-                        <google-map [center]="center" [zoom]="zoom" [options]="mapOptions" height="308px" width="100%">
-                            <map-marker *ngFor="let markerPosition of markerPositions"
-                                        [position]="markerPosition"
-                                        [options]="markerOptions"></map-marker>
-                        </google-map>
-                    </div>
+                  <div fxFlex="100" fxFlex.gt-sm="20" ngClass.lt-md="pt-5">
+                      <h2 class="pb-3">INICIO</h2>
+                      <h3 class="pb-3">INMUEBLES</h3>
+                      <ul>
+                        <li class="pb-3"><a href="#" target="_blank" >Subasta</a></li>
+                        <li class="pb-3"><a href="#" target="_blank" >Venta Directa</a></li>
+                        <li class="pb-3"><a href="#" target="_blank" >Cesi&oacute;n de remate</a></li>
+                      </ul>
+                      <h4 class="pb-3">CONOCE M&Aacute;S</h4>
+                      <ul>
+                        <li class="pb-3"><a href="#" target="_blank" >Sobre nosotros</a></li>
+                        <li class="pb-3"><a href="#" target="_blank" >¿Tienes dudas?</a></li>
+                        <li class="pb-3"><a href="#" target="_blank" >Actualidad</a></li>
+                      </ul>
+                      <h3>REGISTRO</h3>
+                  </div>
+                  <div fxFlex="100" fxFlex.gt-sm="20" ngClass.lt-md="pt-5">
+                      <h2 class="mb-3">LEGAL</h2>
+                      <ul>
+                        <li class="pb-3"><a href="#">Aviso legal</a></li>
+                        <li class="pb-3"><a href="#">Pol&iacute;tica de Privacidad</a></li>
+                        <li class="pb-3"><a href="#">Pol&iacute;tica de Cookies</a></li>
+                        <li class="pb-3"><a href="#">T&eacute;rminos y condiciones</a></li>
+                      </ul>
+                  </div>
                 </div>
-
             </div>
 
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="copyright">
-                <p ngClass.xs="mt-1">Copyright © 2023 All Rights Reserved</p>
-                <p>Designed & Developed by <a mat-button href="http://themeseason.com/" target="_blank" color="warn">ThemeSeason</a></p>
+            <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="copyright"> -->
+              <div class="text-center">
+                <p ngClass.xs="mt-1">Oportunalia todos los derechos reservados. {{anio}}</p>
             </div>
 
         </div>
