@@ -1,11 +1,29 @@
-<div *ngIf="properties" class="properties-carousel">   
-    <div class="swiper-container h-100 carousel-outer" [swiper]="config"> 
-        <div class="swiper-wrapper h-100">      
+<div *ngIf="properties" class="properties-carousel">
+    <div class="swiper-container h-100 carousel-outer" [swiper]="config">
+        <div class="swiper-wrapper h-100">
             <div *ngFor="let property of properties" class="swiper-slide">
-                <app-property-item [property]="property" [viewType]="'grid'"></app-property-item>                 
+                <app-property-item [property]="property" [viewType]="'grid'"></app-property-item>
             </div>
-        </div>                      
+        </div>
         <button mat-mini-fab color="primary" class="prop-prev swiper-button-prev swipe-arrow"><mat-icon>keyboard_arrow_left</mat-icon></button>
-        <button mat-mini-fab color="primary" class="prop-next swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button> 
+        <button mat-mini-fab color="primary" class="prop-next swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button>
     </div>
 </div>
+<!-- <div class="testimonials-carousel">
+  <div class="swiper-container h-100" [swiper]="config">
+      <div class="swiper-wrapper h-100">
+          <div *ngFor="let property of properties" class="swiper-slide">
+              <div class="content text-center"> -->
+                  <!-- <img [attr.data-src]="testimonial.image" class="swiper-lazy">
+                  <div class="quote open text-left primary-color">“</div>
+                  <p class="text">{{testimonial.text}}</p>
+                  <div class="quote close text-right primary-color">”</div>
+                  <h3 class="author">{{testimonial.author}}</h3>
+                  <p>{{testimonial.position}}</p>
+ -->                 <!--  <div class="swiper-lazy-preloader"></div> -->
+  <!--             </div>
+          </div>
+      </div>
+      <div class="swiper-pagination"></div>
+  </div>
+</div> -->

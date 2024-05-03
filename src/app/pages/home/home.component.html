@@ -2,10 +2,10 @@
                 [backgroundImage]="'assets/images/others/homepage.jpg'"
                 [bgImageAnimate]="true"
                 [contentOffsetToTop]="true"
-                [title]="'Oportunalia'"
-                [desc]="'Tu web de oportunanidades inmobiliarias'"
-                [isHomePage]="true"
-                [fullscreen]="false">
+                [title]=""
+                [desc]="'Oportunidades inmobiliarias con grandes descuentos'"
+                [isHomePage]="false"
+                [fullscreen]="true">
 </app-header-image>
 
 <app-header-carousel *ngIf="settings.header == 'carousel'"
@@ -92,7 +92,15 @@
 <div class="section mt-3">
   <div class="px-3">
       <div class="theme-container">
-        <h1 class="section-title">¿Que es <b>Oportunalia</b>?</h1>
+        <div class="px-3 pt-6 pb-6">
+          <div class="theme-container text-center">
+            <!-- <h1 class="section-title mb-3 f-primary">¿Que es <b>Oportunalia</b>?</h1> -->
+            <h1 class="text-center mb-4 fw-400 f-primary fs-2x">¿Que es <b>Oportunalia</b>?</h1>
+            <p class="pl-6 pr-6 f-primary fs-1x"><b>Oportunalia</b> es una plataforma de <b>oportunidades inmobiliarias</b> que ofrece pisos procedentes de bancos y
+              otros procedimientos judiciales de forma &aacute;gil y completamente segura. Adem&aacute;s, proporciona acompañamiento
+              egal a lo largo de todo el proceso. Descubre viviendas, fincas, garajes y m&aacute;s a precios por debajo del mercado.</p>
+          </div>
+        </div>
           <app-header-video
                           [backgroundVideo]="'https://oportunalia.com/assets/home/video_home_oportunalia.mp4'"
                           [contentOffsetToTop]="false"
@@ -103,14 +111,14 @@
   </div>
 </div>
 
-<app-mission></app-mission>
+<!-- <app-mission></app-mission> -->
 
 <app-our-services></app-our-services>
 
 
-<app-testimonials></app-testimonials>
+<!-- <app-testimonials></app-testimonials> -->
 
-<app-hot-offer-today [propertyId]="4"></app-hot-offer-today>
+<!-- <app-hot-offer-today [propertyId]="4"></app-hot-offer-today> -->
 
 <app-featured-properties [properties]="featuredProperties"></app-featured-properties>
 
@@ -120,7 +128,7 @@
               [options]="markerOptions"></map-marker>
 </google-map>
 
-<app-our-agents></app-our-agents>
+<!-- <app-our-agents></app-our-agents> -->
 
 <app-clients></app-clients>
 
