@@ -166,7 +166,7 @@
 
     .section .section-title:after,
     .section.testimonials .swiper-pagination-bullet-active {
-        background-color: mat.get-color-from-palette($primary);
+        background-color: #21B6B0; //mat.get-color-from-palette($accent);
     }
 
 

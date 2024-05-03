@@ -815,9 +815,11 @@ button.swipe-arrow{
         }
     }
     .section-title{
-        text-transform: uppercase;
+        //text-transform: uppercase;
+        color:#242863;
         text-align: center;
         margin-bottom: 40px;
+        font-weight: 400 !important;
         position: relative;
         &:after{
             content: '';

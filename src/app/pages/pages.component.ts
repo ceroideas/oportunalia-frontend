@@ -9,7 +9,7 @@ import { DomHandlerService } from '../dom-handler.service';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-  @ViewChild('sidenav') sidenav:any;  
+  @ViewChild('sidenav') sidenav:any;
   public toolbarTypes = [1, 2];
   public toolbarTypeOption:number;
   public headerTypes = ['default', 'image', 'carousel', 'map', 'video'];
@@ -21,72 +21,72 @@ export class PagesComponent implements OnInit {
   public scrolledCount = 0;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, 
-              public router:Router,  
+  constructor(public appSettings:AppSettings,
+              public router:Router,
               private domHandlerService: DomHandlerService) {
-    this.settings = this.appSettings.settings;  
+    this.settings = this.appSettings.settings;
   }
 
   ngOnInit() {
-    this.toolbarTypeOption = this.settings.toolbar;    
-    this.headerTypeOption = this.settings.header; 
+    this.toolbarTypeOption = this.settings.toolbar;
+    this.headerTypeOption = this.settings.header;
     this.searchPanelVariantOption = this.settings.searchPanelVariant;
   }
-  
+
   public changeTheme(theme){
-    this.settings.theme = theme;       
+    this.settings.theme = theme;
   }
 
   public chooseToolbarType(){
     this.settings.toolbar = this.toolbarTypeOption;
-    this.domHandlerService.winScroll(0, 0); 
+    this.domHandlerService.winScroll(0, 0);
   }
 
   public chooseHeaderType(){
-    this.settings.header = this.headerTypeOption;    
-    this.domHandlerService.winScroll(0, 0); 
+    this.settings.header = this.headerTypeOption;
+    this.domHandlerService.winScroll(0, 0);
     this.router.navigate(['/']);
   }
 
   public chooseSearchPanelVariant(){
     this.settings.searchPanelVariant = this.searchPanelVariantOption;
   }
-     
- 
+
+
   @HostListener('window:scroll') onWindowScroll() {
     const scrollTop = Math.max(this.domHandlerService.window?.pageYOffset, this.domHandlerService.winDocument.documentElement.scrollTop, this.domHandlerService.winDocument.body.scrollTop);
-    (scrollTop > 300) ? this.showBackToTop = true : this.showBackToTop = false; 
-
-    if(this.settings.stickyMenuToolbar){      
+    (scrollTop > 300) ? this.showBackToTop = true : this.showBackToTop = false;
+    if(this.settings.stickyMenuToolbar){
       let top_toolbar = this.domHandlerService.winDocument.getElementById('top-toolbar');
-      if(top_toolbar){ 
+
+      if(top_toolbar){
         if(scrollTop >= top_toolbar.clientHeight) {
           this.settings.mainToolbarFixed = true;
         }
         else{
-          this.settings.mainToolbarFixed = false;
-        } 
-      }        
-    } 
-    
-        
+          this.settings.mainToolbarFixed = true;// true siempre visible
+        }
+      }
+    }
+
+
     let load_more = this.domHandlerService.winDocument.getElementById('load-more');
     if(load_more){
-      if(this.domHandlerService.window?.innerHeight > load_more.getBoundingClientRect().top + 120){ 
+      if(this.domHandlerService.window?.innerHeight > load_more.getBoundingClientRect().top + 120){
         if(!this.settings.loadMore.complete){
-          if(this.settings.loadMore.start){        
-            if(this.scrolledCount < this.settings.loadMore.step){  
-              this.scrolledCount++; 
-              if(!this.settings.loadMore.load){ 
-                this.settings.loadMore.load = true; 
+          if(this.settings.loadMore.start){
+            if(this.scrolledCount < this.settings.loadMore.step){
+              this.scrolledCount++;
+              if(!this.settings.loadMore.load){
+                this.settings.loadMore.load = true;
               }
             }
             else{
               this.settings.loadMore.start = false;
               this.scrolledCount = 0;
             }
-          }  
-        }              
+          }
+        }
       }
     }
   }
@@ -99,24 +99,25 @@ export class PagesComponent implements OnInit {
         this.domHandlerService.window?.scrollBy(0, scrollStep);
       }
       else{
-        clearInterval(scrollInterval); 
+        clearInterval(scrollInterval);
       }
     },10);
-    if(this.domHandlerService.window?.innerWidth <= 768){ 
-      this.domHandlerService.winScroll(0, 0);  
+    if(this.domHandlerService.window?.innerWidth <= 768){
+      this.domHandlerService.winScroll(0, 0);
     }
   }
 
   ngAfterViewInit(){
     this.domHandlerService.winDocument.getElementById('preloader')?.classList.add('hide');
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {        
+      this.settings.mainToolbarFixed = true; // Siempre visible
+      if (event instanceof NavigationEnd) {
         this.sidenav.close();
-        this.settings.mainToolbarFixed = false; 
-        this.domHandlerService.winScroll(0, 0);   
-      }            
-    });    
-  }   
- 
+        this.settings.mainToolbarFixed = true;
+        this.domHandlerService.winScroll(0, 0);
+      }
+    });
+  }
+
 
 }
