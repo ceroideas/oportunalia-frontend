@@ -98,14 +98,14 @@
             <h1 class="text-center mb-4 fw-400 f-primary fs-2x">¿Que es <b>Oportunalia</b>?</h1>
             <p class="pl-6 pr-6 f-primary fs-1x"><b>Oportunalia</b> es una plataforma de <b>oportunidades inmobiliarias</b> que ofrece pisos procedentes de bancos y
               otros procedimientos judiciales de forma &aacute;gil y completamente segura. Adem&aacute;s, proporciona acompañamiento
-              egal a lo largo de todo el proceso. Descubre viviendas, fincas, garajes y m&aacute;s a precios por debajo del mercado.</p>
+              legal a lo largo de todo el proceso. Descubre viviendas, fincas, garajes y m&aacute;s a precios por debajo del mercado.</p>
           </div>
         </div>
           <app-header-video
                           [backgroundVideo]="'https://oportunalia.com/assets/home/video_home_oportunalia.mp4'"
                           [contentOffsetToTop]="false"
                           [isHomePage]="false"
-                          [fullscreen]="true">
+                          [fullscreen]="false">
           </app-header-video>
       </div>
   </div>
@@ -122,6 +122,15 @@
 
 <app-featured-properties [properties]="featuredProperties"></app-featured-properties>
 
+
+<div class="section mt-3">
+  <div class="px-3">
+      <div class="theme-container">
+          <h1 class="text-center fw-400 f-primary">Oportunidades inmobiliarias con</h1>
+          <h1 class="text-center fw-700 f-primary">grandes descuentos</h1>
+    </div>
+  </div>
+</div>
 <google-map [center]="center" [zoom]="zoom" [options]="mapOptions" height="800px" width="100%">
   <map-marker *ngFor="let markerPosition of markerPositions"
               [position]="markerPosition"

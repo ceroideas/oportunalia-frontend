@@ -8,7 +8,7 @@ import { DomHandlerService } from 'src/app/dom-handler.service';
   styleUrls: ['./header-video.component.scss']
 })
 export class HeaderVideoComponent implements OnInit {
-  @Input('backgroundVideo') backgroundVideo; 
+  @Input('backgroundVideo') backgroundVideo;
   @Input('contentOffsetToTop') contentOffsetToTop;
   @Input('contentMinHeight') contentMinHeight;
   @Input('title') title;
@@ -16,11 +16,11 @@ export class HeaderVideoComponent implements OnInit {
   @Input('isHomePage') isHomePage:boolean = false;
   @Input('fullscreen') fullscreen: boolean = false;
   public settings: Settings;
-  constructor(public appSettings: AppSettings, private domHandlerService: DomHandlerService) { 
+  constructor(public appSettings: AppSettings, private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
     setTimeout(() => {
       this.settings.headerBgVideo = true;
-    }); 
+    });
   }
 
   ngOnInit(): void {
@@ -28,16 +28,16 @@ export class HeaderVideoComponent implements OnInit {
       setTimeout(() => {
         this.settings.contentOffsetToTop = this.contentOffsetToTop;
       });
-    } 
+    }
     var vid = <HTMLVideoElement> this.domHandlerService.winDocument.getElementById("bgVideo");
     vid.muted = true;
   }
 
-  ngOnDestroy(){  
+  ngOnDestroy(){
     setTimeout(() => {
-      this.settings.headerBgVideo = false; 
+      this.settings.headerBgVideo = false;
       this.settings.contentOffsetToTop = false;
-    });  
+    });
   }
 
 }
