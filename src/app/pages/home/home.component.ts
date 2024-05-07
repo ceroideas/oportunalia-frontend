@@ -1,3 +1,4 @@
+/* import { Component, OnInit, Input } from '@angular/core'; */
 import { Component, OnInit } from '@angular/core';
 import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
@@ -6,6 +7,7 @@ import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { MediaChange, MediaObserver } from '@ngbracket/ngx-layout';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+/* import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field'; */
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  //@Input() variant:number = 1;
   watcher: Subscription;
   activeMediaQuery = '';
 
@@ -203,5 +205,14 @@ export class HomeComponent implements OnInit {
       this.featuredProperties = properties;
     })
   }
+
+/*     public getAppearance(): MatFormFieldAppearance {
+      return (this.variant != 3) ? 'outline' : 'fill';
+   }
+   public getFloatLabel(): FloatLabelType {
+      return (this.variant == 1) ? 'always' : 'auto';
+   } */
+
+
 
 }

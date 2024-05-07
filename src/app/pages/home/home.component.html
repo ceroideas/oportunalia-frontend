@@ -29,7 +29,9 @@
                 [fullscreen]="true">
 </app-header-video>
 
+<!--  Buscador
 <div class="px-3">
+
     <div class="theme-container">
 
         <mat-card class="main-content-header">
@@ -84,10 +86,8 @@
             </div>
 
         </div>
-
-
     </div>
-</div>
+</div>-->
 
 <div class="section mt-3">
   <div class="px-3">
@@ -128,9 +128,37 @@
       <div class="theme-container">
           <h1 class="text-center fw-400 f-primary">Oportunidades inmobiliarias con</h1>
           <h1 class="text-center fw-700 f-primary">grandes descuentos</h1>
+      </div>
+  </div>
+</div>
+
+
+<div class="px-3 pt-6 pb-6 bg-blue" >
+  <div class="theme-container text-center" >
+    <div class="flex-container" fxLayout="row">
+      <div class="child-1" fxFlex>
+        <mat-form-field appearance="fill">
+          <mat-label>Ubicación</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="child-2" fxFlex>
+        <mat-form-field appearance="fill">
+          <mat-label>Categoría</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="child-3" fxFlex>
+        <button mat-flat-button color="primary">Buscar</button>
+      </div>
     </div>
   </div>
 </div>
+
 <google-map [center]="center" [zoom]="zoom" [options]="mapOptions" height="800px" width="100%">
   <map-marker *ngFor="let markerPosition of markerPositions"
               [position]="markerPosition"
