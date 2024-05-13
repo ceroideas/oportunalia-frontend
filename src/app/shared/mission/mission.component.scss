@@ -1,0 +1,29 @@
+ul{
+  list-style-type: none;
+}
+
+/* f-primary{
+  color:#292c63;
+}
+ */
+
+.subtitle{
+  color:#292c63;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  font-weight: 400 !important;
+  position: relative;
+  /* &:after{
+      content: '';
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 160px;
+      margin: 0 auto;
+      height: 2px;
+  } */
+}
+
+

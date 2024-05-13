@@ -56,9 +56,18 @@ a{
   font-size: 18px;
 }
 
+.fs-1-5x{
+  font-size: 25px;
+}
+
 .fs-2x{
   font-size: 36px;
 }
+
+.lh-100{
+  line-height: 100%;
+ }
+
 .f-secondary{
   color: #32b4ae;
 }
@@ -781,7 +790,7 @@ button.swipe-arrow{
 .section{
     position: relative;
     overflow: hidden;
-    margin-top: 40px;
+    //margin-top: 40px;
     padding: 40px 0;
     &:before{
         content: '';
@@ -808,8 +817,8 @@ button.swipe-arrow{
     &.default{
         &:before{
             background-image: url('../../../assets/images/others/default-bg.png');
-            background-repeat: repeat;
-            background-size: 350px;
+            //background-repeat: repeat;
+            //background-size: 350px;
             background-position: center;
             opacity: 1;
         }

@@ -1,0 +1,35 @@
+.dot {
+  height: 100px;
+  width: 100px;
+  background-color: #292c63;
+  border-radius: 50%;
+  font-size: 36px;
+  font-weight: 700;
+  color:#fff;
+
+}
+
+.about-container {
+  //height: 200px;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  border: 3px solid green;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+
+.div-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //height: 100vh; /* Ajusta esto según tus necesidades */
+  height:100px;
+}

@@ -1,5 +1,5 @@
 {
-  "LOGIN": "Login",
+  "LOGIN": "Iniciar sesión",
   "LOGOUT": "Cerrar sesión",
   "REGISTER": "Regístrate",
   "ACCOUNT": "Cuenta",
@@ -13,8 +13,9 @@
   "HELP": "Ayuda",
   "NAV": {
     "HOME": "Inicio",
-    "PROPERTIES": "Propiedades",
+    "PROPERTIES": "Inmuebles",
     "PAGES": "Páginas",
+    "SERVICES": "Servicios",
     "AGENTS": "Agentes",
     "AGENT": "Agente",
     "FAQS": "Faqs",
@@ -26,7 +27,7 @@
     "EXTERNAL_LINK": "Enlace externo",
     "MENU_ITEM": "Elemento del Menu",
     "CONTACT": "Contacto",
-    "ABOUT_US": "Acerca de nosotros",
+    "ABOUT_US": "Conoce más",
     "ADMIN": "Admin"
   },
   "BTN": {

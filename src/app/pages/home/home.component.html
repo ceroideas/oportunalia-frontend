@@ -1,11 +1,11 @@
 <app-header-image *ngIf="settings.header == 'image'"
                 [backgroundImage]="'assets/images/others/homepage.jpg'"
-                [bgImageAnimate]="true"
+                [bgImageAnimate]="false"
                 [contentOffsetToTop]="true"
                 [title]=""
                 [desc]="'Oportunidades inmobiliarias con grandes descuentos'"
                 [isHomePage]="false"
-                [fullscreen]="true">
+                [fullscreen]="false">
 </app-header-image>
 
 <app-header-carousel *ngIf="settings.header == 'carousel'"
@@ -29,6 +29,49 @@
                 [fullscreen]="true">
 </app-header-video>
 
+<!-- Buscador principal -->
+<div class="px-3 pt-6 pb-6 bg-blue" >
+  <div class="theme-container text-center" >
+    <div class="flex-container" fxLayout="row">
+      <div fxFlex>
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field appearance="fill">
+          <mat-label>Categoría</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field appearance="fill">
+          <mat-label>Ubicación</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field appearance="fill">
+          <mat-label>Otros criterios</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex>
+        <button mat-flat-button class="btn-secondary">Buscar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--  Buscador
 <div class="px-3">
 
@@ -87,7 +130,8 @@
 
         </div>
     </div>
-</div>-->
+</div>
+fin buscador -->
 
 <div class="section mt-3">
   <div class="px-3">
@@ -132,7 +176,7 @@
   </div>
 </div>
 
-
+<!-- Buscador mapa -->
 <div class="px-3 pt-6 pb-6 bg-blue" >
   <div class="theme-container text-center" >
     <div class="flex-container" fxLayout="row">
@@ -153,7 +197,7 @@
         </mat-form-field>
       </div>
       <div class="child-3" fxFlex>
-        <button mat-flat-button color="primary">Buscar</button>
+        <button mat-flat-button class="btn-secondary">Buscar</button>
       </div>
     </div>
   </div>
