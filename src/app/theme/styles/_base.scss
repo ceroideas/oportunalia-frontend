@@ -49,8 +49,15 @@ a{
   font-weight: 900 !important;
 }
 
-.f-primary{
+.fc-primary{
   color: #292c63;
+}
+.fc-secondary{
+  color: #32b4ae;
+}
+
+.fc-gray{
+  color:#7D7D7D
 }
 .fs-1x{
   font-size: 18px;
@@ -64,13 +71,15 @@ a{
   font-size: 36px;
 }
 
+.fs-2-5x{
+  font-size: 42px;
+}
+
 .lh-100{
   line-height: 100%;
  }
 
-.f-secondary{
-  color: #32b4ae;
-}
+
 .d-block{
     display: block !important;
 }

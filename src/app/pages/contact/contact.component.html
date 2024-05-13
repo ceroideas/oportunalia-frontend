@@ -1,14 +1,14 @@
 <app-header-image [backgroundImage]="'assets/images/others/contact.jpg'"
                   [bgImageAnimate]="false"
                   [contentOffsetToTop]="true"
-                  [title]="'Contact Us'"
-                  [desc]="'Got a question? We\'ll give you straight answer'">
+                  [title]="''"
+                  [desc]="'Oportunidades inmobiliarias con grandes descuentos'">
 </app-header-image>
 
 <div class="px-3">
 
     <div class="theme-container">
-        <mat-card class="main-content-header mb-5">
+        <!-- <mat-card class="main-content-header mb-5">
 
             <div fxLayout="row wrap" fxLayoutAlign="space-around">
                 <div fxFlex="100" fxFlex.gt-xs="33.3">
@@ -33,9 +33,9 @@
                     </div>
                 </div>
                 <div class="divider w-100 mt-3"></div>
-                <h3 class="w-100 text-center py-3">FORMULARIO DE CONTACTO</h3>
+                <h3 class="w-100 text-center py-3">FORMULARIO DE CONTACTO</h3> -->
 
-                <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
+                <!-- <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Nombre</mat-label>
@@ -68,19 +68,95 @@
                     <div class="w-100 py-2 text-center">
                         <button mat-raised-button color="primary" type="submit" class="uppercase">Enviar</button>
                     </div>
-                </form>
+                </form> -->
 
-            </div>
+            <!-- </div> -->
 
-            <div class="mt-5 contact-map">
+            <!-- <div class="mt-5 contact-map">
                 <google-map [center]="center" [zoom]="zoom" [options]="mapOptions" height="400px" width="100%">
                     <map-marker *ngFor="let markerPosition of markerPositions"
                                 [position]="markerPosition"
                                 [options]="markerOptions"></map-marker>
                 </google-map>
-            </div>
+            </div> -->
 
-        </mat-card>
+        <!-- </mat-card> -->
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-around">
+          <div fxFlex="100" fxFlex.gt-xs="40" >
+              <!-- <div fxLayout="column" fxLayoutAlign="center center" class="mt-6"> -->
+              <div fxLayout="column" class="mt-6">
+                  <h3 class="fc-primary fs-2-5x fw-700 py-1">Cont&aacute;ctanos</h3>
+                  <p class="fs-1x w-400 fc-primary">Puedes llamarnos o escribirnos.</p>
+                  <div class="mt-4">
+                    <mat-icon color="primary" class="mat-icon-lg cborder">email</mat-icon>
+                    <span class="fc-primary fs-1x">info&#64;oportunalia.com</span>
+                  </div>
+                  <div class="pt-4">
+                    <mat-icon color="primary" class="mat-icon-lg cborder">phone</mat-icon>
+                    <span class="fc-primary fs-1x">+34 911 254 530</span>
+                  </div>
+              </div>
+          </div>
+          <div fxFlex="100" fxFlex.gt-xs="60" ngClass.xs="mt-2" class="divform mb-6 mt-6 pl-6 pr-6">
+              <h3 class="fw-600 pt-6 fc-primary fs-2x">Deja tu mensaje</h3>
+              <p class="fs-1x w-400 fc-gray">¡Completa el siguiente formulario y un miembro de nuestro equipo se pondrá en contacto contigo lo antes posible!</p>
+              <!-- <div fxLayout="column" fxLayoutAlign="center center">
+                  <mat-icon color="primary" class="mat-icon-lg">call</mat-icon>
+                  <h3 class="primary-color py-1">TEL&Eacute;FONO:</h3>
+                  <span>(+34) 911 254 530</span>
+              </div> -->
+
+              <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" formControlName="name" required>
+                        <mat-error *ngIf="contactForm.controls.name.errors?.required">Nombre obligatorio</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" formControlName="email" required>
+                        <mat-error *ngIf="contactForm.controls.email.errors?.required">Email obligatorio</mat-error>
+                        <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Direcci&oacute;n de email erronea</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Tel&eacute;fono</mat-label>
+                        <input matInput placeholder="Teléfono" formControlName="phone" required>
+                        <mat-error *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100" class="px-1 mt-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Mensaje</mat-label>
+                        <textarea matInput placeholder="Escribe tu mensaje" formControlName="message" required rows="7"></textarea>
+                        <mat-error *ngIf="contactForm.controls.message.errors?.required">Mensaje obligatorio</mat-error>
+                    </mat-form-field>
+                </div>
+                <section>
+                  <mat-checkbox>He leido y acepto los terminos y condiciones</mat-checkbox>
+                </section>
+                <div class="w-100 py-2 pb-6">
+                    <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-6 pl-6">Enviar</button>
+                </div>
+            </form>
+          </div>
+          <!-- <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
+              <div fxLayout="column" fxLayoutAlign="center center">
+                  <mat-icon color="primary" class="mat-icon-lg">mail_outline</mat-icon>
+                  <h3 class="primary-color py-1">EMAIL:</h3>
+                      <a href="mailto:info@oportunalia.com" target="_blank"><span>info&#64;oportunalia.com</span></a>
+              </div>
+          </div> -->
+        </div>
+
+
+
+
     </div>
 
 </div>
