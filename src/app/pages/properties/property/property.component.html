@@ -1,6 +1,51 @@
+<!-- Asi comprueba la home que componente mostrar
+    Debemos tener algo como *ngIf="settings.tipoVenta ==1
+  <app-header-image *ngIf="settings.header == 'image'" -->
+<app-header-image [backgroundImage]="'assets/images/others/contact.jpg'"
+                  [bgImageAnimate]="false"
+                  [contentOffsetToTop]="true"
+                  [title]="''"
+                  [desc]="'Cesion remate Oportunidades inmobiliarias con grandes descuentos'">
+</app-header-image>
 <div class="px-3">
     <div class="theme-container">
 
+        <!-- Card titulo -->
+        <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4">
+          <div>
+            <p>cesion de remate 2</p>
+              <h2 class="uppercase fc-primary fw-700 fs-1-5x" ngClass.xs="text-center">{{property?.title}}</h2>
+              <p fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
+                  <mat-icon class="text-muted">location_on</mat-icon>
+                  <!-- <span>{{property?.formattedAddress}}</span> -->
+                  <span>{{property?.city}}</span>
+              </p>
+          </div>
+
+          <div fxLayout="column" fxLayoutAlign.xs="center center" class="mx-3">
+              <p>Descuento</p>
+              <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
+                  <span *ngIf="property?.priceDollar.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
+                  <span *ngIf="property?.priceDollar.rent">{{property?.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /month</span>
+              </h2>
+              <h2 *ngIf="settings.currency == 'EUR'" class="primary-color price">
+                  <span *ngIf="property?.priceEuro.sale">{{property?.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                  <span *ngIf="property?.priceEuro.rent">{{property?.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
+              </h2>
+              <!-- <app-rating [ratingsCount]="property?.ratingsCount" [ratingsValue]="property?.ratingsValue"></app-rating> -->
+              Referencia:
+          </div>
+          <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon>more_vert</mat-icon>
+          </button>
+      </mat-card>
+
+
+
+
+
+
+        <!-- Sidebar -->
         <mat-sidenav-container class="single-property mt-3">
             <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" position="end" autoFocus="false" (openedChange)="onOpenedChange()">
                 <button fxHide="false" fxHide.gt-sm="true" mat-mini-fab color="warn" class="close" (click)="sidenav.close()">
@@ -8,12 +53,12 @@
                 </button>
                 <ng-scrollbar pointerEventsMethod="scrollbar" autoHeightDisabled="false" class="mat-elevation-z1">
                 <mat-card class="p-3">
-
+                    <!-- Agente sidebar -->
                     <div class="widget">
                         <mat-card *ngIf="agent">
                             <img mat-card-image [src]="agent.image" [alt]="agent.fullName">
                             <mat-card-content class="p-3">
-                                <h2 class="fw-600">Agent {{agent.fullName}}</h2>
+                                <h2 class="fw-600">Agent Propiedad {{agent.fullName}}</h2>
                                 <app-rating [ratingsCount]="agent.ratingsCount" [ratingsValue]="agent.ratingsValue"></app-rating>
                                 <p class="mt-3">{{agent.desc}}</p>
                                 <p fxLayoutAlign="start center"><mat-icon color="primary" matTooltip="Organization" matTooltipPosition="above">business</mat-icon><span class="mx-2">{{agent.organization}}</span></p>
@@ -54,8 +99,9 @@
                                 </div>
                             </mat-card-actions>
                         </mat-card>
-                    </div>
+                    </div>  <!-- Fin de agente sidebar -->
 
+                    <!-- Sidebar Formulario de contacto -->
                     <div class="widget">
                         <h3 class="widget-title bg-primary">Reply to the listing</h3>
                         <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
@@ -90,6 +136,7 @@
                         </form>
                     </div>
 
+                    <!-- Sidebar Simulador prestamo -->
                     <div class="widget">
                         <h3 class="widget-title bg-primary">Mortgage Calculator</h3>
                         <form [formGroup]="mortgageForm" (ngSubmit)="onMortgageFormSubmit(mortgageForm.value)">
@@ -116,6 +163,7 @@
                         </form>
                     </div>
 
+                    <!-- Sidebar Propiedades destacadas -->
                     <div fxLayout="column" class="widget">
                         <h3 class="widget-title bg-primary">Propiedades destacadas</h3>
                         <div *ngFor="let prop of featuredProperties" class="mb-3">
@@ -126,15 +174,21 @@
                 </mat-card>
                 </ng-scrollbar>
             </mat-sidenav>
+
+
+            <!------------------------------------------------ Main principal -------------------------------------------------->
             <mat-sidenav-content ngClass.gt-sm="distance">
-                <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3">
+                <!-- Card titulo -->
+                <!-- <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3">
                     <div>
-                        <h2 class="uppercase" ngClass.xs="text-center">{{property?.title}}</h2>
+                      <p>cesion de remate 2</p>
+                        <h2 class="uppercase fc-primary fw-700 fs-1-5x" ngClass.xs="text-center">{{property?.title}}</h2>
                         <p fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
                             <mat-icon class="text-muted">location_on</mat-icon>
-                            <span>{{property?.formattedAddress}}</span>
+                            <span>{{property?.city}}</span>
                         </p>
                     </div>
+
                     <div fxLayout="column" fxLayoutAlign.xs="center center" class="mx-3">
                         <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
                             <span *ngIf="property?.priceDollar.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
@@ -144,20 +198,20 @@
                             <span *ngIf="property?.priceEuro.sale">{{property?.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
                             <span *ngIf="property?.priceEuro.rent">{{property?.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
                         </h2>
-                        <app-rating [ratingsCount]="property?.ratingsCount" [ratingsValue]="property?.ratingsValue"></app-rating>
                     </div>
                     <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
                         <mat-icon>more_vert</mat-icon>
                     </button>
-                </mat-card>
+                </mat-card> -->
 
+                <!-- Card carrusel -->
                 <mat-card class="p-3 mt-3">
                     <div class="main-carousel mb-3">
                         <div *ngIf="property" class="control-icons">
-                            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Add To Favorite">
+                            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                                 <mat-icon class="m-0">favorite_border</mat-icon>
                             </button>
-                            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Add To Compare">
+                            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Añadir a comparador">
                                 <mat-icon class="m-0">compare_arrows</mat-icon>
                             </button>
                         </div>
@@ -172,6 +226,7 @@
                             <button mat-mini-fab color="primary" class="swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button>
                         </div>
                     </div>
+                    <!-- Miniaturas -->
                     <div class="small-carousel">
                         <div id="small-carousel" class="swiper-container" [swiper]="config2">
                             <div class="swiper-wrapper">
@@ -184,16 +239,89 @@
                     </div>
                 </mat-card>
 
+                <!-- Card Descipción -->
+                <!-- <mat-card class="p-3 mt-3">
+                  <mat-card-header class="pt-0" fxLayoutAlign="center center">
+                      <mat-card-title class="uppercase">Descripción</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="p-0 pt-2">
+                      <p>{{property?.desc}}</p>
+                      <p>{{property?.desc}}</p>
+                      <p>{{property?.desc}}</p>
+                  </mat-card-content>
+                </mat-card> -->
+
+                <!-- Card Descipción -->
+                <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4">
+                  <div>
+                    <h2 class="uppercase">Descripción </h2>
+                    <p>{{property?.desc}}</p>
+                    <p>{{property?.desc}}</p>
+                    <p>{{property?.desc}}</p>
+                  </div>
+                  <div class="text-center">
+                    <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
+                    <p>{{property.area.value}} {{property.area.unit}}</p>
+                    <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
+                    <p>{{property?.bedrooms}} Dormitorios</p>
+                    <mat-icon class="mat-icon-sm" color="accent">check</mat-icon>
+                    <p>{{property?.bathrooms}} Baños</p>
+                  </div>
+                </mat-card>
+
+                <!-- Card Especificaciones técnicas -->
+                <mat-card class="p-3 mt-3">
+                  <mat-card-header class="pt-0" >
+                      <mat-card-title class="uppercase">Especificaciones técnicas</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="p-0 pt-2">
+                      <p>{{property?.desc}}</p>
+                      <p>{{property?.desc}}</p>
+                      <p>{{property?.desc}}</p>
+                  </mat-card-content>
+                </mat-card>
+
+                <!-- Card Documentación -->
+                <mat-card class="p-3 mt-3">
+                  <mat-card-header class="pt-0" >
+                      <mat-card-title class="uppercase">Documentación</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="p-0 pt-2">
+                      <p>{{property?.desc}}</p>
+                      <p>{{property?.desc}}</p>
+                      <p>{{property?.desc}}</p>
+                  </mat-card-content>
+                </mat-card>
+
+                <!-- Card condiciones particulares -->
+                <mat-card class="p-3 mt-3">
+                  <mat-card-header class="pt-0" >
+                      <mat-card-title class="uppercase">Condiciones particulares</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="pl-4 pt-2">
+                      <ol>
+                        <li>Valoración: </li>
+                        <li>Precio mínimo: </li>
+                        <li>Impuestos y gastos: </li>
+                        <li>Situación posesoria: </li>
+                        <li>Visitas: </li>
+                        <li>Honorarios entidad especializada: 3% del valor de compra + IVA</li>
+                      </ol>
+
+                  </mat-card-content>
+                </mat-card>
+
+                <!-- Card detalles -->
                 <mat-card *ngIf="property" class="p-3 mt-3">
                     <mat-card-header class="pt-0 pb-2" fxLayoutAlign="center center">
                         <mat-card-title class="uppercase">Detalles</mat-card-title>
                     </mat-card-header>
                     <div fxLayout="row wrap" class="details">
-                        <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
+                        <div fxFlex="100" fxFlex.gt-xs="70" fxLayout="row" class="item">
                             <span>Property Type:</span>
                             <span>{{property.propertyType}}</span>
                         </div>
-                        <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
+                        <div fxFlex="100" fxFlex.gt-xs="30" fxLayout="row" class="item">
                             <span>Property Status:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
@@ -242,9 +370,10 @@
                     </div>
                 </mat-card>
 
+                <!-- Card caracteristicas -->
                 <mat-card class="p-3 mt-3">
                     <mat-card-header class="pt-0" fxLayoutAlign="center center">
-                        <mat-card-title class="uppercase">Features</mat-card-title>
+                        <mat-card-title class="uppercase">Características</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="p-0 pt-2">
                         <div fxLayout="row wrap">
@@ -256,9 +385,10 @@
                     </mat-card-content>
                 </mat-card>
 
+                <!-- Card caracteristicas adicionales -->
                 <mat-card class="p-3 mt-3">
                     <mat-card-header class="pt-0" fxLayoutAlign="center center">
-                        <mat-card-title class="uppercase">Additional features</mat-card-title>
+                        <mat-card-title class="uppercase">Características adicionales</mat-card-title>
                     </mat-card-header>
                     <mat-card-content class="p-0 pt-2">
                         <div fxLayout="row wrap" class="details">
@@ -270,17 +400,9 @@
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card class="p-3 mt-3">
-                    <mat-card-header class="pt-0" fxLayoutAlign="center center">
-                        <mat-card-title class="uppercase">Description</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="p-0 pt-2">
-                        <p>{{property?.desc}}</p>
-                        <p>{{property?.desc}}</p>
-                        <p>{{property?.desc}}</p>
-                    </mat-card-content>
-                </mat-card>
 
+
+                <!-- Mapa localizacion -->
                 <mat-card class="p-3 mt-3">
                     <mat-card-header class="pt-0" fxLayoutAlign="center center">
                         <mat-card-title class="uppercase">Location</mat-card-title>
@@ -292,6 +414,7 @@
                     </mat-card-content>
                 </mat-card>
 
+                <!-- Expansion panels -->
                 <mat-card class="p-3 mt-3">
                     <mat-card-header class="pt-0" fxLayoutAlign="center center">
                         <mat-card-title class="uppercase">Plans</mat-card-title>
@@ -316,7 +439,8 @@
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card *ngIf="property" class="p-3 mt-3">
+                <!-- Card videos -->
+                <!-- <mat-card *ngIf="property" class="p-3 mt-3">
                     <mat-card-header class="pt-0" fxLayoutAlign="center center">
                         <mat-card-title class="uppercase">Videos</mat-card-title>
                     </mat-card-header>
@@ -330,23 +454,27 @@
                             <div [innerHtml]="embedVideo" class="videoWrapper"></div>
                         </div>
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
 
-                <mat-card class="p-3 mt-3" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                <!-- Card estadisticas -->
+                <!-- <mat-card class="p-3 mt-3" fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <span>ID:<span class="fw-500 mx-2">{{property?.id}}</span></span>
                     <span>Published:<span class="fw-500 mx-2">{{property?.published | date:"dd MMMM, yyyy"}}</span></span>
                     <span>Last Update:<span class="fw-500 mx-2">{{property?.lastUpdate | date:"dd MMMM, yyyy"}}</span></span>
                     <span>Views:<span class="fw-500 mx-2">{{property?.views}}</span></span>
-                </mat-card>
+                </mat-card> -->
 
-                <app-comments *ngIf="property" [propertyId]="property.id"></app-comments>
+                <!-- Opiniones -->
+                <!-- <app-comments *ngIf="property" [propertyId]="property.id"></app-comments> -->
 
             </mat-sidenav-content>
         </mat-sidenav-container>
+        <!-- End sidebar -->
 
     </div>
 </div>
 
+<!-- Propiedades relacionadas -->
 <div class="section mt-3">
     <div class="px-3">
         <div class="theme-container">
@@ -355,5 +483,17 @@
         </div>
     </div>
 </div>
+
+<div class="px-3">
+  <div class="theme-container">
+    <mat-card>
+
+      <pre>{{property|json}}</pre>
+
+    </mat-card>
+  </div>
+</div>
+
+
 
 <app-get-in-touch></app-get-in-touch>
