@@ -240,7 +240,7 @@ export class PropertyComponent implements OnInit {
     return ((principalAmount-downPayment) * interestRate) / (1 - Math.pow(1 + interestRate, -period));
   }
 
-  showInfo(){
+  public showInfo(){
     const message = 'Informacion popup';
     let dialogRef = this.appService.showInfoMessage(message);
   }
