@@ -1,0 +1,82 @@
+{
+  "id": 2283,
+  "title": "Chalet en Torrox",
+  "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda que consta de planta alta y baja, con una superficie solar de 68m2 y una superficie de 124m2. Ubicación: CL NIEVES, 29770 TORROX [MÁLAGA] ",
+  "propertyType": "Viviendas",
+  "propertyStatus": ["No vendida"],
+  "city": "Málaga",
+  "zipCode": "00000",
+  "neighborhood": ["Torrox"],
+  "street": ["CL NIEVES 16 TORROX 29770 MALAGA"],
+  "location": { "lat": "40.849150", "lng": "-73.935100" },
+  "formattedAddress": "CL NIEVES 16 TORROX 29770 MALAGA, Torrox, Málaga, España",
+  "features": "hola",
+  "featured": true,
+  "priceDollar": { "sale": 123, "rent": null },
+  "priceEuro": { "sale": 208569.0, "rent": null },
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "garages": 1,
+  "area": { "value": 124, "unit": "m²" },
+  "yearBuilt": 2007,
+  "ratingsCount": 3,
+  "ratingsValue": 280,
+  "additionalFeatures": [
+    { "name": "Heat", "value": "Natural Gas" },
+    { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+  ],
+  "gallery": [
+    {
+      "small": "assets/images/props/2283-1-small.jpg",
+      "medium": "assets/images/props/2283-1-medium.jpg",
+      "big": "assets/images/props/2283-1-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2283-2-small.jpg",
+      "medium": "assets/images/props/2283-2-medium.jpg",
+      "big": "assets/images/props/2283-2-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2283-3-small.jpg",
+      "medium": "assets/images/props/2283-3-medium.jpg",
+      "big": "assets/images/props/2283-3-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2283-4-small.jpg",
+      "medium": "assets/images/props/2283-4-medium.jpg",
+      "big": "assets/images/props/2283-4-big.jpg"
+    }
+  ],
+  "start_date": "2024-05-09 12:00:00",
+  "end_date": "2024-05-20 18:00:00",
+  "auction_type_id": 3,
+  "auction_status_id": 6,
+  "appraisal_value": 208569.0,
+  "start_price": 80850.0,
+  "minimum_bid": 80850.0,
+  "published": "2024-04-22 10:54:46",
+  "lastUpdate": "2024-05-20 18:00:12",
+  "views": 71,
+  "plans": [
+    {
+      "name": "First floor",
+      "desc": "Description",
+      "area": { "value": "10", "unit": "m²" },
+      "rooms": "3",
+      "baths": "1",
+      "image": "assets/images/others/plan-1.jpg"
+    },
+    {
+      "name": "First floor",
+      "desc": "Description",
+      "area": { "value": "10", "unit": "m²" },
+      "rooms": "3",
+      "baths": "1",
+      "image": "assets/images/others/plan-1.jpg"
+    }
+  ],
+  "videos": [
+    { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+    { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+  ]
+}

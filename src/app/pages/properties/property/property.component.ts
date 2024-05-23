@@ -38,6 +38,7 @@ export class PropertyComponent implements OnInit {
   }
   lat: number = 0;
   lng: number = 0;
+  auction_type: string = "";
 
   constructor(public appSettings:AppSettings,
               public appService:AppService,
@@ -70,8 +71,8 @@ export class PropertyComponent implements OnInit {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
-      //phone: ['', Validators.required],
-      //  message: ['', Validators.required]
+      phone: ['', Validators.required],
+      message: ['', Validators.required]
     });
   }
 
@@ -90,6 +91,11 @@ export class PropertyComponent implements OnInit {
       this.embedVideo = this.embedService.embed(this.property.videos[1].link);
       this.lat = +this.property.location.lat;
       this.lng = +this.property?.location.lng;
+      if (this.property.auction_type_id ==1){
+        this.auction_type = "Subasta";
+      }else{
+        this.auction_type = "Cesion de remate";
+      }
       setTimeout(() => {
         this.config.observer = true;
         this.config2.observer = true;
@@ -232,6 +238,11 @@ export class PropertyComponent implements OnInit {
   }
   public calculateMortgage(principalAmount:any, downPayment:any, interestRate:any, period:any){
     return ((principalAmount-downPayment) * interestRate) / (1 - Math.pow(1 + interestRate, -period));
+  }
+
+  showInfo(){
+    const message = 'Informacion popup';
+    let dialogRef = this.appService.showInfoMessage(message);
   }
 
 }

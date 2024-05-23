@@ -1,9 +1,9 @@
 export class Property {
     constructor(public id: number,
-                public title: string, 
+                public title: string,
                 public desc: string,
                 public propertyType: string,
-                public propertyStatus: string[], 
+                public propertyStatus: string[],
                 public city: string,
                 public zipCode: string[],
                 public neighborhood: string[],
@@ -25,20 +25,29 @@ export class Property {
                 public gallery: Gallery[],
                 public plans: Plan[],
                 public videos: Video[],
+
+                public start_date: string,
+                public end_date: string,
+                public auction_type_id: number,
+                public auction_status_id: number,
+                public appraisal_value: Price,
+                public start_price: Price,
+                public minimum_bid: Price,
+
                 public published: string,
                 public lastUpdate: string,
                 public views: number){ }
-} 
+}
 
 
 export class Area {
-    constructor(public id: number, 
+    constructor(public id: number,
                 public value: number,
                 public unit: string){ }
 }
 
 export class AdditionalFeature {
-    constructor(public id: number, 
+    constructor(public id: number,
                 public name: string,
                 public value: string){ }
 }
@@ -56,14 +65,14 @@ export class Price {
 
 
 export class Gallery {
-    constructor(public id: number, 
+    constructor(public id: number,
                 public small: string,
                 public medium: string,
                 public big: string){ }
 }
 
 export class Plan {
-    constructor(public id: number, 
+    constructor(public id: number,
                 public name: string,
                 public desc: string,
                 public area: Area,
@@ -73,7 +82,7 @@ export class Plan {
 }
 
 export class Video {
-    constructor(public id: number, 
+    constructor(public id: number,
                 public name: string,
                 public link: string){ }
 }

@@ -1,8 +1,8 @@
 {
     "id": 1,
-    "title": "Modern and quirky flat",
+    "title": "1 Modern and quirky flat",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
-    "propertyType": "Piso",
+    "propertyType": "Rural",
     "propertyStatus": ["Subasta"],
     "city": "New York",
     "zipCode": "10033",
@@ -123,6 +123,13 @@
             "link": "https://www.youtube.com/watch?v=-NInBEdSvp8"
         }
     ],
+    "start_date":"2024-05-20 13:15:29",
+    "end_date":"2024-06-20 13:15:29",
+    "auction_type_id":1,
+    "auction_status_id":1,
+    "appraisal_value":"150000",
+    "start_price":"50000",
+    "minimum_bid": "50000",
     "published": "2012-08-12 17:17:30",
     "lastUpdate": "2019-05-20 14:20:00",
     "views": 322

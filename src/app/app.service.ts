@@ -120,6 +120,14 @@ export class AppService {
     return dialogRef;
   }
 
+  public showInfoMessage(message:string) {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      maxWidth: "400px",
+      data: message
+    });
+    return dialogRef;
+  }
+
   public getTranslateValue(key: string, param: string | null = null){
     let value: string | null = null;
     this.translateService.get(key, { param: param }).subscribe((res: string) => {
@@ -408,8 +416,8 @@ export class AppService {
       }
 
     }
-
-    // console.log(data)
+    console.log("App Service data: ");
+     console.log(data);
 
     //for show more properties mock data
     for (var index = 0; index < 2; index++) {

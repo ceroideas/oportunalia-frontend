@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "Modern and quirky flat",
+        "title": "1 Modern and quirky flat",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Piso",
         "propertyStatus": ["Subasta"],
@@ -130,7 +130,7 @@
     },
     {
         "id": 2,
-        "title": "Centrally located office",
+        "title": "2 Centrally located office",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Oficina",
         "propertyStatus": ["Cesión de remate", "Próximamente"],
@@ -269,7 +269,7 @@
     },
     {
         "id": 3,
-        "title": "Comfortable family house",
+        "title": "3 Comfortable family house",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Casa",
         "propertyStatus": ["Subasta", "Venta directa"],
@@ -408,7 +408,7 @@
     },
     {
         "id": 4,
-        "title": "Spacious and warm flat",
+        "title": "4 Spacious and warm flat",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Piso",
         "propertyStatus": ["OFERTA", "Próximamente"],
@@ -542,7 +542,7 @@
     },
     {
         "id": 5,
-        "title": "House with a pool",
+        "title": "5 House with a pool",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Casa",
         "propertyStatus": ["Finalizada", "Subasta"],
@@ -671,7 +671,7 @@
     },
     {
         "id": 6,
-        "title": "Bright and sunny house",
+        "title": "6 Bright and sunny house",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Casa",
         "propertyStatus": ["Cesión de remate", "Próximamente"],
@@ -800,7 +800,7 @@
     },
     {
         "id": 7,
-        "title": "Luxury office space",
+        "title": "7 Luxury office space",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Oficina",
         "propertyStatus": ["Subasta", "OFERTA"],
@@ -939,7 +939,7 @@
     },
     {
         "id": 8,
-        "title": "Centrally located apartment",
+        "title": "8 Centrally located apartment",
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Piso",
         "propertyStatus": ["Cesión de remate", "Próximamente"],
@@ -1070,5 +1070,1074 @@
         "published": "2016-03-29 05:20:00",
         "lastUpdate": "2019-06-26 14:20:00",
         "views": 852
+    },
+    {
+      "id": 2283,
+      "title": "Chalet en Torrox",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda que consta de planta alta y baja, con una superficie solar de 68m2 y una superficie de 124m2. Ubicación: CL NIEVES, 29770 TORROX [MÁLAGA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Málaga",
+      "zipCode": "00000",
+      "neighborhood": ["Torrox"],
+      "street": ["CL NIEVES 16 TORROX 29770 MALAGA"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "CL NIEVES 16 TORROX 29770 MALAGA, Torrox, Málaga, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 208569.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 124, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2283-1-small.jpg",
+          "medium": "assets/images/props/2283-1-medium.jpg",
+          "big": "assets/images/props/2283-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2283-2-small.jpg",
+          "medium": "assets/images/props/2283-2-medium.jpg",
+          "big": "assets/images/props/2283-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2283-3-small.jpg",
+          "medium": "assets/images/props/2283-3-medium.jpg",
+          "big": "assets/images/props/2283-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2283-4-small.jpg",
+          "medium": "assets/images/props/2283-4-medium.jpg",
+          "big": "assets/images/props/2283-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-09 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 208569.0,
+      "start_price": 80850.0,
+      "minimum_bid": 80850.0,
+      "published": "2024-04-22 10:54:46",
+      "lastUpdate": "2024-05-20 18:00:12",
+      "views": 71,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2285,
+      "title": "Vivienda en Turre",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: Vivienda en planta segunda alta del Bloque, compuesta de distintas dependencias y servicios. Ubicación: CL CACTUS, 04639 TURRE [ALMERÍA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Almería",
+      "zipCode": "00000",
+      "neighborhood": ["Turre"],
+      "street": ["CL CACTUS 5,2,20 TURRE 04639 ALMERIA"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "CL CACTUS 5,2,20 TURRE 04639 ALMERIA, Turre, Almería, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 90091.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 57, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2285-1-small.jpg",
+          "medium": "assets/images/props/2285-1-medium.jpg",
+          "big": "assets/images/props/2285-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2285-2-small.jpg",
+          "medium": "assets/images/props/2285-2-medium.jpg",
+          "big": "assets/images/props/2285-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2285-3-small.jpg",
+          "medium": "assets/images/props/2285-3-medium.jpg",
+          "big": "assets/images/props/2285-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2285-4-small.jpg",
+          "medium": "assets/images/props/2285-4-medium.jpg",
+          "big": "assets/images/props/2285-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-09 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 90091.0,
+      "start_price": 43908.9,
+      "minimum_bid": 43908.9,
+      "published": "2024-04-22 11:02:52",
+      "lastUpdate": "2024-05-20 18:00:29",
+      "views": 474,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2291,
+      "title": "Vivienda dúplex en Alovera",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda dúplex en la planta segunda y bajo cubierta del edificio, se distribuye en diferentes estancias y dependencias con dos dormitorios.  Ubicación: TR LA PAZ, 19208 ALOVERA [GUADALAJARA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Guadalajara",
+      "zipCode": "00000",
+      "neighborhood": ["Alovera"],
+      "street": ["8941208VK7984S0011SU"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "8941208VK7984S0011SU, Alovera, Guadalajara, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 227032.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 69, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2291-1-small.jpg",
+          "medium": "assets/images/props/2291-1-medium.jpg",
+          "big": "assets/images/props/2291-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2291-2-small.jpg",
+          "medium": "assets/images/props/2291-2-medium.jpg",
+          "big": "assets/images/props/2291-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2291-3-small.jpg",
+          "medium": "assets/images/props/2291-3-medium.jpg",
+          "big": "assets/images/props/2291-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2291-4-small.jpg",
+          "medium": "assets/images/props/2291-4-medium.jpg",
+          "big": "assets/images/props/2291-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-09 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 227032.0,
+      "start_price": 96784.8,
+      "minimum_bid": 96784.8,
+      "published": "2024-04-22 13:23:10",
+      "lastUpdate": "2024-05-20 18:01:03",
+      "views": 64,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2293,
+      "title": "Vivienda en calle Martínez de la Riva",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda situada en planta primera. Ubicación: CL MARTINEZ DE LA RIVA, 28053 MADRID [MADRID] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Madrid",
+      "zipCode": "00000",
+      "neighborhood": ["Madrid"],
+      "street": ["CL/MARTINEZ DE LA RIVA,38,1,IZQ,MADRID,MADRID"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "CL/MARTINEZ DE LA RIVA,38,1,IZQ,MADRID,MADRID, Madrid, Madrid, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 150479.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 22, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2293-1-small.jpg",
+          "medium": "assets/images/props/2293-1-medium.jpg",
+          "big": "assets/images/props/2293-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2293-2-small.jpg",
+          "medium": "assets/images/props/2293-2-medium.jpg",
+          "big": "assets/images/props/2293-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2293-3-small.jpg",
+          "medium": "assets/images/props/2293-3-medium.jpg",
+          "big": "assets/images/props/2293-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2293-4-small.jpg",
+          "medium": "assets/images/props/2293-4-medium.jpg",
+          "big": "assets/images/props/2293-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-09 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 150479.0,
+      "start_price": 55806.65,
+      "minimum_bid": 55806.65,
+      "published": "2024-04-22 13:29:24",
+      "lastUpdate": "2024-05-21 19:31:03",
+      "views": 817,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2343,
+      "title": "Vivienda en Roquetas de Mar 5",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda en Roquetas de Mar con todas sus dependencias y servicios Ubicación: CL El ESCORIAL, 04720 ROQUETAS DE MAR [ALMERÍA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Almería",
+      "zipCode": "00000",
+      "neighborhood": ["Roquetas de Mar"],
+      "street": ["P1ª V1- C/ ESCORIAL Nº 2"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "P1ª V1- C/ ESCORIAL Nº 2, Roquetas de Mar, Almería, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 101125.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 70, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2343-1-small.jpg",
+          "medium": "assets/images/props/2343-1-medium.jpg",
+          "big": "assets/images/props/2343-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2343-2-small.jpg",
+          "medium": "assets/images/props/2343-2-medium.jpg",
+          "big": "assets/images/props/2343-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2343-3-small.jpg",
+          "medium": "assets/images/props/2343-3-medium.jpg",
+          "big": "assets/images/props/2343-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2343-4-small.jpg",
+          "medium": "assets/images/props/2343-4-medium.jpg",
+          "big": "assets/images/props/2343-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-07 12:00:00",
+      "end_date": "2024-05-16 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 101125.0,
+      "start_price": 50600.0,
+      "minimum_bid": 50600.0,
+      "published": "2024-04-26 11:54:09",
+      "lastUpdate": "2024-05-16 18:03:33",
+      "views": 22,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2395,
+      "title": "Piso en La Vall d'Uixó",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Ubicación: CL JUAN CAPO, 34, LA VALL D'UIXÓ (CASTELLÓ) ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["En curso"],
+      "city": "Castellón",
+      "zipCode": "00000",
+      "neighborhood": ["La Vall D'Uixó"],
+      "street": ["Calle Juan Capo, 34"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "Calle Juan Capo, 34, La Vall D'Uixó, Castellón, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 64279.14, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 93, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2395-1-small.jpg",
+          "medium": "assets/images/props/2395-1-medium.jpg",
+          "big": "assets/images/props/2395-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2395-2-small.jpg",
+          "medium": "assets/images/props/2395-2-medium.jpg",
+          "big": "assets/images/props/2395-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2395-3-small.jpg",
+          "medium": "assets/images/props/2395-3-medium.jpg",
+          "big": "assets/images/props/2395-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2395-4-small.jpg",
+          "medium": "assets/images/props/2395-4-medium.jpg",
+          "big": "assets/images/props/2395-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-17 12:00:00",
+      "end_date": "2024-05-27 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 1,
+      "appraisal_value": 64279.14,
+      "start_price": 40683.0,
+      "minimum_bid": 40683.0,
+      "published": "2024-04-30 16:18:46",
+      "lastUpdate": "2024-05-21 11:06:40",
+      "views": 20,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2400,
+      "title": "Vivienda en calle Carrera de las Piedras",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda con todas sus dependencias y servicios. Ubicación: CR DE LAS PIEDRAS, 04006 ALMERIA [ALMERÍA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Almería",
+      "zipCode": "00000",
+      "neighborhood": ["Almería"],
+      "street": ["CR PIEDRAS DE LAS,46 Bl:A1 Esc:1 Pl:4 Pt:A Almería (Almería)"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "CR PIEDRAS DE LAS,46 Bl:A1 Esc:1 Pl:4 Pt:A Almería (Almería), Almería, Almería, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 301177.52, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 134, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2400-1-small.jpg",
+          "medium": "assets/images/props/2400-1-medium.jpg",
+          "big": "assets/images/props/2400-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2400-2-small.jpg",
+          "medium": "assets/images/props/2400-2-medium.jpg",
+          "big": "assets/images/props/2400-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2400-3-small.jpg",
+          "medium": "assets/images/props/2400-3-medium.jpg",
+          "big": "assets/images/props/2400-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2400-4-small.jpg",
+          "medium": "assets/images/props/2400-4-medium.jpg",
+          "big": "assets/images/props/2400-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-06 12:00:00",
+      "end_date": "2024-05-16 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 301177.52,
+      "start_price": 204882.67,
+      "minimum_bid": 204882.67,
+      "published": "2024-04-30 17:45:23",
+      "lastUpdate": "2024-05-16 18:04:22",
+      "views": 283,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2402,
+      "title": "Vivienda en Turre 1",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda con todas sus dependencias y servicios. Ubicación: CL LOS LAURELES, ED LOS BALCONES, 04639 TURRE [ALMERÍA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Almería",
+      "zipCode": "00000",
+      "neighborhood": ["Turre"],
+      "street": [
+        "CL LAURELES LOS Es:E Pl:02 Pt:C ED LOS BALCONES 04639 TURRE [ALMERÍA]"
+      ],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "CL LAURELES LOS Es:E Pl:02 Pt:C ED LOS BALCONES 04639 TURRE [ALMERÍA], Turre, Almería, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 161700.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 78, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2402-1-small.jpg",
+          "medium": "assets/images/props/2402-1-medium.jpg",
+          "big": "assets/images/props/2402-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2402-2-small.jpg",
+          "medium": "assets/images/props/2402-2-medium.jpg",
+          "big": "assets/images/props/2402-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2402-3-small.jpg",
+          "medium": "assets/images/props/2402-3-medium.jpg",
+          "big": "assets/images/props/2402-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2402-4-small.jpg",
+          "medium": "assets/images/props/2402-4-medium.jpg",
+          "big": "assets/images/props/2402-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-06 12:00:00",
+      "end_date": "2024-05-16 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 161700.0,
+      "start_price": 110000.0,
+      "minimum_bid": 110000.0,
+      "published": "2024-05-03 11:32:57",
+      "lastUpdate": "2024-05-16 18:04:36",
+      "views": 309,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2411,
+      "title": "Vivienda en Cedeira",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda con todas sus dependencias y servicios. Ubicación: AV AREA, 15350 CEDEIRA [A CORUÑA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "A Coruña",
+      "zipCode": "00000",
+      "neighborhood": ["Cedeira"],
+      "street": ["AV AREA,17 Cedeira (A Coruña)"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "AV AREA,17 Cedeira (A Coruña), Cedeira, A Coruña, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 127102.5, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 141, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2411-1-small.jpg",
+          "medium": "assets/images/props/2411-1-medium.jpg",
+          "big": "assets/images/props/2411-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2411-2-small.jpg",
+          "medium": "assets/images/props/2411-2-medium.jpg",
+          "big": "assets/images/props/2411-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2411-3-small.jpg",
+          "medium": "assets/images/props/2411-3-medium.jpg",
+          "big": "assets/images/props/2411-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2411-4-small.jpg",
+          "medium": "assets/images/props/2411-4-medium.jpg",
+          "big": "assets/images/props/2411-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-10 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 127102.5,
+      "start_price": 94150.0,
+      "minimum_bid": 94150.0,
+      "published": "2024-05-03 14:51:34",
+      "lastUpdate": "2024-05-20 18:02:46",
+      "views": 8,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2413,
+      "title": "Vivienda en Elche",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: vivienda con todas sus dependencias y servicios. Ubicación: AV ALEGRIA, 03194 ELCHE/ELX (ALICANTE) ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["No vendida"],
+      "city": "Alicante",
+      "zipCode": "00000",
+      "neighborhood": ["Elche"],
+      "street": ["AV ALEGRIA,71 Esc:1 Pl:2 Pt:04 Elche/Elx (Alicante)"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "AV ALEGRIA,71 Esc:1 Pl:2 Pt:04 Elche/Elx (Alicante), Elche, Alicante, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 227609.04, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 123, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2413-1-small.jpg",
+          "medium": "assets/images/props/2413-1-medium.jpg",
+          "big": "assets/images/props/2413-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2413-2-small.jpg",
+          "medium": "assets/images/props/2413-2-medium.jpg",
+          "big": "assets/images/props/2413-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2413-3-small.jpg",
+          "medium": "assets/images/props/2413-3-medium.jpg",
+          "big": "assets/images/props/2413-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2413-4-small.jpg",
+          "medium": "assets/images/props/2413-4-medium.jpg",
+          "big": "assets/images/props/2413-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-10 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 227609.04,
+      "start_price": 163747.51,
+      "minimum_bid": 163747.51,
+      "published": "2024-05-06 10:20:16",
+      "lastUpdate": "2024-05-20 18:03:00",
+      "views": 40,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2429,
+      "title": "Lote de vivienda y plaza de garaje en Aguadulce",
+      "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: Lote de vivienda y plaza de garaje con todas sus dependencias y servicios. Ubicación: CL FERNANDO DE VALOR, 04720 ROQUETAS DE MAR (ALMERÍA) ",
+      "propertyType": "Otros",
+      "propertyStatus": ["No vendida"],
+      "city": "Almería",
+      "zipCode": "00000",
+      "neighborhood": ["Aguadulce"],
+      "street": ["CL FERNANDO DE VALOR,6,1,BAJO,1,AGUADULCE,ALMERIA"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "CL FERNANDO DE VALOR,6,1,BAJO,1,AGUADULCE,ALMERIA, Aguadulce, Almería, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 93585.99, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 95, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2429-1-small.jpg",
+          "medium": "assets/images/props/2429-1-medium.jpg",
+          "big": "assets/images/props/2429-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2429-2-small.jpg",
+          "medium": "assets/images/props/2429-2-medium.jpg",
+          "big": "assets/images/props/2429-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2429-3-small.jpg",
+          "medium": "assets/images/props/2429-3-medium.jpg",
+          "big": "assets/images/props/2429-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2429-4-small.jpg",
+          "medium": "assets/images/props/2429-4-medium.jpg",
+          "big": "assets/images/props/2429-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-10 12:00:00",
+      "end_date": "2024-05-20 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 6,
+      "appraisal_value": 93585.99,
+      "start_price": 57000.0,
+      "minimum_bid": 57000.0,
+      "published": "2024-05-06 14:52:45",
+      "lastUpdate": "2024-05-23 12:11:04",
+      "views": 184,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2443,
+      "title": "Vivienda en Placeta Oñate",
+      "desc": " Procedimiento de Ejecución Hipotecaria. Descripción del activo: vivienda sita en Placeta Oñate con una superficie construida de 82 m2 distribuida entre el recibidor, distribuidor, 3 dormitorios, baño, aseo, salón-comedor y cocina.  Ubicación: PZ OÑATE 2, 18500 GUADIX [GRANADA] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["En curso"],
+      "city": "Granada",
+      "zipCode": "00000",
+      "neighborhood": ["Guadix"],
+      "street": ["Plaza Oñate"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "Plaza Oñate, Guadix, Granada, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 109011.0, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 102, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2443-1-small.jpg",
+          "medium": "assets/images/props/2443-1-medium.jpg",
+          "big": "assets/images/props/2443-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2443-2-small.jpg",
+          "medium": "assets/images/props/2443-2-medium.jpg",
+          "big": "assets/images/props/2443-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2443-3-small.jpg",
+          "medium": "assets/images/props/2443-3-medium.jpg",
+          "big": "assets/images/props/2443-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2443-4-small.jpg",
+          "medium": "assets/images/props/2443-4-medium.jpg",
+          "big": "assets/images/props/2443-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-20 12:00:00",
+      "end_date": "2024-05-29 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 1,
+      "appraisal_value": 109011.0,
+      "start_price": 75180.0,
+      "minimum_bid": 75180.0,
+      "published": "2024-05-08 12:06:24",
+      "lastUpdate": "2024-05-21 11:11:11",
+      "views": 9,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
+    },
+    {
+      "id": 2450,
+      "title": "Piso en Mengíbar",
+      "desc": " Procedimiento de ejecución hipotecaria.  Descripción del activo: Vivienda con una superficie útil de sesenta y cinco metros cuadrados.  Ubicación: CL HERMANOS FERNÁNDEZ, MENGÍBAR [JAÉN] ",
+      "propertyType": "Viviendas",
+      "propertyStatus": ["En curso"],
+      "city": "Jaén",
+      "zipCode": "00000",
+      "neighborhood": ["Mengíbar"],
+      "street": ["Calle Hermanos Fernández, 2, Mengíbar [Jaén]"],
+      "location": { "lat": "40.849150", "lng": "-73.935100" },
+      "formattedAddress": "Calle Hermanos Fernández, 2, Mengíbar [Jaén], Mengíbar, Jaén, España",
+      "features": "hola",
+      "featured": true,
+      "priceDollar": { "sale": 123, "rent": null },
+      "priceEuro": { "sale": 43345.72, "rent": null },
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "area": { "value": 65, "unit": "m²" },
+      "yearBuilt": 2007,
+      "ratingsCount": 3,
+      "ratingsValue": 280,
+      "additionalFeatures": [
+        { "name": "Heat", "value": "Natural Gas" },
+        { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+      ],
+      "gallery": [
+        {
+          "small": "assets/images/props/2450-1-small.jpg",
+          "medium": "assets/images/props/2450-1-medium.jpg",
+          "big": "assets/images/props/2450-1-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2450-2-small.jpg",
+          "medium": "assets/images/props/2450-2-medium.jpg",
+          "big": "assets/images/props/2450-2-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2450-3-small.jpg",
+          "medium": "assets/images/props/2450-3-medium.jpg",
+          "big": "assets/images/props/2450-3-big.jpg"
+        },
+        {
+          "small": "assets/images/props/2450-4-small.jpg",
+          "medium": "assets/images/props/2450-4-medium.jpg",
+          "big": "assets/images/props/2450-4-big.jpg"
+        }
+      ],
+      "start_date": "2024-05-20 12:00:00",
+      "end_date": "2024-05-29 18:00:00",
+      "auction_type_id": 3,
+      "auction_status_id": 1,
+      "appraisal_value": 43345.72,
+      "start_price": 27434.0,
+      "minimum_bid": 27434.0,
+      "published": "2024-05-08 14:38:57",
+      "lastUpdate": "2024-05-21 23:13:50",
+      "views": 45,
+      "plans": [
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        },
+        {
+          "name": "First floor",
+          "desc": "Description",
+          "area": { "value": "10", "unit": "m²" },
+          "rooms": "3",
+          "baths": "1",
+          "image": "assets/images/others/plan-1.jpg"
+        }
+      ],
+      "videos": [
+        { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+        { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+      ]
     }
+
 ]

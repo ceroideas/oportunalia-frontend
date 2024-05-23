@@ -1,0 +1,82 @@
+{
+  "id": 2443,
+  "title": "Vivienda en Placeta Oñate",
+  "desc": " Procedimiento de Ejecución Hipotecaria. Descripción del activo: vivienda sita en Placeta Oñate con una superficie construida de 82 m2 distribuida entre el recibidor, distribuidor, 3 dormitorios, baño, aseo, salón-comedor y cocina.  Ubicación: PZ OÑATE 2, 18500 GUADIX [GRANADA] ",
+  "propertyType": "Viviendas",
+  "propertyStatus": ["En curso"],
+  "city": "Granada",
+  "zipCode": "00000",
+  "neighborhood": ["Guadix"],
+  "street": ["Plaza Oñate"],
+  "location": { "lat": "40.849150", "lng": "-73.935100" },
+  "formattedAddress": "Plaza Oñate, Guadix, Granada, España",
+  "features": "hola",
+  "featured": true,
+  "priceDollar": { "sale": 123, "rent": null },
+  "priceEuro": { "sale": 109011.0, "rent": null },
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "garages": 1,
+  "area": { "value": 102, "unit": "m²" },
+  "yearBuilt": 2007,
+  "ratingsCount": 3,
+  "ratingsValue": 280,
+  "additionalFeatures": [
+    { "name": "Heat", "value": "Natural Gas" },
+    { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+  ],
+  "gallery": [
+    {
+      "small": "assets/images/props/2443-1-small.jpg",
+      "medium": "assets/images/props/2443-1-medium.jpg",
+      "big": "assets/images/props/2443-1-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2443-2-small.jpg",
+      "medium": "assets/images/props/2443-2-medium.jpg",
+      "big": "assets/images/props/2443-2-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2443-3-small.jpg",
+      "medium": "assets/images/props/2443-3-medium.jpg",
+      "big": "assets/images/props/2443-3-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2443-4-small.jpg",
+      "medium": "assets/images/props/2443-4-medium.jpg",
+      "big": "assets/images/props/2443-4-big.jpg"
+    }
+  ],
+  "start_date": "2024-05-20 12:00:00",
+  "end_date": "2024-05-29 18:00:00",
+  "auction_type_id": 3,
+  "auction_status_id": 1,
+  "appraisal_value": 109011.0,
+  "start_price": 75180.0,
+  "minimum_bid": 75180.0,
+  "published": "2024-05-08 12:06:24",
+  "lastUpdate": "2024-05-21 11:11:11",
+  "views": 9,
+  "plans": [
+    {
+      "name": "First floor",
+      "desc": "Description",
+      "area": { "value": "10", "unit": "m²" },
+      "rooms": "3",
+      "baths": "1",
+      "image": "assets/images/others/plan-1.jpg"
+    },
+    {
+      "name": "First floor",
+      "desc": "Description",
+      "area": { "value": "10", "unit": "m²" },
+      "rooms": "3",
+      "baths": "1",
+      "image": "assets/images/others/plan-1.jpg"
+    }
+  ],
+  "videos": [
+    { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+    { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+  ]
+}
