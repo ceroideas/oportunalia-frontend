@@ -241,8 +241,7 @@ export class PropertyComponent implements OnInit {
   }
 
   public showInfo(){
-    const message = 'Informacion popup';
-    let dialogRef = this.appService.showInfoMessage(message);
-  }
+    const message = 'deposito';
+    let dialogRef = this.appService.showInfoMessage(message);  }
 
 }

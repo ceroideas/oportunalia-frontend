@@ -1,0 +1,23 @@
+<div class="bg-dialog">
+  <!--    <a (click)="close()" class="m-auto">X</a> -->
+  <h1 mat-dialog-title>
+    <div class="text-center fw-900 fc-primary">
+        <!-- <mat-icon class="mat-icon-xlg" color="primary">notification_important</mat-icon> -->
+        Instrucciones para hacer un deposito
+    </div>
+  </h1>
+
+  <div mat-dialog-content *ngIf="message == 'deposito'" class="m-3">
+    <ol class="fc-primary">
+      <li class="pb-4">Haz la transferencia del importe del depósito en la siguiente cuenta titularidad de OPORTUNALIA ACTIVOS en BBVA: <br>ES80-0182-2487-7202-0188-4132</li>
+      <li class="pb-4">Sube el justificante de la transferencia.</li>
+      <li>Cuando esté validado tu depósito te llegará un correo electrónico del Equipo de Oportunalia y a podrás hacer tu puja/oferta.</li>
+    </ol>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
+  </div>
+</div>
+
+

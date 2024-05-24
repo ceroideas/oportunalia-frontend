@@ -39,10 +39,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { GoogleMapsModule } from '@angular/google-maps';  
- 
+import { GoogleMapsModule } from '@angular/google-maps';
+
 import { PipesModule } from '../theme/pipes/pipes.module';
-import { DirectivesModule } from '../theme/directives/directives.module'; 
+import { DirectivesModule } from '../theme/directives/directives.module';
 
 import { HeaderImageComponent } from './header-image/header-image.component';
 import { HeaderCarouselComponent } from './header-carousel/header-carousel.component';
@@ -57,16 +57,17 @@ import { PropertiesCarouselComponent } from './properties-carousel/properties-ca
 import { ClientsComponent } from './clients/clients.component';
 import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
 import { CommentsComponent } from './comments/comments.component';
-import { TestimonialsComponent } from './testimonials/testimonials.component'; 
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { OurAgentsComponent } from './our-agents/our-agents.component';
 import { MissionComponent } from './mission/mission.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { LogoComponent } from './logo/logo.component';
 import { HeaderMapComponent } from './header-map/header-map.component';
-import { HeaderVideoComponent } from './header-video/header-video.component'; 
+import { HeaderVideoComponent } from './header-video/header-video.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { AlertDialogComponent } from './alert-dialog/alert-dialog.component'; 
-import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component'; 
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
 
 @NgModule({
   imports: [
@@ -112,7 +113,7 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     NgScrollbarModule,
     GoogleMapsModule,
     PipesModule,
-    DirectivesModule   
+    DirectivesModule
   ],
   exports: [
     RouterModule,
@@ -156,7 +157,7 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     NgScrollbarModule,
     GoogleMapsModule,
     PipesModule,
-    DirectivesModule, 
+    DirectivesModule,
     LogoComponent,
     HeaderImageComponent,
     HeaderCarouselComponent,
@@ -171,17 +172,18 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     ClientsComponent,
     GetInTouchComponent,
     CommentsComponent,
-    TestimonialsComponent,   
-    OurAgentsComponent, 
-    MissionComponent, 
+    TestimonialsComponent,
+    OurAgentsComponent,
+    MissionComponent,
     OurServicesComponent,
     HeaderMapComponent,
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
-    DialogHeaderControlsComponent  
+    InfoDialogComponent,
+    DialogHeaderControlsComponent
   ],
-  declarations: [ 
+  declarations: [
     LogoComponent,
     HeaderImageComponent,
     HeaderCarouselComponent,
@@ -196,14 +198,15 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     ClientsComponent,
     GetInTouchComponent,
     CommentsComponent,
-    TestimonialsComponent,   
-    OurAgentsComponent, 
-    MissionComponent, 
-    OurServicesComponent, 
-    HeaderMapComponent, 
+    TestimonialsComponent,
+    OurAgentsComponent,
+    MissionComponent,
+    OurServicesComponent,
+    HeaderMapComponent,
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
+    InfoDialogComponent,
     DialogHeaderControlsComponent
   ]
 })

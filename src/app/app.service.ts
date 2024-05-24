@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from './shared/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.component';
-/* import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component'; */
+import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { DomHandlerService } from './dom-handler.service';
 
@@ -122,7 +122,7 @@ export class AppService {
   }
 
   public showInfoMessage(message:string) {
-    const dialogRef = this.dialog.open(AlertDialogComponent, {
+    const dialogRef = this.dialog.open(InfoDialogComponent, {
       maxWidth: "400px",
       data: message
     });
