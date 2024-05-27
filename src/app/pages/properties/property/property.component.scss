@@ -82,16 +82,16 @@
 }
 
 .btn-title{
-  /* width: 60%; */
+  /* width: 60%;*/
   /* height: 100px; */
+  //padding: 0 20px 0 10px;
   text-align: center;
   border-radius: 10px;
   border: solid 3px #242863;
-  font-size: 1rem;
-  font-weight: 500;
+  /* font-size: 1.3rem;
+  font-weight: 500; */
   line-height: 56px;
   color: #fff;
-  text-transform: uppercase;
   box-shadow: 0 8px 16px #60617029,0 2px 4px #28293d0a;
   background-color: #242863;
   display: flex;
@@ -102,4 +102,47 @@
 
 .showInfo{
   cursor: pointer;
+}
+
+.btn{
+  a:link, a:visited, a:active {
+    text-decoration:none;
+    color:#fff;
+  }
+}
+
+.type-subasta{
+ background-color: rgba(165, 215, 218, 1);
+ border-radius: 20px;
+ font-size: 1rem;
+ text-transform: uppercase;
+ margin-bottom: 10%;
+ max-width: 30%;
+ text-align: center;
+ //padding-left: 10%;
+ color:rgba(41, 44, 99, 1);
+}
+
+.type-cesion{
+  background-color:rgba(69, 123, 157, 1);
+  border-radius: 20px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 10%;
+  max-width: 60%;
+  text-align: center;
+  //padding-left: 10%;
+  color:#fff;
+}
+
+.type-venta{
+  background-color: rgba(62, 96, 111, 1);
+  border-radius: 20px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 10%;
+  max-width: 60%;
+  text-align: center;
+  //padding-left: 10%;
+  color: #fff;
 }

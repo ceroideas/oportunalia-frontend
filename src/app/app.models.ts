@@ -33,6 +33,7 @@ export class Property {
                 public appraisal_value: Price,
                 public start_price: Price,
                 public minimum_bid: Price,
+                public auto:string,
 
                 public published: string,
                 public lastUpdate: string,

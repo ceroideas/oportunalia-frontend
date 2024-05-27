@@ -93,8 +93,10 @@ export class PropertyComponent implements OnInit {
       this.lng = +this.property?.location.lng;
       if (this.property.auction_type_id ==1){
         this.auction_type = "Subasta";
+      }else if(this.property.auction_type_id ==2){
+        this.auction_type = "Venta directa";
       }else{
-        this.auction_type = "Cesion de remate";
+        this.auction_type = "Cesión de remate";
       }
       setTimeout(() => {
         this.config.observer = true;
