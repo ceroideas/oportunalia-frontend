@@ -1,0 +1,23 @@
+.disable_ripple:hover{
+  background: rgba(50, 180, 157, 1) !important;
+  }
+
+
+  /* Icons*/
+.mat-expanded .mat-expansion-panel-header-title .material-icons{
+    transform: rotate(180deg);
+  }
+
+
+.mat-expansion-panel-header-title .open,
+.mat-expanded .mat-expansion-panel-header-title .close{
+  display: inline-block;
+}
+.mat-expanded .mat-expansion-panel-header-title .open,
+.mat-expansion-panel-header-title .close{
+  display: none;
+}
+
+.mat-expansion-panel-header {
+  padding:0 0 0 24px;
+}
