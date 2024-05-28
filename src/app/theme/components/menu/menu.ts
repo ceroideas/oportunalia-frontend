@@ -11,6 +11,7 @@ export const horizontalMenuItems = [
       new Menu (45, 'FAQs', '/faq', null, null, false, 40),
       new Menu (46, 'NAV.PRICING', '/pricing', null, null, false, 40),
       new Menu (47, 'NAV.TERMS_CONDITIONS', '/terms-conditions', null, null, false, 40),
+      new Menu (51, 'NAV.LEGAL_DISCLAIMER', '/legal-disclaimer', null, null, false, 40),
       new Menu (48, 'Landing', '/landing', null, null, false, 40),
       new Menu (50, '404 Page', '/404', null, null, false, 40),
     new Menu (60, 'NAV.ABOUT_US', '/about', null, null, false, 0),
@@ -20,7 +21,8 @@ export const horizontalMenuItems = [
       new Menu (141, 'NAV.EXTERNAL_LINK', null, 'http://themeseason.com', '_blank', false, 140),
       new Menu (142, 'Menu item', null, 'http://themeseason.com', '_blank', false, 140),
       new Menu (143, 'Menu item', null,'http://themeseason.com', '_blank', false, 140),
-      new Menu (144, 'Menu item', null,'http://themeseason.com', '_blank', false, 140)
+      new Menu (144, 'Menu item', null,'http://themeseason.com', '_blank', false, 140),
+
 ]
 
 export const verticalMenuItems = [
@@ -34,6 +36,7 @@ export const verticalMenuItems = [
       new Menu (45, 'FAQs', '/faq', null, null, false, 40),
       new Menu (46, 'NAV.PRICING', '/pricing', null, null, false, 40),
       new Menu (47, 'NAV.TERMS_CONDITIONS', '/terms-conditions', null, null, false, 40),
+      new Menu (51, 'NAV.LEGAL_DISCLAIMER', '/legal-disclaimer', null, null, false, 40),
       new Menu (48, 'Landing', '/landing', null, null, false, 40),
       new Menu (50, '404 Page', '/404', null, null, false, 40),
     new Menu (60, 'NAV.ABOUT_US', '/about', null, null, false, 0),

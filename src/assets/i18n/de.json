@@ -1,6 +1,6 @@
-{   
-  "LOGIN": "Einloggen", 
-  "LOGOUT": "Ausloggen", 
+{
+  "LOGIN": "Einloggen",
+  "LOGOUT": "Ausloggen",
   "REGISTER": "Registrieren",
   "ACCOUNT": "Konto",
   "SUBMIT_PROPERTY": "Eigentum einreichen",
@@ -11,16 +11,17 @@
   "EDIT_PROFILE": "Profil bearbeiten",
   "LOCK_SCREEN": "Bildschirm sperren",
   "HELP": "Hilfe",
-  "NAV": {  
-    "HOME": "Zuhause", 
-    "PROPERTIES": "Eigenschaften", 
-    "PAGES": "Seiten", 
+  "NAV": {
+    "HOME": "Zuhause",
+    "PROPERTIES": "Eigenschaften",
+    "PAGES": "Seiten",
     "AGENTS": "Agenten",
-    "AGENT": "Agent",  
+    "AGENT": "Agent",
     "FAQS": "Faqs",
     "PRICING": "Preisgestaltung",
     "TERMS_CONDITIONS": "Geschäftsbedingungen",
-    "LANDING": "Landing", 
+    "LEGAL_DISCLAIMER": "Aviso Legal",
+    "LANDING": "Landing",
     "404_PAGE": "404 Page",
     "OTHERS": "Others",
     "EXTERNAL_LINK": "Externer Link",
@@ -28,7 +29,7 @@
     "CONTACT": "Kontakt",
     "ABOUT_US": "Über",
     "ADMIN": "Admin"
-  }, 
+  },
   "BTN": {
     "ADD": "Hinzufügen",
     "SAVE": "Speichern",
@@ -47,7 +48,7 @@
     "SURE_DELETE": "Sind Sie sicher, dass Sie löschen möchten?",
     "FILE_SIZE": "Die Dateigröße darf {{param}} kb nicht überschreiten."
   },
-  "FIELD": { 
-    "NAME": "Name" 
+  "FIELD": {
+    "NAME": "Name"
   }
 }

@@ -5,8 +5,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
 
 export const routes: Routes = [
-  { 
-      path: '', 
+  {
+      path: '',
       component: PagesComponent, children: [
           //{ path: '', redirectTo: '/landing', pathMatch: 'full' },
           { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
@@ -20,8 +20,9 @@ export const routes: Routes = [
           { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
           { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
           { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
-          { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) }, 
-          { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) }   
+          { path: 'legal-disclaimer', loadChildren: () => import('./pages/legal-disclaimer/legal-disclaimer.module').then(m => m.LegalDisclaimerModule) },
+          { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) },
+          { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) }
       ]
   },
   { path: 'landing', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },
@@ -31,10 +32,10 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules, // <- comment this line for activate lazy load 
+    preloadingStrategy: PreloadAllModules, // <- comment this line for activate lazy load
     initialNavigation: 'enabledBlocking', // for one load page, without reload
     useHash: false
-  })], 
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

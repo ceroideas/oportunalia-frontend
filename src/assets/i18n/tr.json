@@ -1,6 +1,6 @@
-{   
-  "LOGIN": "Oturum aç", 
-  "LOGOUT": "Çıkış", 
+{
+  "LOGIN": "Oturum aç",
+  "LOGOUT": "Çıkış",
   "REGISTER": "Kayıt ol",
   "ACCOUNT": "Hesap",
   "SUBMIT_PROPERTY": "Emlak ekle",
@@ -11,16 +11,17 @@
   "EDIT_PROFILE": "Profili Düzenle",
   "LOCK_SCREEN": "Ekranı kilitle",
   "HELP": "Yardım",
-  "NAV": {  
+  "NAV": {
     "HOME": "Ana Sayfa",
-    "PROPERTIES": "Emlaklar",   
-    "PAGES": "Sayfalar", 
+    "PROPERTIES": "Emlaklar",
+    "PAGES": "Sayfalar",
     "AGENTS": "Ajanlar",
-    "AGENT": "Ajan", 
+    "AGENT": "Ajan",
     "FAQS": "Faqs",
     "PRICING": "Fiyatlandırma",
     "TERMS_CONDITIONS": "Şartlar ve Koşullar",
-    "LANDING": "Landing", 
+    "LEGAL_DISCLAIMER": "Aviso Legal",
+    "LANDING": "Landing",
     "404_PAGE": "404 Page",
     "OTHERS": "Diğerleri",
     "EXTERNAL_LINK": "Harici Bağlantı",
@@ -28,7 +29,7 @@
     "CONTACT": "İletişim",
     "ABOUT_US": "Hakkımızda",
     "ADMIN": "Admin"
-  }, 
+  },
   "BTN": {
     "ADD": "Ekle",
     "SAVE": "Kaydet",
@@ -47,7 +48,7 @@
     "SURE_DELETE": "Silmek istediğine emin misin?",
     "FILE_SIZE": "Dosya boyutu {{param}} kb'yi aşamaz."
   },
-  "FIELD": { 
-    "NAME": "İsim" 
+  "FIELD": {
+    "NAME": "İsim"
   }
 }

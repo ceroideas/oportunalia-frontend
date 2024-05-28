@@ -1,7 +1,7 @@
-{   
-  "LOGIN": "S'identifier", 
+{
+  "LOGIN": "S'identifier",
   "LOGOUT": "Se déconnecter",
-  "REGISTER": "S'inscrire", 
+  "REGISTER": "S'inscrire",
   "ACCOUNT": "Compte",
   "SUBMIT_PROPERTY": "Soumettre une propriété",
   "MENU": "Le Menu",
@@ -11,16 +11,17 @@
   "EDIT_PROFILE": "Editer le profil",
   "LOCK_SCREEN": "Écran verrouillé",
   "HELP": "Aidez",
-  "NAV": {  
-    "HOME": "Accueil", 
-    "PROPERTIES": "Propriétés",  
-    "PAGES": "Des pages", 
+  "NAV": {
+    "HOME": "Accueil",
+    "PROPERTIES": "Propriétés",
+    "PAGES": "Des pages",
     "AGENTS": "Agents",
-    "AGENT": "Agent", 
+    "AGENT": "Agent",
     "FAQS": "Faqs",
     "PRICING": "Tarification",
     "TERMS_CONDITIONS": "Termes et conditions",
-    "LANDING": "Landing", 
+    "LEGAL_DISCLAIMER": "Aviso Legal",
+    "LANDING": "Landing",
     "404_PAGE": "404 Page",
     "OTHERS": "Others",
     "EXTERNAL_LINK": "Lien Externe",
@@ -28,7 +29,7 @@
     "CONTACT": "Contact",
     "ABOUT_US": "Sur",
     "ADMIN": "Admin"
-  }, 
+  },
   "BTN": {
     "ADD": "Ajouter",
     "SAVE": "Sauvegarder",
@@ -47,7 +48,7 @@
     "SURE_DELETE": "Etes-vous sûr que vous voulez supprimer?",
     "FILE_SIZE": "La taille du fichier ne peut pas dépasser {{param}} ko."
   },
-  "FIELD": { 
-    "NAME": "Nom" 
+  "FIELD": {
+    "NAME": "Nom"
   }
 }
