@@ -21,6 +21,8 @@ export const routes: Routes = [
           { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
           { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
           { path: 'legal-disclaimer', loadChildren: () => import('./pages/legal-disclaimer/legal-disclaimer.module').then(m => m.LegalDisclaimerModule) },
+          { path: 'privacy-policy', loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
+          { path: 'cookie-policy', loadChildren: () => import('./pages/cookie-policy/cookie-policy.module').then(m => m.CookiePolicyModule) },
           { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) },
           { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) }
       ]
