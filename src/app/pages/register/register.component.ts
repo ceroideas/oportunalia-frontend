@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { matchingPasswords, emailValidator } from 'src/app/theme/utils/app-validators';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -35,7 +37,8 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       /* pressTypes: ['', Validators.required], */
       confirmPassword: ['', Validators.required],
-      receiveNewsletter: false
+      receiveNewsletter: false,
+      acceptConditions: false
     },{validator: matchingPasswords('password', 'confirmPassword')});
 
     this.maxDate = this.checkDate();

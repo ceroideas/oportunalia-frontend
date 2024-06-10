@@ -126,6 +126,7 @@
         ],
         "published": "2012-08-12 17:17:30",
         "lastUpdate": "2019-05-20 14:20:00",
+        "auto":"CDR123",
         "views": 322
     },
     {
@@ -1895,7 +1896,7 @@
     },
     {
       "id": 2429,
-      "title": "Lote de vivienda y plaza de garaje en Aguadulce",
+      "title": "Lote de vivienda y plaza de garaje en Aguadulce 1234 4567 4513 6548 9856 9342 1500",
       "desc": " Procedimiento: EJECUCION HIPOTECARIA  Descripción del activo: Lote de vivienda y plaza de garaje con todas sus dependencias y servicios. Ubicación: CL FERNANDO DE VALOR, 04720 ROQUETAS DE MAR (ALMERÍA) ",
       "propertyType": "Otros",
       "propertyStatus": ["No vendida"],
