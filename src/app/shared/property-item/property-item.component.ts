@@ -17,6 +17,7 @@ export class PropertyItemComponent implements OnInit {
   @Input() viewColChanged: number = 0;
   @Input() fullWidthPage: boolean = true;
   public column:number = 4;
+  public title:string = "";
   // public address:string;
   @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
   public config: SwiperConfigInterface = {};
@@ -65,15 +66,20 @@ export class PropertyItemComponent implements OnInit {
     if(value == 25){
       this.column = 4;
     }
-    else if(value == 33.3){
+    else if(value == 33.3){  // grid 3 columnas
       this.column = 3;
+      this.title = this.property.title.length >= 55 ? this.property.title.substring(0,54) + '...': this.property.title;
     }
-    else if(value == 50){
+    else if(value == 50){// cuadricula 2 columnas
       this.column = 2
+      this.title = this.property.title.length >= 71 ? this.property.title.substring(0,70) + '...': this.property.title;
     }
     else{
-      this.column = 1;
+      this.column = 1;  // apaisado
+      this.title = this.property.title.length >= 71 ? this.property.title.substring(0,70) + '...': this.property.title;
     }
+
+
   }
 
   public getStatusBgColor(status){

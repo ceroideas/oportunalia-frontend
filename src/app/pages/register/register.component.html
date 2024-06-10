@@ -95,7 +95,7 @@
 
               <!-- Como nos ha conocido -->
               <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <mat-icon matPrefix class="mr-1 text-muted">group</mat-icon>
+                <!-- <mat-icon matPrefix class="mr-1 text-muted">group</mat-icon> -->
                 <mat-label>¿Cómo nos has conocido?</mat-label>
                 <!-- <mat-select placeholder="¿Cómo nos has conocido?" formControlName="pressTypes"> -->
                 <mat-select placeholder="¿Cómo nos has conocido?" >
@@ -115,7 +115,8 @@
                 de la siguiente dirección: <a href="mailto:proteccióndatos@oportunalia.com">proteccióndatos&#64;oportunalia.com</a>. Puede consultar más información en la <a href="/privacy-policy">Política de privacidad.</a></p>
                 <!-- Receive newsleter -->
                 <div>
-                  <mat-slide-toggle formControlName="receiveNewsletter" class="my-2"color="primary"><span class="fc-gray">He leído y acepto la Política de privacidad</span></mat-slide-toggle>
+                  <!-- <mat-slide-toggle formControlName="acceptConditions" class="my-2"color="primary" [(ngModel)]="isSlideChecked"><span class="fc-gray">He leído y acepto la Política de privacidad</span> {{ isSlideChecked }}</mat-slide-toggle> -->
+                  <mat-slide-toggle formControlName="acceptConditions" class="my-2"color="primary" ><span class="fc-gray">He leído y acepto la Política de privacidad</span></mat-slide-toggle>
                 </div>
                 <div>
                   <mat-slide-toggle formControlName="receiveNewsletter" class="my-2" color="primary"><span class="fc-gray">Acepto recibir comunicaciones comerciales</span></mat-slide-toggle>
