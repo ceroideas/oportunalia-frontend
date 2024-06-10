@@ -1,23 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+/* import { CommonModule } from '@angular/common'; */
 import { MatPaginator } from '@angular/material/paginator';
 import { MediaChange, MediaObserver } from '@ngbracket/ngx-layout';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
-import { Property, Pagination } from '../../app.models';
+import { Post, Pagination } from '../../app.models';
 import { DomHandlerService } from 'src/app/dom-handler.service';
 
 @Component({
-  selector: 'app-properties',
-  templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.scss']
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrl: './blog.component.scss'
 })
-export class PropertiesComponent implements OnInit {
+export class BlogComponent implements OnInit{
+
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public properties: Property[];
+  //public properties: Property[];
+  public blog: Post[];
   public viewType: string = 'grid';
   public viewCol: number = 33.3;
   public count: number = 12;
@@ -58,24 +61,25 @@ export class PropertiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("getProperties OnInit");
-    this.getProperties();
+    console.log("getPosts OnInit");
+    this.getPosts();
   }
 
   ngOnDestroy(){
     this.watcher.unsubscribe();
   }
 
-  public getProperties(){
-    this.appService.getProperties().subscribe(data => {
-      let result = this.filterData(data);
-      if(result.data.length == 0){
-        this.properties.length = 0;
+  public getPosts(){
+    this.appService.getPosts().subscribe(data => {
+      //let result = this.filterData(data);
+      if(data.length == 0){
+        //this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
         this.message = 'No hay resultados';
       } else {
-        this.properties = result.data;
-        this.pagination = result.pagination;
+        //this.properties = result.data;
+        this.blog = data
+        //this.pagination = result.pagination;
         this.message = null;
       }
 
@@ -94,8 +98,8 @@ export class PropertiesComponent implements OnInit {
   }
 
   public searchClicked(){
-    this.properties.length = 0;
-    this.getProperties();
+    //this.properties.length = 0;
+    //this.getProperties();
     this.domHandlerService.winScroll(0, 0);
   }
   public searchChanged(event){
@@ -106,12 +110,12 @@ export class PropertiesComponent implements OnInit {
         this.removedSearchField = null;
       });
       if(!this.settings.searchOnBtnClick){
-        this.properties.length = 0;
+       // this.properties.length = 0;
       }
     });
     event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
       if(!this.settings.searchOnBtnClick){
-        this.getProperties();
+        //this.getProperties();
       }
     });
   }
@@ -123,14 +127,14 @@ export class PropertiesComponent implements OnInit {
 
   public changeCount(count){
     this.count = count;
-    this.properties.length = 0;
+    //this.properties.length = 0;
     this.resetPagination();
-    this.getProperties();
+    //this.getProperties();
   }
   public changeSorting(sort){
     this.sort = sort;
-    this.properties.length = 0;
-    this.getProperties();
+    /* this.properties.length = 0;
+    this.getProperties(); */
   }
   public changeViewType(obj){
     this.viewType = obj.viewType;
@@ -140,7 +144,7 @@ export class PropertiesComponent implements OnInit {
 
   public onPageChange(e){
     this.pagination.page = e.pageIndex + 1;
-    this.getProperties();
+    //this.getProperties();
     this.domHandlerService.winScroll(0, 0);
   }
 

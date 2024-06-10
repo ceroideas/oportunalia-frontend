@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Property, Location } from './app.models';
+import { Property, Location, Post } from './app.models';
 import { AppSettings } from './app.settings';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +17,8 @@ export class Data {
   constructor(public properties: Property[],
               public compareList: Property[],
               public favorites: Property[],
-              public locations: Location[]) { }
+              public locations: Location[],
+              public post: Post[]) { }
 }
 
 @Injectable({
@@ -28,7 +29,8 @@ export class AppService {
     [], // properties
     [], // compareList
     [], // favorites
-    []  // locations
+    [],  // locations
+    []
   )
 
   public url = environment.url + '/assets/data/';
@@ -46,8 +48,17 @@ export class AppService {
     return this.http.get<Property[]>(this.url + 'properties.json');
   }
 
+  public getPosts(): Observable<Post[]>{
+    console.log("getPosts app.service.ts");
+    return this.http.get<Post[]>(this.url + 'posts.json');
+  }
+
   public getPropertyById(id): Observable<Property>{
     return this.http.get<Property>(this.url + 'property-' + id + '.json');
+  }
+
+  public getPostById(id): Observable<Post>{
+    return this.http.get<Post>(this.url + 'post-' + id + '.json');
   }
 
   public getFeaturedProperties(): Observable<Property[]>{
@@ -417,7 +428,7 @@ export class AppService {
       }
 
     }
-    console.log("App Service data: ");
+    console.log("app.service filterData: ");
      console.log(data);
 
     //for show more properties mock data

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "image":"assets/images/blog/post-1.jpg",
+    "title": "Titulo post 1",
+    "content":"Content 1",
+    "publish_date":"01/01/2024",
+    "status_id":"1"
+  },
+  {
+    "id": 2,
+    "image":"assets/images/blog/post-2.jpg",
+    "title": "Titulo post 2",
+    "content":"Content 2",
+    "publish_date":"02/01/2024",
+    "status_id":"1"
+  },
+  {
+    "id": 3,
+    "image":"assets/images/blog/post-3.jpg",
+    "title": "Titulo post 3",
+    "content":"Content 3",
+    "publish_date":"03/01/2024",
+    "status_id":"1"
+  }
+]
+

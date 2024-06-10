@@ -2,21 +2,22 @@
   <div class="theme-container">
 
     <div fxLayout="row" fxLayoutAlign="center center" class="my-3">
-        <mat-card [style.max-width.px]="500" class="p-3">
-          <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
-            <h1 class="uppercase">Iniciar sesión</h1>
-            <a mat-button routerLink="/register" color="primary" class="w-100">¿No tienes una cuenta? ¡Regístrate ahora!</a>
+        <div [style.max-width.px]="500" class="p-3">
+          <div fxLayout="column" >
+            <h1 class="fw-400 fc-primary">Acceso de usuarios</h1>
+            <!-- <a mat-button routerLink="/register" color="primary" class="w-100">¿No tienes una cuenta? ¡Regístrate ahora!</a> -->
+            <p class="fc-gray fs-0-5x">Inicie sesión para acceder a esta página y disfrutar de los beneficios.</p>
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit(loginForm.value)">
               <mat-form-field appearance="outline" class="w-100 mt-2">
-                  <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon>
-                  <mat-label>Usuario/email</mat-label>
+                  <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+                  <mat-label>Email</mat-label>
                   <input matInput placeholder="Username" formControlName="username" required>
                   <mat-error *ngIf="loginForm.controls.username.errors?.required">Nombre de usuario requerido</mat-error>
                   <mat-error *ngIf="loginForm.controls.username.hasError('minlength')">El nombre de usuario no es lo suficientemente largo, mínimo 6 carácteres</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100 mt-1">
-                  <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon>
+                  <!-- <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon> -->
                   <mat-label>Contraseña</mat-label>
                   <input matInput placeholder="Password" formControlName="password" required [type]="hide ? 'password' : 'text'">
                   <mat-error *ngIf="loginForm.controls.password.errors?.required">La contraseña es requerida</mat-error>
@@ -25,11 +26,23 @@
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
               </mat-form-field>
-              <mat-slide-toggle formControlName="rememberMe" class="my-2">Mantenerme conectado</mat-slide-toggle>
-              <div class="text-center mt-2">
+              <div>
+                <mat-slide-toggle formControlName="rememberMe" class="my-2" color="primary"><span class="fc-gray">Mantenerme conectado</span></mat-slide-toggle>
+              </div>
+
+              <mat-card-actions fxLayoutAlign="end center">
+                <button mat-button>
+                  <!-- <mat-icon class="text-muted">vpn_key</mat-icon> -->
+                  <span>¿Has olvidado tu contraseña?</span>
+                </button>
+              </mat-card-actions>
+              <!-- <div class="text-center mt-2">
                   <button mat-raised-button color="primary" class="uppercase" type="submit">
                       Acceder a mi cuenta
                   </button>
+              </div> -->
+              <div class="w-100 pt-4 pb-6">
+                <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Acceder a mi cuenta</button>
               </div>
 
             <!-- social login
@@ -56,13 +69,8 @@
                   </button>
               </div> -->
           </form>
-          <mat-card-actions fxLayoutAlign="end center">
-            <button mat-button>
-              <mat-icon class="text-muted">vpn_key</mat-icon>
-              <span class="mx-1">¿Has olvidado tu contraseña?</span>
-            </button>
-          </mat-card-actions>
-        </mat-card>
+
+        </div>
     </div>
   </div>
 </div>

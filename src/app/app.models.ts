@@ -97,3 +97,12 @@ export class Pagination {
                 public totalPages: number){ }
 }
 
+export class Post {
+  constructor(public id: number,
+              public image: string,
+              public title: string,
+              public content: string,
+              public publish_date: string,
+              public status_id: number
+            ){ }
+}

@@ -1,0 +1,8 @@
+{
+    "id": 1,
+    "image":"assets/images/blog/post-1.jpg",
+    "title": "Titulo post 1",
+    "content":"Content 1",
+    "publish_date":"01/01/2024",
+    "status_id":"1"
+}

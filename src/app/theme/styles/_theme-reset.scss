@@ -41,6 +41,11 @@
         border-top: 1px solid mat.get-color-from-palette($foreground, divider);
     }
 
+    .divider-50{
+      border-top: 1px solid mat.get-color-from-palette($foreground, divider);
+      width: 50%;
+    }
+
     .top-toolbar.mat-toolbar .v-divider{
         background-color: mat.get-color-from-palette($primary, lighter, 0.2);
     }

@@ -12,24 +12,44 @@ import { matchingPasswords, emailValidator } from 'src/app/theme/utils/app-valid
 export class RegisterComponent implements OnInit {
   public registerForm: UntypedFormGroup;
   public hide = true;
-  public userTypes = [
-    { id: 1, name: 'Agent' },
-    { id: 2, name: 'Agency' },
-    { id: 3, name: 'Buyer' }
+  public pressTypes = [
+    { id: 1, name: 'Administrador concursal' },
+    { id: 2, name: 'Prensa' },
+    { id: 3, name: 'Agente inmobiliario' },
+    { id: 4, name: 'Recomendación de un amigo' },
+    { id: 5, name: 'RR.SS' },
+    { id: 6, name: 'A través de una acción comercial' },
+    { id: 7, name: 'Otros' }
   ];
+
+  maxDate;
+
   constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      userType: ['', Validators.required],
-      username: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      name: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      lastname: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       email: ['', Validators.compose([Validators.required, emailValidator])],
+      phone: ['', Validators.required],
       password: ['', Validators.required],
+      /* pressTypes: ['', Validators.required], */
       confirmPassword: ['', Validators.required],
       receiveNewsletter: false
     },{validator: matchingPasswords('password', 'confirmPassword')});
+
+    this.maxDate = this.checkDate();
+    /* console.log("Date minima");
+    console.log(this.dateMinima); */
   }
 
+  public checkDate(){
+    let maxDate: Date = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 18);
+    console.log("MaxDate");
+    console.log(maxDate);
+    return maxDate;
+  }
   public onRegisterFormSubmit(values:Object):void {
     if (this.registerForm.valid) {
       console.log(values);
