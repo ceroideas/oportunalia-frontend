@@ -2,8 +2,11 @@
 
     <div fxFlex="100" fxShrink="3" [fxFlex.gt-sm]="(viewType=='list') ? 40 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="thumbnail-section">
 
+        <!-- Etiqueta de estado -->
         <div fxLayout="row wrap" class="property-status">
-            <span *ngFor="let status of property.propertyStatus" [style.background-color]="getStatusBgColor(status)">{{status}}</span>
+            <span *ngFor="let status of property.propertyStatus"
+                        [style.background-color]="getStatusBgColor(status)"
+                        [style.color]="getStatusColor(status)">{{status}}</span>
         </div>
 
 
