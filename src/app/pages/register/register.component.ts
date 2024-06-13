@@ -3,6 +3,7 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { matchingPasswords, emailValidator } from 'src/app/theme/utils/app-validators';
+import { AppService } from 'src/app/app.service';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   maxDate;
 
-  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar) { }
+  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar, public appService:AppService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -56,8 +57,12 @@ export class RegisterComponent implements OnInit {
   public onRegisterFormSubmit(values:Object):void {
     if (this.registerForm.valid) {
       console.log(values);
-      this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      const message = 'register';
+      let dialogRef = this.appService.showInfoMessage(message);
     }
+
+
   }
 
 

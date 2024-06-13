@@ -243,7 +243,7 @@ export class PropertyComponent implements OnInit {
   }
 
   public showInfo(){
-    const message = 'deposito';
+    const message = 'deposit';
     let dialogRef = this.appService.showInfoMessage(message);  }
 
 }

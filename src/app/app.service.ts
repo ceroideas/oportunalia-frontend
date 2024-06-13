@@ -133,11 +133,22 @@ export class AppService {
   }
 
   public showInfoMessage(message:string) {
-    const dialogRef = this.dialog.open(InfoDialogComponent, {
-      maxWidth: "400px",
-      data: message
-    });
-    return dialogRef;
+    if(message=='deposit'){
+      const dialogRef = this.dialog.open(InfoDialogComponent, {
+        maxWidth: "400px",
+        data: message
+      });
+      return dialogRef;
+
+    }else{
+      const dialogRef = this.dialog.open(InfoDialogComponent, {
+        maxWidth: "600px",
+        data: message
+      });
+      return dialogRef;
+    }
+
+
   }
 
   public getTranslateValue(key: string, param: string | null = null){

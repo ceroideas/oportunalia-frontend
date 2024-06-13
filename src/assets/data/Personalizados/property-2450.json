@@ -1,0 +1,82 @@
+{
+  "id": 2450,
+  "title": "Piso en Mengíbar",
+  "desc": " Procedimiento de ejecución hipotecaria.  Descripción del activo: Vivienda con una superficie útil de sesenta y cinco metros cuadrados.  Ubicación: CL HERMANOS FERNÁNDEZ, MENGÍBAR [JAÉN] ",
+  "propertyType": "Viviendas",
+  "propertyStatus": ["En curso"],
+  "city": "Jaén",
+  "zipCode": "00000",
+  "neighborhood": ["Mengíbar"],
+  "street": ["Calle Hermanos Fernández, 2, Mengíbar [Jaén]"],
+  "location": { "lat": "40.849150", "lng": "-73.935100" },
+  "formattedAddress": "Calle Hermanos Fernández, 2, Mengíbar [Jaén], Mengíbar, Jaén, España",
+  "features": "hola",
+  "featured": true,
+  "priceDollar": { "sale": 123, "rent": null },
+  "priceEuro": { "sale": 43345.72, "rent": null },
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "garages": 1,
+  "area": { "value": 65, "unit": "m²" },
+  "yearBuilt": 2007,
+  "ratingsCount": 3,
+  "ratingsValue": 280,
+  "additionalFeatures": [
+    { "name": "Heat", "value": "Natural Gas" },
+    { "name": "Floors", "value": "Wall-to-Wall Carpet" }
+  ],
+  "gallery": [
+    {
+      "small": "assets/images/props/2450-1-small.jpg",
+      "medium": "assets/images/props/2450-1-medium.jpg",
+      "big": "assets/images/props/2450-1-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2450-2-small.jpg",
+      "medium": "assets/images/props/2450-2-medium.jpg",
+      "big": "assets/images/props/2450-2-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2450-3-small.jpg",
+      "medium": "assets/images/props/2450-3-medium.jpg",
+      "big": "assets/images/props/2450-3-big.jpg"
+    },
+    {
+      "small": "assets/images/props/2450-4-small.jpg",
+      "medium": "assets/images/props/2450-4-medium.jpg",
+      "big": "assets/images/props/2450-4-big.jpg"
+    }
+  ],
+  "start_date": "2024-05-20 12:00:00",
+  "end_date": "2024-05-29 18:00:00",
+  "auction_type_id": 3,
+  "auction_status_id": 1,
+  "appraisal_value": 43345.72,
+  "start_price": 27434.0,
+  "minimum_bid": 27434.0,
+  "published": "2024-05-08 14:38:57",
+  "lastUpdate": "2024-05-21 23:13:50",
+  "views": 45,
+  "plans": [
+    {
+      "name": "First floor",
+      "desc": "Description",
+      "area": { "value": "10", "unit": "m²" },
+      "rooms": "3",
+      "baths": "1",
+      "image": "assets/images/others/plan-1.jpg"
+    },
+    {
+      "name": "First floor",
+      "desc": "Description",
+      "area": { "value": "10", "unit": "m²" },
+      "rooms": "3",
+      "baths": "1",
+      "image": "assets/images/others/plan-1.jpg"
+    }
+  ],
+  "videos": [
+    { "name": "Video1", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" },
+    { "name": "Video2", "link": "https://www.youtube.com/watch?v=-NInBEdSvp8" }
+  ]
+}
