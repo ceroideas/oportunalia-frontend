@@ -36,4 +36,9 @@ export class InfoDialogComponent implements OnInit{
       this.dialogRef.close();
     }
 
+    public goInterest(): void {
+      this.router.navigate(['/interest']);
+      this.dialogRef.close();
+    }
+
 }

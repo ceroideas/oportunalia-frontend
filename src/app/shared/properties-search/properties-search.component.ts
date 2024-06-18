@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { AppService } from '../../app.service'; 
+import { AppService } from '../../app.service';
 import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
@@ -38,10 +38,10 @@ export class PropertiesSearchComponent implements OnInit {
     this.features = this.appService.getFeatures();
     this.form = this.fb.group({
       propertyType: null,
-      propertyStatus: null, 
+      propertyStatus: null,
       price: this.fb.group({
         from: null,
-        to: null 
+        to: null
       }),
       city: null,
       zipCode: null,
@@ -49,65 +49,66 @@ export class PropertiesSearchComponent implements OnInit {
       street: null,
       bedrooms: this.fb.group({
         from: null,
-        to: null 
+        to: null
       }),
       bathrooms: this.fb.group({
         from: null,
-        to: null 
+        to: null
       }),
       garages: this.fb.group({
         from: null,
-        to: null 
+        to: null
       }),
       area: this.fb.group({
         from: null,
-        to: null 
+        to: null
       }),
       yearBuilt: this.fb.group({
         from: null,
-        to: null 
-      }),       
+        to: null
+      }),
       features: this.buildFeatures()
-    }); 
+    });
 
     this.onSearchChange.emit(this.form);
+
   }
- 
+
   public buildFeatures() {
-    const arr = this.features.map(feature => { 
+    const arr = this.features.map(feature => {
       return this.fb.group({
         id: feature.id,
         name: feature.name,
         selected: feature.selected
       });
-    })   
+    })
     return this.fb.array(arr);
   }
-  
 
-  ngOnChanges(){ 
-    if(this.removedSearchField){ 
+
+  ngOnChanges(){
+    if(this.removedSearchField){
       if(this.removedSearchField.indexOf(".") > -1){
         let arr = this.removedSearchField.split(".");
         this.form.controls[arr[0]]['controls'][arr[1]].reset();
-      } 
-      else if(this.removedSearchField.indexOf(",") > -1){        
-        let arr = this.removedSearchField.split(","); 
-        this.form.controls[arr[0]]['controls'][arr[1]]['controls']['selected'].setValue(false);  
+      }
+      else if(this.removedSearchField.indexOf(",") > -1){
+        let arr = this.removedSearchField.split(",");
+        this.form.controls[arr[0]]['controls'][arr[1]]['controls']['selected'].setValue(false);
       }
       else{
         this.form.controls[this.removedSearchField].reset();
-      }  
-    }  
+      }
+    }
   }
 
-  public reset(){     
-    this.form.reset({ 
+  public reset(){
+    this.form.reset({
       propertyType: null,
-      propertyStatus: null, 
+      propertyStatus: null,
       price: {
         from: null,
-        to: null 
+        to: null
       },
       city: null,
       zipCode: null,
@@ -115,30 +116,30 @@ export class PropertiesSearchComponent implements OnInit {
       street: null,
       bedrooms: {
         from: null,
-        to: null 
+        to: null
       },
       bathrooms: {
         from: null,
-        to: null 
+        to: null
       },
       garages: {
         from: null,
-        to: null 
+        to: null
       },
       area: {
         from: null,
-        to: null 
+        to: null
       },
       yearBuilt: {
         from: null,
-        to: null 
-      },       
-      features: this.features    
-    }); 
+        to: null
+      },
+      features: this.features
+    });
   }
 
   public search(){
-    this.onSearchClick.emit(); 
+    this.onSearchClick.emit();
   }
 
   public onSelectCity(){

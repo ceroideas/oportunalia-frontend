@@ -26,7 +26,8 @@ export const routes: Routes = [
           { path: 'cookie-policy', loadChildren: () => import('./pages/cookie-policy/cookie-policy.module').then(m => m.CookiePolicyModule) },
           { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) },
           { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) },
-          { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) }
+          { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) },
+          { path: 'interest', loadChildren: () => import('./pages/interest/interest.module').then(m => m.InterestModule) }
       ]
   },
   { path: 'landing', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },

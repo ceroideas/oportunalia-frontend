@@ -167,6 +167,14 @@ export class AppService {
     ]
   }
 
+  public getProvinces(){
+    return [
+      { id: 1, name: 'Madrid' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
+      { id: 2, name: 'Barcelona' },
+      { id: 3, name: 'Malaga' }
+    ]
+  }
+
   public getPropertyStatuses(){
     return [
       { id: 1, name: 'Subasta' },
@@ -440,7 +448,7 @@ export class AppService {
 
     }
     console.log("app.service filterData: ");
-     console.log(data);
+    console.log(data);
 
     //for show more properties mock data
     for (var index = 0; index < 2; index++) {
