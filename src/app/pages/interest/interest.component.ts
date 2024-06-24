@@ -45,14 +45,14 @@ export class InterestComponent implements OnInit{
 
   public onInterestFormSubmit(values:Object):void {
     if (this.interestForm.valid) {
-      console.log(values);
+      //console.log(values);
       this.router.navigate(['/account/profile']);
     }
   }
 
 
   registerInterest(){
-    console.log("Clic save and continue Interest");
+    //console.log("Clic save and continue Interest");
   }
 
   public getAppearance(): MatFormFieldAppearance {

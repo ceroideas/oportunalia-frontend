@@ -21,7 +21,7 @@
                   <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                         <mat-label>¿Qué zonas te interesan?</mat-label>
-                        <mat-select placeholder="Selecciona tipo de propiedad" formControlName="province">
+                        <mat-select placeholder="Selecciona tipo de propiedad" >  <!-- formControlName="province"  error-->
                             <mat-option *ngFor="let province of provinces" [value]="province" multiple>
                                 {{province.name}}
                             </mat-option>

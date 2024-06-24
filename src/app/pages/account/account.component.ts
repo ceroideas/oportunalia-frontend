@@ -11,11 +11,14 @@ export class AccountComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
   public links = [
-    { name: 'Perfil', href: 'profile', icon: 'person' },
-    { name: 'Mis propiedades', href: 'my-properties', icon: 'view_list' },
+    { name: 'Mi cuenta', href: 'profile', icon: 'person' },
+    { name: 'Mis ofertas', href: 'my-properties', icon: 'favorite' },
     { name: 'Favoritos', href: 'favorites', icon: 'favorite' },
-    { name: 'Publicar propiedd', href: '/submit-property', icon: 'add_circle' },
-    { name: 'Salir', href: '/login', icon: 'power_settings_new' },
+    { name: 'Representacion', href: '/submit-property', icon: 'add_circle' },
+    { name: 'Mis intereses', href: '/submit-property', icon: 'add_circle' },
+    { name: 'Notificaciones', href: '/submit-property', icon: 'add_circle' },
+
+    /* { name: 'Salir', href: '/login', icon: 'power_settings_new' }, */
   ];
   constructor(public router: Router, private domHandlerService: DomHandlerService) { }
 
