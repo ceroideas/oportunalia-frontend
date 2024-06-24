@@ -53,9 +53,18 @@
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <option *ngFor="let province of provinceList" >{{province.name}}</option>
           </mat-select>
         </mat-form-field>
+
+
+        <!-- <select class="form-control" [(ngModel)]="params.search">
+            <option value="0" selected>Todas</option>
+            <option *ngFor="let province of provinceList" >{{province.name}}</option>
+        </select> -->
+
+
       </div>
       <div fxFlex>
         <mat-form-field appearance="fill">

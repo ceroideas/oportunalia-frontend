@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { MediaChange, MediaObserver } from '@ngbracket/ngx-layout';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 /* import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field'; */
+import { PublicService } from 'src/app/api/public.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   //@Input() variant:number = 1;
   watcher: Subscription;
   activeMediaQuery = '';
+  provinceList: any;
 
   //center: google.maps.LatLngLiteral = { lat: 40.678178, lng: -73.944158};
   center: google.maps.LatLngLiteral = { lat: 40.416775, lng: -3.703790};
@@ -45,7 +47,7 @@ export class HomeComponent implements OnInit {
   public locations: Location[];
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver) {
+  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, private publicService: PublicService) {
     this.settings = this.appSettings.settings;
 
     this.watcher = mediaObserver.asObservable()
@@ -73,6 +75,7 @@ export class HomeComponent implements OnInit {
     this.getLocations();
     this.getProperties();
     this.getFeaturedProperties();
+    this.getProvinceList();
   }
 
   ngDoCheck(){
@@ -213,6 +216,16 @@ export class HomeComponent implements OnInit {
       return (this.variant == 1) ? 'always' : 'auto';
    } */
 
+      getProvinceList(){
+        this.publicService.provinceList(1)
+          .subscribe(
+            (response) => {
+              this.provinceList = response.response;
+            },
+            (error) => {
 
+            }
+          )
+      }
 
 }
