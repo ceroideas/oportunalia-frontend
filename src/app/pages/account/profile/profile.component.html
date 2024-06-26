@@ -40,7 +40,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Teléfono móvil</mat-label>
-        <input matInput placeholder="Phone" formControlName="phone" required onlyNumber autocomplete="off">
+        <input matInput placeholder="Teléfono" formControlName="phone" required onlyNumber autocomplete="off">
         <mat-error *ngIf="infoForm.controls.phone.errors?.required">Teléfono requerido</mat-error>
       </mat-form-field>
     </div>
@@ -135,7 +135,7 @@
 
 
   <div class="text-center mt-2">
-    <button mat-raised-button color="primary" type="submit" class="uppercase">Guardar cambios</button>
+    <button mat-raised-button type="submit" class="btn-primary">Guardar cambios</button>
   </div>
 
 </form>

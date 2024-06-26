@@ -45,7 +45,8 @@ export class ProfileComponent implements OnInit {
   public onInfoFormSubmit(values:Object):void {
     if (this.infoForm.valid) {
       console.log(values)
-      this.snackBar.open('Your account information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('Tu información se ha almacenado correctamente!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
     }
   }
 
