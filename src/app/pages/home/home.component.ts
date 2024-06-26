@@ -234,7 +234,7 @@ export class HomeComponent implements OnInit {
     this.publicService.categoryList()
       .subscribe(
         (response) => {
-          this.provinceList = response.response;
+          this.categoryList = response.response;
         },
         (error) => {
 
