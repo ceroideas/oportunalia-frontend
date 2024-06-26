@@ -201,7 +201,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -209,9 +210,21 @@
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+
+
+
+
+              <mat-option value="0">Todas</mat-option>
+              <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
+
+
+
+
       </div>
       <div class="child-3" fxFlex>
         <button mat-flat-button class="btn-secondary">Buscar</button>
