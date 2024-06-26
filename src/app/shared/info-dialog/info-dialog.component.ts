@@ -41,4 +41,9 @@ export class InfoDialogComponent implements OnInit{
       this.dialogRef.close();
     }
 
+    public goRegister(): void{
+      this.router.navigate(['/register']);
+      this.dialogRef.close();
+    }
+
 }

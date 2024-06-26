@@ -140,6 +140,14 @@ export class AppService {
       });
       return dialogRef;
 
+    }else if(message=='error_register_user'){
+
+      const dialogRef = this.dialog.open(InfoDialogComponent, {
+        maxWidth: "400px",
+        data: message
+      });
+      return dialogRef;
+
     }else{
       const dialogRef = this.dialog.open(InfoDialogComponent, {
         maxWidth: "600px",

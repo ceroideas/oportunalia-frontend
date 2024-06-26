@@ -37,7 +37,10 @@
         <mat-form-field appearance="fill">
           <mat-label>Tipo</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0" >Todos</mat-option>
+            <mat-option value="1" >Subasta</mat-option>
+            <mat-option value="2" >Venta directa</mat-option>
+            <mat-option value="3" >Cesión de remate</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -45,7 +48,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -54,7 +58,7 @@
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
             <mat-option value="0">Todas</mat-option>
-            <option *ngFor="let province of provinceList" >{{province.name}}</option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -70,7 +74,11 @@
         <mat-form-field appearance="fill">
           <mat-label>Otros criterios</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todos</mat-option>
+            <mat-option value="1">Playas</mat-option>
+            <mat-option value="2">Ciudades</mat-option>
+            <mat-option value="3">Piscina</mat-option>
+
           </mat-select>
         </mat-form-field>
       </div>

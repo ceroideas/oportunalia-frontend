@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   watcher: Subscription;
   activeMediaQuery = '';
   provinceList: any;
+  categoryList: any;
 
   //center: google.maps.LatLngLiteral = { lat: 40.678178, lng: -73.944158};
   center: google.maps.LatLngLiteral = { lat: 40.416775, lng: -3.703790};
@@ -76,6 +77,7 @@ export class HomeComponent implements OnInit {
     this.getProperties();
     this.getFeaturedProperties();
     this.getProvinceList();
+    this.getCategoryList();
   }
 
   ngDoCheck(){
@@ -216,16 +218,28 @@ export class HomeComponent implements OnInit {
       return (this.variant == 1) ? 'always' : 'auto';
    } */
 
-      getProvinceList(){
-        this.publicService.provinceList(1)
-          .subscribe(
-            (response) => {
-              this.provinceList = response.response;
-            },
-            (error) => {
+  getProvinceList(){
+    this.publicService.provinceList(1)
+      .subscribe(
+        (response) => {
+          this.provinceList = response.response;
+        },
+        (error) => {
 
-            }
-          )
-      }
+        }
+      )
+  }
+
+  getCategoryList(){
+    this.publicService.categoryList()
+      .subscribe(
+        (response) => {
+          this.provinceList = response.response;
+        },
+        (error) => {
+
+        }
+      )
+  }
 
 }

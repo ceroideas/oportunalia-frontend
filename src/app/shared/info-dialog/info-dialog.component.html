@@ -49,3 +49,19 @@
     <p class="fc-primary">¡Pulsa en el botón verificar y sigamos!</p>
   </div>
 </div>
+
+
+<div *ngIf="message == 'error_register_user'" class="bg-register text-center ">
+  <img src ="assets/images/icons/like.png" alt="like" class="mt-5">
+  <div mat-dialog-content class="m-3 ml-7 mr-7">
+    <p class="fc-primary">Error en el registro de usuario</p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="goRegister()" class="m-auto uppercase">Volver a intentarlo</button>
+  </div>
+
+  <!-- <div class="mt-4 mb-4">
+    <p class="fc-primary">¡Pulsa en el botón verificar y sigamos!</p>
+  </div> -->
+</div>

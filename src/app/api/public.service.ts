@@ -16,8 +16,9 @@ export class PublicService {
   countryList(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL+"/country")
       .pipe(
-        catchError((err) => {
-          return throwError(err);
+        catchError((error) => {
+          //return throwError(err);
+          return throwError(() => error);
         })
       )
   }
@@ -25,8 +26,9 @@ export class PublicService {
   provinceList( countryId:any ): Observable<any> {
     return this.http.get(GlobalConstants.apiURL+"/province/"+countryId)
       .pipe(
-        catchError((err) => {
-          return throwError(err);
+        catchError((error) => {
+          //return throwError(err);
+          return throwError(() => error);
         })
       )
   }
@@ -34,8 +36,9 @@ export class PublicService {
   categoryList(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL+"/active_category/list")
       .pipe(
-        catchError((err) => {
-          return throwError(err);
+        catchError((error) => {
+          //return throwError(err);
+          return throwError(() => error);
         })
       )
   }
@@ -43,8 +46,9 @@ export class PublicService {
   blogList(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL+"/blog")
       .pipe(
-        catchError((err) => {
-          return throwError(err);
+        catchError((error) => {
+          //return throwError(err);
+          return throwError(() => error);
         })
       )
   }
@@ -52,8 +56,9 @@ export class PublicService {
   blogContent(id:any): Observable<any> {
     return this.http.get(GlobalConstants.apiURL+"/blog/"+id)
       .pipe(
-        catchError((err) => {
-          return throwError(err);
+        catchError((error) => {
+          //return throwError(err);
+          return throwError(() => error);
         })
       )
   }
