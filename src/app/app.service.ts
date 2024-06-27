@@ -565,29 +565,26 @@ export class AppService {
 
   public getTestimonials(){
     return [
-        {
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
-            author: 'Mr. Adam Sandler',
-            position: 'General Director',
-            image: 'assets/images/profile/adam.jpg'
+        {   title: 'Regístrate',
+            text: 'Lo primero que tendrás que hacer para participar será registrarte de manera completamente gratuita.',
+            text2: 'Una vez registrado, podrás hacer ofertas y realizar pujas.',
+            author: 'Author',
+            position: 'Position',
+            image: 'assets/images/others/como-comprar-1.png'
         },
-        {
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
-            author: 'Ashley Ahlberg',
-            position: 'Housewife',
-            image: 'assets/images/profile/ashley.jpg'
+        {   title: 'Oferta',
+            text: 'Localiza en nuestra web el inmueble en el que estás interesado y realiza una oferta. Durante todo el proceso estarás acompañado por el equipo de profesionales de Oportunalia y podrás seguir el estado de tu oferta en tiempo real.',
+            text2: 'Ten en cuenta que, en las subastas, cualquier puja en último minuto alargará la duración de la subasta dos minutos más.',
+            author: 'Author',
+            position: 'Position',
+            image: 'assets/images/others/como-comprar-2.png'
         },
-        {
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
-            author: 'Bruno Vespa',
-            position: 'Blogger',
-            image: 'assets/images/profile/bruno.jpg'
-        },
-        {
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.',
-            author: 'Mrs. Julia Aniston',
-            position: 'Marketing Manager',
-            image: 'assets/images/profile/julia.jpg'
+        {   title: 'Mejor puja u oferta',
+            text: 'Una vez finalizada la subasta, si eres el mejor postor, nos pondremos en contacto contigo para comenzar con el proceso de adjudicación.',
+            text2: 'Una vez finalizada la venta directa / cesión de remate, si tu oferta es la más alta, nos pondremos en contacto contigo para indicarte los pasos a seguir.',
+            author: 'Author',
+            position: 'Position',
+            image: 'assets/images/others/como-comprar-3.png'
         }
     ];
   }
