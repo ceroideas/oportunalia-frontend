@@ -52,7 +52,7 @@ export class InterestComponent implements OnInit{
 
 
   registerInterest(){
-    //console.log("Clic save and continue Interest");
+    console.log("Clic save and continue Interest");
   }
 
   public getAppearance(): MatFormFieldAppearance {

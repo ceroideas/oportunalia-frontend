@@ -10,13 +10,19 @@
             <p class="m-0">Luis Campos <br> <small><i>lcampos</i></small></p>
         </div>
         <div class="divider"></div>
-        <a mat-menu-item routerLink="/submit-property">
+        <!-- <a mat-menu-item routerLink="/submit-property">
             <mat-icon class="mat-icon-sm">add_circle</mat-icon>
             <span>{{ 'SUBMIT_PROPERTY' | translate }}</span>
+        </a> -->
+
+        <a mat-menu-item routerLink="/account/profile">
+          <mat-icon class="mat-icon-sm">edit</mat-icon>
+          <span>{{ 'EDIT_PROFILE' | translate }}</span>
         </a>
+
         <a mat-menu-item routerLink="/account/my-properties">
             <mat-icon class="mat-icon-sm">home</mat-icon>
-            <span>{{ 'MY_PROPERTIES' | translate }}</span>
+            <span><!-- {{ 'MY_PROPERTIES' | translate }} -->Mis ofertas</span>
         </a>
         <a mat-menu-item routerLink="/account/favorites">
             <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
@@ -27,7 +33,7 @@
                   matBadgeOverlap="false"
                   aria-hidden="false"> {{ 'FAVORITES' | translate }}</span>
         </a>
-        <a mat-menu-item routerLink="/compare">
+        <!-- <a mat-menu-item routerLink="/compare">
             <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
             <span [matBadge]="appService.Data.compareList.length"
                   [matBadgeHidden]="appService.Data.compareList.length == 0"
@@ -35,23 +41,30 @@
                   matBadgeColor="warn"
                   matBadgeOverlap="false"
                   aria-hidden="false">{{ 'COMPARE' | translate }}</span>
-        </a>
+        </a> -->
         <!-- <a mat-menu-item routerLink="/">
             <mat-icon class="mat-icon-sm">search</mat-icon>
             <span>Saved Searches</span>
         </a> -->
-        <a mat-menu-item routerLink="/account/profile">
-            <mat-icon class="mat-icon-sm">edit</mat-icon>
-            <span>{{ 'EDIT_PROFILE' | translate }}</span>
+        <a mat-menu-item routerLink="/account/representations">
+          <mat-icon class="mat-icon-sm">home</mat-icon>
+          <span><!-- {{ 'MY_PROPERTIES' | translate }} -->Representaciones</span>
         </a>
-        <a mat-menu-item routerLink="/lock-screen">
-            <mat-icon class="mat-icon-sm">lock</mat-icon>
-            <span>{{ 'LOCK_SCREEN' | translate }}</span>
+
+        <a mat-menu-item routerLink="/account/interests">
+          <mat-icon class="mat-icon-sm">lock</mat-icon>
+          <!-- <span>{{ 'LOCK_SCREEN' | translate }}</span> -->
+           <span>Intereses</span>
         </a>
-        <a mat-menu-item routerLink="/faq">
+
+        <a mat-menu-item routerLink="/account/notifications">
+          <mat-icon class="mat-icon-sm">home</mat-icon>
+          <span><!-- {{ 'MY_PROPERTIES' | translate }} -->Notificaciones</span>
+        </a>
+        <!-- <a mat-menu-item routerLink="/faq">
             <mat-icon class="mat-icon-sm">help</mat-icon>
             <span>{{ 'HELP' | translate }}</span>
-        </a>
+        </a> -->
         <div class="divider"></div>
         <a mat-menu-item routerLink="/login">
             <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>

@@ -1,0 +1,160 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-sm="100">
+    <p class="horizontal-menu-active pt-4 pb-3 pl-3 uppercase">Mis Intereses</p>
+  </div>
+</div>
+
+<div class="pr-5 pl-5 fc-primary fw-400">
+  <ul>
+    <li>Selecciona en qué tipo de activos estás interesado para mantenerte informado por correo electrónico y ser el primero en realizar una oferta: </li>
+  </ul>
+</div>
+
+
+<form [formGroup]="interestForm" (ngSubmit)="onInterestFormSubmit(interestForm.value)">
+  <div fxLayout="row wrap" fxLayoutAlign="space-around" class="pb-5">
+    <div fxFlex="100" fxFlex.gt-xs="33.3" class="pr-3 pl-3">
+      <!-- <section class="example-section">
+        <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+        <mat-checkbox class="example-margin" [disabled]="true">Disabled</mat-checkbox>
+      </section> -->
+      <!-- <div class="interes" [hidden]="hideList.hideViviendas">
+        <input type="checkbox" class="form-check-input" [checked]="checkList.checkViviendas" formControlName="pref2"><span>Viviendas</span>
+      </div> -->
+      <div class="interes" >
+        <mat-checkbox color="primary">Vivivendas</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Trasteros</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">aplicaciones informáticas</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Solares</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Unidades Productivas</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Otros</mat-checkbox>
+      </div>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-xs="33.3" class="pr-3 pl-3">
+      <div class="interes" >
+        <mat-checkbox color="primary">Naves Industriales</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Locales</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Derechos de cobro y créditos</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Vehículos</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Oficinas</mat-checkbox>
+      </div>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-xs="33.3" class="pr-3 pl-3">
+      <div class="interes" >
+        <mat-checkbox color="primary">Garajes</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Lotes de mobiliario</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Maquinaria</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Obras de Arte y Antigüedades</mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">Rústicas</mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="pb-5 divider"></div>
+  <p class="pb-5">Intereses</p>
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div fxFlex="100" fxFlex.gt-xs="40" class="pl-3 pb-4">
+      <div class="fc-primary fw-600">¿Qué zonas te interesan?</div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="60" class="pr-3">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Ubicación</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div fxFlex="100" fxFlex.gt-xs="40" class="pl-3 pb-4">
+      <div class="fc-primary fw-600">¿Prefieres propiedades para?</div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="60" class="pr-3">
+      <div>
+        <mat-form-field>
+          <mat-label>Inversión</mat-label>
+          <mat-select placeholder="Select" >
+            <mat-option value="0" >Inversión</mat-option>
+            <mat-option value="0" >Residencia propia</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div fxFlex="100" fxFlex.gt-xs="40" class="pl-3 pb-5">
+      <div class="fc-primary fw-600">¿Cuál es tu presupuesto?</div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="60" class="pr-3">
+
+      <div fxLayout="row">
+        <label class="fw-400 pr-3">500 &euro;</label>
+        <mat-slider min="500" max="1000000" step="500" discrete [displayWith]="formatLabel">
+          <input matSliderThumb>
+        </mat-slider>
+        <label class="fw-400 pl-3">1.000.000 &euro;</label>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div fxFlex="100" fxFlex.gt-xs="40" class="pl-3 pb-4">
+      <div class="fc-primary fw-600">¿Qué tipo de activos te interesan?</div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="60" class="pr-3">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de propiedad</mat-label>
+          <mat-select placeholder="Select">
+            <mat-option value="0" >Todos</mat-option>
+            <mat-option value="1" >Subasta</mat-option>
+            <mat-option value="2" >Venta directa</mat-option>
+            <mat-option value="3" >Cesión de remate</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 pt-4 pb-6 pt-4">
+    <button (click)="updateInterest()" mat-raised-button type="submit" class="btn-primary">Guardar preferencias</button>
+  </div>
+
+</form>

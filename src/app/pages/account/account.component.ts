@@ -14,9 +14,10 @@ export class AccountComponent implements OnInit {
     { name: 'Mi cuenta', href: 'profile', icon: 'person' },
     { name: 'Mis ofertas', href: 'my-properties', icon: 'favorite' },
     { name: 'Favoritos', href: 'favorites', icon: 'favorite' },
-    { name: 'Representacion', href: '/submit-property', icon: 'add_circle' },
-    { name: 'Mis intereses', href: '/submit-property', icon: 'add_circle' },
-    { name: 'Notificaciones', href: '/submit-property', icon: 'add_circle' },
+    { name: 'Representaciones', href: 'representations', icon: 'add_circle' },
+    { name: 'Mis intereses', href: 'interests', icon: 'add_circle' },
+    { name: 'Notificaciones', href: 'notifications', icon: 'add_circle' },
+    /* submit-property */
 
     /* { name: 'Salir', href: '/login', icon: 'power_settings_new' }, */
   ];
