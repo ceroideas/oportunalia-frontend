@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser'; 
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- 
+
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
-import { GoogleMapsModule } from '@angular/google-maps'; 
+import { GoogleMapsModule } from '@angular/google-maps';
 import { InputFileConfig, InputFileModule } from './theme/components/input-file/input-file.module';
 const config: InputFileConfig = {
   fileAccept: '*'
@@ -15,15 +15,15 @@ const config: InputFileConfig = {
 
 import { environment } from 'src/environments/environment';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader'; 
-export function HttpLoaderFactory(httpClient: HttpClient) { 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, environment.url +'/assets/i18n/', '.json');
 }
 
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CustomOverlayContainer } from './theme/utils/custom-overlay-container';
 
-import { AppRoutingModule } from './app-routing.module'; 
+import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AppSettings } from './app.settings';
@@ -38,7 +38,7 @@ import { UserMenuComponent } from './theme/components/user-menu/user-menu.compon
 import { CurrencyComponent } from './theme/components/currency/currency.component';
 import { LangComponent } from './theme/components/lang/lang.component';
 import { SocialIconsComponent } from './theme/components/social-icons/social-icons.component';
-import { ContactsComponent } from './theme/components/contacts/contacts.component'; 
+import { ContactsComponent } from './theme/components/contacts/contacts.component';
 import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu/horizontal-menu.component';
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
@@ -53,7 +53,7 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     CurrencyComponent,
     LangComponent,
     SocialIconsComponent,
-    ContactsComponent, 
+    ContactsComponent,
     Toolbar1Component,
     Toolbar2Component,
     HorizontalMenuComponent,
@@ -64,8 +64,8 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,  
-    FormsModule, 
+    BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     GoogleMapsModule,
     TranslateModule.forRoot({
@@ -76,13 +76,13 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
       }
     }),
     NgProgressModule,
-    NgProgressHttpModule, 
-    InputFileModule.forRoot(config), 
+    NgProgressHttpModule,
+    InputFileModule.forRoot(config),
     SharedModule
   ],
   providers: [
     // provideClientHydration(),
-    // provideHttpClient(withFetch()), 
+    // provideHttpClient(withFetch()),
     AppSettings,
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }

@@ -3,23 +3,29 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { InputFileModule } from 'src/app/theme/components/input-file/input-file.module';
-import { GoogleMapsModule } from '@angular/google-maps';  
+import { GoogleMapsModule } from '@angular/google-maps';
 import { AccountComponent } from './account.component';
-import { DashboardComponent } from './dashboard/dashboard.component'; 
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditPropertyComponent } from './edit-property/edit-property.component';
+import { RepresentationsComponent } from './representations/representations.component';
+import { InterestsComponent } from './interests/interests.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 export const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: AccountComponent, children: [
-      { path: '', redirectTo: 'profile', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
       { path: 'my-properties', component: MyPropertiesComponent },
       { path: 'my-properties/:id', component: EditPropertyComponent },
       { path: 'favorites', component: FavoritesComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'representations', component: RepresentationsComponent },
+      { path: 'interests', component: InterestsComponent},
+      { path: 'notifications', component: NotificationsComponent }
     ]
   }
 ];
@@ -27,11 +33,14 @@ export const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    AccountComponent,  
-    MyPropertiesComponent, 
-    FavoritesComponent, 
-    ProfileComponent, 
-    EditPropertyComponent
+    AccountComponent,
+    MyPropertiesComponent,
+    FavoritesComponent,
+    ProfileComponent,
+    EditPropertyComponent,
+    RepresentationsComponent,
+    InterestsComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,

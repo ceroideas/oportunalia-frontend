@@ -7,18 +7,38 @@
             <div class="testimonials-carousel">
                 <div class="swiper-container h-100" [swiper]="config">
                     <div class="swiper-wrapper h-100">
+                      <!-- Falla la paginación
+                      <div fxFlex="100" fxFlex.gt-md="35" class="p-3">
+                        <img src="assets/images/others/como-comprar.png" alt="como-comprar" class="mw-100 d-block">
+                      </div>
+                      <div fxFlex="100" fxFlex.gt-md="65" fxShow="false" fxShow.gt-md> -->
+
                         <div *ngFor="let testimonial of testimonials; index as i" class="swiper-slide">
-                            <div class="content text-center">
-                                <img [attr.data-src]="testimonial.image" class="swiper-lazy">
-                                <h1 class="section-title">{{i+1}}</h1>
-                                <div class="quote open text-left primary-color">“</div>
-                                <p class="text">{{testimonial.text}}</p>
-                                <div class="quote close text-right primary-color">”</div>
-                                <h3 class="author">{{testimonial.author}}</h3>
-                                <p>{{testimonial.position}}</p>
-                                <div class="swiper-lazy-preloader"></div>
+                          <div class="content">
+
+                            <div fxFlex="100" fxFlex.gt-md="40"> <!-- class="p-3 bg-test1" -->
+                              <!-- <img src="assets/images/others/como-comprar.png" alt="como-comprar" class="mw-100 d-block"> -->
+                              <img [attr.data-src]="testimonial.image" class="swiper-lazy">
                             </div>
+                            <div fxFlex="100" fxFlex.gt-md="60" fxShow="false" fxShow.gt-md class="pl-5">
+                              <!-- <img [attr.data-src]="testimonial.image" class="swiper-lazy"> -->
+                              <h1 class="id-carrusel">{{i+1}}</h1>
+                              <h1 class="title-carrusel">{{testimonial.title}}</h1>
+                              <!-- <div class="quote open text-left primary-color">“</div> -->
+                              <p *ngIf="i==2" class="fc-primary fw-600 fs-1x pt-3">¿Qué ocurre cuando tu puja es la más alta en la subasta?</p>
+                              <p class="text">{{testimonial.text}}</p>
+                              <p *ngIf="i==1" class="fc-primary fw-700 fs-1x">¡Importante!</p>
+                              <p *ngIf="i==2" class="fc-primary fw-600 fs-1x">¿Qué ocurre cuando tu oferta es la más alta en la venta directa/cesión de remate?</p>
+                              <p class="text pb-3">{{testimonial.text2}}</p>
+                              <a *ngIf="i==0" href="/register" class="btn-primary">Regístrate</a>
+                              <!-- <div class="quote close text-right primary-color">”</div> -->
+                              <!-- <h3 class="author">{{testimonial.author}}</h3> -->
+                              <!-- <p>{{testimonial.position}}</p> -->
+                              <div class="swiper-lazy-preloader"></div>
+                            </div>
+                          </div>
                         </div>
+                      <!-- </div> --> <!-- Fin columna -->
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>

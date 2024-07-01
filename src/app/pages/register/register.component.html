@@ -17,7 +17,7 @@
                     <mat-label>Nombre: </mat-label>
                     <input matInput placeholder="Nombre" formControlName="name" required>
                     <mat-error *ngIf="registerForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
-                    <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 6 carácteres</mat-error>
+                    <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error>
                   </mat-form-field>
 
                   <!-- Telefono -->
@@ -53,7 +53,7 @@
                     <mat-label>Apellidos: </mat-label>
                     <input matInput placeholder="Apellidos" formControlName="lastname" required>
                     <mat-error *ngIf="registerForm.controls.lastname.errors?.required">El campo apellidos es obligatorio</mat-error>
-                    <mat-error *ngIf="registerForm.controls.lastname.hasError('minlength')">Apellidos corto, minímo 6 carácteres</mat-error>
+                    <mat-error *ngIf="registerForm.controls.lastname.hasError('minlength')">Apellidos corto, minímo 4 carácteres</mat-error>
                   </mat-form-field>
 
                   <mat-form-field  appearance="outline" class="w-100 mt-1">
@@ -130,7 +130,8 @@
                 </div> -->
 
                 <div class="w-100 pt-4 pb-6">
-                  <button (click)="registerUser()" mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button>
+                  <!-- <button (click)="registerUser()" mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button> -->
+                  <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button>
                 </div>
 
             </form>

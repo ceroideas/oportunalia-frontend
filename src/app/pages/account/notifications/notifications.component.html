@@ -1,0 +1,39 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-sm="100">
+    <p class="horizontal-menu-active pt-4 pb-3 pl-3 uppercase">Gestionar preferencias de notificaciones</p>
+  </div>
+</div>
+
+<div class="pr-5 pl-5 pb-5 pt-5 fc-primary fw-400">
+  <p>Desde aquí podrás gestionar las comunicaciones que recibes de Oportunalia</p>
+</div>
+
+
+<form [formGroup]="notificationForm" (ngSubmit)="onNotificationFormSubmit(notificationForm.value)">
+  <div fxLayout="row wrap" fxLayoutAlign="space-around" class="pb-5">
+
+    <div fxLayout="column">
+      <div class="interes pb-5" >
+        <mat-checkbox color="primary">
+          <span class="fc-gray">Si seleccionas esta opción, recibirás notificaciones en tu correo sobre el estado
+          de la venta en la que has participado: la confirmación de que tu puja u oferta fue registrada correctamente,
+          si alguien la ha superado o si resultas ser el ganador.</span>
+        </mat-checkbox>
+      </div>
+      <div class="interes" >
+        <mat-checkbox color="primary">
+          <span class="fc-gray">Si seleccionas esta opción, recibirás notificaciones en tu correo sobre cualquier
+          cambio en los activos que hayas guardado como favoritos: si la venta ha comenzado, si está a punto de finalizar
+          o cuando acabe.</span>
+        </mat-checkbox>
+      </div>
+    </div>
+
+
+    <div class="w-100 pt-5 pb-6">
+      <button (click)="registerNotification()" mat-raised-button type="submit" class="btn-primary uppercase">Guardar preferencias</button>
+    </div>
+  </div>
+
+
+  </form>

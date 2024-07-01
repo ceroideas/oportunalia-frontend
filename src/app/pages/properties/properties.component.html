@@ -6,16 +6,17 @@
 </app-header-image>
 
 <div class="px-3">
-
   <div class="theme-container">
-
     <mat-sidenav-container class="all-properties mt-3">
+
+      <!-- Barra lateral -->
       <mat-sidenav #sidenav [autoFocus]="false" [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="search-sidenav">
         <ng-scrollbar pointerEventsMethod="scrollbar" autoHeightDisabled="false" class="mat-elevation-z1">
             <mat-card class="p-3">
                 <button fxHide="false" fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon color="accent">close</mat-icon>
                 </button>
+                <!-- Buscador barra lateral -->
                 <app-properties-search
                     [variant]="settings.searchPanelVariant"
                     [vertical]="true"
@@ -24,10 +25,13 @@
                     (onSearchChange)="searchChanged($event)"
                     (onSearchClick)="searchClicked()">
                 </app-properties-search>
+
             </mat-card>
         </ng-scrollbar>
       </mat-sidenav>
 
+
+      <!-- Propiedades -->
       <mat-sidenav-content ngClass.gt-sm="distance">
 
         <div fxLayout="row wrap" class="properties-wrapper mt-0">
@@ -41,6 +45,7 @@
                 </app-properties-toolbar>
             </div>
 
+            <!-- Chip # propiedades  -->
             <div fxFlex="100" fxLayoutAlign="start start" class="p-2">
                 <mat-chip-listbox [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
                     <mat-chip-option highlighted selectable="false" disableRipple="true" color="warn" class="uppercase ws-nowrap">
@@ -75,10 +80,8 @@
             </div>
 
         </div>
-
-
-
       </mat-sidenav-content>
+
     </mat-sidenav-container>
 
   </div>

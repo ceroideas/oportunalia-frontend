@@ -31,13 +31,16 @@
 
 <!-- Buscador principal -->
 <div class="px-3 pt-6 pb-6 bg-blue" >
-  <div class="theme-container text-center" >
+  <div class="theme-container text-center">
     <div class="flex-container" fxLayout="row">
       <div fxFlex>
         <mat-form-field appearance="fill">
-          <mat-label>Tipo</mat-label>
+          <mat-label>Tipo de propiedad</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0" >Todos</mat-option>
+            <mat-option value="1" >Subasta</mat-option>
+            <mat-option value="2" >Venta directa</mat-option>
+            <mat-option value="3" >Cesión de remate</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -45,7 +48,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -53,15 +57,28 @@
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+
+        <!-- <select class="form-control" [(ngModel)]="params.search">
+            <option value="0" selected>Todas</option>
+            <option *ngFor="let province of provinceList" >{{province.name}}</option>
+        </select> -->
+
+
       </div>
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Otros criterios</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todos</mat-option>
+            <mat-option value="1">Playas</mat-option>
+            <mat-option value="2">Ciudades</mat-option>
+            <mat-option value="3">Urbanización</mat-option>
+
           </mat-select>
         </mat-form-field>
       </div>
@@ -72,8 +89,8 @@
     </div>
   </div>
 </div>
-<!--  Buscador
-<div class="px-3">
+<!--  Buscador -->
+<!-- <div class="px-3">
 
     <div class="theme-container">
 
@@ -130,8 +147,8 @@
 
         </div>
     </div>
-</div>
-fin buscador -->
+</div> -->
+<!--  fin buscador -->
 
 <div class="section mt-3">
   <div class="px-3">
@@ -184,7 +201,8 @@ fin buscador -->
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -192,7 +210,8 @@ fin buscador -->
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
           <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
+            <mat-option value="0">Todas</mat-option>
+            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

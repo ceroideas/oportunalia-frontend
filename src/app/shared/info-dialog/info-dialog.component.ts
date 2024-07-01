@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 /* import { CommonModule } from '@angular/common'; */
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
 @Component({
   selector: 'app-info-dialog',
   /* standalone: true,
@@ -11,14 +13,36 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class InfoDialogComponent implements OnInit{
 
 
-  constructor(public dialogRef: MatDialogRef<InfoDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public message:string) { }
+  constructor(public router:Router, public dialogRef: MatDialogRef<InfoDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public message:string, public appService:AppService) { }
 
 
     ngOnInit(): void {
     }
 
     close(): void {
+      this.dialogRef.close();
+    }
+
+    public goQuestions(): void {
+      /* this.router.navigate(['/login']);*/
+      this.dialogRef.close();
+      const message = 'questions';
+      let dialogRef = this.appService.showInfoMessage(message);
+    }
+
+    public goProfile(): void {
+      this.router.navigate(['/account/profile']);
+      this.dialogRef.close();
+    }
+
+    public goInterest(): void {
+      this.router.navigate(['/interest']);
+      this.dialogRef.close();
+    }
+
+    public goRegister(): void{
+      this.router.navigate(['/register']);
       this.dialogRef.close();
     }
 

@@ -8,12 +8,12 @@ export const horizontalMenuItems = [
       new Menu (23, 'Venta directa', '/properties', null, null, false, 20),
       new Menu (24, 'Cesión de remate', '/properties', null, null, false, 20),
     new Menu (40, 'NAV.SERVICES', null, null, null, true, 0),
-      new Menu (41, 'NAV.AGENTS', '/agents', null, null, false, 40),
-      new Menu (42, 'NAV.AGENT', '/agents/1', null, null, false, 40),
+      /* new Menu (41, 'NAV.AGENTS', '/agents', null, null, false, 40),
+      new Menu (42, 'NAV.AGENT', '/agents/1', null, null, false, 40), */
       new Menu (43, 'LOGIN', '/login', null, null, false, 40),
       new Menu (44, 'REGISTER', '/register', null, null, false, 40),
 
-      new Menu (46, 'NAV.PRICING', '/pricing', null, null, false, 40),
+      /* new Menu (46, 'NAV.PRICING', '/pricing', null, null, false, 40), */
       new Menu (47, 'NAV.TERMS_CONDITIONS', '/terms-conditions', null, null, false, 40),
       new Menu (51, 'NAV.LEGAL_DISCLAIMER', '/legal-disclaimer', null, null, false, 40),
       /* new Menu (48, 'Landing', '/landing', null, null, false, 40), */
@@ -38,12 +38,12 @@ export const verticalMenuItems = [
     //new Menu (1, 'NAV.HOME', '/', null, null, false, 0),
     new Menu (2, 'NAV.PROPERTIES', '/properties', null, null, false, 0),
     new Menu (40, 'NAV.SERVICES', null, null, null, true, 0),
-      new Menu (41, 'NAV.AGENTS', '/agents', null, null, false, 40),
-      new Menu (42, 'NAV.AGENT', '/agents/1', null, null, false, 40),
+      /* new Menu (41, 'NAV.AGENTS', '/agents', null, null, false, 40),
+      new Menu (42, 'NAV.AGENT', '/agents/1', null, null, false, 40) */,
       new Menu (43, 'LOGIN', '/login', null, null, false, 40),
       new Menu (44, 'REGISTER', '/register', null, null, false, 40),
       new Menu (45, 'FAQs', '/faq', null, null, false, 40),
-      new Menu (46, 'NAV.PRICING', '/pricing', null, null, false, 40),
+      /* new Menu (46, 'NAV.PRICING', '/pricing', null, null, false, 40), */
       new Menu (47, 'NAV.TERMS_CONDITIONS', '/terms-conditions', null, null, false, 40),
       new Menu (51, 'NAV.LEGAL_DISCLAIMER', '/legal-disclaimer', null, null, false, 40),
       /* new Menu (48, 'Landing', '/landing', null, null, false, 40), */
