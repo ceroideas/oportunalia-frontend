@@ -2,3 +2,72 @@
   background: rgba(206, 219, 255, 1);
   color: #292C63;
 }
+
+
+.btn-primary{
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: solid 3px #242863;
+  line-height: 56px;
+  color: #fff;
+  box-shadow: 0 8px 16px #60617029,0 2px 4px #28293d0a;
+  background-color: #242863;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+}
+
+
+.representante, .data {
+  /* display: flex;
+  flex-direction: column;
+  border-radius: 8px; */
+  border: solid 1px #dcdcdc;
+  padding: 2.5%;
+}
+
+
+
+.representaciones-container{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+
+.representante .datos{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.representante .datos .datos-row{
+  display: flex;
+  flex-direction: row;
+}
+.representante .datos .data-title{
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #212529;
+  width: 160px;
+  margin-right: 3em;
+}
+.representante .datos .data{
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #212529;
+}
+.representante .line{
+  height: 1px;
+  border: solid 1px #dcdcdc;
+}
