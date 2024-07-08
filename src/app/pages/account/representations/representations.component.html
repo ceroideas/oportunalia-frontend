@@ -5,6 +5,7 @@
 </div>
 
 <div class="representante">
+  <h4 class="mb-3"><mat-icon>account_circle</mat-icon> {{firstname}} {{lastname}} (Representación propia)</h4>
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
       <p class="data">Nombre: {{firstname}}</p>
@@ -16,6 +17,7 @@
     </div>
   </div>
 </div>
+
 <!-- <div class="pb-5 divider"></div> -->
 <div class="w-100 pt-4 pb-6">
   <button (click)="registerRepresentation()" mat-raised-button class="btn-primary">Añadir representación</button>
