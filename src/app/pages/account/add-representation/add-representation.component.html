@@ -1,0 +1,74 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-sm="100">
+    <p class="horizontal-menu-active pt-4 pb-3 pl-3 uppercase">Añadir representación</p>
+  </div>
+</div>
+
+<!-- <a [routerLink]="['/account/representations']"mat-icon-button color="primary" matTooltip="Volver a mis representaciones">
+  <mat-icon>arrow_back_ios</mat-icon> Volver a mis representaciones</a> -->
+
+
+  <a [routerLink]="['/account/representations']" class="fs-1x fc-primary">
+    <mat-icon>arrow_back_ios</mat-icon> Volver a mis representaciones</a>
+
+
+<div class="representation">
+
+
+    <form [formGroup]="representationForm" (ngSubmit)="onRepresentationFormSubmit(representationForm.value)">
+      <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" required class="representation">
+        <mat-option value="0"> Individual</mat-option>
+        <mat-option value="1">Empresa</mat-option>
+      </mat-select>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" required class="representation">
+          <mat-option value="0"> Individual</mat-option>
+          <mat-option value="1">Empresa</mat-option>
+        </mat-select>
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+          <!-- <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" formControlName="representationType"> -->
+          <!-- <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" required class="representation">
+            <mat-option value="0"> Individual</mat-option>
+            <mat-option value="1">Empresa</mat-option>
+          </mat-select> -->
+
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <mat-label>Nombre: </mat-label>
+            <input matInput placeholder="Nombre" formControlName="name" required>
+            <!-- <mat-error *ngIf="registerForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
+            <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error> -->
+          </mat-form-field>
+
+        </div>
+
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <mat-label>Alias: </mat-label>
+            <input matInput placeholder="Alias" formControlName="alias" required>
+            <!-- <mat-error *ngIf="registerForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
+            <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+            <mat-label>Apellidos: </mat-label>
+            <input matInput placeholder="Apellidos" formControlName="lastname" required>
+            <!-- <mat-error *ngIf="registerForm.controls.lastname.errors?.required">El campo apellidos es obligatorio</mat-error>
+            <mat-error *ngIf="registerForm.controls.lastname.hasError('minlength')">Apellidos corto, minímo 4 carácteres</mat-error> -->
+          </mat-form-field>
+
+
+
+        </div>
+
+      </div>
+
+      <div class="w-100 pt-4 pb-6 pt-4">
+        <button (click)="saveRepresentation()" mat-raised-button type="submit" class="btn-primary">Guardar representación</button>
+      </div>
+
+    </form>
+
+</div>

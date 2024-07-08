@@ -22,3 +22,8 @@
 <div class="w-100 pt-4 pb-6">
   <button (click)="registerRepresentation()" mat-raised-button class="btn-primary">Añadir representación</button>
 </div>
+
+
+<a [routerLink]="['/account/representations/add-representation']"mat-icon-button color="primary" matTooltip="Añadir representación">
+  <mat-icon>add_circle</mat-icon><mat-icon>add_box</mat-icon>
+</a>

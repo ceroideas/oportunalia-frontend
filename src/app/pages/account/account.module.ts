@@ -13,6 +13,8 @@ import { EditPropertyComponent } from './edit-property/edit-property.component';
 import { RepresentationsComponent } from './representations/representations.component';
 import { InterestsComponent } from './interests/interests.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { AddRepresentationComponent } from './add-representation/add-representation.component';
+
 
 export const routes: Routes = [
   {
@@ -24,6 +26,7 @@ export const routes: Routes = [
       { path: 'favorites', component: FavoritesComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'representations', component: RepresentationsComponent },
+      { path: 'representations/add-representation', component: AddRepresentationComponent },
       { path: 'interests', component: InterestsComponent},
       { path: 'notifications', component: NotificationsComponent }
     ]
@@ -39,6 +42,7 @@ export const routes: Routes = [
     ProfileComponent,
     EditPropertyComponent,
     RepresentationsComponent,
+    AddRepresentationComponent,
     InterestsComponent,
     NotificationsComponent
   ],
