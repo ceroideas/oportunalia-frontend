@@ -4,68 +4,122 @@
   </div>
 </div>
 
-<!-- <a [routerLink]="['/account/representations']"mat-icon-button color="primary" matTooltip="Volver a mis representaciones">
-  <mat-icon>arrow_back_ios</mat-icon> Volver a mis representaciones</a> -->
-
-
-  <a [routerLink]="['/account/representations']" class="fs-1x fc-primary">
-    <mat-icon>arrow_back_ios</mat-icon> Volver a mis representaciones</a>
-
-
 <div class="representation">
 
-
     <form [formGroup]="representationForm" (ngSubmit)="onRepresentationFormSubmit(representationForm.value)">
-      <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" required class="representation">
-        <mat-option value="0"> Individual</mat-option>
-        <mat-option value="1">Empresa</mat-option>
-      </mat-select>
+
+
+      <!-- Ejemplo tabs
+      <mat-tab-group (focusChange)="myTabFocusChange($event)"
+      (selectedIndexChange)="myTabSelectedIndexChange($event)"
+      (selectedTabChange)="myTabSelectedTabChange($event)"
+      (animationDone)="myTabAnimationDone()">
+        <mat-tab label="Individual"> Content 1 </mat-tab>
+        <mat-tab label="Empresa"> Content 2 </mat-tab>
+      </mat-tab-group> -->
+
+      <!-- <mat-radio-group aria-label="Selecciona una opción" color="primary" (change)="representationChange($event)">
+        <mat-radio-button value="0">Individual</mat-radio-button>
+        <mat-radio-button value="1">Empresa</mat-radio-button>
+      </mat-radio-group> -->
+
 
       <div fxLayout="row wrap" fxLayoutAlign="space-around">
-        <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" required class="representation">
-          <mat-option value="0"> Individual</mat-option>
-          <mat-option value="1">Empresa</mat-option>
-        </mat-select>
-        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
-          <!-- <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" formControlName="representationType"> -->
-          <!-- <mat-select [(value)]="selected" placeholder="Selecciona tipo de representación" required class="representation">
-            <mat-option value="0"> Individual</mat-option>
-            <mat-option value="1">Empresa</mat-option>
-          </mat-select> -->
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <mat-select (selectionChange)="representationChange($event.value)" placeholder="Tipo de representación" >
+              <mat-option value="0">Individual</mat-option>
+              <mat-option value="1">Empresa</mat-option>
+            </mat-select>
+          </mat-form-field>
 
+
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <mat-label>Alias: </mat-label>
+            <input matInput placeholder="Alias" formControlName="alias" required>
+            <mat-error *ngIf="representationForm.controls.alias.errors?.required">El campo alias es obligatorio</mat-error>
+            <mat-error *ngIf="representationForm.controls.alias.hasError('minlength')">Alias corto, mínimo 4 carácteres</mat-error>
+          </mat-form-field>
 
           <mat-form-field  appearance="outline" class="w-100 mt-2">
             <mat-label>Nombre: </mat-label>
             <input matInput placeholder="Nombre" formControlName="name" required>
-            <!-- <mat-error *ngIf="registerForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
-            <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error> -->
+            <mat-error *ngIf="representationForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
+            <mat-error *ngIf="representationForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error>
           </mat-form-field>
+
 
         </div>
 
         <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+
           <mat-form-field  appearance="outline" class="w-100 mt-2">
-            <mat-label>Alias: </mat-label>
-            <input matInput placeholder="Alias" formControlName="alias" required>
-            <!-- <mat-error *ngIf="registerForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
-            <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error> -->
+            <mat-label>CIF/NIF: </mat-label>
+            <input matInput placeholder="CIF/NIF" formControlName="cif" required autocomplete="off">
+            <mat-error *ngIf="representationForm.controls.cif.errors?.required">El campo CIF/NIF es obligatorio</mat-error>
+          </mat-form-field>
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2" *ngIf="individualSelected">
+            <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+            <mat-label>Apellidos: </mat-label>
+            <input matInput placeholder="Apellidos" formControlName="lastname">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+
+
+          <!-- <select class="form-control" formControlName="country_id" [(ngModel)]="selectedCountry" (change)="getProvinceList()">
+            <option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</option>
+          </select> -->
+
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <mat-label>País</mat-label>
+            <mat-select placeholder="País" (selectionChange)="getProvinceList($event.value)">
+              <mat-option *ngFor="let country of countryList" value="{{country.id}}">{{ country.id }} - {{country.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+            <mat-label>Dirección: </mat-label>
+            <input matInput placeholder="Apellidos" formControlName="address">
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <mat-label>Provincia</mat-label>
+            <mat-select placeholder="Provincia">
+              <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field  appearance="outline" class="w-100 mt-2">
+            <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+            <mat-label>Localidad: </mat-label>
+            <input matInput placeholder="Localidad" formControlName="province_id">
           </mat-form-field>
 
           <mat-form-field  appearance="outline" class="w-100 mt-2">
             <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
-            <mat-label>Apellidos: </mat-label>
-            <input matInput placeholder="Apellidos" formControlName="lastname" required>
-            <!-- <mat-error *ngIf="registerForm.controls.lastname.errors?.required">El campo apellidos es obligatorio</mat-error>
-            <mat-error *ngIf="registerForm.controls.lastname.hasError('minlength')">Apellidos corto, minímo 4 carácteres</mat-error> -->
+            <mat-label>Código postal: </mat-label>
+            <input matInput placeholder="Código Postal" formControlName="cp">
           </mat-form-field>
-
-
-
         </div>
-
       </div>
 
-      <div class="w-100 pt-4 pb-6 pt-4">
+
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around" class="w-100 pt-4 pb-6">
+        <button (click)="backRepresentations()" mat-raised-button class="btn-back">Volver a representaciones</button>
         <button (click)="saveRepresentation()" mat-raised-button type="submit" class="btn-primary">Guardar representación</button>
       </div>
 
