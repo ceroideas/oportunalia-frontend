@@ -91,6 +91,12 @@
             <mat-label>Dirección: </mat-label>
             <input matInput placeholder="Apellidos" formControlName="address">
           </mat-form-field>
+
+          <div fxLayout="col wrap" fxLayoutAlign="center center">
+            <mat-label>Documento identificativo</mat-label>
+            <input-file formControlName="document" [fileLimit]="3" fileAccept=".pdf, image/*" data-max-size="2048"></input-file>
+          </div>
+
         </div>
         <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
 

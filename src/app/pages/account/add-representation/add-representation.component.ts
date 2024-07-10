@@ -34,7 +34,7 @@ export class AddRepresentationComponent implements OnInit{
       cp: null,
       province_id: null,
       country_id: null,
-
+      document: null
     });
 
     this.getProvinceList(1);
