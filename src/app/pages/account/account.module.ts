@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,6 +15,7 @@ import { RepresentationsComponent } from './representations/representations.comp
 import { InterestsComponent } from './interests/interests.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AddRepresentationComponent } from './add-representation/add-representation.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 export const routes: Routes = [
@@ -25,6 +27,7 @@ export const routes: Routes = [
       { path: 'my-properties/:id', component: EditPropertyComponent },
       { path: 'favorites', component: FavoritesComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'profile/change-password', component: ChangePasswordComponent },
       { path: 'representations', component: RepresentationsComponent },
       { path: 'representations/add-representation', component: AddRepresentationComponent },
       { path: 'interests', component: InterestsComponent},
@@ -44,7 +47,8 @@ export const routes: Routes = [
     RepresentationsComponent,
     AddRepresentationComponent,
     InterestsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

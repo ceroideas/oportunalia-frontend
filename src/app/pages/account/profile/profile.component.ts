@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
   }
 
   goToChangePassword(){
-    this.router.navigate(['/profile/change-password'])
+    this.router.navigate(['/account/profile/change-password'])
   }
 
 }

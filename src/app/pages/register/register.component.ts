@@ -119,15 +119,6 @@ export class RegisterComponent implements OnInit {
     }
 
 
-    /* this.userService.userRegister(user)
-      .subscribe(
-        (response) => {},
-        (error)=>{}
-      ) */
-
-
   }
-
-
 
 }
