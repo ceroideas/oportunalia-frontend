@@ -31,10 +31,11 @@
               </div>
 
               <mat-card-actions fxLayoutAlign="end center">
-                <button mat-button>
+                <button (click)="goToResetPassword()" mat-button >
                   <!-- <mat-icon class="text-muted">vpn_key</mat-icon> -->
                   <span>¿Has olvidado tu contraseña?</span>
                 </button>
+                <!-- <button (click)="goToResetPassword()" mat-raised-button class="btn-back">Volver a representaciones</button> -->
               </mat-card-actions>
               <!-- <div class="text-center mt-2">
                   <button mat-raised-button color="primary" class="uppercase" type="submit">
