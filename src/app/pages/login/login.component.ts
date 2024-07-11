@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,5 +25,10 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
+
+  goToResetPassword(){
+    this.router.navigate(['/password-reset'])
+  }
+
 
 }
