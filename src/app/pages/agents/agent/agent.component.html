@@ -64,8 +64,8 @@
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>E-mail</mat-label>
                     <input matInput placeholder="Your Email" autocomplete="off" formControlName="email">
-                    <mat-error *ngIf="contactForm.controls.email.errors?.required">Email is required</mat-error>
-                    <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+                    <mat-error *ngIf="contactForm.controls.email.errors?.required">Email obligatorio</mat-error>
+                    <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Dirección de email invalida</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">

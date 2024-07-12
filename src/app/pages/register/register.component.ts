@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
   maxDate;
 
-  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar, public appService:AppService,public userService: UserService ) { }
+  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar, public appService:AppService, public userService: UserService ) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({

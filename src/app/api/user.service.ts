@@ -24,10 +24,16 @@ userRegister( user: any ): Observable<any> {
       )
   }
 
-  /* userRegister2(user:any): Observable<any> {
-    return this.http.post(GlobalConstants.apiURL+"/auth/register", { user }).pipe(
-      map(_ => true),
-      catchError(error => of(false))
-    );
-  } */
+  userReestablecer(user: any): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL+"/auth/recover-password", user)
+      .pipe(
+        catchError((error) => {
+          //return throwError(err);
+          return throwError(() => error);
+        })
+      )
+  }
+
+
+
 }
