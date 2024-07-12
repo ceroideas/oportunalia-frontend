@@ -16,6 +16,8 @@ import { InterestsComponent } from './interests/interests.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AddRepresentationComponent } from './add-representation/add-representation.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PasswordResetComponent } from '../password-reset/password-reset.component';
+
 
 
 export const routes: Routes = [
@@ -48,7 +50,8 @@ export const routes: Routes = [
     AddRepresentationComponent,
     InterestsComponent,
     NotificationsComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PasswordResetComponent
   ],
   imports: [
     CommonModule,
