@@ -19,6 +19,7 @@ export const routes: Routes = [
           { path: 'pricing', loadChildren: () => import('./pages/pricing/pricing.module').then(m => m.PricingModule) },
           { path: 'faq', loadChildren: () => import('./pages/faq/faq.module').then(m => m.FaqModule) },
           { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+          { path: 'password-reset', loadChildren: () => import('./pages/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
           { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
           { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
           { path: 'legal-disclaimer', loadChildren: () => import('./pages/legal-disclaimer/legal-disclaimer.module').then(m => m.LegalDisclaimerModule) },

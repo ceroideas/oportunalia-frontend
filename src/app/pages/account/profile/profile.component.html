@@ -33,7 +33,7 @@
         <input matInput placeholder="Apellido" formControlName="lastname" required autocomplete="off">
         <mat-error *ngIf="infoForm.controls.lastname.errors?.required">Apellido requerido</mat-error>
       </mat-form-field>
-      <mat-form-field >
+      <mat-form-field appearance="outline" class="w-100">
         <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -87,7 +87,7 @@
 
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
     <div fxFlex="100" fxFlex.gt-sm="100">
-      <p class="fc-primary fw-400 fs-1-5x ml-4">Dirección</p>
+      <p class="fc-primary fw-400 fs-1-5x ml-4 uppercase">Dirección</p>
     </div>
     <mat-form-field appearance="outline" class="w-100 pl-3 pr-3">
       <mat-label>Dirección: </mat-label>
@@ -122,16 +122,18 @@
     </div>
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
       <div class="mb-3">
-        <input-file placeholder="Documento de identidad (frente)" formControlName="image" [fileLimit]="1" fileAccept="image/*" [linkEnabled]="true"></input-file>
+        <input-file placeholder="Documento de identidad (frente)" formControlName="image1" [fileLimit]="1" fileAccept=".pdf, image/*" [linkEnabled]="false"></input-file>
       </div>
     </div>
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
       <div class="mb-3">
-        <input-file placeholder="Documento de identidad (Anverso)" formControlName="image" [fileLimit]="1" fileAccept="image/*" [linkEnabled]="true"></input-file>
+        <input-file placeholder="Documento de identidad (Anverso)" formControlName="image2" [fileLimit]="1" fileAccept=".pdf, image/*" [linkEnabled]="false"></input-file>
       </div>
     </div>
   </div>
 
+  <div fxLayout="row wrap" fxLayoutAlign="space-around" class="w-100 pt-4 pb-6">
+    <button (click)="goToChangePassword()" mat-raised-button class="btn-change-password">Cambio de contraseña</button>
 
 
   <div class="text-center mt-2">

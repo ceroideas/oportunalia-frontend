@@ -26,6 +26,11 @@ userRegister( user: any ): Observable<any> {
     )
   }
 
+  userReestablecer(user: any): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL+"/auth/recover-password", user)
+  }
+
+
   login( user: any ): Observable<any> {  
 
     return this.http.post(GlobalConstants.apiURL+"/auth/login", user)
