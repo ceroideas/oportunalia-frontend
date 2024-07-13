@@ -12,9 +12,9 @@
               <mat-form-field appearance="outline" class="w-100 mt-2">
                   <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                   <mat-label>Email</mat-label>
-                  <input matInput placeholder="Username" formControlName="username" required>
-                  <mat-error *ngIf="loginForm.controls.username.errors?.required">Nombre de usuario requerido</mat-error>
-                  <mat-error *ngIf="loginForm.controls.username.hasError('minlength')">El nombre de usuario no es lo suficientemente largo, mínimo 6 carácteres</mat-error>
+                  <input matInput placeholder="Correo" formControlName="email" required>
+                  <mat-error *ngIf="loginForm.controls.email.errors?.required">Correo requerido</mat-error>
+                  <mat-error *ngIf="loginForm.controls.email.hasError('minlength')">El correo no es lo suficientemente largo, mínimo 6 carácteres</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100 mt-1">
                   <!-- <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon> -->
@@ -31,11 +31,10 @@
               </div>
 
               <mat-card-actions fxLayoutAlign="end center">
-                <button (click)="goToResetPassword()" mat-button >
+                <button mat-button>
                   <!-- <mat-icon class="text-muted">vpn_key</mat-icon> -->
                   <span>¿Has olvidado tu contraseña?</span>
                 </button>
-                <!-- <button (click)="goToResetPassword()" mat-raised-button class="btn-back">Volver a representaciones</button> -->
               </mat-card-actions>
               <!-- <div class="text-center mt-2">
                   <button mat-raised-button color="primary" class="uppercase" type="submit">

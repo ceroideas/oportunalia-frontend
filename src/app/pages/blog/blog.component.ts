@@ -8,6 +8,8 @@ import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
 import { Post, Pagination } from '../../app.models';
 import { DomHandlerService } from 'src/app/dom-handler.service';
+import { PublicService } from 'src/app/api/public.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -32,10 +34,13 @@ export class BlogComponent implements OnInit{
   public watcher: Subscription;
 
   public settings: Settings
-  constructor(public appSettings:AppSettings,
-              public appService:AppService,
+  constructor(public appSettings: AppSettings,
+              public appService: AppService,
               public mediaObserver: MediaObserver,
-              private domHandlerService: DomHandlerService) {
+              public publicService: PublicService,
+              private domHandlerService: DomHandlerService,
+              private sanitizer: DomSanitizer) {
+
     this.settings = this.appSettings.settings;
     this.watcher = mediaObserver.asObservable()
     .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
@@ -70,7 +75,8 @@ export class BlogComponent implements OnInit{
   }
 
   public getPosts(){
-    this.appService.getPosts().subscribe(data => {
+    this.publicService.blogList().subscribe(data => {
+
       //let result = this.filterData(data);
       if(data.length == 0){
         //this.properties.length = 0;
@@ -78,7 +84,7 @@ export class BlogComponent implements OnInit{
         this.message = 'No hay resultados';
       } else {
         //this.properties = result.data;
-        this.blog = data
+        this.blog = data.response;
         //this.pagination = result.pagination;
         this.message = null;
       }
@@ -146,6 +152,10 @@ export class BlogComponent implements OnInit{
     this.pagination.page = e.pageIndex + 1;
     //this.getProperties();
     this.domHandlerService.winScroll(0, 0);
+  }
+
+  renderHTML(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
 }

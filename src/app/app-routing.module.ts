@@ -19,7 +19,6 @@ export const routes: Routes = [
           { path: 'pricing', loadChildren: () => import('./pages/pricing/pricing.module').then(m => m.PricingModule) },
           { path: 'faq', loadChildren: () => import('./pages/faq/faq.module').then(m => m.FaqModule) },
           { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-          { path: 'password-reset', loadChildren: () => import('./pages/password-reset/password-reset.module').then(m => m.PasswordResetModule) },
           { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
           { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
           { path: 'legal-disclaimer', loadChildren: () => import('./pages/legal-disclaimer/legal-disclaimer.module').then(m => m.LegalDisclaimerModule) },
@@ -27,7 +26,7 @@ export const routes: Routes = [
           { path: 'cookie-policy', loadChildren: () => import('./pages/cookie-policy/cookie-policy.module').then(m => m.CookiePolicyModule) },
           { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) },
           { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) },
-          { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) },
+          { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) },          
           { path: 'interest', loadChildren: () => import('./pages/interest/interest.module').then(m => m.InterestModule) }
       ]
   },

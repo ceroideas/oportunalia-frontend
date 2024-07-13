@@ -108,13 +108,20 @@
               </div> -->
 
               <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
-                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                <div fxFlex="100" class="px-1 mt-1">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Nombre</mat-label>
-                        <input matInput placeholder="Nombre" formControlName="name" required>
-                        <mat-error *ngIf="contactForm.controls.name.errors?.required">Nombre obligatorio</mat-error>
+                        <input matInput placeholder="Nombre" formControlName="firstname" required>
+                        <mat-error *ngIf="contactForm.controls.firstname.errors?.required">Nombre obligatorio</mat-error>
                     </mat-form-field>
                 </div>
+                <div fxFlex="100" class="px-1 mt-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Apellido</mat-label>                        
+                        <input matInput placeholder="Apellido" formControlName="lastname" required>
+                        <mat-error *ngIf="contactForm.controls.lastname.errors?.required">Apellido obligatorio</mat-error>
+                    </mat-form-field>
+                </div>                 
                 <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Email</mat-label>
@@ -126,10 +133,17 @@
                 <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Tel&eacute;fono</mat-label>
-                        <input matInput placeholder="Teléfono" formControlName="phone" required>
+                        <input matInput placeholder="Teléfono" type="phone" formControlName="phone" required>
                         <mat-error *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
                     </mat-form-field>
-                </div>
+                </div>                
+                <div fxFlex="100" class="px-1 mt-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Asunto</mat-label>                        
+                        <input matInput placeholder="Asunto" formControlName="subject" required>
+                        <mat-error *ngIf="contactForm.controls.subject.errors?.required">Asunto obligatorio</mat-error>
+                    </mat-form-field>
+                </div>               
                 <div fxFlex="100" class="px-1 mt-1">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Mensaje</mat-label>
@@ -159,4 +173,4 @@
 
     </div>
 
-</div>
+</div>                

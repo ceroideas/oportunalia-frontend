@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { emailValidator, matchingPasswords } from 'src/app/theme/utils/app-validators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +18,7 @@ export class ProfileComponent implements OnInit {
 
   public infoForm:UntypedFormGroup;
   public passwordForm:UntypedFormGroup;
-  constructor(public formBuilder: UntypedFormBuilder, public snackBar: MatSnackBar,public router:Router) { }
+  constructor(public formBuilder: UntypedFormBuilder, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.infoForm = this.formBuilder.group({
@@ -28,8 +27,7 @@ export class ProfileComponent implements OnInit {
       cif: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
-      image1: null,
-      image2: null,
+      image: null,
       address: null,
       province: null,
       city: null,
@@ -61,10 +59,6 @@ export class ProfileComponent implements OnInit {
   submitForm() {
     // Aquí puedes enviar los datos al backend o realizar otras acciones
     console.log('Formulario enviado:', this.nombre, this.apellido, this.email, this.fechaNacimiento, this.contrasena);
-  }
-
-  goToChangePassword(){
-    this.router.navigate(['/account/profile/change-password'])
   }
 
 }

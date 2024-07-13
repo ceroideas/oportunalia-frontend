@@ -1,0 +1,21 @@
+.item {
+    color: #0d0d0d;
+    width: 25%;
+    min-height: 5rem;
+    text-overflow: ellipsis;
+    padding: 2rem;
+    background: #eeeeee;
+    border-radius: 2.5px;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.theme-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+}

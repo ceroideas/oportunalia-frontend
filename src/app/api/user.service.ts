@@ -14,26 +14,34 @@ export class UserService {
 
 
 
-userRegister( user: any ): Observable<any> {
-    return this.http.post(GlobalConstants.apiURL+"/auth/register", user)
+userRegister( user: any ): Observable<any> {  
+
+  return this.http.post(GlobalConstants.apiURL+"/auth/register", user)
+    .pipe(
+      catchError((error) => {
+        //return throwError(err);
+        console.log(error);
+        return throwError(() => error);
+      })
+    )
+  }
+
+  login( user: any ): Observable<any> {  
+
+    return this.http.post(GlobalConstants.apiURL+"/auth/login", user)
       .pipe(
         catchError((error) => {
           //return throwError(err);
+          console.log(error);
           return throwError(() => error);
         })
       )
-  }
+    }
 
-  userReestablecer(user: any): Observable<any> {
-    return this.http.post(GlobalConstants.apiURL+"/auth/recover-password", user)
-      .pipe(
-        catchError((error) => {
-          //return throwError(err);
-          return throwError(() => error);
-        })
-      )
-  }
-
-
-
+  /* userRegister2(user:any): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL+"/auth/register", { user }).pipe(
+      map(_ => true),
+      catchError(error => of(false))
+    );
+  } */
 }
