@@ -28,7 +28,8 @@ export class PasswordResetComponent implements OnInit{
 
   }
 
-  public onResetFormSubmit(values:Object):void {
+  public onResetFormSubmit (values: Object): void {    
+
     if (this.resetForm.valid) {
       /* this.router.navigate(['/']); */
 

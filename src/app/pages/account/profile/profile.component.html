@@ -5,43 +5,42 @@
   </div>
 </div>
 
-
 <form [formGroup]="infoForm" (ngSubmit)="onInfoFormSubmit(infoForm.value)">
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nombre: </mat-label>
-        <input matInput placeholder="Nombre" formControlName="name" required autocomplete="off">
-        <mat-error *ngIf="infoForm.controls.name.errors?.required">Nombre requerido</mat-error>
-        <mat-error *ngIf="infoForm.controls.name.hasError('minlength')">Nombre corto, mínimo 3 caracteres</mat-error>
+        <input matInput placeholder="Nombre" formControlName="firstname" required autocomplete="off">
+        <mat-error *ngIf="infoForm.controls.firstname?.errors?.required">Nombre requerido</mat-error>
+        <mat-error *ngIf="infoForm.controls.firstname?.hasError('minlength')">Nombre corto, mínimo 3 caracteres</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>CIF/NIF: </mat-label>
         <input matInput placeholder="CIF/NIF" formControlName="cif" required autocomplete="off">
-        <mat-error *ngIf="infoForm.controls.name.errors?.required">CIF/NIF requerido</mat-error>
+        <mat-error *ngIf="infoForm.controls.name?.errors?.required">CIF/NIF requerido</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
           <mat-label>Email: </mat-label>
           <input matInput placeholder="Email" formControlName="email" required autocomplete="off">
           <mat-error *ngIf="infoForm.controls.email.errors?.required">Email requerido</mat-error>
-          <mat-error *ngIf="infoForm.controls.email.hasError('invalidEmail')">Dirección de email invalida</mat-error>
+          <mat-error *ngIf="infoForm.controls?.email.hasError('invalidEmail')">Dirección de email invalida</mat-error>
       </mat-form-field>
     </div>
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Apellido</mat-label>
         <input matInput placeholder="Apellido" formControlName="lastname" required autocomplete="off">
-        <mat-error *ngIf="infoForm.controls.lastname.errors?.required">Apellido requerido</mat-error>
+        <mat-error *ngIf="infoForm.controls?.lastname.errors?.required">Apellido requerido</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento">
+        <input matInput [matDatepicker]="picker" formControlName="birthdate" placeholder="Fecha de nacimiento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Teléfono móvil</mat-label>
         <input matInput placeholder="Teléfono" formControlName="phone" required onlyNumber autocomplete="off">
-        <mat-error *ngIf="infoForm.controls.phone.errors?.required">Teléfono requerido</mat-error>
+        <mat-error *ngIf="infoForm.controls.phone?.errors?.required">Teléfono requerido</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -134,15 +133,13 @@
 
   <div fxLayout="row wrap" fxLayoutAlign="space-around" class="w-100 pt-4 pb-6">
     <button (click)="goToChangePassword()" mat-raised-button class="btn-change-password">Cambio de contraseña</button>
-
+  </div>
 
   <div class="text-center mt-2">
     <button mat-raised-button type="submit" class="btn-primary">Guardar cambios</button>
   </div>
 
 </form>
-
-
 
 
 <!-- <div fxLayout="row wrap" class="pl-3">
@@ -269,4 +266,3 @@
     </mat-form-field>
   </div>
 </div> -->
-

@@ -31,8 +31,11 @@ export class LoginComponent implements OnInit {
     
     if (this.loginForm.valid) {
       this.userService.login(values)
-        .subscribe((_) => this.router.navigate(['/']), 
-          (e) => this.appService.openAlertDialog(e.status === 401 ? 'Error de credenciales' : 'Ha ocurrido un error'));      
+        .subscribe(({ response }) => {
+          this.userService.setAuthToken(response.token);
+          this.router.navigate(['/']);
+        }, 
+        (e) => this.appService.openAlertDialog(e.status === 401 ? 'Error de credenciales' : 'Ha ocurrido un error'));      
     }
   }
 }

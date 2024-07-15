@@ -30,7 +30,7 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
     this.toolbarTypeOption = this.settings.toolbar;
     this.headerTypeOption = this.settings.header;
-    this.searchPanelVariantOption = this.settings.searchPanelVariant;
+    this.searchPanelVariantOption = this.settings.searchPanelVariant;    
   }
 
   public changeTheme(theme){
