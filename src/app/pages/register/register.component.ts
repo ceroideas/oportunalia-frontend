@@ -18,7 +18,8 @@ import { UserService } from 'src/app/api/user.service';
 export class RegisterComponent implements OnInit {
   //public registerForm: UntypedFormGroup;
   public registerForm = new FormGroup({
-                    name: new FormControl(''),
+                    username: new FormControl(''),
+                    firstname: new FormControl(''),
                     lastname: new FormControl(''),
                     phone: new FormControl(''),
                     email: new FormControl(''),
@@ -42,7 +43,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      name: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      firstname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       lastname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
@@ -101,8 +103,8 @@ export class RegisterComponent implements OnInit {
   registerUser(){
     console.log("Clic register user");
     const user = {
-                //username: 'username123',
-                firstname: this.registerForm.get('name').value,
+                username: this.registerForm.get('username').value,
+                firstname: this.registerForm.get('firstname').value,
                 lastname: this.registerForm.get('lastname').value,
                 phone: this.registerForm.get('phone').value,
                 email: this.registerForm.get('email').value,

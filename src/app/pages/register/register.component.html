@@ -11,13 +11,21 @@
             <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit(registerForm.value)">
               <div fxLayout="row wrap" fxLayoutAlign="space-around">
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+                  <!-- Username -->
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
+                    <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+                    <mat-label>Username: </mat-label>
+                    <input matInput placeholder="Usuario" formControlName="username" required>
+                    <mat-error *ngIf="registerForm.controls.username.errors?.required">El nombre de usuario es obligatorio</mat-error>
+                    <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">Nombre de usuario corto, mínimo 4 carácteres</mat-error>
+                  </mat-form-field>
                   <!-- Name -->
-                   <mat-form-field  appearance="outline" class="w-100 mt-2">
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                     <mat-label>Nombre: </mat-label>
-                    <input matInput placeholder="Nombre" formControlName="name" required>
-                    <mat-error *ngIf="registerForm.controls.name.errors?.required">El campo nombre es obligatorio</mat-error>
-                    <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error>
+                    <input matInput placeholder="Nombre" formControlName="firstname" required>
+                    <mat-error *ngIf="registerForm.controls.firstname.errors?.required">El campo nombre es obligatorio</mat-error>
+                    <mat-error *ngIf="registerForm.controls.firstname.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error>
                   </mat-form-field>
 
                   <!-- Telefono -->
