@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Property, Location, Post } from './app.models';
@@ -12,6 +12,7 @@ import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.compone
 import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { DomHandlerService } from './dom-handler.service';
+import { GlobalConstants } from './global-constants';
 
 export class Data {
   constructor(public properties: Property[],
@@ -46,19 +47,14 @@ export class AppService {
 
   public getProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'properties.json');
-  }
-
-  public getPosts(): Observable<Post[]>{
-    console.log("getPosts app.service.ts");
-    return this.http.get<Post[]>(this.url + 'posts.json');
-  }
+  }  
 
   public getPropertyById(id): Observable<Property>{
     return this.http.get<Property>(this.url + 'property-' + id + '.json');
   }
 
-  public getPostById(id): Observable<Post>{
-    return this.http.get<Post>(this.url + 'post-' + id + '.json');
+  public getPostById(id): Observable<any>{
+    return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }`);
   }
 
   public getFeaturedProperties(): Observable<Property[]>{

@@ -1,16 +1,18 @@
-
-<app-header-image [backgroundImage]="'assets/images/others/blog.png'"
-                  [bgImageAnimate]="false"
-                  [contentOffsetToTop]="true"
-                  [desc]="'Oportunidades inmobiliarias con grandes descuentos'">
+<app-header-image 
+  [backgroundImage]="'assets/images/others/blog.png'"
+  [bgImageAnimate]="false"
+  [contentOffsetToTop]="true"
+  [desc]="'Oportunidades inmobiliarias con grandes descuentos'">
 </app-header-image>
 
 <div class="px-3">
-  <div class="theme-container">
-    <p>post works!</p>
-
-
-
+  <div class="theme-container">            
+    <div>
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.publish_date }}</p>
+    </div>
+    <hr>
+    <div [innerHTML]="this.renderHTML(post.content)"></div>    
   </div>
 </div>
 

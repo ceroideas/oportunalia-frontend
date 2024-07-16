@@ -14,19 +14,26 @@
 
     <div fxLayout="column">
       <div class="interes pb-5" >
-        <mat-checkbox color="primary">
+        <mat-checkbox color="primary" formControlName="notification_auctions">
           <span class="fc-gray">Si seleccionas esta opción, recibirás notificaciones en tu correo sobre el estado
           de la venta en la que has participado: la confirmación de que tu puja u oferta fue registrada correctamente,
           si alguien la ha superado o si resultas ser el ganador.</span>
         </mat-checkbox>
       </div>
       <div class="interes" >
-        <mat-checkbox color="primary">
+        <mat-checkbox color="primary" formControlName="notification_favorites">
           <span class="fc-gray">Si seleccionas esta opción, recibirás notificaciones en tu correo sobre cualquier
           cambio en los activos que hayas guardado como favoritos: si la venta ha comenzado, si está a punto de finalizar
           o cuando acabe.</span>
         </mat-checkbox>
       </div>
+
+      <div class="interes" >
+        <mat-checkbox color="primary" formControlName="notification_news">
+          <span class="fc-gray">Si seleccionas esta opción, recibirás notificaciones en tu correo sobre novedades de los activos.</span>
+        </mat-checkbox>
+      </div>
+      
     </div>
 
 

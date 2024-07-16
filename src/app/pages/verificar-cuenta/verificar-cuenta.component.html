@@ -1,0 +1,21 @@
+<app-header-image 
+    [backgroundImage]="'assets/images/others/homepage.jpg'"
+    [bgImageAnimate]="false"
+    [contentOffsetToTop]="true"
+    [title]=""
+    [desc]="'Oportunidades inmobiliarias con grandes descuentos'"
+    [isHomePage]="false"
+    [fullscreen]="false">
+</app-header-image>
+
+<ng-container *ngIf="isLoaded && success">
+    
+    <h1>Enhorabuena, tu cuenta ha sido verificada satisfactoriamente</h1>
+
+</ng-container>
+
+<ng-container *ngIf="isLoaded && !success">
+    
+    <h1>Ha ocurrido un error verificando tu cuenta</h1>
+
+</ng-container>

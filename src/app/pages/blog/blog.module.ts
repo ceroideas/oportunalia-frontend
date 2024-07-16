@@ -9,7 +9,7 @@ import { PostComponent } from './post/post.component';
 
 export const routes: Routes = [
   { path: '', component: BlogComponent, pathMatch: 'full' },
-  { path: ':id', component: PostComponent }
+  { path: 'post/:id', component: PostComponent }
 ];
 
 @NgModule({
