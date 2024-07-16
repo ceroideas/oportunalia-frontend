@@ -19,6 +19,7 @@ import moment from 'moment';
 export class RegisterComponent implements OnInit {
   //public registerForm: UntypedFormGroup;
   public registerForm = new FormGroup({
+                    username: new FormControl(''),
                     firstname: new FormControl(''),
                     lastname: new FormControl(''),
                     phone: new FormControl(0),
@@ -49,6 +50,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
+      username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       firstname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       lastname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       email: ['', Validators.compose([Validators.required, emailValidator])],
@@ -113,8 +115,8 @@ export class RegisterComponent implements OnInit {
   registerUser(){
     console.log("Clic register user");
     const user = {
-                //username: 'username123',
-                firstname: this.registerForm.get('name').value,
+                username: this.registerForm.get('username').value,
+                firstname: this.registerForm.get('firstname').value,
                 lastname: this.registerForm.get('lastname').value,
                 phone: this.registerForm.get('phone').value,
                 email: this.registerForm.get('email').value,
