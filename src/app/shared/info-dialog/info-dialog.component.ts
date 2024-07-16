@@ -46,14 +46,4 @@ export class InfoDialogComponent implements OnInit{
       this.dialogRef.close();
     }
 
-    public goReset(): void{
-      this.router.navigate(['/password-reset']);
-      this.dialogRef.close();
-    }
-
-
-    public goLogin(): void{
-      this.router.navigate(['/login']);
-      this.dialogRef.close();
-    }
 }

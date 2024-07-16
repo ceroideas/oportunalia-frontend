@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { UserService } from 'src/app/api/user.service';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { AppService } from 'src/app/app.service';
 })
 export class Toolbar1Component implements OnInit {
   @Output() onMenuIconClick: EventEmitter<any> = new EventEmitter<any>();
-  constructor(public appService:AppService) { }
+  constructor(public appService: AppService, public userService: UserService) { }
 
   ngOnInit() { }
 

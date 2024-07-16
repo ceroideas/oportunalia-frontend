@@ -27,8 +27,10 @@ export const routes: Routes = [
           { path: 'cookie-policy', loadChildren: () => import('./pages/cookie-policy/cookie-policy.module').then(m => m.CookiePolicyModule) },
           { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) },
           { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) },
-          { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) },
-          { path: 'interest', loadChildren: () => import('./pages/interest/interest.module').then(m => m.InterestModule) }
+          { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) },          
+          { path: 'interest', loadChildren: () => import('./pages/interest/interest.module').then(m => m.InterestModule) },
+          { path: 'cuenta-verificada/:token', loadChildren: () => import('./pages/verificar-cuenta/verificar-cuenta.module').then(m => m.VerificarCuentaModule) },
+          { path: 'reestablecer-contra/:token', loadChildren: () => import('./pages/change-password/change-password.module').then(m => m.ChangePasswordModule) }
       ]
   },
   { path: 'landing', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },

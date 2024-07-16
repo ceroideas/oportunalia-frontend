@@ -63,5 +63,9 @@ export class PublicService {
       )
   }
 
+  public sendContactData(contactInfo): Observable<any>{
+    return this.http.post(GlobalConstants.apiURL + "/contact", contactInfo)
+      .pipe(catchError(error => throwError(() => error)));
+  }
 
 }

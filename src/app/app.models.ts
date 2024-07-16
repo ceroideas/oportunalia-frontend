@@ -98,11 +98,11 @@ export class Pagination {
 }
 
 export class Post {
-  constructor(public id: number,
-              public image: string,
+  constructor(public guid: number,
               public title: string,
               public content: string,
               public publish_date: string,
-              public status_id: number
+              public status_id: number,
+              public image?: string,              
             ){ }
 }

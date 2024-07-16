@@ -33,10 +33,13 @@
                     matBadgeSize="small"
                     matBadgeColor="warn"
                     aria-hidden="false">compare_arrows</mat-icon>
-      </a>
-      <a routerLink="/register" mat-mini-fab color="primary" fxHide="false" fxHide.gt-xs><mat-icon>add</mat-icon></a>
-      <a routerLink="/register" mat-raised-button color="primary" fxShow="false" fxShow.gt-xs class="uppercase">{{ 'REGISTER' | translate }}</a>
-      <app-user-menu></app-user-menu>
+      </a>      
+      <a routerLink="/register" mat-mini-fab color="primary" fxHide="false" fxHide.gt-xs><mat-icon>add</mat-icon></a>            
+      
+      <a *ngIf="!userService.isLoggedIn" routerLink="/register" mat-raised-button color="primary" fxShow="false" fxShow.gt-xs class="uppercase">{{ 'REGISTER' | translate }}</a>
+      <ng-container *ngIf="userService.isLoggedIn">
+        <app-user-menu></app-user-menu>
+      </ng-container>
     </div>
   </div>
 </mat-toolbar>

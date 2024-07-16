@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { PublicService } from 'src/app/api/public.service';
+import { AppService } from 'src/app/app.service';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 
 @Component({
@@ -20,21 +22,26 @@ export class ContactComponent implements OnInit {
     mapTypeControl: true
   }
  
-  constructor(public formBuilder: UntypedFormBuilder) { }
+  constructor(public formBuilder: UntypedFormBuilder,
+    public publicService: PublicService,
+    public appService: AppService
+  ) { }
 
   ngOnInit() {
     this.contactForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      firstname: ['', Validators.required],
+      message: ['', Validators.required],
+      subject: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
-      message: ['', Validators.required]
+      lastname: ['', Validators.required]
     });
   }
-
   public onContactFormSubmit(values:Object):void {
-    if (this.contactForm.valid) {
-      console.log(values);
+    if (this.contactForm.valid) {      
+      this.publicService.sendContactData(values)
+      .subscribe((_) => this.appService.openAlertDialog('Mensaje enviado'), 
+        (_) => this.appService.openAlertDialog('Error al enviar mensaje'));
     }
   }
-
 }

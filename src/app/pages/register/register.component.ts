@@ -8,6 +8,7 @@ import { AppService } from 'src/app/app.service';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { UserService } from 'src/app/api/user.service';
+import moment from 'moment';
 
 
 @Component({
@@ -18,12 +19,18 @@ import { UserService } from 'src/app/api/user.service';
 export class RegisterComponent implements OnInit {
   //public registerForm: UntypedFormGroup;
   public registerForm = new FormGroup({
-                    name: new FormControl(''),
+                    firstname: new FormControl(''),
                     lastname: new FormControl(''),
-                    phone: new FormControl(''),
+                    phone: new FormControl(0),
                     email: new FormControl(''),
                     password: new FormControl(''),
-                    confirmPassword: new FormControl('')
+                    password_confirmation: new FormControl(''),
+                    username: new FormControl(''),
+                    document_number: new FormControl(''),
+                    address: new FormControl(''),
+                    city: new FormControl(''),
+                    cp: new FormControl(''),
+                    birthdate: new FormControl(new Date()),
                       });
   public hide = true;
   public pressTypes = [
@@ -38,20 +45,27 @@ export class RegisterComponent implements OnInit {
 
   maxDate;
 
-  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar, public appService:AppService, public userService: UserService ) { }
+  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar, public appService:AppService,public userService: UserService ) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      name: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      firstname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       lastname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
       password: ['', Validators.required],
+      
       /* pressTypes: ['', Validators.required], */
-      confirmPassword: ['', Validators.required],
+      password_confirmation: ['', Validators.required],
+      username: ['', Validators.required],
+      document_number: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      cp: ['', Validators.required],
+      birthdate: ['', Validators.required],
       receiveNewsletter: false,
       acceptConditions: false
-    },{validator: matchingPasswords('password', 'confirmPassword')});
+    },{validator: matchingPasswords('password', 'password_confirmation')});
 
     this.maxDate = this.checkDate();
     /* console.log("Date minima");
@@ -66,19 +80,17 @@ export class RegisterComponent implements OnInit {
     return maxDate;
   }
   public onRegisterFormSubmit(user:Object):void {
-    if (this.registerForm.valid) {
-      console.log("formulario valido");
-      console.log(user);
-      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
+    user['birthdate'] = moment(user['birthdate']).format('YYYY-MM-DD');
 
+    console.log(user);
 
-
-
+    if (this.registerForm.valid) {      
+      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
-          console.log("Usuario registrado");
+          console.log("Usuario registrado");                    
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
           //this.router.navigate(['/registro-completo']);
@@ -107,7 +119,7 @@ export class RegisterComponent implements OnInit {
                 phone: this.registerForm.get('phone').value,
                 email: this.registerForm.get('email').value,
                 password: this.registerForm.get('password').value,
-                password_confirmation: this.registerForm.get('confirmPassword').value
+                password_confirmation: this.registerForm.get('password_confirmation').value
               }
     console.log(user);
 
@@ -119,6 +131,15 @@ export class RegisterComponent implements OnInit {
     }
 
 
+    /* this.userService.userRegister(user)
+      .subscribe(
+        (response) => {},
+        (error)=>{}
+      ) */
+
+
   }
+
+
 
 }

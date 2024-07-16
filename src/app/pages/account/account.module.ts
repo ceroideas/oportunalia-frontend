@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,7 +16,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { AddRepresentationComponent } from './add-representation/add-representation.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PasswordResetComponent } from '../password-reset/password-reset.component';
-
 
 
 export const routes: Routes = [
@@ -51,7 +49,8 @@ export const routes: Routes = [
     InterestsComponent,
     NotificationsComponent,
     ChangePasswordComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,

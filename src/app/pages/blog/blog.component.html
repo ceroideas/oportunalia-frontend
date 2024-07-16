@@ -8,13 +8,14 @@
 
   <div class="theme-container">
 
-    <!-- {{blog}} -->
-<div *ngFor="let post of blog" [fxFlex]="(viewType=='grid') ? viewCol : 100"  class="item">
-  <!-- <app-property-item [post]="post" [viewType]="viewType" [viewColChanged]="viewCol" [fullWidthPage]="false"></app-property-item> -->
-  <p> {{post.id}}</p>
-  <p>{{post.title}}</p>
-</div>
+    <!-- {{blog}} -->    
+    <!-- <app-property-item [post]="post" [viewType]="viewType" [viewColChanged]="viewCol" [fullWidthPage]="false"></app-property-item>   -->        
+    <div *ngFor="let post of blog" [fxFlex]="(viewType=='grid') ? viewCol : 100"  class="item">
+      <h3>{{post.title}}</h3>        
+      <p>{{ post.publish_date }}</p>
+      <hr>
+      <a class="fc-primary" [routerLink]="'post/' + post.guid">Ver más</a>
+    </div>      
 
   </div>
 </div>
-
