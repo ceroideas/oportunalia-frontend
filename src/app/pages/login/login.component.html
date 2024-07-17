@@ -29,18 +29,16 @@
               <div>
                 <mat-slide-toggle formControlName="rememberMe" class="my-2" color="primary"><span class="fc-gray">Mantenerme conectado</span></mat-slide-toggle>
               </div>
-
-              <mat-card-actions fxLayoutAlign="end center">
+              <div fxLayoutAlign="end center">
+                <a routerLink="/password-reset">
+                  <span>¿Has olvidado tu contraseña?</span>
+                </a>
+              </div>
+              <!-- <mat-card-actions fxLayoutAlign="end center">
                 <button mat-button routerLink="/password-reset">
-                  <!-- <mat-icon class="text-muted">vpn_key</mat-icon> -->
                   <span>¿Has olvidado tu contraseña?</span>
                 </button>
-              </mat-card-actions>
-              <!-- <div class="text-center mt-2">
-                  <button mat-raised-button color="primary" class="uppercase" type="submit">
-                      Acceder a mi cuenta
-                  </button>
-              </div> -->
+              </mat-card-actions> -->
               <div class="w-100 pt-4 pb-6">
                 <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Acceder a mi cuenta</button>
               </div>
@@ -69,7 +67,6 @@
                   </button>
               </div> -->
           </form>
-
         </div>
     </div>
   </div>

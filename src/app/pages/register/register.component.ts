@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
                     email: new FormControl(''),
                     password: new FormControl(''),
                     password_confirmation: new FormControl(''),
-                    username: new FormControl(''),
+                    //username: new FormControl(''),
                     document_number: new FormControl(''),
                     address: new FormControl(''),
                     city: new FormControl(''),
@@ -56,10 +56,10 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
       password: ['', Validators.required],
-      
+
       /* pressTypes: ['', Validators.required], */
       password_confirmation: ['', Validators.required],
-      username: ['', Validators.required],
+      //username: ['', Validators.required],
       document_number: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
@@ -87,12 +87,12 @@ export class RegisterComponent implements OnInit {
 
     console.log(user);
 
-    if (this.registerForm.valid) {      
-      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
+    if (this.registerForm.valid) {
+      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
-          console.log("Usuario registrado");                    
+          console.log("Usuario registrado");
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
           //this.router.navigate(['/registro-completo']);
