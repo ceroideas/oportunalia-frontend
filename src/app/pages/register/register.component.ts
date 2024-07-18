@@ -27,10 +27,10 @@ export class RegisterComponent implements OnInit {
                     password: new FormControl(''),
                     password_confirmation: new FormControl(''),
                     //username: new FormControl(''),
-                    document_number: new FormControl(''),
-                    address: new FormControl(''),
-                    city: new FormControl(''),
-                    cp: new FormControl(''),
+                    //document_number: new FormControl(''),
+                    //address: new FormControl(''),
+                    //city: new FormControl(''),
+                    //cp: new FormControl(''),
                     birthdate: new FormControl(new Date()),
                       });
   public hide = true;
@@ -60,10 +60,10 @@ export class RegisterComponent implements OnInit {
       /* pressTypes: ['', Validators.required], */
       password_confirmation: ['', Validators.required],
       //username: ['', Validators.required],
-      document_number: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      cp: ['', Validators.required],
+      //document_number: ['', Validators.required],
+      //address: ['', Validators.required],
+      //city: ['', Validators.required],
+      //cp: ['', Validators.required],
       birthdate: ['', Validators.required],
       receiveNewsletter: false,
       acceptConditions: false
@@ -120,16 +120,19 @@ export class RegisterComponent implements OnInit {
                 lastname: this.registerForm.get('lastname').value,
                 phone: this.registerForm.get('phone').value,
                 email: this.registerForm.get('email').value,
+                birthdate: this.registerForm.get('birthdate').value,
                 password: this.registerForm.get('password').value,
-                password_confirmation: this.registerForm.get('password_confirmation').value
+                password_confirmation: this.registerForm.get('password_confirmation').value,
+                receiveNewsletter: this.registerForm.get('receiveNewsletter').value,
+                acceptConditions: this.registerForm.get('acceptConditions').value
               }
     console.log(user);
 
     if (this.registerForm.valid) {
       console.log("Form valid");
-      this.snackBar.open('Your account information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('Cuenta de usuario creada correctamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }else{
-      this.snackBar.open('Form invalid', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('Formulario invalido', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
 
 
