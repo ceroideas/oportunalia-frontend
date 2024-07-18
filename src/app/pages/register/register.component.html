@@ -12,20 +12,27 @@
               <div fxLayout="row wrap" fxLayoutAlign="space-around">
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
                   <!-- Username -->
-                  <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+                  <!-- <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <mat-label>Username: </mat-label>
                     <input matInput placeholder="Usuario" formControlName="username" required>
                     <mat-error *ngIf="registerForm.controls.username.errors?.required">El nombre de usuario es obligatorio</mat-error>
                     <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">Nombre de usuario corto, mínimo 4 carácteres</mat-error>
+                  </mat-form-field> -->
+
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
+                    <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+                    <mat-label>Usuario: </mat-label>
+                    <input matInput placeholder="Usuario" formControlName="username" required>
+                    <mat-error *ngIf="registerForm.controls.username.errors?.required">El campo usuario es obligatorio</mat-error>
+                    <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">Usuario corto, minímo 6 carácteres</mat-error>
                   </mat-form-field>
                   <!-- Name -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
-                    <mat-label>Nombre: </mat-label>
-                    <input matInput placeholder="Nombre" formControlName="firstname" required>
-                    <mat-error *ngIf="registerForm.controls.firstname.errors?.required">El campo nombre es obligatorio</mat-error>
-                    <mat-error *ngIf="registerForm.controls.firstname.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error>
+                    <mat-label>Apellidos: </mat-label>
+                    <input matInput placeholder="Apellidos" formControlName="lastname" required>
+                    <mat-error *ngIf="registerForm.controls.lastname.errors?.required">El campo apellidos es obligatorio</mat-error>
+                    <mat-error *ngIf="registerForm.controls.lastname.hasError('minlength')">Apellidos corto, minímo 4 carácteres</mat-error>
                   </mat-form-field>
 
                   <!-- Telefono -->
@@ -41,7 +48,7 @@
 
 
                   <!-- Password -->
-                  <mat-form-field  appearance="outline" class="w-100 mt-1">
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <!-- <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon> -->
                     <mat-label>Contraseña</mat-label>
                     <input matInput placeholder="Password" formControlName="password" type="password" minlength="6" required [type]="hide ? 'password' : 'text'">
@@ -56,15 +63,18 @@
 
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pl-3">
                   <!-- Last name -->
-                   <mat-form-field  appearance="outline" class="w-100 mt-2">
+
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
-                    <mat-label>Apellidos: </mat-label>
-                    <input matInput placeholder="Apellidos" formControlName="lastname" required>
-                    <mat-error *ngIf="registerForm.controls.lastname.errors?.required">El campo apellidos es obligatorio</mat-error>
-                    <mat-error *ngIf="registerForm.controls.lastname.hasError('minlength')">Apellidos corto, minímo 4 carácteres</mat-error>
+                    <mat-label>Nombre: </mat-label>
+                    <input matInput placeholder="Nombre" formControlName="firstname" required>
+                    <mat-error *ngIf="registerForm.controls.firstname.errors?.required">El campo nombre es obligatorio</mat-error>
+                    <mat-error *ngIf="registerForm.controls.firstname.hasError('minlength')">Nombre corto, mínimo 4 carácteres</mat-error>
                   </mat-form-field>
 
-                  <mat-form-field  appearance="outline" class="w-100 mt-1">
+
+
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <!-- <mat-icon matPrefix class="mr-1 text-muted">email</mat-icon> -->
                     <mat-label>Email: </mat-label>
                     <input matInput placeholder="Email" formControlName="email" required>
@@ -72,10 +82,17 @@
                     <mat-error *ngIf="registerForm.controls.email.hasError('invalidEmail')">Formato de email incorrecto</mat-error>
                   </mat-form-field>
 
-
+                  <!-- Fecha de nacimiento -->
+                  <mat-form-field appearance="outline" class="w-100 mt-2">
+                    <input matInput formControlName="birthdate" [max]="maxDate" [matDatepicker]="picker"  placeholder="Fecha de nacimiento">
+                    <mat-error *ngIf="registerForm.controls.birthdate.errors?.required">Fecha de nacimiento es requerida</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <!-- <mat-label> &nbsp; dd/mm/yyyy</mat-label> -->
+                  </mat-form-field>
 
                   <!-- repeat password -->
-                  <mat-form-field  appearance="outline" class="w-100 mt-1">
+                  <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <!-- <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon> -->
                     <mat-label>Confirm Password</mat-label>
                     <input matInput placeholder="Confirm Password" formControlName="password_confirmation" type="password" required [type]="hide ? 'password' : 'text'">
@@ -85,50 +102,24 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                   </mat-form-field>
-
                 </div>
-
-
-
-
-
               </div>
 
-              <!-- Fecha de nacimiento -->
-              <mat-form-field >
-                <input matInput formControlName="birthdate" [max]="maxDate" [matDatepicker]="picker"  placeholder="Fecha de nacimiento">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <!-- <mat-label> &nbsp; dd/mm/yyyy</mat-label> -->
-              </mat-form-field>
-
-
-              <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
-                <mat-label>Usuario: </mat-label>
-                <input matInput placeholder="Usuario" formControlName="username" required>
-                <mat-error *ngIf="registerForm.controls.username.errors?.required">El campo usuario es obligatorio</mat-error>
-                <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">Usuario corto, minímo 6 carácteres</mat-error>
-              </mat-form-field>
-
-              <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
+              <!-- <mat-form-field  appearance="outline" class="w-100 mt-2">
                 <mat-label>DNI: </mat-label>
                 <input matInput placeholder="DNI" formControlName="document_number" required>
                 <mat-error *ngIf="registerForm.controls.document_number.errors?.required">El campo usuario es obligatorio</mat-error>
                 <mat-error *ngIf="registerForm.controls.document_number.hasError('minlength')">Usuario corto, minímo 6 carácteres</mat-error>
-              </mat-form-field>              
+              </mat-form-field>
 
               <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                 <mat-label>Dirección: </mat-label>
                 <input matInput placeholder="Dirección" formControlName="address" required>
                 <mat-error *ngIf="registerForm.controls.address.errors?.required">El campo es obligatorio</mat-error>
                 <mat-error *ngIf="registerForm.controls.address.hasError('minlength')">Dirección no valida, minímo 6 carácteres</mat-error>
               </mat-form-field>
-              
+
               <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                 <mat-label>Ciudad: </mat-label>
                 <input matInput placeholder="Ciudad" formControlName="city" required>
                 <mat-error *ngIf="registerForm.controls.city.errors?.required">El campo es obligatorio</mat-error>
@@ -136,16 +127,14 @@
               </mat-form-field>
 
               <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                 <mat-label>Codigo Postal: </mat-label>
                 <input matInput placeholder="Codigo Postal" formControlName="cp" required>
                 <mat-error *ngIf="registerForm.controls.cp.errors?.required">El campo apellidos es obligatorio</mat-error>
                 <mat-error *ngIf="registerForm.controls.cp.hasError('minlength')">Codigo Postal no valida, minímo 3 carácteres</mat-error>
-              </mat-form-field>
+              </mat-form-field> -->
 
               <!-- Como nos ha conocido -->
               <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">group</mat-icon> -->
                 <mat-label>¿Cómo nos has conocido?</mat-label>
                 <!-- <mat-select placeholder="¿Cómo nos has conocido?" formControlName="pressTypes"> -->
                 <mat-select placeholder="¿Cómo nos has conocido?" >
