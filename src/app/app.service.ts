@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Property, Location, Post } from './app.models';
@@ -13,6 +13,7 @@ import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component'
 import { TranslateService } from '@ngx-translate/core';
 import { DomHandlerService } from './dom-handler.service';
 import { GlobalConstants } from './global-constants';
+import { UserService } from './api/user.service';
 
 export class Data {
   constructor(public properties: Property[],
@@ -43,10 +44,16 @@ export class AppService {
               public appSettings:AppSettings,
               public dialog: MatDialog,
               public translateService: TranslateService,
-              private domHandlerService: DomHandlerService) { }
+              private domHandlerService: DomHandlerService,
+              public userService: UserService) { }
 
-  public getProperties(): Observable<Property[]>{
-    return this.http.get<Property[]>(this.url + 'properties.json');
+  public getProperties(): Observable<any>{
+    
+    const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc', 
+      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', 
+      '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc'];
+
+    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));    
   }  
 
   public getPropertyById(id): Observable<Property>{
@@ -57,8 +64,8 @@ export class AppService {
     return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }`);
   }
 
-  public getFeaturedProperties(): Observable<Property[]>{
-    return this.http.get<Property[]>(this.url + 'featured-properties.json');
+  public getFeaturedProperties(): Observable<any>{
+    return this.http.get(GlobalConstants.apiURL + '/auction_last?auction_status_id=1&featured=1&order=end_date__asc');
   }
 
   public getRelatedProperties(): Observable<Property[]>{
@@ -98,17 +105,24 @@ export class AppService {
         }
       });
     }
-  }
+  }  
 
   public addToFavorites(property:Property, direction){
-    if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
+    this.userService.updateFavorite(property.id.toString()).subscribe((_) => {
+      this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
+        verticalPosition: 'top',
+        duration: 3000,        
+        direction
+      });
+    });
+    /* if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
       this.Data.favorites.push(property);
       this.snackBar.open('The property "' + property.title + '" has been added to favorites.', '×', {
         verticalPosition: 'top',
         duration: 3000,
         direction: direction
       });
-    }
+    } */
   }
 
   public openConfirmDialog(title:string, message:string) {
@@ -268,6 +282,8 @@ export class AppService {
 
 
   public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){
+
+    console.log(data);
 
     if(params){
 
@@ -451,16 +467,9 @@ export class AppService {
       }
 
     }
-    console.log("app.service filterData: ");
-    console.log(data);
-
-    //for show more properties mock data
-    for (var index = 0; index < 2; index++) {
-      data = data.concat(data);
-    }
-
+    console.log("app.service filterData: ");    
     this.sortData(sort, data);
-    return this.paginator(data, page, perPage)
+    return this.paginator(data, page, perPage);
   }
 
   public sortData(sort, data){

@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/api/user.service';
 
 @Component({
   selector: 'app-representations',
@@ -9,16 +10,19 @@ import { Router } from '@angular/router';
 })
 export class RepresentationsComponent implements OnInit{
 
-  representations: any;
+  representations: any[];
   email:any;
   firstname:any;
   lastname:any;
   address:any;
   document_number:any;
 
-  constructor(public router:Router){}
-  ngOnInit(): void {
+  constructor(public router: Router, public userService: UserService) { }
 
+  ngOnInit(): void {
+    this.userService.getRepresentations().subscribe(({ response }) => {
+      this.representations = response;
+    });
   }
 
   registerRepresentation(){

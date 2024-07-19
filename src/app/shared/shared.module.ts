@@ -68,8 +68,6 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
-import { PropertyOfferComponent } from './property-offer/property-offer.component';
-
 
 @NgModule({
   imports: [
@@ -183,8 +181,7 @@ import { PropertyOfferComponent } from './property-offer/property-offer.componen
     ConfirmDialogComponent,
     AlertDialogComponent,
     InfoDialogComponent,
-    DialogHeaderControlsComponent,
-    PropertyOfferComponent
+    DialogHeaderControlsComponent
   ],
   declarations: [
     LogoComponent,
@@ -210,8 +207,7 @@ import { PropertyOfferComponent } from './property-offer/property-offer.componen
     ConfirmDialogComponent,
     AlertDialogComponent,
     InfoDialogComponent,
-    DialogHeaderControlsComponent,
-    PropertyOfferComponent
+    DialogHeaderControlsComponent
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import{ GlobalConstants } from '../global-constants';
-import { HttpClient , HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 /* import 'rxjs/add/operator/map'; */
@@ -28,6 +28,30 @@ export class UserService {
     this.isLoggedIn = true;
     localStorage.setItem('token', token);
     this.authToken = token;
+  }  
+
+  getRepresentations(): Observable<any> {    
+
+    return this.http.get(GlobalConstants.apiURL + "/representation/list", { headers: { 'Authorization': this.getToken()}, })    
+  }
+  
+  updateFavorite(id: string) {
+    return this.http.put(GlobalConstants.apiURL + `/auction/${ id }/favorite`, { headers: { 'Authorization': this.getToken()}, })
+  }
+
+  saveRepresentation(userRepresentation: any): Observable<any> {  
+
+    const headers = new HttpHeaders()
+      .set('Authorization', this.getToken()).delete('Content-Type');
+
+    return this.http.request('POST', GlobalConstants.apiURL + "/representation", 
+      { headers, body: userRepresentation })
+      .pipe(
+        catchError((error) => {          
+          console.log(error);
+          return throwError(() => error);
+        })
+      )
   }
 
   userRegister( user: any ): Observable<any> {  

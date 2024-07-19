@@ -106,14 +106,19 @@ export class HomeComponent implements OnInit {
 
   public getProperties(){
     //console.log('get properties by : ', this.searchFields);
-    this.appService.getProperties().subscribe(data => {
+    this.appService.getProperties().subscribe(info => {
+
+      console.log(info);
+
+      const data = info?.response && info?.code === 200 ? info.response : [];      
+
       if(this.properties && this.properties.length > 0){
         this.settings.loadMore.page++;
         this.pagination.page = this.settings.loadMore.page;
       }
       let result = this.filterData(data);
-      if(result.data.length == 0){
-        this.properties.length = 0;
+      if(result.data?.length == 0) {        
+        this.properties = [];
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
         this.message = 'No hay resultados';
         return false;
@@ -207,7 +212,7 @@ export class HomeComponent implements OnInit {
 
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
-      this.featuredProperties = properties;
+      this.featuredProperties = properties.response;
     })
   }
 

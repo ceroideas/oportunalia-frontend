@@ -7,8 +7,6 @@ import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
 import { Property, Pagination } from '../../app.models';
 import { DomHandlerService } from 'src/app/dom-handler.service';
-import { AuctionService } from 'src/app/api/auction.service';
-
 
 @Component({
   selector: 'app-properties',
@@ -30,15 +28,11 @@ export class PropertiesComponent implements OnInit {
   public message:string | null;
   public watcher: Subscription;
 
-  public settings: Settings;
-  public carruselProperties: any;
-
-
+  public settings: Settings
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               public mediaObserver: MediaObserver,
-              private domHandlerService: DomHandlerService,
-              private auctionService: AuctionService) {
+              private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
     this.watcher = mediaObserver.asObservable()
     .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
@@ -65,9 +59,7 @@ export class PropertiesComponent implements OnInit {
 
   ngOnInit() {
     console.log("getProperties OnInit");
-    this.getPropertiesExample();
     this.getProperties();
-
   }
 
   ngOnDestroy(){
@@ -75,26 +67,15 @@ export class PropertiesComponent implements OnInit {
   }
 
   public getProperties(){
-    let params = {
-      search:"",
-      auction_status_id:"",
-      auction_type_id:"",
-      active_category_id:"",
-      order:"end_date__asc",
-      featured:"1",
-    }
-    this.auctionService.auctionFinished( params , localStorage.getItem("userLoggedToken") )
-    .subscribe(
-      (response) => {
-        this.carruselProperties = response.response;
-      },
-      (error) => {
+    this.appService.getProperties().subscribe(data => {      
 
-      }
-    )
-  }
-  public getPropertiesExample(){
-    this.appService.getProperties().subscribe(data => {
+      console.log('HERE I AM');
+      console.log(data);
+      data = data.map(data => data.response);
+      data = [].concat(...data);
+
+      console.log(data);
+
       let result = this.filterData(data);
       if(result.data.length == 0){
         this.properties.length = 0;

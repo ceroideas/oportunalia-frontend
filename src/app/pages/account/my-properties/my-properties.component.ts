@@ -4,7 +4,7 @@ import { Property } from 'src/app/app.models';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AuctionService } from 'src/app/api/auction.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-my-properties',
@@ -16,59 +16,39 @@ export class MyPropertiesComponent implements OnInit {
   dataSource: MatTableDataSource<Property>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
-  auction_array: any;
-
-  constructor(public appService:AppService, private auctionService: AuctionService) { }
+  
+  constructor(public appService:AppService) { }
 
   ngOnInit() {
     this.appService.getProperties().subscribe(res => {
+      console.log('HERE I AM');
+      console.log(res);
       this.initDataSource(res);
-
-      this.auction_array = [];
-      this.getMisSubastas();
-
-    });
-  }
-
-  getMisSubastas(){
-    let params = {
-      search:"",
-      auction_status_id:"",
-      auction_type_id:"",
-      active_category_id:"",
-      order:"end_date__desc"
-    }
-    this.auctionService.auctionListLogged(params , localStorage.getItem("userLoggedToken") , false , true)
-    .subscribe(
-      (response) => {
-        this.auction_array = response.response
-      },
-      (error) => {
-
-      }
-    )
+    }, catchError(e => {
+      console.log(e);
+      return [];
+    }));    
   }
 
   public initDataSource(data:any){
     this.dataSource = new MatTableDataSource<Property>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
+  } 
+  
   public remove(property:Property) {
-    const index: number = this.dataSource.data.indexOf(property);
+    const index: number = this.dataSource.data.indexOf(property);    
     if (index !== -1) {
       const message = this.appService.getTranslateValue('MESSAGE.SURE_DELETE') ?? '';
-      let dialogRef = this.appService.openConfirmDialog('', message);
+      let dialogRef = this.appService.openConfirmDialog('', message); 
 			dialogRef.afterClosed().subscribe(dialogResult => {
-				if(dialogResult){
+				if(dialogResult){ 
           this.dataSource.data.splice(index,1);
-          this.initDataSource(this.dataSource.data);
+          this.initDataSource(this.dataSource.data); 
 				}
-			});
-    }
-  }
+			});   
+    } 
+  } 
 
   public applyFilter(ev: EventTarget) {
     let filterValue = (ev as HTMLInputElement).value;
