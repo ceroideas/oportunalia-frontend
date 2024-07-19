@@ -47,7 +47,7 @@ export class AppService {
 
   public getProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'properties.json');
-  }  
+  }
 
   public getPropertyById(id): Observable<Property>{
     return this.http.get<Property>(this.url + 'property-' + id + '.json');
@@ -165,9 +165,9 @@ export class AppService {
 
   public getPropertyTypes(){
     return [
-      { id: 1, name: 'Oficina' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
-      { id: 2, name: 'Casa' },
-      { id: 3, name: 'Piso' }
+      { id: 1, name: 'Subasta' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
+      { id: 2, name: 'Venta directa' },
+      { id: 3, name: 'Cesión de remate' }
     ]
   }
 
@@ -181,12 +181,12 @@ export class AppService {
 
   public getPropertyStatuses(){
     return [
-      { id: 1, name: 'Subasta' },
-      { id: 2, name: 'Cesión de remate' },
-      { id: 3, name: 'Venta directa' },
-      { id: 4, name: 'Próximamente' },
-      { id: 5, name: 'OFERTA' },
-      { id: 6, name: 'Finalizada' }
+      { id: 1, name: 'Viviendas' },
+      { id: 2, name: 'Naves industriales' },
+      { id: 3, name: 'Garajes' },
+      { id: 4, name: 'Trasteros' },
+      { id: 5, name: 'Locales' },
+      { id: 6, name: 'Oficinas' }
     ]
   }
 
@@ -247,9 +247,9 @@ export class AppService {
 
   public getFeatures(){
     return [
-      { id: 1, name: 'Campo', selected: false },
-      { id: 2, name: 'Barbacoa', selected: false },
-      { id: 3, name: 'Ciudad', selected: false },
+      { id: 1, name: 'Interior', selected: false },
+      { id: 2, name: 'Costa', selected: false }
+      /* { id: 3, name: 'Ciudad', selected: false },
       { id: 4, name: 'Edificios', selected: false },
       { id: 5, name: 'Playa', selected: false },
       { id: 6, name: 'TV Cable', selected: false },
@@ -257,7 +257,7 @@ export class AppService {
       { id: 8, name: 'WiFi', selected: false },
       { id: 9, name: 'Cabañas', selected: false },
       { id: 10, name: 'Golf', selected: false },
-      { id: 11, name: 'Gimnasio', selected: false },
+      { id: 11, name: 'Gimnasio', selected: false }, */
     ]
   }
 
