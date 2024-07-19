@@ -32,7 +32,7 @@ export class PropertiesComponent implements OnInit {
 
   public settings: Settings;
   public carruselProperties: any;
-
+  public carruselPropertiesLast: any;
 
   constructor(public appSettings:AppSettings,
               public appService:AppService,
@@ -67,6 +67,7 @@ export class PropertiesComponent implements OnInit {
     console.log("getProperties OnInit");
     this.getPropertiesExample();
     this.getProperties();
+    this.getPropertiesLast();
 
   }
 
@@ -93,6 +94,29 @@ export class PropertiesComponent implements OnInit {
       }
     )
   }
+
+
+  public getPropertiesLast(){
+    let params = {
+      search:"",
+      auction_status_id:"",
+      auction_type_id:"",
+      active_category_id:"",
+      order:"end_date__asc",
+      featured:"1",
+    }
+    this.auctionService.auctionLast( params , localStorage.getItem("userLoggedToken") )
+    .subscribe(
+      (response) => {
+        this.carruselPropertiesLast = response.response;
+      },
+      (error) => {
+
+      }
+    )
+  }
+
+
   public getPropertiesExample(){
     this.appService.getProperties().subscribe(data => {
       let result = this.filterData(data);
