@@ -22,7 +22,7 @@ export class BlogComponent implements OnInit{
   public sidenavOpen:boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   //public properties: Property[];
-  public blog: Post[];
+  public blog: any[];
   public viewType: string = 'grid';
   public viewCol: number = 33.3;
   public count: number = 12;

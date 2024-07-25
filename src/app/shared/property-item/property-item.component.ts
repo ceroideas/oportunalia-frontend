@@ -5,6 +5,7 @@ import { Settings, AppSettings } from '../../app.settings';
 
 import { AppService } from '../../app.service';
 import { CompareOverviewComponent } from '../compare-overview/compare-overview.component';
+import moment from 'moment';
 
 @Component({
   selector: 'app-property-item',
@@ -12,7 +13,7 @@ import { CompareOverviewComponent } from '../compare-overview/compare-overview.c
   styleUrls: ['./property-item.component.scss']
 })
 export class PropertyItemComponent implements OnInit {
-  @Input() property: Property;
+  @Input() property: any;
   @Input() viewType: string = "grid";
   @Input() viewColChanged: number = 0;
   @Input() fullWidthPage: boolean = true;
@@ -34,6 +35,7 @@ export class PropertyItemComponent implements OnInit {
 
   ngAfterViewInit(){
     this.initCarousel();
+    this.calculateLeftTime();
     // this.appService.getAddress(this.property.location.lat, this.property.location.lng).subscribe(data=>{
     //   console.log(data['results'][0]['formatted_address']);
     //   this.address = data['results'][0]['formatted_address'];
@@ -44,7 +46,7 @@ export class PropertyItemComponent implements OnInit {
     if(changes.viewColChanged){
       this.getColumnCount(changes.viewColChanged.currentValue);
       if(!changes.viewColChanged.isFirstChange()){
-        if(this.property.gallery.length > 1){
+        if(this.property.images.length > 1){
            this.directiveRef.update();
         }
       }
@@ -157,5 +159,26 @@ export class PropertyItemComponent implements OnInit {
     return this.appService.Data.favorites.filter(item=>item.id == this.property.id)[0];
   }
 
+  public calculateLeftTime(): void {
+    const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
+    const timeToEnd: any = new Date(this.property.end_date);    
 
+    const interval = setInterval(() => {      
+
+      try {
+        let leftTime: any = timeToEnd - (new Date() as any);
+        const hours = moment(leftTime).format("HH:mm:ss"); 
+        const days = moment(leftTime).format("DD"); 
+
+        if (leftTime <= 0) {
+          clearInterval(interval);
+        }          
+                
+        propertyCard.textContent = `${ days }D ${ hours }`;  
+      } catch (e) {
+        console.log(e);
+        clearInterval(interval);
+      }
+    }, 1000);        
+  }
 }

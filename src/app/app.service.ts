@@ -48,16 +48,18 @@ export class AppService {
               public userService: UserService) { }
 
   public getProperties(): Observable<any>{
-    
+
     const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc', 
       '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', 
       '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc'];
 
+    /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
+
     return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));    
   }  
 
-  public getPropertyById(id): Observable<Property>{
-    return this.http.get<Property>(this.url + 'property-' + id + '.json');
+  public getPropertyById(id): Observable<any>{
+    return this.http.get(GlobalConstants.apiURL + `/auction/${ id }`);
   }
 
   public getPostById(id): Observable<any>{
@@ -107,8 +109,13 @@ export class AppService {
     }
   }  
 
-  public addToFavorites(property:Property, direction){
-    this.userService.updateFavorite(property.id.toString()).subscribe((_) => {
+  public addToFavorites(property: any, direction){
+    this.userService.updateFavorite(property.link_rewrite.toString()).subscribe((_) => {
+
+      if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
+        this.Data.favorites.push(property);
+      }
+
       this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
         verticalPosition: 'top',
         duration: 3000,        
@@ -177,20 +184,23 @@ export class AppService {
     return value;
   }
 
-  public getPropertyTypes(){
-    return [
+  public getPropertyTypes(): Observable<any> {
+
+    return this.http.get(GlobalConstants.apiURL + '/active_category/list');
+/*     return [
       { id: 1, name: 'Oficina' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
       { id: 2, name: 'Casa' },
       { id: 3, name: 'Piso' }
-    ]
+    ] */
   }
 
   public getProvinces(){
-    return [
+    return this.http.get(GlobalConstants.apiURL + '/provinces/1').pipe(({ response }: any) => response);
+    /* return [
       { id: 1, name: 'Madrid' },   // No puedes cambiar estos elementos hasta ver como hace las busquedas
       { id: 2, name: 'Barcelona' },
       { id: 3, name: 'Malaga' }
-    ]
+    ] */
   }
 
   public getPropertyStatuses(){
@@ -204,13 +214,14 @@ export class AppService {
     ]
   }
 
-  public getCities(){
-    return [
+  public getCities(): Observable<any> {
+    /* return [
       { id: 1, name: 'New York' },
       { id: 2, name: 'Chicago' },
       { id: 3, name: 'Los Angeles' },
       { id: 4, name: 'Seattle' }
-    ]
+    ] */  
+    return this.http.get(GlobalConstants.apiURL + '/province/1');
   }
 
   public getNeighborhoods(){
@@ -281,21 +292,21 @@ export class AppService {
   }
 
 
-  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){
-
-    console.log(data);
+  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){    
 
     if(params){
 
       if(params.propertyType){
-        data = data.filter(property => property.propertyType == params.propertyType.name)
+        data = data.filter(property => property?.active_category_id?.toString() == params?.propertyType?.id?.toString())
       }
 
       if(params.propertyStatus && params.propertyStatus.length){
         let statuses: any[] = [];
-        params.propertyStatus.forEach((status: any) => { statuses.push(status.name) });
-        let properties: any[] = [];
-        data.filter((property: any) =>
+        params.propertyStatus.forEach((status: any) => { statuses.push(status.name) });                     
+
+        let properties: any[] = [];        
+
+       /*  data.filter((property: any) =>
           property.propertyStatus.forEach((status: any) => {
             if(statuses.indexOf(status) > -1){
               if(!properties.includes(property)){
@@ -303,8 +314,27 @@ export class AppService {
               }
             }
           })
-        );
-        data = properties;
+        ); */
+
+        for (let i = 0; i < data.length; i++) {
+
+          const { type } = data[i];          
+
+          if (!type) continue;          
+
+          for (let x = 0; x < params.propertyStatus.length; x++) {
+
+            if (params.propertyStatus[x]?.name?.toUpperCase().trim() === type?.toUpperCase().trim()) {
+  
+              properties.push(data[i]);
+            }
+          }
+        }
+
+        console.log(properties);
+
+        data = properties;         
+
       }
 
       if(params.price){

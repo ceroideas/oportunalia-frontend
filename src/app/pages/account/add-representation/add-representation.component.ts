@@ -55,9 +55,7 @@ export class AddRepresentationComponent implements OnInit{
 
   }
 
-  onFileSelected(event: any) {
-    console.log(event);
-
+  onFileSelected(event: any) {    
     this.selectedImage = event.target.files[0];
   }
 

@@ -26,10 +26,7 @@ export class AppComponent {
   } 
 
   checkIfUserAuthenticated() {    
-    const token = this.userService.getToken();
-
-    console.log(token);
-
+    const token = this.userService.getToken();    
     if (token) {
 
       this.userService.setAuthToken(token);

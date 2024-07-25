@@ -36,7 +36,7 @@
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Tipo de propiedad</mat-label>
-          <mat-select placeholder="Select">
+          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'type')">
             <mat-option value="0" >Todos</mat-option>
             <mat-option value="1" >Subasta</mat-option>
             <mat-option value="2" >Venta directa</mat-option>
@@ -47,7 +47,7 @@
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
-          <mat-select placeholder="Select">
+          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'category')">
             <mat-option value="0">Todas</mat-option>
             <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
           </mat-select>
@@ -56,9 +56,9 @@
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
-          <mat-select placeholder="Select">
+          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'search')">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.name}}">{{ province.id }} - {{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -70,10 +70,10 @@
 
 
       </div>
-      <div fxFlex>
+      <!-- <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Otros criterios</mat-label>
-          <mat-select placeholder="Select">
+          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'extra')">
             <mat-option value="0">Todos</mat-option>
             <mat-option value="1">Playas</mat-option>
             <mat-option value="2">Ciudades</mat-option>
@@ -81,10 +81,10 @@
 
           </mat-select>
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div fxFlex>
-        <button mat-flat-button class="btn-secondary">Buscar</button>
+        <button (click)="searchProperties()" mat-flat-button class="btn-secondary">Buscar</button>
       </div>
     </div>
   </div>

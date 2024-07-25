@@ -20,9 +20,7 @@ export class MyPropertiesComponent implements OnInit {
   constructor(public appService:AppService) { }
 
   ngOnInit() {
-    this.appService.getProperties().subscribe(res => {
-      console.log('HERE I AM');
-      console.log(res);
+    this.appService.getProperties().subscribe(res => {      
       this.initDataSource(res);
     }, catchError(e => {
       console.log(e);

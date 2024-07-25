@@ -7,6 +7,8 @@ import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
 import { Property, Pagination } from '../../app.models';
 import { DomHandlerService } from 'src/app/dom-handler.service';
+import { ActivatedRoute } from '@angular/router';
+import { UactionsService } from 'src/app/services/uactions.service';
 
 @Component({
   selector: 'app-properties',
@@ -32,6 +34,8 @@ export class PropertiesComponent implements OnInit {
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               public mediaObserver: MediaObserver,
+              public route: ActivatedRoute,
+              public uactions: UactionsService,
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
     this.watcher = mediaObserver.asObservable()
@@ -66,15 +70,15 @@ export class PropertiesComponent implements OnInit {
     this.watcher.unsubscribe();
   }
 
-  public getProperties(){
-    this.appService.getProperties().subscribe(data => {      
+  public getProperties(reset: boolean = false){
+    
+    const search = this.route.snapshot.queryParamMap.has('search');
+    const origin = search && !reset ? this.uactions.searchFilter() : this.appService.getProperties();
 
-      console.log('HERE I AM');
-      console.log(data);
-      data = data.map(data => data.response);
-      data = [].concat(...data);
-
-      console.log(data);
+    origin.subscribe(data => {           
+                
+      data = data.map(data => data?.response ? data.response : data);
+      data = [].concat(...data);      
 
       let result = this.filterData(data);
       if(result.data.length == 0){
@@ -86,15 +90,22 @@ export class PropertiesComponent implements OnInit {
         this.pagination = result.pagination;
         this.message = null;
       }
-
     })
   }
 
   public resetPagination(){
-    if(this.paginator){
-      this.paginator.pageIndex = 0;
+
+    const search = this.route.snapshot.queryParamMap.has('search');        
+
+    if (search) {  
+      this.getProperties(true);
+    } else {
+
+      if(this.paginator){
+        this.paginator.pageIndex = 0;
+      }
+      this.pagination = new Pagination(1, this.count, null, null, this.pagination.total, this.pagination.totalPages);
     }
-    this.pagination = new Pagination(1, this.count, null, null, this.pagination.total, this.pagination.totalPages);
   }
 
   public filterData(data){
@@ -107,7 +118,9 @@ export class PropertiesComponent implements OnInit {
     this.domHandlerService.winScroll(0, 0);
   }
   public searchChanged(event){
-    event.valueChanges.subscribe(() => {
+
+    
+    event.valueChanges.subscribe(() => {      
       this.resetPagination();
       this.searchFields = event.value;
       setTimeout(() => {

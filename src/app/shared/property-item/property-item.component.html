@@ -17,14 +17,14 @@
             <span>{{property?.neighborhood}}, {{property?.city}}</span>
         </div> -->
 
-        <div *ngIf="property.gallery.length == 1" class="mat-card-image w-100 m-0">
-            <img [src]="property.gallery[0].medium">
+        <div *ngIf="property.images.length == 1" class="mat-card-image w-100 m-0">
+            <img [src]="property.images[0].path">
         </div>
-        <div *ngIf="property.gallery.length > 1" class="mat-card-image w-100 m-0">
+        <div *ngIf="property.images.length > 1" class="mat-card-image w-100 m-0">
             <div class="swiper-container" [swiper]="config">
                 <div class="swiper-wrapper">
-                    <div *ngFor="let image of property.gallery" class="swiper-slide">
-                        <img [attr.data-src]="image.medium" class="swiper-lazy">
+                    <div *ngFor="let image of property.images" class="swiper-slide">
+                        <img [attr.data-src]="image.path" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
                     </div>
                 </div>
@@ -57,34 +57,34 @@
                 <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
                     <mat-icon class="text-muted">location_on</mat-icon>
                     <!-- <span>{{property.formattedAddress}}</span> -->
-                    <span>{{property?.neighborhood}}, {{property?.city}}</span>
+                    <span>{{property?.province}}, {{property?.city}}</span>
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
-                  <p>Tasación:</p>
-                  <p>Precio mínimo:</p>
+                  <p>Tasación: {{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.0'}}</p>
+                  <p>Precio mínimo: {{ property.start_price | currency : 'EUR' : 'symbol' : '1.0'}}</p>
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                     <div>
                         <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
-                            <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span>
+                            <!-- <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
+                            <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span> -->
                         </h3>
                         <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
-                            <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span>
+                            <!-- <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                            <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span> -->
                         </h3>
                     </div>
                     <!-- <app-rating [ratingsCount]="property.ratingsCount" [ratingsValue]="property.ratingsValue"></app-rating> -->
                     <div>
                       <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
-                          <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
-                          <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span>
+                          <!-- <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
+                          <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span> -->
                       </h3>
                       <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
-                          <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                          <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span>
+                          <!-- <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                          <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span> -->
                       </h3>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-primary fw-400">
                   <p>{{property?.auto}}</p>
-                  <p>00d 07:55:06</p>
+                  <p class="left-time-{{ property.guid }}"></p>
                 </div>
 
             </mat-card-content>
@@ -125,7 +125,7 @@
               <!-- <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Detalles</a> -->
             </mat-card-actions>
             <div class="btn">
-              <p class="btn-title fw-600 mb-3"><a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Ver detalles</a></p>
+              <p class="btn-title fw-600 mb-3"><a [routerLink]="['/properties', property.link_rewrite]" mat-stroked-button color="primary" class="uppercase">Ver detalles</a></p>
             </div>
         </div>
 

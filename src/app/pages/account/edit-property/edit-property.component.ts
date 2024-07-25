@@ -38,10 +38,15 @@ export class EditPropertyComponent implements OnInit {
               private domHandlerService: DomHandlerService) { }
 
   ngOnInit() {
-    this.features = this.appService.getFeatures();
-    this.propertyTypes = this.appService.getPropertyTypes();
+    this.features = this.appService.getFeatures();    
+    this.appService.getPropertyTypes()
+      .subscribe((propertyTypesData) => {
+        this.propertyTypes = propertyTypesData.response;
+    });
     this.propertyStatuses = this.appService.getPropertyStatuses();
-    this.cities = this.appService.getCities();
+    this.appService.getCities().subscribe((citiesData: any) => {
+      this.cities = citiesData.response;
+    });
     this.neighborhoods = this.appService.getNeighborhoods();
     this.streets = this.appService.getStreets();   
 

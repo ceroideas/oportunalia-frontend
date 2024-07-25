@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import{ GlobalConstants } from '../global-constants';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { forkJoin, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 /* import 'rxjs/add/operator/map'; */
 
@@ -111,6 +111,13 @@ export class UserService {
           return throwError(() => error);
         })
       )
+  }
+
+  public bid(values: any, guid: string) {
+    const paths: string[] = [`/auction/${ guid }/bid`, `/auction/${ guid }/deposit`];
+    return forkJoin(paths.map((path: string) => 
+      this.http.post(GlobalConstants.apiURL + path, values, { headers: { 'Authorization': this.getToken()}, }), 
+      catchError(error => throwError(() => error))));   
   }
 
   /* userRegister2(user:any): Observable<any> {
