@@ -9,6 +9,8 @@ import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compar
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { EmbedVideoService } from 'src/app/services/embed-video.service';
 import { DomHandlerService } from 'src/app/dom-handler.service';
+import { UserService } from 'src/app/api/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-property',
@@ -23,13 +25,15 @@ export class PropertyComponent implements OnInit {
   public config: SwiperConfigInterface = {};
   public config2: SwiperConfigInterface = {};
   private sub: any;
-  public property:Property;
+  public property: any;
   public settings: Settings;
   public embedVideo: any;
   public relatedProperties: Property[];
   public featuredProperties: Property[];
   public agent:any;
+  public selectedImage: Blob;
   public mortgageForm: UntypedFormGroup;
+  public bidForm: UntypedFormGroup;
   public monthlyPayment:any;
   public contactForm: UntypedFormGroup;
   mapOptions: google.maps.MapOptions = {
@@ -39,19 +43,30 @@ export class PropertyComponent implements OnInit {
   lat: number = 0;
   lng: number = 0;
   auction_type: string = "";
+  representations: any[] = [];
 
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               private activatedRoute: ActivatedRoute,
               private embedService: EmbedVideoService,
               public fb: UntypedFormBuilder,
+              public userService: UserService,  
+              public snackBar: MatSnackBar,            
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
-  }
+    this.bidForm = this.fb.group({
+      file: [null, [Validators.required]], 
+      import: ['', [Validators.required, Validators.minLength(1)]],
+      representation_id: ['', [Validators.required]],
+    });
+  }  
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.getPropertyById(params['id']);
+    });
+    this.userService.getRepresentations().subscribe(({ response }: any) => {
+      this.representations = response;
     });
     this.getRelatedProperties();
     this.getFeaturedProperties();
@@ -83,6 +98,36 @@ export class PropertyComponent implements OnInit {
   @HostListener('window:resize')
   public onWindowResize():void {
     (this.domHandlerService.window?.innerWidth < 960) ? this.sidenavOpen = false : this.sidenavOpen = true;
+  }  
+  
+  public onBidFormSubmit(values: object) {
+    
+    if (this.bidForm.valid) {
+      const formInfo = new FormData();
+  
+      for (const key in this.bidForm.value) {
+        if (values.hasOwnProperty(key) && key !== 'file') {
+          formInfo.append(key, this.bidForm.value[key]);
+        } else {
+          formInfo.append(key, this.selectedImage, this.selectedImage.name);
+        }
+      }
+      
+      this.userService.bid(formInfo, this.property.response.link_rewrite).subscribe((_) => {
+        
+        this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
+      }, (_) => this.snackBar.open('Ha ocurrido un error!', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 }));
+
+    }    
+  }
+
+  public onRepresentationChange(representationId) {
+    this.bidForm.setValue({ representation_id: representationId });
+  }
+
+  public onFileChange(ev) {
+    this.selectedImage = ev.target.files[0];
   }
 
   public getPropertyById(id: number){

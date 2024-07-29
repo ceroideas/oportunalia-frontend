@@ -19,18 +19,17 @@ import moment from 'moment';
 export class RegisterComponent implements OnInit {
   //public registerForm: UntypedFormGroup;
   public registerForm = new FormGroup({
-                    username: new FormControl(''),
                     firstname: new FormControl(''),
                     lastname: new FormControl(''),
                     phone: new FormControl(0),
                     email: new FormControl(''),
                     password: new FormControl(''),
                     password_confirmation: new FormControl(''),
-                    //username: new FormControl(''),
-                    //document_number: new FormControl(''),
-                    //address: new FormControl(''),
-                    //city: new FormControl(''),
-                    //cp: new FormControl(''),
+                    username: new FormControl(''),
+                    document_number: new FormControl(''),
+                    address: new FormControl(''),
+                    city: new FormControl(''),
+                    cp: new FormControl(''),
                     birthdate: new FormControl(new Date()),
                       });
   public hide = true;
@@ -50,20 +49,19 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       firstname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       lastname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
       password: ['', Validators.required],
-
+      
       /* pressTypes: ['', Validators.required], */
       password_confirmation: ['', Validators.required],
-      //username: ['', Validators.required],
-      //document_number: ['', Validators.required],
-      //address: ['', Validators.required],
-      //city: ['', Validators.required],
-      //cp: ['', Validators.required],
+      username: ['', Validators.required],
+      document_number: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      cp: ['', Validators.required],
       birthdate: ['', Validators.required],
       receiveNewsletter: false,
       acceptConditions: false
@@ -87,12 +85,12 @@ export class RegisterComponent implements OnInit {
 
     console.log(user);
 
-    if (this.registerForm.valid) {
-      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+    if (this.registerForm.valid) {      
+      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
-          console.log("Usuario registrado");
+          console.log("Usuario registrado");                    
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
           //this.router.navigate(['/registro-completo']);
@@ -115,24 +113,21 @@ export class RegisterComponent implements OnInit {
   registerUser(){
     console.log("Clic register user");
     const user = {
-                username: this.registerForm.get('username').value,
-                firstname: this.registerForm.get('firstname').value,
+                //username: 'username123',
+                firstname: this.registerForm.get('name').value,
                 lastname: this.registerForm.get('lastname').value,
                 phone: this.registerForm.get('phone').value,
                 email: this.registerForm.get('email').value,
-                birthdate: this.registerForm.get('birthdate').value,
                 password: this.registerForm.get('password').value,
-                password_confirmation: this.registerForm.get('password_confirmation').value,
-                receiveNewsletter: this.registerForm.get('receiveNewsletter').value,
-                acceptConditions: this.registerForm.get('acceptConditions').value
+                password_confirmation: this.registerForm.get('password_confirmation').value
               }
     console.log(user);
 
     if (this.registerForm.valid) {
       console.log("Form valid");
-      this.snackBar.open('Cuenta de usuario creada correctamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('Your account information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }else{
-      this.snackBar.open('Formulario invalido', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('Form invalid', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
 
 

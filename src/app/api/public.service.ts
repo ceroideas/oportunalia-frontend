@@ -63,6 +63,11 @@ export class PublicService {
       )
   }
 
+  public getRepresentations(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + "/representation_type")
+      .pipe(catchError(error => throwError(() => error)));
+  }
+
   public sendContactData(contactInfo): Observable<any>{
     return this.http.post(GlobalConstants.apiURL + "/contact", contactInfo)
       .pipe(catchError(error => throwError(() => error)));

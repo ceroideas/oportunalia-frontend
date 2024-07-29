@@ -9,6 +9,9 @@ import { MediaChange, MediaObserver } from '@ngbracket/ngx-layout';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 /* import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field'; */
 import { PublicService } from 'src/app/api/public.service';
+import { UactionsService } from 'src/app/services/uactions.service';
+import { SearchProperties } from './interfaces/search-properties';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +37,11 @@ export class HomeComponent implements OnInit {
     mapTypeControl: true
   }
 
+  public searchPropertiesValues: SearchProperties = {
+    search: '',
+    type: 0,
+    category: 0
+  }
   public slides: any[] = [];
   public properties: Property[];
   public viewType: string = 'grid';
@@ -48,7 +56,8 @@ export class HomeComponent implements OnInit {
   public locations: Location[];
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, private publicService: PublicService) {
+  constructor(public appSettings:AppSettings, public appService:AppService, public mediaObserver: MediaObserver, 
+    public uActionsService: UactionsService, private publicService: PublicService, public router: Router) {
     this.settings = this.appSettings.settings;
 
     this.watcher = mediaObserver.asObservable()
@@ -106,14 +115,16 @@ export class HomeComponent implements OnInit {
 
   public getProperties(){
     //console.log('get properties by : ', this.searchFields);
-    this.appService.getProperties().subscribe(data => {
+    this.appService.getProperties().subscribe(info => {
+      const data = info?.response && info?.code === 200 ? info.response : [];      
+
       if(this.properties && this.properties.length > 0){
         this.settings.loadMore.page++;
         this.pagination.page = this.settings.loadMore.page;
       }
       let result = this.filterData(data);
-      if(result.data.length == 0){
-        this.properties.length = 0;
+      if(result.data?.length == 0) {        
+        this.properties = [];
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
         this.message = 'No hay resultados';
         return false;
@@ -184,7 +195,10 @@ export class HomeComponent implements OnInit {
     this.removedSearchField = field;
   }
 
-
+  public searchProperties() {    
+    this.uActionsService.buildURL(this.searchPropertiesValues);
+    this.router.navigateByUrl('/properties?search=true');
+  }
 
   public changeCount(count){
     this.count = count;
@@ -207,7 +221,7 @@ export class HomeComponent implements OnInit {
 
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
-      this.featuredProperties = properties;
+      this.featuredProperties = properties.response;
     })
   }
 
@@ -240,6 +254,10 @@ export class HomeComponent implements OnInit {
 
         }
       )
+  }
+
+  setSearchProps(value: any, key: string) {    
+    this.searchPropertiesValues[key] = isNaN(parseInt(value)) ? value : parseInt(value);
   }
 
 }

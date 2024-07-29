@@ -37,7 +37,7 @@ export class InterestComponent implements OnInit{
     this.interestForm =  this.fb.group({
       name: ''});
 
-      this.provinces = this.appService.getProvinces();
+    this.appService.getProvinces().subscribe((data: any) => { this.provinces = data });
 
   }
 

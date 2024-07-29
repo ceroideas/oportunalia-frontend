@@ -6,14 +6,16 @@
 
 <div class="representante">
   <h4 class="mb-3"><mat-icon>account_circle</mat-icon> {{firstname}} {{lastname}} (Representación propia)</h4>
-  <div fxLayout="row wrap" fxLayoutAlign="space-around">
+  
+  
+  <div *ngFor="let representation of representations" fxLayout="row wrap" fxLayoutAlign="space-around">
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
-      <p class="data">Nombre: {{firstname}}</p>
-      <p class="data">Dirección: {{address}}</p>
+      <p class="data">Nombre: {{representation.name}}</p>
+      <p class="data">Dirección: {{representation.address}}</p>
     </div>
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
-      <p class="data">Apellidos: {{lastname}}</p>
-      <p class="data">NIF: {{document_number}}</p>
+      <p class="data">Apellidos: {{representation.lastname}}</p>
+      <p class="data">NIF: {{representation.document_number}}</p>
     </div>
   </div>
 </div>

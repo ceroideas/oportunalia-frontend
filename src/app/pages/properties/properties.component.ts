@@ -7,8 +7,8 @@ import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
 import { Property, Pagination } from '../../app.models';
 import { DomHandlerService } from 'src/app/dom-handler.service';
-import { AuctionService } from 'src/app/api/auction.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { UactionsService } from 'src/app/services/uactions.service';
 
 @Component({
   selector: 'app-properties',
@@ -30,15 +30,13 @@ export class PropertiesComponent implements OnInit {
   public message:string | null;
   public watcher: Subscription;
 
-  public settings: Settings;
-  public carruselProperties: any;
-  public carruselPropertiesLast: any;
-
+  public settings: Settings
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               public mediaObserver: MediaObserver,
-              private domHandlerService: DomHandlerService,
-              private auctionService: AuctionService) {
+              public route: ActivatedRoute,
+              public uactions: UactionsService,
+              private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
     this.watcher = mediaObserver.asObservable()
     .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
@@ -65,60 +63,23 @@ export class PropertiesComponent implements OnInit {
 
   ngOnInit() {
     console.log("getProperties OnInit");
-    this.getPropertiesExample();
     this.getProperties();
-    this.getPropertiesLast();
-
   }
 
   ngOnDestroy(){
     this.watcher.unsubscribe();
   }
 
-  public getProperties(){
-    let params = {
-      search:"",
-      auction_status_id:"",
-      auction_type_id:"",
-      active_category_id:"",
-      order:"end_date__asc",
-      featured:"1",
-    }
-    this.auctionService.auctionFinished( params , localStorage.getItem("userLoggedToken") )
-    .subscribe(
-      (response) => {
-        this.carruselProperties = response.response;
-      },
-      (error) => {
+  public getProperties(reset: boolean = false){
+    
+    const search = this.route.snapshot.queryParamMap.has('search');
+    const origin = search && !reset ? this.uactions.searchFilter() : this.appService.getProperties();
 
-      }
-    )
-  }
+    origin.subscribe(data => {           
+                
+      data = data.map(data => data?.response ? data.response : data);
+      data = [].concat(...data);      
 
-
-  public getPropertiesLast(){
-    let params = {
-      search:"",
-      auction_status_id:"",
-      auction_type_id:"",
-      active_category_id:"",
-      order:"end_date__asc",
-      featured:"1",
-    }
-    this.auctionService.auctionLast( params , localStorage.getItem("userLoggedToken") )
-    .subscribe(
-      (response) => {
-        this.carruselPropertiesLast = response.response;
-      },
-      (error) => {
-
-      }
-    )
-  }
-
-
-  public getPropertiesExample(){
-    this.appService.getProperties().subscribe(data => {
       let result = this.filterData(data);
       if(result.data.length == 0){
         this.properties.length = 0;
@@ -129,15 +90,22 @@ export class PropertiesComponent implements OnInit {
         this.pagination = result.pagination;
         this.message = null;
       }
-
     })
   }
 
   public resetPagination(){
-    if(this.paginator){
-      this.paginator.pageIndex = 0;
+
+    const search = this.route.snapshot.queryParamMap.has('search');        
+
+    if (search) {  
+      this.getProperties(true);
+    } else {
+
+      if(this.paginator){
+        this.paginator.pageIndex = 0;
+      }
+      this.pagination = new Pagination(1, this.count, null, null, this.pagination.total, this.pagination.totalPages);
     }
-    this.pagination = new Pagination(1, this.count, null, null, this.pagination.total, this.pagination.totalPages);
   }
 
   public filterData(data){
@@ -150,7 +118,9 @@ export class PropertiesComponent implements OnInit {
     this.domHandlerService.winScroll(0, 0);
   }
   public searchChanged(event){
-    event.valueChanges.subscribe(() => {
+
+    
+    event.valueChanges.subscribe(() => {      
       this.resetPagination();
       this.searchFields = event.value;
       setTimeout(() => {

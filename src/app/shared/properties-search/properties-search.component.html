@@ -1,11 +1,11 @@
 <form [formGroup]="form" class="search-wrapper" [ngClass]="'variant-'+variant">
 
     <div [fxLayout]="(vertical) ? 'column' : 'row wrap'">
-        <!-- Tipo de proceso -->
+
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                <mat-label>Tipo de proceso</mat-label>
-                <mat-select placeholder="Selecciona tipo de proceso" formControlName="propertyType">
+                <mat-label>Tipo de propiedad</mat-label>
+                <mat-select placeholder="Selecciona tipo de propiedad" formControlName="propertyType">
                     <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                         {{propertyType.name}}
                     </mat-option>
@@ -15,8 +15,8 @@
 
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                <mat-label>Categoría</mat-label>
-                <mat-select placeholder="Selecciona la categoría" formControlName="propertyStatus" multiple>
+                <mat-label>Estado propiedad</mat-label>
+                <mat-select placeholder="Selecciona el estado de la propiedad" formControlName="propertyStatus" multiple>
                     <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus">
                         {{propertyStatus.name}}
                     </mat-option>
@@ -24,7 +24,7 @@
             </mat-form-field>
         </div>
 
-        <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="price">
+        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="price">
 
             <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                 <div fxFlex="45">
@@ -44,14 +44,14 @@
                 </div>
             </div>
 
-        </div> -->
+        </div>
 
 
         <div *ngIf="showMore" [fxLayout]="(vertical) ? 'column' : 'row wrap'" class="w-100">
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Ubicación</mat-label>
+                    <mat-label>Ciudad</mat-label>
                     <mat-select placeholder="Selecciona ciudad..." formControlName="city" (selectionChange)="onSelectCity()">
                         <mat-option *ngFor="let city of cities" [value]="city">
                             {{city.name}}
@@ -60,33 +60,22 @@
                 </mat-form-field>
             </div>
 
-            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+          <!--   <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                     <mat-label>C&oacute;digo postal</mat-label>
                     <input matInput placeholder="Ej. 28020" autocomplete="off" formControlName="zipCode">
                 </mat-form-field>
             </div> -->
 
-            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Otros criterios</mat-label>
-                    <mat-select placeholder="Costa, Interior..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
-                        <mat-option *ngFor="let feature of features | filterNeighborhoods: form.get('city').value?.id" [value]="feature">
-                            {{feature.name}}
+                    <mat-label>Vecindario</mat-label>
+                    <mat-select placeholder="Selecciona vecindario..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
+                        <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: form.get('city').value?.id" [value]="neighborhood">
+                            {{neighborhood.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
-
-            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
-              <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                  <mat-label>Otros criterios</mat-label>
-                  <mat-select placeholder="Costa, Interior..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
-                      <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: form.get('city').value?.id" [value]="neighborhood">
-                          {{neighborhood.name}}
-                      </mat-option>
-                  </mat-select>
-              </mat-form-field>
             </div> -->
 
             <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
@@ -99,8 +88,8 @@
                     </mat-select>
                 </mat-form-field>
             </div> -->
-
-            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bedrooms">
+<!-- 
+            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bedrooms">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -128,9 +117,9 @@
                     </div>
                 </div>
 
-            </div> -->
+            </div>
 
-            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bathrooms">
+            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bathrooms">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -188,9 +177,9 @@
                     </div>
                 </div>
 
-            </div> -->
+            </div>
 
-            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="area">
+            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="area">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">
@@ -210,9 +199,9 @@
                     </div>
                 </div>
 
-            </div> -->
+            </div>
 
-            <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="yearBuilt">
+            <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="yearBuilt">
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                     <div fxFlex="45">

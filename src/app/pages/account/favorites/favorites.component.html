@@ -16,10 +16,7 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <div>hola1</div>
-        <td mat-cell *matCellDef="let property"> {{property.id}}
-          <div>hola2</div>
-        </td>
+        <td mat-cell *matCellDef="let property"> {{property.id}} </td>
       </ng-container>
 
       <!-- Image Column -->
@@ -47,7 +44,7 @@
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
         <td mat-cell *matCellDef="let property"><a [routerLink]="['/properties', property.id ]" class="property-name">{{property.propertyStatus}}</a></td>
       </ng-container>
 

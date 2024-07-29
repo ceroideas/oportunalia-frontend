@@ -39,9 +39,14 @@ export class SubmitPropertyComponent implements OnInit {
 
   ngOnInit() {
     this.features = this.appService.getFeatures();  
-    this.propertyTypes = this.appService.getPropertyTypes();
+    this.appService.getPropertyTypes()
+      .subscribe((propertyTypesData) => {
+        this.propertyTypes = propertyTypesData;        
+    });
     this.propertyStatuses = this.appService.getPropertyStatuses();
-    this.cities = this.appService.getCities();
+    this.appService.getCities().subscribe((citiesData: any) => {
+      this.cities = citiesData.response;
+    });
     this.neighborhoods = this.appService.getNeighborhoods();
     this.streets = this.appService.getStreets();  
 
