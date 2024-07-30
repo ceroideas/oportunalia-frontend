@@ -77,7 +77,7 @@
                       <div class="p-3 mt-3 text-center">
                         <p class="fs-1x fc-secondary">Tiempo restante: </p>
                         <div class="p-0 pt-2 fc-primary">
-                            <p class="fw-700 fs-2x">2d12:00:00</p>
+                            <p class="left-time-{{ property.guid }} fw-700 fs-2x"></p>
                         </div>
                       </div>
 
@@ -104,26 +104,26 @@
                             </div>
                         </mat-card-content>
                       </mat-card>
-
-                      <form
-                        *ngIf="this.userService.isLoggedIn" class="p-3 mt-3 text-center bg-sky"
+                      
+                      <form 
+                        *ngIf="this.userService.isLoggedIn" class="gap-1 p-3 mt-3 bg-sky flx column"
                         [formGroup]="bidForm"
                         (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
-                        <div fxLayout="col wrap" fxLayoutAlign="center center">
+                        <div fxLayout="col wrap">                         
                           <mat-label>Importe: </mat-label>
                           <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
                         </div>
 
-                        <div fxLayout="col wrap" fxLayoutAlign="center center">
+                        <div fxLayout="col wrap">
                           <mat-label>Representado</mat-label>
                           <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
-                        </div>
-
-                        <div fxLayout="col wrap" fxLayoutAlign="center center">
-                          <mat-label>Voucher de depósito</mat-label>
+                        </div>                        
+                                      
+                        <div fxLayout="col wrap">
+                          <mat-label>Voucher de depósito</mat-label>                           
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div>
 
@@ -146,14 +146,14 @@
                             <mat-icon>date_range</mat-icon></div>
                           <div>
                           </div>
-                             dd/mm/yyy 12:00:00h
+                            {{ property?.start_date }}
                           </div>
                         <div fxLayout="row">
                           <span>
                             <mat-icon>date_range</mat-icon>
                           </span>
                           <span>
-                            dd/mm/yyy 12:00:00h
+                            {{ property?.end_date }}
                           </span>
                         </div>
                       </div>
@@ -222,8 +222,8 @@
                         </div>
                         <div id="main-carousel" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
                             <div class="swiper-wrapper">
-                                <div *ngFor="let image of property?.gallery" class="swiper-slide">
-                                    <img [attr.data-src]="image.big" class="swiper-lazy">
+                                <div *ngFor="let image of property?.images" class="swiper-slide">
+                                    <img [attr.data-src]="image.path" class="swiper-lazy">
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>
                             </div>
@@ -235,8 +235,8 @@
                     <div class="small-carousel">
                         <div id="small-carousel" class="swiper-container" [swiper]="config2">
                             <div class="swiper-wrapper">
-                                <div *ngFor="let image of property?.gallery; let i=index;" class="swiper-slide" [ngClass]="'thumb-'+i" [class.active-thumb]="i == 0">
-                                    <img [attr.data-src]="image.small" class="swiper-lazy mw-100" (click)="selectImage(i)">
+                                <div *ngFor="let image of property?.images; let i=index;" class="swiper-slide" [ngClass]="'thumb-'+i" [class.active-thumb]="i == 0">
+                                    <img [attr.data-src]="image.path" class="swiper-lazy mw-100" (click)="selectImage(i)">
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>
                             </div>
@@ -249,9 +249,7 @@
                 <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary">
                   <div>
                     <h3 class="fw-700 fs-1x">Descripción </h3>
-                    <p>{{property?.desc}}</p>
-                    <p>{{property?.desc}}</p>
-                    <p>{{property?.desc}}</p>
+                    <div [innerHTML]="transform(property?.description)"></div>
                   </div>
                   <div class="text-center">
                     <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
@@ -267,21 +265,13 @@
                 <!-- Card Especificaciones técnicas -->
                 <mat-card class="p-3 mt-3 fc-primary">
                   <h3 class="fw-700 fs-1x">Especificaciones técnicas</h3>
-                  <mat-card-content class="p-0 pt-2">
-                      <p>{{property?.desc}}</p>
-                      <p>{{property?.desc}}</p>
-                      <p>{{property?.desc}}</p>
-                  </mat-card-content>
+                  <mat-card-content class="p-0 pt-2" [innerHTML]="transform(property?.technical_specifications)"></mat-card-content>
                 </mat-card>
 
                 <!-- Card Documentación -->
                 <mat-card class="p-3 mt-3 fc-primary">
                   <h3 class="fw-700 fs-1x">Documentación</h3>
-                  <mat-card-content class="p-0 pt-2">
-                      <p>{{property?.desc}}</p>
-                      <p>{{property?.desc}}</p>
-                      <p>{{property?.desc}}</p>
-                  </mat-card-content>
+                  <mat-card-content class="p-0 pt-2" [innerHTML]="transform(property?.land_registry)"></mat-card-content>
                 </mat-card>
 
                 <!-- Card condiciones particulares -->
@@ -289,11 +279,11 @@
                   <h3 class="fw-700 fs-1x">Condiciones particulares</h3>
                   <mat-card-content class="pt-2">
                     <ol>
-                      <li>Valoración: </li>
-                      <li>Precio mínimo: </li>
-                      <li>Impuestos y gastos: </li>
+                      <li>Valoración: {{ property.appraisal_value | currency : 'EUR' }}</li>
+                      <li>Precio mínimo: {{ property.start_price | currency : 'EUR' }}</li>
+                      <!-- <li>Impuestos y gastos: </li> 
                       <li>Situación posesoria: </li>
-                      <li>Visitas: </li>
+                      <li>Visitas: </li> -->
                       <li>Honorarios entidad especializada: 3% del valor de compra + IVA</li>
                     </ol>
                   </mat-card-content>
@@ -310,7 +300,7 @@
                 </mat-card>
 
                 <!-- Expansion panels -->
-                <mat-card class="p-3 mt-3">
+                <!-- <mat-card class="p-3 mt-3">
                     <mat-card-header class="pt-0" fxLayoutAlign="center center">
                         <mat-card-title class="uppercase">Plans</mat-card-title>
                     </mat-card-header>
@@ -332,7 +322,7 @@
                             </mat-expansion-panel>
                         </mat-accordion>
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
             </mat-sidenav-content>
         </mat-sidenav-container>
     </div>

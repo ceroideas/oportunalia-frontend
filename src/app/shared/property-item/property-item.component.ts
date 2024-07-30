@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewChild, SimpleChange } from '@angular/core';
 import { SwiperDirective, SwiperConfigInterface, SwiperPaginationInterface } from 'src/app/theme/components/swiper/swiper.module';
-import { Property } from '../../app.models';
 import { Settings, AppSettings } from '../../app.settings';
 
 import { AppService } from '../../app.service';

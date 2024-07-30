@@ -8,7 +8,7 @@ import { Property } from 'src/app/app.models';
   styleUrls: ['./properties-carousel.component.scss']
 })
 export class PropertiesCarouselComponent implements OnInit {
-  @Input('properties') properties: Array<Property> = [];
+  @Input('properties') properties: Array<any> = [];
   public config: SwiperConfigInterface = {}; 
 
   constructor() { }
