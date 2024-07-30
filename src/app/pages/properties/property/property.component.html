@@ -104,13 +104,13 @@
                             </div>
                         </mat-card-content>
                       </mat-card>
-                      
-                      <form 
+
+                      <form
                         *ngIf="this.userService.isLoggedIn" class="p-3 mt-3 text-center bg-sky"
                         [formGroup]="bidForm"
-                        (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                                                                
+                        (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
-                        <div fxLayout="col wrap" fxLayoutAlign="center center">                         
+                        <div fxLayout="col wrap" fxLayoutAlign="center center">
                           <mat-label>Importe: </mat-label>
                           <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
                         </div>
@@ -120,12 +120,12 @@
                           <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
-                        </div>                        
-                                      
+                        </div>
+
                         <div fxLayout="col wrap" fxLayoutAlign="center center">
-                          <mat-label>Voucher de depósito</mat-label>                           
+                          <mat-label>Voucher de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
-                        </div>                   
+                        </div>
 
                         <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary">Hacer oferta</button>
                       </form>

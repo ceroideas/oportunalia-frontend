@@ -61,9 +61,15 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
-                  <p>Tasación: {{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.0'}}</p>
-                  <p>Precio mínimo: {{ property.start_price | currency : 'EUR' : 'symbol' : '1.0'}}</p>
+                  <div>Tasación: </div>
+                  <div>Precio mínimo: </div>
                 </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
+                  <p>{{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.0'}}</p>
+                  <p>{{ property.start_price | currency : 'EUR' : 'symbol' : '1.0'}}</p>
+                </div>
+
 
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                     <div>
