@@ -70,8 +70,8 @@ export class AppService {
     return this.http.get(GlobalConstants.apiURL + '/auction_last?auction_status_id=1&featured=1&order=end_date__asc');
   }
 
-  public getRelatedProperties(): Observable<Property[]>{
-    return this.http.get<Property[]>(this.url + 'related-properties.json');
+  public getRelatedProperties(): Observable<any[]>{
+    return this.http.get<Property[]>(GlobalConstants.apiURL + '/auction_last?auction_status_id=1&related=1&order=end_date__asc');
   }
 
   public getPropertiesByAgentId(agentId): Observable<Property[]>{
