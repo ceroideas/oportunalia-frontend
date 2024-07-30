@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, HostListener, ViewChildren, QueryList } f
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
-import { Property } from 'src/app/app.models';
+import moment from 'moment';
 import { SwiperConfigInterface, SwiperDirective } from 'src/app/theme/components/swiper/swiper.module';
 import { AppSettings, Settings } from 'src/app/app.settings';
 import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compare-overview.component';
@@ -11,6 +11,7 @@ import { EmbedVideoService } from 'src/app/services/embed-video.service';
 import { DomHandlerService } from 'src/app/dom-handler.service';
 import { UserService } from 'src/app/api/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-property',
@@ -28,8 +29,8 @@ export class PropertyComponent implements OnInit {
   public property: any;
   public settings: Settings;
   public embedVideo: any;
-  public relatedProperties: Property[];
-  public featuredProperties: Property[];
+  public relatedProperties: any[];
+  public featuredProperties: any[];
   public agent:any;
   public selectedImage: Blob;
   public mortgageForm: UntypedFormGroup;
@@ -52,6 +53,7 @@ export class PropertyComponent implements OnInit {
               public fb: UntypedFormBuilder,
               public userService: UserService,  
               public snackBar: MatSnackBar,            
+              public sanitizer: DomSanitizer,
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
     this.bidForm = this.fb.group({
@@ -130,9 +132,39 @@ export class PropertyComponent implements OnInit {
     this.selectedImage = ev.target.files[0];
   }
 
+  public transform(value: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(value);
+  }
+
+  public calculateLeftTime(): void {
+    const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
+    const timeToEnd: any = new Date(this.property.end_date);    
+
+    const interval = setInterval(() => {      
+
+      try {
+        let leftTime: any = timeToEnd - (new Date() as any);
+        const hours = moment(leftTime).format("HH:mm:ss"); 
+        const days = moment(leftTime).format("DD"); 
+
+        if (leftTime <= 0) {
+          clearInterval(interval);
+        }          
+                
+        propertyCard.textContent = `${ days }D ${ hours }`;  
+      } catch (e) {
+        console.log(e);
+        clearInterval(interval);
+      }
+    }, 1000);        
+  }
+
   public getPropertyById(id: number){
     this.appService.getPropertyById(id).subscribe(data=>{
-      this.property = data;
+
+      this.property = data.response;
+      this.property.start_date = moment(this.property.start_date).format('DD-MM-YYYY');
+      this.property.end_date = moment(this.property.end_date).format('DD-MM-YYYY');
       this.embedVideo = this.embedService.embed(this.property.videos[1].link);
       this.lat = +this.property.location.lat;
       this.lng = +this.property?.location.lng;
@@ -251,14 +283,15 @@ export class PropertyComponent implements OnInit {
   }
 
   public getRelatedProperties(){
-    this.appService.getRelatedProperties().subscribe(properties=>{
-      this.relatedProperties = properties;
+    this.appService.getRelatedProperties().subscribe((properties: any) => {
+      this.relatedProperties = properties.response;
     })
   }
 
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
-      this.featuredProperties = properties.slice(0,3);
+      console.log(properties);
+      this.featuredProperties = properties.response;//.slice(0,3);
     })
   }
 

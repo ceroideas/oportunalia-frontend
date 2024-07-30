@@ -146,3 +146,25 @@
   //padding-left: 10%;
   color: #fff;
 }
+
+input:not(input[type="button"], input[type="submit"], input[type="file"]) {
+    height: 2rem;
+    width: 100%;
+    border: 2px solid #242863;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0.2rem;
+    box-sizing: border-box;
+}
+
+[class*="gap-1"] {
+    gap: 1rem;
+}
+
+[class*="column"] {
+    flex-direction: column;
+}
+
+[class*="gap-1"] {
+    display: flex;
+}
