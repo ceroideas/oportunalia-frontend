@@ -36,7 +36,7 @@
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Tipo de propiedad</mat-label>
-          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'type')">
+          <mat-select placeholder="Tipo de propiedad" (selectionChange)="setSearchProps($event.value, 'type')">
             <mat-option value="0" >Todos</mat-option>
             <mat-option value="1" >Subasta</mat-option>
             <mat-option value="2" >Venta directa</mat-option>
@@ -47,18 +47,18 @@
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Categoría</mat-label>
-          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'category')">
+          <mat-select placeholder="Categoría" (selectionChange)="setSearchProps($event.value, 'category')">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
+            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div fxFlex>
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
-          <mat-select placeholder="Select" (selectionChange)="setSearchProps($event.value, 'search')">
+          <mat-select placeholder="Ubicación" (selectionChange)="setSearchProps($event.value, 'search')">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let province of provinceList" value="{{province.name}}">{{ province.id }} - {{province.name}}</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.name}}">{{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -202,7 +202,7 @@
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -211,7 +211,7 @@
           <mat-label>Categoría</mat-label>
           <mat-select placeholder="Select">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{ category.id }} - {{category.name}}</mat-option>
+            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

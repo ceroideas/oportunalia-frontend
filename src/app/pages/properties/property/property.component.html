@@ -108,7 +108,7 @@
                       <form 
                         *ngIf="this.userService.isLoggedIn" class="gap-1 p-3 mt-3 bg-sky flx column"
                         [formGroup]="bidForm"
-                        (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                                                                
+                        (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
                         <div fxLayout="col wrap">                         
                           <mat-label>Importe: </mat-label>
@@ -125,7 +125,7 @@
                         <div fxLayout="col wrap">
                           <mat-label>Voucher de depósito</mat-label>                           
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
-                        </div>                   
+                        </div>
 
                         <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary">Hacer oferta</button>
                       </form>
