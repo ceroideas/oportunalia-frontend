@@ -4,6 +4,8 @@ import { emailValidator, matchingPasswords } from 'src/app/theme/utils/app-valid
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
+import moment from 'moment';
+import { PublicService } from 'src/app/api/public.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +13,8 @@ import { UserService } from 'src/app/api/user.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+  countryList: any;
+  provinceList: any;
   nombre: string;
   apellido: string;
   email: string;
@@ -25,11 +28,13 @@ export class ProfileComponent implements OnInit {
     public formBuilder: UntypedFormBuilder, 
     public snackBar: MatSnackBar,
     public router: Router,
-    public userService: UserService
+    public userService: UserService,
+    public publicService: PublicService
   ) { }  
 
   ngOnInit() {
 
+    this.getCountryList();
     this.userService.getUserData().subscribe(({ response }) => {      
       this.userData = response;
       this.infoForm.patchValue({
@@ -39,10 +44,10 @@ export class ProfileComponent implements OnInit {
         email: this.userData.email,
         phone: this.userData.phone,
         address: this.userData.address,
-        province: this.userData.province_id,
+        province_id: this.userData.province_id,
         city: this.userData.city,
         postalcode: this.userData.cp,
-        country: this.userData.country,
+        country_id: this.userData.country_id,
         birthdate: this.userData.birthdate,
       });
     });
@@ -56,10 +61,10 @@ export class ProfileComponent implements OnInit {
       image1: null,
       image2: null,
       address: '',
-      province: null,
+      province_id: '',
       city: '',
       postalcode: null,
-      country: '',   
+      country_id: '',   
       birthdate: null,
     });
     this.passwordForm = this.formBuilder.group({
@@ -69,10 +74,22 @@ export class ProfileComponent implements OnInit {
     },{validator: matchingPasswords('newPassword', 'confirmNewPassword')});
   }
 
+  getCountryList(){
+    this.publicService.countryList()
+      .subscribe(
+        (response) => {          
+          this.countryList = response.response;
+        },
+        (error) => {
+
+        }
+      )
+  }
+
   public onInfoFormSubmit(values:Object):void {
 
     if (this.infoForm.valid) {      
-
+      values['birthdate'] = moment(values['birthdate']).format('YYYY-MM-DD');
       this.userService.updateUserData(values).subscribe((data) => console.log(data));
       this.snackBar.open('Tu información se ha almacenado correctamente!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
@@ -91,6 +108,18 @@ export class ProfileComponent implements OnInit {
 
   goToChangePassword(){
     this.router.navigate(['/account/profile/change-password'])
+  }
+
+  getProvinceList(value){
+    this.publicService.provinceList(value)
+      .subscribe(
+        (response) => {
+          this.provinceList = response.response;
+        },
+        (error) => {
+
+        }
+      )
   }
 
 }

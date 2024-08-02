@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
       cp: ['', Validators.required],
       birthdate: ['', Validators.required],
       receiveNewsletter: false,
-      acceptConditions: false
+      acceptConditions: [false, Validators.required]
     },{validator: matchingPasswords('password', 'password_confirmation')});
 
     this.maxDate = this.checkDate();
@@ -85,11 +85,18 @@ export class RegisterComponent implements OnInit {
 
     console.log(user);
 
+    if (!user['acceptConditions']) {
+
+      this.snackBar.open('Debes aceptar las condiciones para proceder', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
+      return;
+    }
+
     if (this.registerForm.valid) {      
       //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
+          console.log(response);
           console.log("Usuario registrado");                    
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
