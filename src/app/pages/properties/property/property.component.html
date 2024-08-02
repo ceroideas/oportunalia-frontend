@@ -104,13 +104,13 @@
                             </div>
                         </mat-card-content>
                       </mat-card>
-                      
-                      <form 
+
+                      <form
                         *ngIf="this.userService.isLoggedIn" class="gap-1 p-3 mt-3 bg-sky flx column"
                         [formGroup]="bidForm"
                         (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
-                        <div fxLayout="col wrap">                         
+                        <div fxLayout="col wrap">
                           <mat-label>Importe: </mat-label>
                           <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
                         </div>
@@ -120,10 +120,10 @@
                           <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
-                        </div>                        
-                                      
+                        </div>
+
                         <div fxLayout="col wrap">
-                          <mat-label>Voucher de depósito</mat-label>                           
+                          <mat-label>Comprobande de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div>
 
@@ -281,7 +281,7 @@
                     <ol>
                       <li>Valoración: {{ property.appraisal_value | currency : 'EUR' }}</li>
                       <li>Precio mínimo: {{ property.start_price | currency : 'EUR' }}</li>
-                      <!-- <li>Impuestos y gastos: </li> 
+                      <!-- <li>Impuestos y gastos: </li>
                       <li>Situación posesoria: </li>
                       <li>Visitas: </li> -->
                       <li>Honorarios entidad especializada: 3% del valor de compra + IVA</li>

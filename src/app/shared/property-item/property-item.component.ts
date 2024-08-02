@@ -64,8 +64,10 @@ export class PropertyItemComponent implements OnInit {
   }
 
   public getColumnCount(value){
+
     if(value == 25){
       this.column = 4;
+      this.title = this.property.title;
     }
     else if(value == 33.3){  // grid 3 columnas
       this.column = 3;
@@ -160,24 +162,24 @@ export class PropertyItemComponent implements OnInit {
 
   public calculateLeftTime(): void {
     const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
-    const timeToEnd: any = new Date(this.property.end_date);    
+    const timeToEnd: any = new Date(this.property.end_date);
 
-    const interval = setInterval(() => {      
+    const interval = setInterval(() => {
 
       try {
         let leftTime: any = timeToEnd - (new Date() as any);
-        const hours = moment(leftTime).format("HH:mm:ss"); 
-        const days = moment(leftTime).format("DD"); 
+        const hours = moment(leftTime).format("HH:mm:ss");
+        const days = moment(leftTime).format("DD");
 
         if (leftTime <= 0) {
           clearInterval(interval);
-        }          
-                
-        propertyCard.textContent = `${ days }D ${ hours }`;  
+        }
+
+        propertyCard.textContent = `${ days }D ${ hours }`;
       } catch (e) {
         console.log(e);
         clearInterval(interval);
       }
-    }, 1000);        
+    }, 1000);
   }
 }
