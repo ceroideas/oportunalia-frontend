@@ -65,3 +65,41 @@
     <p class="fc-primary">¡Pulsa en el botón verificar y sigamos!</p>
   </div> -->
 </div>
+
+
+<!-- Reset password verificar email -->
+
+<div *ngIf="message == 'reset_pass'" class="bg-register text-center">
+  <h1 mat-dialog-title>
+    <div class="text-center fw-900 fc-primary">
+      Reestablecimiento de contraseña
+    </div>
+  </h1>
+
+  <div mat-dialog-content class="m-3">
+    <p class="pb-4">Te hemos enviado un email para que puedas restablecer la contraseña, por favor revisa tu email para restablecerla.</p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
+  </div>
+</div>
+
+
+<!-- Error al solicitar el resetear el password -->
+
+<div *ngIf="message == 'error_reset_pass'" class="bg-register text-center">
+  <h1 mat-dialog-title>
+    <div class="text-center fw-900 fc-primary">
+        Error al restablecer contraseña
+    </div>
+  </h1>
+
+  <div mat-dialog-content class="m-3">
+    <p class="pb-4">Hay un problema para restablecer tu contraseña, verifica tu dirección de email e inténtalo nuevamente más tarde.</p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
+  </div>
+</div>

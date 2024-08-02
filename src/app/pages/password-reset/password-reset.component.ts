@@ -28,7 +28,7 @@ export class PasswordResetComponent implements OnInit{
 
   }
 
-  public onResetFormSubmit (values: Object): void {    
+  public onResetFormSubmit (values: Object): void {
 
     if (this.resetForm.valid) {
       /* this.router.navigate(['/']); */
@@ -37,14 +37,20 @@ export class PasswordResetComponent implements OnInit{
       this.userService.userReestablecer(user)
         .subscribe(
           (response) => {
+            console.log("Restablecer contraseña");
             const message = 'reset_pass';
             let dialogRef = this.appService.showInfoMessage(message);
+
+            console.log(dialogRef);
             //this.notificationService.successNotification("Correo enviado");
           },
           (error) => {
+            console.log("Error al restablecer contraseña");
             const message = 'error_reset_pass';
             let dialogRef = this.appService.showInfoMessage(message);
             //this.notificationService.errorNotification("Ha ocurrido un error");
+
+            console.log(dialogRef);
           }
         )
 
