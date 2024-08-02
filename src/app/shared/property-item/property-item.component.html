@@ -54,12 +54,12 @@
 
                  <div *ngIf="title.length>1">
                   <!-- titulo en busquedas -->
-                  <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.id]">{{title}}</a></h1>
+                  <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.link_rewrite]">{{title}}</a></h1>
                   <h3 *ngIf="title.length<=28">&nbsp;</h3>
                 </div>
                  <div *ngIf="title.length<1">
                   <!-- Titulo en home -->
-                  <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.id]">{{property.title}}</a></h1>
+                  <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.link_rewrite]">{{property.title}}</a></h1>
                   <h3 *ngIf="property.title.length<=29">&nbsp;</h3>
                  </div>
 
