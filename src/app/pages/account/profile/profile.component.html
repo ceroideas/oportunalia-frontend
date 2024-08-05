@@ -97,9 +97,11 @@
         <mat-label>Ciudad</mat-label>
         <input matInput placeholder="Ciudad" formControlName="city">
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-100">
-      <mat-label>Provincia</mat-label>
-        <input matInput placeholder="Province" formControlName="province">
+      <mat-form-field  appearance="outline" class="w-100 mt-2">
+        <mat-label>Provincia</mat-label>
+        <mat-select placeholder="Provincia" formControlName="province_id">
+          <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
 	  </div>
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
@@ -107,9 +109,11 @@
         <mat-label>Código postal</mat-label>
         <input matInput placeholder="Código portal" formControlName="postalcode">
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-100">
+      <mat-form-field  appearance="outline" class="w-100 mt-2">
         <mat-label>País</mat-label>
-        <input matInput placeholder="País" formControlName="country">
+        <mat-select placeholder="País" formControlName="country_id" (selectionChange)="getProvinceList($event.value)">
+          <mat-option *ngFor="let country of countryList" value="{{country.id}}">{{ country.id }} - {{country.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
   </div>
