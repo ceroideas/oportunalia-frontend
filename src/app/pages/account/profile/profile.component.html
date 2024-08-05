@@ -100,7 +100,7 @@
       <mat-form-field  appearance="outline" class="w-100 mt-2">
         <mat-label>Provincia</mat-label>
         <mat-select placeholder="Provincia" formControlName="province_id">
-          <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+          <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{province.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 	  </div>
@@ -112,7 +112,7 @@
       <mat-form-field  appearance="outline" class="w-100 mt-2">
         <mat-label>País</mat-label>
         <mat-select placeholder="País" formControlName="country_id" (selectionChange)="getProvinceList($event.value)">
-          <mat-option *ngFor="let country of countryList" value="{{country.id}}">{{ country.id }} - {{country.name}}</mat-option>
+          <mat-option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

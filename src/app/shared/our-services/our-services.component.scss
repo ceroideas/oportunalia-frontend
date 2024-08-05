@@ -2,9 +2,24 @@
     margin: -8px;
 }
 
-mat-card {
-  background-image: url('../../../assets/images/props/flat-1/3-big_modify.jpg');
+/* mat-card {
+  background-image: url('../../../assets/images/props/flat-1/3-big_modify_1.jpg');
   background-size:cover;
+}*/
+
+.bg-card-subasta {
+  background-image: url('../../../assets/images/props/subasta_home.jpg') !important;
+  background-size:cover !important;
+}
+
+.bg-card-venta {
+  background-image: url('../../../assets/images/props/venta_home.jpg') !important;
+  background-size:cover !important;
+}
+
+.bg-card-cesion {
+  background-image: url('../../../assets/images/props/cesion_home.jpg') !important;
+  background-size:cover !important;
 }
 
 .card-title{
