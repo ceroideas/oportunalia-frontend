@@ -54,14 +54,14 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
       password: ['', Validators.required],
-      
+
       /* pressTypes: ['', Validators.required], */
       password_confirmation: ['', Validators.required],
       username: ['', Validators.required],
-      document_number: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      cp: ['', Validators.required],
+      //document_number: ['', Validators.required],
+      //address: ['', Validators.required],
+      //city: ['', Validators.required],
+      //cp: ['', Validators.required],
       birthdate: ['', Validators.required],
       receiveNewsletter: false,
       acceptConditions: [false, Validators.required]
@@ -75,37 +75,37 @@ export class RegisterComponent implements OnInit {
   public checkDate(){
     let maxDate: Date = new Date();
     maxDate.setFullYear(maxDate.getFullYear() - 18);
-    console.log("MaxDate");
-    console.log(maxDate);
+    /* console.log("MaxDate");
+    console.log(maxDate); */
     return maxDate;
   }
   public onRegisterFormSubmit(user:Object):void {
 
     user['birthdate'] = moment(user['birthdate']).format('YYYY-MM-DD');
 
-    console.log(user);
+    //console.log(user);
 
     if (!user['acceptConditions']) {
 
-      this.snackBar.open('Debes aceptar las condiciones para proceder', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
+      this.snackBar.open('Debes aceptar las condiciones para proceder', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       return;
     }
 
-    if (this.registerForm.valid) {      
-      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
+    if (this.registerForm.valid) {
+      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
-          console.log(response);
-          console.log("Usuario registrado");                    
+          /* console.log(response);
+          console.log("Usuario registrado"); */
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
           //this.router.navigate(['/registro-completo']);
 
         },
         (error)=>{
-          console.log("Usuario no registrado");
-          console.log(error);
+          /* console.log("Usuario no registrado");
+          console.log(error); */
           const message = 'error_register_user';
           let dialogRef = this.appService.showInfoMessage(message);
           //console.log("Error en el registro de usuario");
@@ -118,7 +118,7 @@ export class RegisterComponent implements OnInit {
 
 
   registerUser(){
-    console.log("Clic register user");
+    //console.log("Clic register user");
     const user = {
                 //username: 'username123',
                 firstname: this.registerForm.get('name').value,
