@@ -54,14 +54,14 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
       password: ['', Validators.required],
-      
+
       /* pressTypes: ['', Validators.required], */
       password_confirmation: ['', Validators.required],
       username: ['', Validators.required],
-      document_number: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      cp: ['', Validators.required],
+      //document_number: ['', Validators.required],
+      //address: ['', Validators.required],
+      //city: ['', Validators.required],
+      //cp: ['', Validators.required],
       birthdate: ['', Validators.required],
       receiveNewsletter: false,
       acceptConditions: [false, Validators.required]
@@ -75,52 +75,51 @@ export class RegisterComponent implements OnInit {
   public checkDate(){
     let maxDate: Date = new Date();
     maxDate.setFullYear(maxDate.getFullYear() - 18);
-    console.log("MaxDate");
-    console.log(maxDate);
+    /* console.log("MaxDate");
+    console.log(maxDate); */
     return maxDate;
   }
   public onRegisterFormSubmit(user:Object):void {
 
     user['birthdate'] = moment(user['birthdate']).format('YYYY-MM-DD');
 
-    console.log(user);
+    //console.log(user);
 
     if (!user['acceptConditions']) {
 
-      this.snackBar.open('Debes aceptar las condiciones para proceder', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
+      this.snackBar.open('Debes aceptar las condiciones para proceder', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       return;
     }
 
-    if (this.registerForm.valid) {      
-      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });      
+    if (this.registerForm.valid) {
+      //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
-          console.log(response);
-          console.log("Usuario registrado");                    
+
+          this.userService.login(user)
+          .subscribe(({ response }) => {
+            this.userService.setAuthToken(response.token);
+          },
+          (e) => {'Error al obtener token'});
+
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
-          //this.router.navigate(['/registro-completo']);
-
         },
         (error)=>{
-          console.log("Usuario no registrado");
-          console.log(error);
           const message = 'error_register_user';
           let dialogRef = this.appService.showInfoMessage(message);
-          //console.log("Error en el registro de usuario");
         }
       )
     }
 
-
   }
 
 
-  registerUser(){
-    console.log("Clic register user");
+/*   registerUser(){
+
     const user = {
-                //username: 'username123',
+                username: this.registerForm.get('username').value,
                 firstname: this.registerForm.get('name').value,
                 lastname: this.registerForm.get('lastname').value,
                 phone: this.registerForm.get('phone').value,
@@ -128,25 +127,13 @@ export class RegisterComponent implements OnInit {
                 password: this.registerForm.get('password').value,
                 password_confirmation: this.registerForm.get('password_confirmation').value
               }
-    console.log(user);
 
     if (this.registerForm.valid) {
-      console.log("Form valid");
       this.snackBar.open('Your account information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }else{
       this.snackBar.open('Form invalid', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
 
-
-    /* this.userService.userRegister(user)
-      .subscribe(
-        (response) => {},
-        (error)=>{}
-      ) */
-
-
-  }
-
-
+  } */
 
 }
