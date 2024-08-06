@@ -96,31 +96,30 @@ export class RegisterComponent implements OnInit {
       this.userService.userRegister(user)
       .subscribe(
         (response) => {
-          /* console.log(response);
-          console.log("Usuario registrado"); */
+
+          this.userService.login(user)
+          .subscribe(({ response }) => {
+            this.userService.setAuthToken(response.token);
+          },
+          (e) => {'Error al obtener token'});
+
           const message = 'register';
           let dialogRef = this.appService.showInfoMessage(message);
-          //this.router.navigate(['/registro-completo']);
-
         },
         (error)=>{
-          /* console.log("Usuario no registrado");
-          console.log(error); */
           const message = 'error_register_user';
           let dialogRef = this.appService.showInfoMessage(message);
-          //console.log("Error en el registro de usuario");
         }
       )
     }
 
-
   }
 
 
-  registerUser(){
-    //console.log("Clic register user");
+/*   registerUser(){
+
     const user = {
-                //username: 'username123',
+                username: this.registerForm.get('username').value,
                 firstname: this.registerForm.get('name').value,
                 lastname: this.registerForm.get('lastname').value,
                 phone: this.registerForm.get('phone').value,
@@ -128,25 +127,13 @@ export class RegisterComponent implements OnInit {
                 password: this.registerForm.get('password').value,
                 password_confirmation: this.registerForm.get('password_confirmation').value
               }
-    console.log(user);
 
     if (this.registerForm.valid) {
-      console.log("Form valid");
       this.snackBar.open('Your account information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }else{
       this.snackBar.open('Form invalid', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
 
-
-    /* this.userService.userRegister(user)
-      .subscribe(
-        (response) => {},
-        (error)=>{}
-      ) */
-
-
-  }
-
-
+  } */
 
 }

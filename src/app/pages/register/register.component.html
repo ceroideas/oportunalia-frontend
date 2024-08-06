@@ -13,17 +13,14 @@
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
                   <!-- Alias -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                     <mat-label>Usuario (Alias): </mat-label>
                     <input matInput placeholder="Usuario" formControlName="username" required>
                     <mat-error *ngIf="registerForm.controls.username.errors?.required">El campo usuario es obligatorio</mat-error>
                     <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">Usuario corto, minímo 6 carácteres</mat-error>
                   </mat-form-field>
 
-
                   <!-- Name -->
                    <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                     <mat-label>Nombre: </mat-label>
                     <input matInput placeholder="Nombre" formControlName="firstname" required>
                     <mat-error *ngIf="registerForm.controls.firstname.errors?.required">El campo nombre es obligatorio</mat-error>
@@ -32,19 +29,13 @@
 
                   <!-- Telefono -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">phone</mat-icon> -->
                     <mat-label>Teléfono</mat-label>
                     <input matInput type="phone" placeholder="Número de teléfono" formControlName="phone" required onlyNumber autocomplete="off">
                     <mat-error *ngIf="registerForm.controls.phone.errors?.required">El campo teléfono es obligatorio</mat-error>
-                    <!-- <mat-error *ngIf="registerForm.controls.phone.hasError('minlength')">Telefono isn't long enough, minimum of 6 characters</mat-error> -->
                   </mat-form-field>
-
-
-
 
                   <!-- Password -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon> -->
                     <mat-label>Contraseña</mat-label>
                     <input matInput placeholder="Password" formControlName="password" type="password" minlength="6" required [type]="hide ? 'password' : 'text'">
                     <mat-error *ngIf="registerForm.controls.password.errors?.required">La contraseña es obligatorio</mat-error>
@@ -53,14 +44,11 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                   </mat-form-field>
-
                 </div>
 
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pl-3">
-
                   <!-- Email -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">email</mat-icon> -->
                     <mat-label>Email: </mat-label>
                     <input matInput placeholder="Email" formControlName="email" required>
                     <mat-error *ngIf="registerForm.controls.email.errors?.required">El campo email es requerido</mat-error>
@@ -69,7 +57,6 @@
 
                   <!-- Last name -->
                    <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">person</mat-icon> -->
                     <mat-label>Apellidos: </mat-label>
                     <input matInput placeholder="Apellidos" formControlName="lastname" required>
                     <mat-error *ngIf="registerForm.controls.lastname.errors?.required">El campo apellidos es obligatorio</mat-error>
@@ -85,7 +72,6 @@
 
                   <!-- repeat password -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <!-- <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon> -->
                     <mat-label>Confirm Password</mat-label>
                     <input matInput placeholder="Confirm Password" formControlName="password_confirmation" type="password" required [type]="hide ? 'password' : 'text'">
                     <mat-error *ngIf="registerForm.controls.password_confirmation.errors?.required">El campo confirmar contraseña es requerido</mat-error>
@@ -96,7 +82,6 @@
                   </mat-form-field>
                 </div>
               </div>
-
 
               <!-- <mat-form-field  appearance="outline" class="w-100 mt-2">
                 <mat-label>DNI: </mat-label>
@@ -128,16 +113,13 @@
 
               <!-- Como nos ha conocido -->
               <mat-form-field  appearance="outline" class="w-100 mt-2">
-                <!-- <mat-icon matPrefix class="mr-1 text-muted">group</mat-icon> -->
                 <mat-label>¿Cómo nos has conocido?</mat-label>
-                <!-- <mat-select placeholder="¿Cómo nos has conocido?" formControlName="pressTypes"> -->
                 <mat-select placeholder="¿Cómo nos has conocido?" >
                     <mat-option *ngFor="let press of pressTypes" [value]="press">
                         {{press.name}}
                     </mat-option>
                 </mat-select>
                 <mat-label> &nbsp; (Prensa)</mat-label>
-                <!-- <mat-error *ngIf="registerForm.controls.pressType.errors?.required">User type is required</mat-error> -->
               </mat-form-field>
 
               <p class="fc-primary mb-4">* Campos obligatorios</p>
@@ -148,35 +130,18 @@
                 de la siguiente dirección: <a href="mailto:proteccióndatos@oportunalia.com">proteccióndatos&#64;oportunalia.com</a>. Puede consultar más información en la <a href="/privacy-policy">Política de privacidad.</a></p>
                 <!-- Receive newsleter -->
                 <div>
-                  <!-- <mat-slide-toggle formControlName="acceptConditions" class="my-2"color="primary" [(ngModel)]="isSlideChecked"><span class="fc-gray">He leído y acepto la Política de privacidad</span> {{ isSlideChecked }}</mat-slide-toggle> -->
                   <mat-slide-toggle formControlName="acceptConditions" class="my-2"color="primary" ><span class="fc-gray">He leído y acepto la Política de privacidad</span></mat-slide-toggle>
                 </div>
                 <div>
                   <mat-slide-toggle formControlName="receiveNewsletter" class="my-2" color="primary"><span class="fc-gray">Acepto recibir comunicaciones comerciales</span></mat-slide-toggle>
                 </div>
 
-                <!-- Boton -->
-                <!-- <div class="mt-2">
-                    <button (click)="registerUser()" mat-raised-button color="primary" class="uppercase pt-4 pb-4" type="submit">
-                        Aceptar y continuar
-                    </button>
-                </div> -->
-
                 <div class="w-100 pt-4 pb-6">
-                  <!-- <button (click)="registerUser()" mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button> -->
                   <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button>
                 </div>
-
             </form>
-<!--             <div class="divider mt-4"></div>
-            <mat-card-actions fxLayoutAlign="center center" class="text-center">
-               <small class="my-3">By clicking the "Create an Account" button you agree with our <a mat-button routerLink="/terms-conditions" color="primary" class="mx-2">Terms and conditions</a> </small>
-            </mat-card-actions> -->
-
-            <!-- <a mat-button routerLink="/login" color="primary" class="w-100"><span class="fc-primary uppercase">inicia sesión</span></a> -->
             <a routerLink="/login" class="fc-primary uppercase fw-200"><u>inicia sesión</u></a>
           </div>
       </div>
-
     </div>
   </div>
