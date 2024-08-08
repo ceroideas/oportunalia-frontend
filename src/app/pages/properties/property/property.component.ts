@@ -57,7 +57,7 @@ export class PropertyComponent implements OnInit {
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
     this.bidForm = this.fb.group({
-      file: [null, [Validators.required]], 
+      file: ['', [Validators.required]], 
       import: ['', [Validators.required, Validators.minLength(1)]],
       representation_id: ['', [Validators.required]],
     });
@@ -114,12 +114,17 @@ export class PropertyComponent implements OnInit {
           formInfo.append(key, this.selectedImage, this.selectedImage.name);
         }
       }
+
+      console.log(formInfo, values);
       
-      this.userService.bid(formInfo, this.property.response.link_rewrite).subscribe((_) => {
-        
+      this.userService.bid(formInfo, this.property.link_rewrite).subscribe((response) => {
+        console.log(response);
         this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
 
-      }, (_) => this.snackBar.open('Ha ocurrido un error!', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 }));
+      }, (error) => {
+        console.log(error);
+        this.snackBar.open('Ha ocurrido un error!', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
+      });
 
     }    
   }
