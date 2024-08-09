@@ -3,7 +3,6 @@ import { UserService } from 'src/app/api/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
-import { min } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
