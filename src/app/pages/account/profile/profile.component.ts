@@ -21,41 +21,49 @@ export class ProfileComponent implements OnInit {
   fechaNacimiento: Date;
   contrasena: string;
   userData: any = {};
+  selectedCountry:any;
+  selectedProvince:any;
+  selected:any;
 
   public infoForm:UntypedFormGroup;
   public passwordForm:UntypedFormGroup;
   constructor(
-    public formBuilder: UntypedFormBuilder, 
+    public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar,
     public router: Router,
     public userService: UserService,
     public publicService: PublicService
-  ) { }  
+  ) { }
 
   ngOnInit() {
 
     this.getCountryList();
-    this.userService.getUserData().subscribe(({ response }) => {      
+    this.userService.getUserData().subscribe(({ response }) => {
       this.userData = response;
+      this.selectedCountry = response.country_id;
+      this.selectedProvince = response.province_id;
+      this.selected = 1;
       this.infoForm.patchValue({
+        username: this.userData.username,
         firstname: this.userData.firstname,
         lastname: this.userData.lastname,
-        cif: this.userData.document_number,
+        document_number: this.userData.document_number,
         email: this.userData.email,
         phone: this.userData.phone,
         address: this.userData.address,
         province_id: this.userData.province_id,
         city: this.userData.city,
-        postalcode: this.userData.cp,
+        cp: this.userData.cp,
         country_id: this.userData.country_id,
         birthdate: this.userData.birthdate,
       });
     });
 
     this.infoForm = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       firstname: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       lastname: ['', Validators.required],
-      cif: ['', Validators.required],
+      document_number: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: [this.userData.phone, Validators.required],
       image1: null,
@@ -63,8 +71,8 @@ export class ProfileComponent implements OnInit {
       address: '',
       province_id: '',
       city: '',
-      postalcode: null,
-      country_id: '',   
+      cp: null,
+      country_id: '',
       birthdate: null,
     });
     this.passwordForm = this.formBuilder.group({
@@ -77,7 +85,7 @@ export class ProfileComponent implements OnInit {
   getCountryList(){
     this.publicService.countryList()
       .subscribe(
-        (response) => {          
+        (response) => {
           this.countryList = response.response;
         },
         (error) => {
@@ -88,7 +96,7 @@ export class ProfileComponent implements OnInit {
 
   public onInfoFormSubmit(values:Object):void {
 
-    if (this.infoForm.valid) {      
+    if (this.infoForm.valid) {
       values['birthdate'] = moment(values['birthdate']).format('YYYY-MM-DD');
       this.userService.updateUserData(values).subscribe((data) => console.log(data));
       this.snackBar.open('Tu información se ha almacenado correctamente!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
