@@ -17,13 +17,14 @@
         <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4">
           <div>
 
-              <div *ngIf="this.property?.auction_type_id==1" class="type-subasta">{{this.auction_type}}</div>
-              <div *ngIf="this.property?.auction_type_id==2" class="type-venta">{{this.auction_type}}</div>
-              <div *ngIf="this.property?.auction_type_id==3" class="type-cesion">{{this.auction_type}}</div>
+              <div *ngIf="this.property?.auction_type_id==1" class="type-subasta">Subasta</div>
+              <div *ngIf="this.property?.auction_type_id==2" class="type-venta">Venta directa</div>
+              <div *ngIf="this.property?.auction_type_id==3" class="type-cesion">Cesión de remate</div>
+
               <h2 class="uppercase fc-primary fw-700 fs-1-5x pb-3" ngClass.xs="text-center">{{property?.title}}</h2>
               <div fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
                   <mat-icon class="text-muted">location_on</mat-icon>
-                  <div class="mr-7">{{property?.neighborhood}}, {{property?.city}}</div>
+                  <div class="mr-7">{{property?.city}}, {{property?.province}} <!-- {{property|json}} --> </div>
                   <div>Referencia: {{property?.auto}}</div>
               </div>
           </div>
@@ -213,12 +214,13 @@
                 <mat-card class="p-3 mt-3">
                     <div class="main-carousel mb-3">
                         <div *ngIf="property" class="control-icons">
-                            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Add To Favorite">
+                            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                                 <mat-icon class="m-0">favorite_border</mat-icon>
                             </button>
+                            <!-- Comparador
                             <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Add To Compare">
                                 <mat-icon class="m-0">compare_arrows</mat-icon>
-                            </button>
+                            </button> -->
                         </div>
                         <div id="main-carousel" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
                             <div class="swiper-wrapper">
@@ -332,7 +334,7 @@
 <div class="section mt-3">
     <div class="px-3">
         <div class="theme-container">
-            <h1 class="section-title">Related properties</h1>
+            <h1 class="section-title">Otras propiedades</h1>
             <app-properties-carousel [properties]="relatedProperties"></app-properties-carousel>
         </div>
     </div>

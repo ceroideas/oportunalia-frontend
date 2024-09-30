@@ -103,6 +103,12 @@ export class PropertyItemComponent implements OnInit {
     }
   }
 
+  /* 'En curso'
+  'Subasta'
+  'Próximamente'
+  'Cesión de remate'
+  'Finalizada' */
+
   public getStatusColor(status){
     switch (status) {
       case 'Subasta' :

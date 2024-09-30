@@ -4,9 +4,16 @@
 
         <!-- Etiqueta de estado -->
         <div fxLayout="row wrap" class="property-status">
-            <span *ngFor="let status of property.propertyStatus"
+            <!-- <span *ngFor="let status of property.propertyStatus"
                         [style.background-color]="getStatusBgColor(status)"
-                        [style.color]="getStatusColor(status)">{{status}}</span>
+                        [style.color]="getStatusColor(status)">{{status}}</span> -->
+
+            <span [style.background-color]="getStatusBgColor(property.status)"
+            [style.color]="getStatusColor(property.status)">{{property.status}}</span>
+            <span [style.background-color]="getStatusBgColor(property.type)"
+            [style.color]="getStatusColor(property.type)">{{property.type}}</span>
+
+
         </div>
 
 
@@ -34,13 +41,15 @@
             </div>
         </div>
 
+
         <div class="control-icons">
             <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                 <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
             </button>
+            <!-- comparador
             <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Añadir a comparador">
                 <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
-            </button>
+            </button> -->
         </div>
 
     </div>
@@ -124,6 +133,8 @@
                   <p>{{property?.auto}}</p>
                   <p class="left-time-{{ property.guid }}"></p>
                 </div>
+
+                <div>debug {{property.status}} - {{property.type}}</div>
 
             </mat-card-content>
             <!-- <div class="sticky-footer-helper" fxFlex="grow"></div> -->
