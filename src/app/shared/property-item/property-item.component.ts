@@ -89,41 +89,40 @@ export class PropertyItemComponent implements OnInit {
     switch (status) {
       case 'Subasta':
         return '#A5D7DA';
-      case 'Cesión de remate':
+      case 'Cesión de Remate':
         return '#457B9D';
-      case 'Venta directa':
+      case 'Venta Directa':
         return '#3E606F';
       case 'Próximamente':
         return '#CCCCCC';
       case 'OFERTA':
       case 'Finalizada':
         return '#CA2828';
+      case 'discount':
+        return '#292C63';
       default:
-        return '#01579B';
+        return '#457B9D';
+
     }
   }
 
-  /* 'En curso'
-  'Subasta'
-  'Próximamente'
-  'Cesión de remate'
-  'Finalizada' */
-
   public getStatusColor(status){
+
     switch (status) {
       case 'Subasta' :
         return '#292C63';
-      case 'Cesión de remate':
-      case 'Venta directa':
+      case 'Cesión de Remate':
+      case 'Venta Directa':
       case 'OFERTA':
       case 'No vendida':
       case 'Finalizada':
       case 'En curso':
+      case 'discount':
         return '#FFFF';
       case 'Próximamente':
         return '#4E4E4E';
       default:
-        return '#292C63';
+        return '#FFFF';
     }
   }
 
