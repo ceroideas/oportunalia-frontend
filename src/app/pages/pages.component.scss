@@ -153,4 +153,22 @@
     }
 }
 
+.btn-primary{
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: solid 3px #242863;
+  line-height: 56px;
+  color: #fff;
+  box-shadow: 0 8px 16px #60617029,0 2px 4px #28293d0a;
+  background-color: #242863;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  //padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+}
+
 

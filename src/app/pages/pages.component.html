@@ -1,20 +1,32 @@
 <mat-sidenav-container>
     <mat-sidenav [opened]="false" mode="over" #sidenav class="sidenav mat-elevation-z6">
-        <button mat-icon-button color="warn" class="close" (click)="sidenav.close()">
-           <mat-icon color="warn">close</mat-icon>
-        </button>
-        <div class="divider"></div>
 
+      <div fxLayout="row">
+        <div>
+          <img src="/assets/images/logos/logo-oportunalia.png" alt="Oportunalia logo" width="85%">
+        </div>
+        <div>
+          <button mat-icon-button (click)="sidenav.close()">
+            <mat-icon >close</mat-icon>
+          </button>
+        </div>
+      </div>
+
+        <div class="divider"></div>
 
         <div   class="vertical-menu-wrapper">
             <ng-scrollbar pointerEventsMethod="scrollbar"  >
             <app-vertical-menu [menuParentId]="0"></app-vertical-menu>
+
+            <!-- Boton registrate menu movil-->
+            <a href="/register" class="btn-primary">Regístrate</a>
         </ng-scrollbar>
         </div>
 
 
+        <!-- Social icons
         <div class="divider"></div>
-        <app-social-icons [iconSize]="'xlg'" [iconColor]="'primary'" fxLayout="row" fxLayoutAlign="center center"></app-social-icons>
+        <app-social-icons [iconSize]="'xlg'" [iconColor]="'primary'" fxLayout="row" fxLayoutAlign="center center"></app-social-icons> -->
 
     </mat-sidenav>
 
