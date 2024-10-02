@@ -141,12 +141,11 @@ export class PropertyComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(value);
   }
 
-  public calculateLeftTime(): void {
-    console.log('this.calculateLeftTime()');
-    const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
-    const timeToEnd: any = new Date(this.property.end_date);    
+  public calculateLeftTime1(): void {
+    const propertyCard: any = document.querySelector(`.left-time1-${ this.property.guid }`);
+    const timeToEnd: any = new Date(this.property.end_date.split("-").reverse().join("-"));    
 
-    const interval = setInterval(() => {      
+    const interval = setInterval(() => {
 
       try {
         let leftTime: any = timeToEnd - (new Date() as any);
@@ -168,10 +167,15 @@ export class PropertyComponent implements OnInit {
   public getPropertyById(id: number){
     this.appService.getPropertyById(id).subscribe(data=>{
 
+      console.log('getPropertyById')
+
       this.property = data.response;
+      setTimeout(()=>{
+        this.calculateLeftTime1();
+      },1000);
       this.property.start_date = moment(this.property.start_date).format('DD-MM-YYYY');
       this.property.end_date = moment(this.property.end_date).format('DD-MM-YYYY');
-      this.embedVideo = this.embedService.embed(this.property.videos[1].link);
+      this.embedVideo = this.property.videos.length ? this.embedService.embed(this.property.videos[1].link) : null;
       this.lat = +this.property.location.lat;
       this.lng = +this.property?.location.lng;
       if (this.property.auction_type_id ==1){
@@ -194,7 +198,6 @@ export class PropertyComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.calculateLeftTime();
     this.config = {
       observer: false,
       slidesPerView: 1,
