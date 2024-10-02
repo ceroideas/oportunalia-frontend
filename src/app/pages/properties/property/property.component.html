@@ -23,9 +23,9 @@
 
               <h2 class="uppercase fc-primary fw-700 fs-1-5x pb-3" ngClass.xs="text-center">{{property?.title}}</h2>
               <div fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
-                  <mat-icon class="text-muted">location_on</mat-icon>
-                  <div class="mr-7">{{property?.city}}, {{property?.province}} <!-- {{property|json}} --> </div>
-                  <div>Referencia: {{property?.auto}}</div>
+                  <mat-icon class="fc-primary">location_on</mat-icon>
+                  <div class="mr-7 fc-primary">{{property?.city}}, {{property?.province}} <!-- {{property|json}} --> </div>
+                  <div class="fc-primary">Referencia: {{property?.auto}}</div>
               </div>
           </div>
 
@@ -35,7 +35,7 @@
               <div *ngIf="property?.appraisal_value > 1" class="btn">
                 <span class="btn-title fw-700 mb-3 fs-1-5x p-2">-{{(((property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
               </div>
-              <div *ngif="property?.appraisal_value > 1" class="pt-6 pb-6">1</div>
+              <!-- <div *ngif="property?.appraisal_value > 1" class="pt-6 pb-6">1</div> -->
               <!-- <p>Descuento: {{(((property?.appraisal_value.sale-property?.start_price.sale)*100)/property?.appraisal_value.sale) | number:'1.0-0'}}%</p> -->
            <!--    <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
                   <span *ngIf="property?.priceDollar.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
@@ -78,29 +78,27 @@
                       <div class="p-3 mt-3 text-center">
                         <p class="fs-1x fc-secondary">Tiempo restante: </p>
                         <div class="p-0 pt-2 fc-primary">
-                            <p class="left-time-{{ property.guid }} fw-700 fs-2x"></p>
+                            <p class="left-time-{{ property?.guid }} fw-700 fs-2x"></p>
+                            <!-- <p class="fw-700 fs-2x">{{ property?.guid }}</p> -->
                         </div>
                       </div>
 
                       <div class="mt-3 text-center">
-                        <p class="fs-1x fw-500 fc-primary">¿Quieres hacer una oferta?</p>
+                        <p class="fs-0-8x fw-500 fc-primary uppercase">¿Quieres hacer una oferta?</p>
                       </div>
                       <mat-card *ngIf="!this.userService.isLoggedIn" class="p-3 mt-3 text-center bg-sky">
                         <!-- <p class="fs-1x fc-secondary"></p> -->
                         <div class="btn">
-                          <h2 class="btn-title fw-600 mt-3 mb-3"><a href="/register">Registrate para participar</a></h2>
+                          <p class="btn-title fs-0-8x fw-500 mt-3 mb-3 uppercase"><a href="/register">Regístrate para participar</a></p>
                         </div>
                         <mat-card-content class="p-0 pt-2 fc-primary">
                             <a href="/login"><u>INICIA SESIÓN</u></a>
                             <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary">
                               <div class="text-left">
-                                <p>Depósito</p>
+                                <a>Depósito</a>
                               </div>
                               <div class="text-right">
-                                <!-- <button mat-icon-button color="warn" (click)="showInfo()" matTooltip="Ver instrucciones">
-                                  Ver instrucciones
-                              </button> -->
-                              <a class="showInfo" (click)="showInfo()" matTooltip="Ver instrucciones"><u>Ver instrucciones</u></a>
+                                <a class="showInfo" (click)="showInfo()" matTooltip="Ver instrucciones"><u>Ver instrucciones</u></a>
                               </div>
                             </div>
                         </mat-card-content>
@@ -112,7 +110,7 @@
                         (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
                         <div fxLayout="col wrap">
-                          <mat-label>Importe: </mat-label>
+                          <mat-label>Tu oferta: </mat-label>
                           <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
                         </div>
 
@@ -124,51 +122,34 @@
                         </div>
 
                         <div fxLayout="col wrap">
-                          <mat-label>Comprobande de depósito</mat-label>
+                          <mat-label>Subir justificante de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div>
 
-                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary">Hacer oferta</button>
+                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
                       </form>
 
-                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="p-3 mt-4 fc-primary">
-                        <div >
-                          Inicio:
+                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="fc-primary mt-6">
+                        <div fxLayout="row">
+                          <div><mat-icon>date_range</mat-icon></div>
+                          <span class="ml-1">Inicio: {{ property?.start_date }}h</span>
                         </div>
-                        <div>
-                          Fin:
+                        <div fxLayout="row">
+                          <div><mat-icon>date_range</mat-icon></div>
+                          <span>Fin: {{ property?.end_date }}h</span>
                         </div>
                       </div>
 
-                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="fc-primary">
-
-                        <div fxLayout="row">
-                          <div>
-                            <mat-icon>date_range</mat-icon></div>
-                          <div>
-                          </div>
-                            {{ property?.start_date }}
-                          </div>
-                        <div fxLayout="row">
-                          <span>
-                            <mat-icon>date_range</mat-icon>
-                          </span>
-                          <span>
-                            {{ property?.end_date }}
-                          </span>
-                        </div>
-                      </div>
-
-                      <!-- Conoce proceso de compra -->
                       <div class="p-3 mt-3 text-center">
-                        <p class="fs-1x fw-400 fc-primary">Conoce el proceso de compra <mat-icon color="primary">arrow_right_alt</mat-icon></p>
+                        <p class="fs-8x fw-600 fc-primary uppercase">Conoce el proceso de compra
+                          <img src="/assets/images/icons/arrow_right.svg">
+                          <!-- <mat-icon color="primary">arrow_right_alt</mat-icon> --></p>
                         <div class="p-0 pt-2 fc-primary">
-                            <p>Habla con nosotros</p>
+                            <p class="fs-0-8x">Habla con nosotros</p>
                             <p class="fw-700 fs-2x">911 254 530</p>
                         </div>
                       </div>
                     </div>
-
 
                     <!-- Contact form -->
                     <div class="brd p-3">
@@ -281,8 +262,8 @@
                   <h3 class="fw-700 fs-1x">Condiciones particulares</h3>
                   <mat-card-content class="pt-2">
                     <ol>
-                      <li>Valoración: {{ property.appraisal_value | currency : 'EUR' }}</li>
-                      <li>Precio mínimo: {{ property.start_price | currency : 'EUR' }}</li>
+                      <li>Valoración: {{ property?.appraisal_value | currency : 'EUR' }}</li>
+                      <li>Precio mínimo: {{ property?.start_price | currency : 'EUR' }}</li>
                       <!-- <li>Impuestos y gastos: </li>
                       <li>Situación posesoria: </li>
                       <li>Visitas: </li> -->
@@ -300,6 +281,10 @@
                         </google-map>
                     </mat-card-content>
                 </mat-card>
+                <!-- Debug -->
+                <div>
+                 {{property|json}}
+                </div>
 
                 <!-- Expansion panels -->
                 <!-- <mat-card class="p-3 mt-3">
