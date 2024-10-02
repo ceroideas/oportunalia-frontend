@@ -142,6 +142,7 @@ export class PropertyComponent implements OnInit {
   }
 
   public calculateLeftTime(): void {
+    console.log('this.calculateLeftTime()');
     const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
     const timeToEnd: any = new Date(this.property.end_date);    
 
@@ -193,6 +194,7 @@ export class PropertyComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+    this.calculateLeftTime();
     this.config = {
       observer: false,
       slidesPerView: 1,

@@ -34,7 +34,6 @@ export class PropertyItemComponent implements OnInit {
 
   ngAfterViewInit(){
     this.initCarousel();
-    this.calculateLeftTime();
     // this.appService.getAddress(this.property.location.lat, this.property.location.lng).subscribe(data=>{
     //   console.log(data['results'][0]['formatted_address']);
     //   this.address = data['results'][0]['formatted_address'];
