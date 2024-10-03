@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, ViewChildren, QueryList } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import moment from 'moment';
 import { SwiperConfigInterface, SwiperDirective } from 'src/app/theme/components/swiper/swiper.module';
@@ -47,15 +47,24 @@ export class PropertyComponent implements OnInit {
   auction_type: string = "";
   representations: any[] = [];
 
+
+  /* depositFulfilled = false;
+  userVerified = false;
+  auctionFavorite = false;
+  auctionEnded = true;
+  currentRoute=""; */
+
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               private activatedRoute: ActivatedRoute,
               private embedService: EmbedVideoService,
               public fb: UntypedFormBuilder,
-              public userService: UserService,  
-              public snackBar: MatSnackBar,            
+              public userService: UserService,
+              public snackBar: MatSnackBar,
               public sanitizer: DomSanitizer,
-              private domHandlerService: DomHandlerService) {
+              private domHandlerService: DomHandlerService,
+              public route: ActivatedRoute,
+) {
     this.settings = this.appSettings.settings;
     this.depositForm = this.fb.group({
       file: ['', [Validators.required]], 
@@ -67,7 +76,7 @@ export class PropertyComponent implements OnInit {
       import: ['', [Validators.required, Validators.minLength(1)]],
       representation_id: ['', [Validators.required]],
     });
-  }  
+  }
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
@@ -106,13 +115,13 @@ export class PropertyComponent implements OnInit {
   @HostListener('window:resize')
   public onWindowResize():void {
     (this.domHandlerService.window?.innerWidth < 960) ? this.sidenavOpen = false : this.sidenavOpen = true;
-  }  
-  
+  }
+
   public onBidFormSubmit(values: object) {
-    
+
     if (this.bidForm.valid) {
       const formInfo = new FormData();
-  
+
       for (const key in this.bidForm.value) {
         formInfo.append(key, this.bidForm.value[key]);
       }
@@ -162,7 +171,7 @@ export class PropertyComponent implements OnInit {
         this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
       });
 
-    }    
+    }
   }
 
   public onRepresentationChange(representationId) {
@@ -183,21 +192,31 @@ export class PropertyComponent implements OnInit {
 
     const interval = setInterval(() => {
 
+    const interval = setInterval(() => {
+      console.log("Load calculateLeftTime setInterval");
       try {
+        console.log("Load calculateLeftTime try");
         let leftTime: any = timeToEnd - (new Date() as any);
-        const hours = moment(leftTime).format("HH:mm:ss"); 
-        const days = moment(leftTime).format("DD"); 
+        const hours = moment(leftTime).format("HH:mm:ss");
+        const days = moment(leftTime).format("DD");
+
+        console.log("Time left");
+        console.log(leftTime);
 
         if (leftTime <= 0) {
           clearInterval(interval);
-        }          
-                
-        propertyCard.textContent = `${ days }D ${ hours }`;  
+        }
+
+        propertyCard.textContent = `${ days }D ${ hours }`;
       } catch (e) {
         console.log(e);
         clearInterval(interval);
       }
-    }, 1000);        
+    }, 1000);
+
+    console.log("Tiempo para finalizar: ");
+    console.log(timeToEnd);
+
   }
 
   public getPropertyById(id: number){
@@ -350,6 +369,7 @@ export class PropertyComponent implements OnInit {
   public onContactFormSubmit(values:Object){
     if (this.contactForm.valid) {
       console.log(values);
+      this.showConfirmation();
     }
   }
 
@@ -368,6 +388,12 @@ export class PropertyComponent implements OnInit {
 
   public showInfo(){
     const message = 'deposit';
-    let dialogRef = this.appService.showInfoMessage(message);  }
+    let dialogRef = this.appService.showInfoMessage(message);
+  }
+
+  public showConfirmation(){
+    const message = 'enviado';
+    let dialogRef = this.appService.showInfoMessage(message);
+  }
 
 }

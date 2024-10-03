@@ -10,12 +10,22 @@ import { AppService } from 'src/app/app.service';
 })
 export class UserMenuComponent implements OnInit {
 
+  userData: any = {};
+
   constructor(
-    public appService: AppService, 
+    public appService: AppService,
     public userService: UserService,
     private router: Router) { }
 
-  ngOnInit() {    
+  ngOnInit() {
+
+    this.userService.getUserData().subscribe(({ response }) => {
+      this.userData = response;
+
+      });
+
+      console.log("OnInit");
+      console.log(this.userData);
   }
 
   logout() {
