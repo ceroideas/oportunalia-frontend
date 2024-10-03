@@ -6,18 +6,13 @@
       <span [style.background-color]="getStatusBgColor(property.type)"
               [style.color]="getStatusColor(property.type)">{{property.type}}</span>
     </div>
-    <div fxLayout="row wrap" class="property-discount pt-3 pr-3">
+    <div *ngIf="property?.appraisal_value > 1" fxLayout="row wrap" class="property-discount pt-3 pr-3">
       <span [style.background-color]="getStatusBgColor('discount')"
-              [style.color]="getStatusColor('discount')">78 %</span>
+              [style.color]="getStatusColor('discount')">
+              -{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}%
+      </span>
     </div>
   </div>
-
-    <!-- <div fxLayout="row wrap" class="property-status pt-3">
-            <span [style.background-color]="getStatusBgColor(property.status)"
-            [style.color]="getStatusColor(property.status)">{{property.status}}</span>
-            <span [style.background-color]="getStatusBgColor(property.type)"
-            [style.color]="getStatusColor(property.type)">{{property.type}}</span>
-    </div> -->
 
     <!-- Carrusel imagenes -->
     <div class="pt-3">
@@ -187,7 +182,6 @@
               <p class="btn-title fw-600 mb-3"><a [routerLink]="['/properties', property.link_rewrite]" mat-stroked-button color="primary" class="uppercase">Ver detalles</a></p>
             </div>
         </div>
-
     </div>
 
 </mat-card>

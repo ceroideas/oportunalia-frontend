@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, ViewChildren, QueryList } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import moment from 'moment';
 import { SwiperConfigInterface, SwiperDirective } from 'src/app/theme/components/swiper/swiper.module';
@@ -46,6 +46,13 @@ export class PropertyComponent implements OnInit {
   auction_type: string = "";
   representations: any[] = [];
 
+
+  /* depositFulfilled = false;
+  userVerified = false;
+  auctionFavorite = false;
+  auctionEnded = true;
+  currentRoute=""; */
+
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               private activatedRoute: ActivatedRoute,
@@ -54,7 +61,9 @@ export class PropertyComponent implements OnInit {
               public userService: UserService,
               public snackBar: MatSnackBar,
               public sanitizer: DomSanitizer,
-              private domHandlerService: DomHandlerService) {
+              private domHandlerService: DomHandlerService,
+              public route: ActivatedRoute,
+) {
     this.settings = this.appSettings.settings;
     this.bidForm = this.fb.group({
       file: ['', [Validators.required]],
@@ -142,15 +151,20 @@ export class PropertyComponent implements OnInit {
   }
 
   public calculateLeftTime(): void {
+    console.log("Load calculateLeftTime");
     const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
     const timeToEnd: any = new Date(this.property.end_date);
 
     const interval = setInterval(() => {
-
+      console.log("Load calculateLeftTime setInterval");
       try {
+        console.log("Load calculateLeftTime try");
         let leftTime: any = timeToEnd - (new Date() as any);
         const hours = moment(leftTime).format("HH:mm:ss");
         const days = moment(leftTime).format("DD");
+
+        console.log("Time left");
+        console.log(leftTime);
 
         if (leftTime <= 0) {
           clearInterval(interval);
@@ -162,6 +176,10 @@ export class PropertyComponent implements OnInit {
         clearInterval(interval);
       }
     }, 1000);
+
+    console.log("Tiempo para finalizar: ");
+    console.log(timeToEnd);
+
   }
 
   public getPropertyById(id: number){
