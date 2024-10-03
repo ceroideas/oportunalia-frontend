@@ -34,6 +34,7 @@ export class PropertyComponent implements OnInit {
   public agent:any;
   public selectedImage: Blob;
   public mortgageForm: UntypedFormGroup;
+  public depositForm: UntypedFormGroup;
   public bidForm: UntypedFormGroup;
   public monthlyPayment:any;
   public contactForm: UntypedFormGroup;
@@ -65,8 +66,13 @@ export class PropertyComponent implements OnInit {
               public route: ActivatedRoute,
 ) {
     this.settings = this.appSettings.settings;
+    this.depositForm = this.fb.group({
+      file: ['', [Validators.required]], 
+      /*import: ['', [Validators.required, Validators.minLength(1)]],
+      representation_id: ['', [Validators.required]],*/
+    });
     this.bidForm = this.fb.group({
-      file: ['', [Validators.required]],
+      /*file: ['', [Validators.required]], */
       import: ['', [Validators.required, Validators.minLength(1)]],
       representation_id: ['', [Validators.required]],
     });
@@ -117,22 +123,52 @@ export class PropertyComponent implements OnInit {
       const formInfo = new FormData();
 
       for (const key in this.bidForm.value) {
+        formInfo.append(key, this.bidForm.value[key]);
+      }
+
+      console.log(formInfo, values);
+      
+      this.userService.bid(formInfo, this.property.link_rewrite).subscribe((response) => {
+        console.log(response);
+        this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
+        let id = this.property.link_rewrite;
+        this.property = null;
+        this.bidForm.value['import'] = null;
+        this.getPropertyById(id);
+
+      }, (error) => {
+        console.log(error);
+        this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
+      });
+
+    }    
+  }
+
+  public onDepositFormSubmit(values: object) {
+
+    console.log(this.depositForm.value,this.depositForm.valid)
+    
+    if (this.depositForm.valid) {
+      const formInfo = new FormData();
+  
+      for (const key in this.depositForm.value) {
         if (values.hasOwnProperty(key) && key !== 'file') {
-          formInfo.append(key, this.bidForm.value[key]);
+          formInfo.append(key, this.depositForm.value[key]);
         } else {
           formInfo.append(key, this.selectedImage, this.selectedImage.name);
         }
       }
 
       console.log(formInfo, values);
-
-      this.userService.bid(formInfo, this.property.link_rewrite).subscribe((response) => {
+      
+      this.userService.deposit(formInfo, this.property.link_rewrite).subscribe((response) => {
         console.log(response);
-        this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+        this.snackBar.open('Deposito enviado exitosamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
       }, (error) => {
         console.log(error);
-        this.snackBar.open('Ha ocurrido un error!', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
+        this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
       });
 
     }
@@ -150,10 +186,11 @@ export class PropertyComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(value);
   }
 
-  public calculateLeftTime(): void {
-    console.log("Load calculateLeftTime");
-    const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
-    const timeToEnd: any = new Date(this.property.end_date);
+  public calculateLeftTime1(): void {
+    const propertyCard: any = document.querySelector(`.left-time1-${ this.property.guid }`);
+    const timeToEnd: any = new Date(this.property.end_date.split("-").reverse().join("-"));    
+
+    const interval = setInterval(() => {
 
     const interval = setInterval(() => {
       console.log("Load calculateLeftTime setInterval");
@@ -185,12 +222,17 @@ export class PropertyComponent implements OnInit {
   public getPropertyById(id: number){
     this.appService.getPropertyById(id).subscribe(data=>{
 
+      console.log('getPropertyById')
+
       this.property = data.response;
-      this.property.start_date = moment(this.property.start_date).format('DD/MM/YYYY HH:mm:ss');
-      this.property.end_date = moment(this.property.end_date).format('DD/MM/YYYY HH:mm:ss');
-      /* this.embedVideo = this.embedService.embed(this.property.videos[1].link); */
-      /* this.lat = +this.property?.location.lat;
-      this.lng = +this.property?.location.lng; */
+      setTimeout(()=>{
+        this.calculateLeftTime1();
+      },1000);
+      this.property.start_date = moment(this.property.start_date).format('DD-MM-YYYY');
+      this.property.end_date = moment(this.property.end_date).format('DD-MM-YYYY');
+      this.embedVideo = this.property.videos.length ? this.embedService.embed(this.property.videos[1].link) : null;
+      this.lat = +this.property.location.lat;
+      this.lng = +this.property?.location.lng;
       if (this.property.auction_type_id ==1){
         this.auction_type = "Subasta";
       }else if(this.property.auction_type_id ==2){

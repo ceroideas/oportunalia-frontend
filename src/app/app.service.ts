@@ -47,6 +47,11 @@ export class AppService {
               private domHandlerService: DomHandlerService,
               public userService: UserService) { }
 
+  getToken() {
+    const token = localStorage.getItem('token');
+    return token;
+  }
+
   public getProperties(): Observable<any>{
 
     const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc',
@@ -59,11 +64,11 @@ export class AppService {
   }
 
   public getPropertyById(id): Observable<any>{
-    return this.http.get(GlobalConstants.apiURL + `/auction/${ id }`);
+    return this.http.get(GlobalConstants.apiURL + `/auction/${ id }`, { headers: { 'Authorization': this.getToken()}, });
   }
 
   public getPostById(id): Observable<any>{
-    return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }`);
+    return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }`, { headers: { 'Authorization': this.getToken()}, });
   }
 
   public getFeaturedProperties(): Observable<any>{
