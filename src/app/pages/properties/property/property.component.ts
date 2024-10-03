@@ -34,6 +34,7 @@ export class PropertyComponent implements OnInit {
   public agent:any;
   public selectedImage: Blob;
   public mortgageForm: UntypedFormGroup;
+  public depositForm: UntypedFormGroup;
   public bidForm: UntypedFormGroup;
   public monthlyPayment:any;
   public contactForm: UntypedFormGroup;
@@ -56,8 +57,13 @@ export class PropertyComponent implements OnInit {
               public sanitizer: DomSanitizer,
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
-    this.bidForm = this.fb.group({
+    this.depositForm = this.fb.group({
       file: ['', [Validators.required]], 
+      /*import: ['', [Validators.required, Validators.minLength(1)]],
+      representation_id: ['', [Validators.required]],*/
+    });
+    this.bidForm = this.fb.group({
+      /*file: ['', [Validators.required]], */
       import: ['', [Validators.required, Validators.minLength(1)]],
       representation_id: ['', [Validators.required]],
     });
@@ -108,8 +114,38 @@ export class PropertyComponent implements OnInit {
       const formInfo = new FormData();
   
       for (const key in this.bidForm.value) {
+        formInfo.append(key, this.bidForm.value[key]);
+      }
+
+      console.log(formInfo, values);
+      
+      this.userService.bid(formInfo, this.property.link_rewrite).subscribe((response) => {
+        console.log(response);
+        this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
+        let id = this.property.link_rewrite;
+        this.property = null;
+        this.bidForm.value['import'] = null;
+        this.getPropertyById(id);
+
+      }, (error) => {
+        console.log(error);
+        this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
+      });
+
+    }    
+  }
+
+  public onDepositFormSubmit(values: object) {
+
+    console.log(this.depositForm.value,this.depositForm.valid)
+    
+    if (this.depositForm.valid) {
+      const formInfo = new FormData();
+  
+      for (const key in this.depositForm.value) {
         if (values.hasOwnProperty(key) && key !== 'file') {
-          formInfo.append(key, this.bidForm.value[key]);
+          formInfo.append(key, this.depositForm.value[key]);
         } else {
           formInfo.append(key, this.selectedImage, this.selectedImage.name);
         }
@@ -117,13 +153,13 @@ export class PropertyComponent implements OnInit {
 
       console.log(formInfo, values);
       
-      this.userService.bid(formInfo, this.property.link_rewrite).subscribe((response) => {
+      this.userService.deposit(formInfo, this.property.link_rewrite).subscribe((response) => {
         console.log(response);
-        this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+        this.snackBar.open('Deposito enviado exitosamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
       }, (error) => {
         console.log(error);
-        this.snackBar.open('Ha ocurrido un error!', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
+        this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
       });
 
     }    

@@ -114,7 +114,14 @@ export class UserService {
   }
 
   public bid(values: any, guid: string) {
-    const paths: string[] = [`/auction/${ guid }/bid`, `/auction/${ guid }/deposit`];
+    const paths: string[] = [`/auction/${ guid }/bid`];
+    return forkJoin(paths.map((path: string) => 
+      this.http.post(GlobalConstants.apiURL + path, values, { headers: { 'Authorization': this.getToken()}, }), 
+      catchError(error => throwError(() => error))));   
+  }
+
+  public deposit(values: any, guid: string) {
+    const paths: string[] = [`/auction/${ guid }/deposit`];
     return forkJoin(paths.map((path: string) => 
       this.http.post(GlobalConstants.apiURL + path, values, { headers: { 'Authorization': this.getToken()}, }), 
       catchError(error => throwError(() => error))));   
