@@ -37,17 +37,30 @@
         min-height: auto;
     }
     .property-status{
-        position: absolute;
+        position: relative;  /* absolute */
         z-index: 2;
         span{
-            padding: 3px 6px;
+            padding: 6px 20px;
             margin: 4px;
-            font-size: 12px;
+            font-size: 14px;
             color: #fff;
-            font-weight: 500;
+            font-weight: 400;
             text-transform: uppercase;
-            border-radius: 4px;
+            border-radius: 14px;
         }
+    }
+    .property-discount{
+      position: relative;  /* absolute */
+      z-index: 2;
+      span{
+          padding: 6px 20px;
+          margin: 4px;
+          font-size: 14px;
+          color: #fff;
+          font-weight: 400;
+          text-transform: uppercase;
+          border-radius: 30px;
+      }
     }
     .title{
         font-size: 18px;

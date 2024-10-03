@@ -1,13 +1,52 @@
 <mat-card class="property-item p-0" [ngClass]="[viewType + '-item', 'column-'+column]" [class.full-width-page]="fullWidthPage" fxLayout="row wrap">
 
+
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
+    <div fxLayout="row wrap" class="property-status pt-3 pl-3">
+      <span [style.background-color]="getStatusBgColor(property.type)"
+              [style.color]="getStatusColor(property.type)">{{property.type}}</span>
+    </div>
+    <div *ngIf="property?.appraisal_value > 1" fxLayout="row wrap" class="property-discount pt-3 pr-3">
+      <span [style.background-color]="getStatusBgColor('discount')"
+              [style.color]="getStatusColor('discount')">
+              -{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}%
+      </span>
+    </div>
+  </div>
+
+    <!-- Carrusel imagenes -->
+    <div class="pt-3">
+      <div *ngIf="title.length>1">
+        <!-- titulo en busquedas -->
+        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary">{{title}}</span></a></h1>
+        <h3 *ngIf="title.length<=34">&nbsp;</h3>
+      </div>
+
+      <div *ngIf="title.length<1">
+        <!-- Titulo en home -->
+        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary">{{property.title}}</span></a></h1>
+        <h3 *ngIf="property.title.length<=33">&nbsp;</h3>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
+          <mat-icon class="text-muted">location_on</mat-icon>
+          <!-- <span>{{property.formattedAddress}}</span> -->
+          <span>{{property?.province}}, {{property?.city}}</span>
+      </div>
+    </div>
+
     <div fxFlex="100" fxShrink="3" [fxFlex.gt-sm]="(viewType=='list') ? 40 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="thumbnail-section">
 
         <!-- Etiqueta de estado -->
-        <div fxLayout="row wrap" class="property-status">
-            <span *ngFor="let status of property.propertyStatus"
+        <!-- <div fxLayout="row wrap" class="property-status"> -->
+            <!-- <span *ngFor="let status of property.propertyStatus"
                         [style.background-color]="getStatusBgColor(status)"
-                        [style.color]="getStatusColor(status)">{{status}}</span>
-        </div>
+                        [style.color]="getStatusColor(status)">{{status}}</span> -->
+            <!-- <span [style.background-color]="getStatusBgColor(property.status)"
+            [style.color]="getStatusColor(property.status)">{{property.status}}</span>
+            <span [style.background-color]="getStatusBgColor(property.type)"
+            [style.color]="getStatusColor(property.type)">{{property.type}}</span> -->
+        <!-- </div> -->
 
 
         <!-- <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.id]">{{title}}</a></h1>
@@ -34,13 +73,15 @@
             </div>
         </div>
 
+
         <div class="control-icons">
             <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                 <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
             </button>
+            <!-- comparador
             <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Añadir a comparador">
                 <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
-            </button>
+            </button> -->
         </div>
 
     </div>
@@ -52,22 +93,20 @@
             <mat-card-content class="mb-0 p-0">
 
 
-                 <div *ngIf="title.length>1">
-                  <!-- titulo en busquedas -->
+                <!-- <div *ngIf="title.length>1">
                   <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.link_rewrite]">{{title}}</a></h1>
                   <h3 *ngIf="title.length<=28">&nbsp;</h3>
                 </div>
-                 <div *ngIf="title.length<1">
-                  <!-- Titulo en home -->
+
+                <div *ngIf="title.length<1">
                   <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.link_rewrite]">{{property.title}}</a></h1>
                   <h3 *ngIf="property.title.length<=29">&nbsp;</h3>
-                 </div>
+                </div>
 
                 <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
                     <mat-icon class="text-muted">location_on</mat-icon>
-                    <!-- <span>{{property.formattedAddress}}</span> -->
                     <span>{{property?.province}}, {{property?.city}}</span>
-                </div>
+                </div> -->
 
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
                   <div>Tasación: </div>
@@ -143,7 +182,6 @@
               <p class="btn-title fw-600 mb-3"><a [routerLink]="['/properties', property.link_rewrite]" mat-stroked-button color="primary" class="uppercase">Ver detalles</a></p>
             </div>
         </div>
-
     </div>
 
 </mat-card>
