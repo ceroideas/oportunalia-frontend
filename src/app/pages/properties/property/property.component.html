@@ -3,12 +3,12 @@
   <app-header-image *ngIf="settings.header == 'image'" property.auction_type_id == 1 -->
 <!-- <app-header-image *ngIf="property.auction_type_id == 1" -->
 
-  <app-header-image
+<app-header-image
                   [backgroundImage]="'assets/images/others/property.jpeg'"
                   [bgImageAnimate]="false"
                   [contentOffsetToTop]="true"
                   [title]="''"
-                  [desc]="'Cesión remate Oportunidades inmobiliarias con grandes descuentos'">
+                  [desc]="'Oportunidades inmobiliarias con grandes descuentos'">
 </app-header-image>
 
 <div class="px-3">
@@ -17,14 +17,15 @@
         <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4">
           <div>
 
-              <div *ngIf="this.property?.auction_type_id==1" class="type-subasta">{{this.auction_type}}</div>
-              <div *ngIf="this.property?.auction_type_id==2" class="type-venta">{{this.auction_type}}</div>
-              <div *ngIf="this.property?.auction_type_id==3" class="type-cesion">{{this.auction_type}}</div>
+              <div *ngIf="this.property?.auction_type_id==1" class="type-subasta">Subasta</div>
+              <div *ngIf="this.property?.auction_type_id==2" class="type-venta">Venta directa</div>
+              <div *ngIf="this.property?.auction_type_id==3" class="type-cesion">Cesión de remate</div>
+
               <h2 class="uppercase fc-primary fw-700 fs-1-5x pb-3" ngClass.xs="text-center">{{property?.title}}</h2>
               <div fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
-                  <mat-icon class="text-muted">location_on</mat-icon>
-                  <div class="mr-7">{{property?.neighborhood}}, {{property?.city}}</div>
-                  <div>Referencia: {{property?.auto}}</div>
+                  <mat-icon class="fc-primary">location_on</mat-icon>
+                  <div class="mr-7 fc-primary">{{property?.city}}, {{property?.province}} <!-- {{property|json}} --> </div>
+                  <div class="fc-primary">Referencia: {{property?.auto}}</div>
               </div>
           </div>
 
@@ -32,9 +33,10 @@
             <!--  -->
               <!-- <p>Descuento: {{(((property?.appraisal_value.sale-property?.start_price.sale)*100)/property?.appraisal_value.sale) | currency : 'EUR' : 'symbol' : '1.0'}}</p> -->
               <div *ngIf="property?.appraisal_value > 1" class="btn">
-                <span class="btn-title fw-700 mb-3 fs-1-5x p-2">-{{(((property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
+                <span class="btn-title fw-700 mb-3 fs-1-5x p-2">-{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
+
               </div>
-              <div *ngIf="property?.appraisal_value > 1" class="pt-6 pb-6">1</div>
+              <!-- <div *ngIf="property?.appraisal_value > 1" class="pt-6 pb-6">1</div> -->
               <!-- <p>Descuento: {{(((property?.appraisal_value.sale-property?.start_price.sale)*100)/property?.appraisal_value.sale) | number:'1.0-0'}}%</p> -->
            <!--    <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
                   <span *ngIf="property?.priceDollar.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
@@ -85,34 +87,32 @@
                         <p class="fs-1x fw-500 fc-primary">¿Quieres hacer una oferta?</p>
                         <p>Mi última oferta: {{property.my_last_bid | currency : 'EUR'}}</p>
                       </div>
+                      <!-- Comprobamos si el usuario esta registrado -->
                       <mat-card *ngIf="!this.userService.isLoggedIn" class="p-3 mt-3 text-center bg-sky">
-                        <!-- <p class="fs-1x fc-secondary"></p> -->
                         <div class="btn">
-                          <h2 class="btn-title fw-600 mt-3 mb-3"><a href="/register">Registrate para participar</a></h2>
+                          <p class="btn-title fs-0-8x fw-500 mt-3 mb-3 uppercase"><a href="/register">Regístrate para participar</a></p>
                         </div>
                         <mat-card-content class="p-0 pt-2 fc-primary">
                             <a href="/login"><u>INICIA SESIÓN</u></a>
                             <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary">
                               <div class="text-left">
-                                <p>Depósito</p>
+                                <a>Depósito</a>
                               </div>
                               <div class="text-right">
-                                <!-- <button mat-icon-button color="warn" (click)="showInfo()" matTooltip="Ver instrucciones">
-                                  Ver instrucciones
-                              </button> -->
-                              <a class="showInfo" (click)="showInfo()" matTooltip="Ver instrucciones"><u>Ver instrucciones</u></a>
+                                <a class="showInfo" (click)="showInfo()" matTooltip="Ver instrucciones"><u>Ver instrucciones</u></a>
                               </div>
                             </div>
                         </mat-card-content>
                       </mat-card>
 
+                      <!-- Form pujas -->
                       <form
                         *ngIf="this.userService.isLoggedIn && property.deposit_valid" class="gap-1 p-3 mt-3 bg-sky flx column"
                         [formGroup]="bidForm"
                         (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
                         <div fxLayout="col wrap">
-                          <mat-label>Importe: </mat-label>
+                          <mat-label>Tu oferta: </mat-label>
                           <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
                         </div>
 
@@ -128,7 +128,7 @@
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div> -->
 
-                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary">Hacer oferta</button>
+                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
                       </form>
 
                       <form
@@ -168,32 +168,25 @@
                       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="fc-primary">
 
                         <div fxLayout="row">
-                          <div>
-                            <mat-icon>date_range</mat-icon></div>
-                          <div>
-                          </div>
-                            {{ property?.start_date }}
-                          </div>
+                          <div><mat-icon>date_range</mat-icon></div>
+                          <span class="ml-1">Inicio: {{ property?.start_date }}h</span>
+                        </div>
                         <div fxLayout="row">
-                          <span>
-                            <mat-icon>date_range</mat-icon>
-                          </span>
-                          <span>
-                            {{ property?.end_date }}
-                          </span>
+                          <div><mat-icon>date_range</mat-icon></div>
+                          <span>Fin: {{ property?.end_date }}h</span>
                         </div>
                       </div>
 
-                      <!-- Conoce proceso de compra -->
                       <div class="p-3 mt-3 text-center">
-                        <p class="fs-1x fw-400 fc-primary">Conoce el proceso de compra <mat-icon color="primary">arrow_right_alt</mat-icon></p>
+                        <p class="fs-8x fw-600 fc-primary uppercase">Conoce el proceso de compra
+                          <img src="/assets/images/icons/arrow_right.svg">
+                          <!-- <mat-icon color="primary">arrow_right_alt</mat-icon> --></p>
                         <div class="p-0 pt-2 fc-primary">
-                            <p>Habla con nosotros</p>
+                            <p class="fs-0-8x">Habla con nosotros</p>
                             <p class="fw-700 fs-2x">911 254 530</p>
                         </div>
                       </div>
                     </div>
-
 
                     <!-- Contact form -->
                     <div class="brd p-3">
@@ -239,12 +232,13 @@
                 <mat-card class="p-3 mt-3">
                     <div class="main-carousel mb-3">
                         <div *ngIf="property" class="control-icons">
-                            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Add To Favorite">
+                            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                                 <mat-icon class="m-0">favorite_border</mat-icon>
                             </button>
+                            <!-- Comparador
                             <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Add To Compare">
                                 <mat-icon class="m-0">compare_arrows</mat-icon>
-                            </button>
+                            </button> -->
                         </div>
                         <div id="main-carousel" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
                             <div class="swiper-wrapper">
@@ -272,32 +266,49 @@
                 <!-- Fin card carrousel -->
 
                 <!-- Card Descipción -->
-                <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary">
+                <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="pl-4 pt-3 pr-3 pb-3 mt-4 fc-primary">
                   <div>
-                    <h3 class="fw-700 fs-1x">Descripción </h3>
+                    <h3 class="fw-700 fs-1x">Descripción</h3>
                     <div [innerHTML]="transform(property?.description)"></div>
                   </div>
-                  <div class="text-center">
+                  <!-- <div class="text-center">
                     <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
-                    <!-- <p>{{property.area.value}} {{property.area.unit}}</p> -->
                     <p>10 m</p>
                     <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
                     <p>{{property?.bedrooms}} Dormitorios</p>
                     <mat-icon class="mat-icon-sm" color="accent">check</mat-icon>
                     <p>{{property?.bathrooms}} Baños</p>
-                  </div>
+                  </div> -->
                 </mat-card>
 
                 <!-- Card Especificaciones técnicas -->
                 <mat-card class="p-3 mt-3 fc-primary">
                   <h3 class="fw-700 fs-1x">Especificaciones técnicas</h3>
                   <mat-card-content class="p-0 pt-2" [innerHTML]="transform(property?.technical_specifications)"></mat-card-content>
+                  <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
+                  <div *ngIf="this.userService.isLoggedIn">
+                    <span *ngIf="property?.technical_archive?.path">
+                      Consulta el documento completo en <a href="https://www.oportunalia.com/documents/{{property?.technical_archive.path}}" target="_blank">Especificaciones técnicas</a>
+                    </span>
+                    <span *ngIf="property?.technical_archive_two?.path">
+                      Consulta el documento completo en <a href="https://www.oportunalia.com/documents/{{property?.technical_archive_two.path}}" target="_blank">Especificaciones técnicas </a>
+                    </span>
+                  </div>
                 </mat-card>
 
                 <!-- Card Documentación -->
                 <mat-card class="p-3 mt-3 fc-primary">
                   <h3 class="fw-700 fs-1x">Documentación</h3>
                   <mat-card-content class="p-0 pt-2" [innerHTML]="transform(property?.land_registry)"></mat-card-content>
+                  <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
+                  <div *ngIf="this.userService.isLoggedIn">
+                    <span *ngIf="property?.land_registry_archive?.path">
+                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.land_registry_archive.path}}" target="_blank">Documentación</a>
+                    </span>
+                    <span *ngIf="property?.land_registry_archive_two?.path">
+                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.land_registry_archive_two.path}}" target="_blank">Documentación</a>
+                    </span>
+                  </div>
                 </mat-card>
 
                 <!-- Card condiciones particulares -->
@@ -305,14 +316,26 @@
                   <h3 class="fw-700 fs-1x">Condiciones particulares</h3>
                   <mat-card-content class="pt-2">
                     <ol>
-                      <li>Valoración: {{ property.appraisal_value | currency : 'EUR' }}</li>
-                      <li>Precio mínimo: {{ property.start_price | currency : 'EUR' }}</li>
+                      <li>Valoración: {{ property?.appraisal_value | currency : 'EUR' }}</li>
+                      <li>Precio mínimo: {{ property?.start_price | currency : 'EUR' }}</li>
                       <!-- <li>Impuestos y gastos: </li>
                       <li>Situación posesoria: </li>
                       <li>Visitas: </li> -->
                       <li>Honorarios entidad especializada: 3% del valor de compra + IVA</li>
                     </ol>
                   </mat-card-content>
+
+                  <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
+                  <div *ngIf="this.userService.isLoggedIn">
+                    <span *ngIf="property?.conditions_archive?.path">
+                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.conditions_archive.path}}" target="_blank">Condiciones particulares</a>
+                    </span>
+                    <span *ngIf="property?.conditions_archive_two?.path">
+                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.conditions_archive_two.path}}" target="_blank">Condiciones particulares</a>
+                    </span>
+                  </div>
+
+
                 </mat-card>
 
                 <!-- Mapa localizacion -->
@@ -324,6 +347,10 @@
                         </google-map>
                     </mat-card-content>
                 </mat-card>
+                <!-- Debug -->
+                <!-- <div>
+                 {{property|json}}
+                </div> -->
 
                 <!-- Expansion panels -->
                 <!-- <mat-card class="p-3 mt-3">
@@ -358,7 +385,7 @@
 <div class="section mt-3">
     <div class="px-3">
         <div class="theme-container">
-            <h1 class="section-title">Related properties</h1>
+            <h1 class="section-title">Otras propiedades</h1>
             <app-properties-carousel [properties]="relatedProperties"></app-properties-carousel>
         </div>
     </div>

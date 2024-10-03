@@ -54,14 +54,14 @@ export class AppService {
 
   public getProperties(): Observable<any>{
 
-    const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc', 
-      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', 
+    const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc',
       '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc'];
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
 
-    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));    
-  }  
+    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));
+  }
 
   public getPropertyById(id): Observable<any>{
     return this.http.get(GlobalConstants.apiURL + `/auction/${ id }`, { headers: { 'Authorization': this.getToken()}, });
@@ -112,9 +112,10 @@ export class AppService {
         }
       });
     }
-  }  
+  }
 
   public addToFavorites(property: any, direction){
+    console.log("app.service addToFavorites");
     this.userService.updateFavorite(property.link_rewrite.toString()).subscribe((_) => {
 
       if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
@@ -123,7 +124,7 @@ export class AppService {
 
       this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
         verticalPosition: 'top',
-        duration: 3000,        
+        duration: 3000,
         direction
       });
     });
@@ -225,7 +226,7 @@ export class AppService {
       { id: 2, name: 'Chicago' },
       { id: 3, name: 'Los Angeles' },
       { id: 4, name: 'Seattle' }
-    ] */  
+    ] */
     return this.http.get(GlobalConstants.apiURL + '/province/1');
   }
 
@@ -297,7 +298,7 @@ export class AppService {
   }
 
 
-  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){    
+  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){
 
     if(params){
 
@@ -307,9 +308,9 @@ export class AppService {
 
       if(params.propertyStatus && params.propertyStatus.length){
         let statuses: any[] = [];
-        params.propertyStatus.forEach((status: any) => { statuses.push(status.name) });                     
+        params.propertyStatus.forEach((status: any) => { statuses.push(status.name) });
 
-        let properties: any[] = [];        
+        let properties: any[] = [];
 
        /*  data.filter((property: any) =>
           property.propertyStatus.forEach((status: any) => {
@@ -323,14 +324,14 @@ export class AppService {
 
         for (let i = 0; i < data.length; i++) {
 
-          const { type } = data[i];          
+          const { type } = data[i];
 
-          if (!type) continue;          
+          if (!type) continue;
 
           for (let x = 0; x < params.propertyStatus.length; x++) {
 
             if (params.propertyStatus[x]?.name?.toUpperCase().trim() === type?.toUpperCase().trim()) {
-  
+
               properties.push(data[i]);
             }
           }
@@ -338,7 +339,7 @@ export class AppService {
 
         console.log(properties);
 
-        data = properties;         
+        data = properties;
 
       }
 
@@ -502,7 +503,7 @@ export class AppService {
       }
 
     }
-    console.log("app.service filterData: ");    
+    console.log("app.service filterData: ");
     this.sortData(sort, data);
     return this.paginator(data, page, perPage);
   }
