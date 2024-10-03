@@ -85,7 +85,7 @@
 
                       <div class="mt-3 text-center">
                         <p class="fs-1x fw-500 fc-primary">¿Quieres hacer una oferta?</p>
-                        <p>Mi última oferta: {{property.my_last_bid | currency : 'EUR'}}</p>
+                        <p *ngIf="property.my_last_bid">Mi última oferta: {{property.my_last_bid | currency : 'EUR'}}</p>
                       </div>
                       <!-- Comprobamos si el usuario esta registrado -->
                       <mat-card *ngIf="!this.userService.isLoggedIn" class="p-3 mt-3 text-center bg-sky">
