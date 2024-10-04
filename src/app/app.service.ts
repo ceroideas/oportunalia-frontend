@@ -64,11 +64,15 @@ export class AppService {
   }
 
   public getPropertyById(id): Observable<any>{
-    return this.http.get(GlobalConstants.apiURL + `/auction/${ id }`, { headers: { 'Authorization': this.getToken()}, });
+    if (this.getToken()) {
+      return this.http.get(GlobalConstants.apiURL + `/auction/${ id }`, { headers: { 'Authorization': this.getToken()}, });
+    }else{
+      return this.http.get(GlobalConstants.apiURL + `/auction/${ id }` );
+    }
   }
 
   public getPostById(id): Observable<any>{
-    return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }`, { headers: { 'Authorization': this.getToken()}, });
+    return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }` );
   }
 
   public getFeaturedProperties(): Observable<any>{

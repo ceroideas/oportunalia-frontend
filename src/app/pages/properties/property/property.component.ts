@@ -188,7 +188,7 @@ export class PropertyComponent implements OnInit {
 
   public calculateLeftTime1(): void {
     const propertyCard: any = document.querySelector(`.left-time1-${ this.property.guid }`);
-    const timeToEnd: any = new Date(this.property.end_date.split("-").reverse().join("-"));
+    const timeToEnd: any = new Date(this.property.end_date_original);
 
     const interval = setInterval(() => {
 
@@ -221,6 +221,7 @@ export class PropertyComponent implements OnInit {
       },1000);
 
       this.property.start_date = moment(this.property.start_date).format('DD-MM-YYYY');
+      this.property.end_date_original = this.property.end_date;
       this.property.end_date = moment(this.property.end_date).format('DD-MM-YYYY');
 
 
