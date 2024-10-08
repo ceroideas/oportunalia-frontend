@@ -81,6 +81,10 @@ export class AppService {
     }
   }
 
+  public saveInterests(data): Observable<any>{
+    return this.http.post(GlobalConstants.apiURL + `/interests`, data, { headers: { 'Authorization': this.getToken()}, });
+  }
+
   public getPostById(id): Observable<any>{
     return this.http.get<Post>(`${ GlobalConstants.apiURL }/blog/${ id }` );
   }

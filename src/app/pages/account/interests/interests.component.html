@@ -21,59 +21,59 @@
       <!-- <div class="interes" [hidden]="hideList.hideViviendas">
         <input type="checkbox" class="form-check-input" [checked]="checkList.checkViviendas" formControlName="pref2"><span>Viviendas</span>
       </div> -->
-      <div class="interes" >
-        <mat-checkbox color="primary">Vivivendas</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="viviendas" color="primary">Viviendas</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Trasteros</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="trasteros" color="primary">Trasteros</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">aplicaciones informáticas</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="aplicaciones_informaticas" color="primary">Aplicaciones Informáticas</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Solares</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="solares" color="primary">Solares</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Unidades Productivas</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="unidades_productivas" color="primary">Unidades Productivas</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Otros</mat-checkbox>
-      </div>
-    </div>
-
-    <div fxFlex="100" fxFlex.gt-xs="33.3" class="pr-3 pl-3">
-      <div class="interes" >
-        <mat-checkbox color="primary">Naves Industriales</mat-checkbox>
-      </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Locales</mat-checkbox>
-      </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Derechos de cobro y créditos</mat-checkbox>
-      </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Vehículos</mat-checkbox>
-      </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Oficinas</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="otros" color="primary">Otros</mat-checkbox>
       </div>
     </div>
 
     <div fxFlex="100" fxFlex.gt-xs="33.3" class="pr-3 pl-3">
-      <div class="interes" >
-        <mat-checkbox color="primary">Garajes</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="naves_industriales" color="primary">Naves Industriales</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Lotes de mobiliario</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="locales" color="primary">Locales</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Maquinaria</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="derechos_cobro_creditos" color="primary">Derechos de Cobro y Créditos</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Obras de Arte y Antigüedades</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="vehiculos" color="primary">Vehículos</mat-checkbox>
       </div>
-      <div class="interes" >
-        <mat-checkbox color="primary">Rústicas</mat-checkbox>
+      <div class="interes">
+        <mat-checkbox formControlName="oficinas" color="primary">Oficinas</mat-checkbox>
+      </div>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-xs="33.3" class="pr-3 pl-3">
+      <div class="interes">
+        <mat-checkbox formControlName="garajes" color="primary">Garajes</mat-checkbox>
+      </div>
+      <div class="interes">
+        <mat-checkbox formControlName="lotes_mobiliario" color="primary">Lotes de Mobiliario</mat-checkbox>
+      </div>
+      <div class="interes">
+        <mat-checkbox formControlName="maquinaria" color="primary">Maquinaria</mat-checkbox>
+      </div>
+      <div class="interes">
+        <mat-checkbox formControlName="obras_arte_antiguedades" color="primary">Obras de Arte y Antigüedades</mat-checkbox>
+      </div>
+      <div class="interes">
+        <mat-checkbox formControlName="rusticas" color="primary">Rústicas</mat-checkbox>
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
-          <mat-select placeholder="Select">
+          <mat-select formControlName="ubicacion" placeholder="Select">
             <mat-option value="0">Todas</mat-option>
             <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
           </mat-select>
@@ -106,9 +106,9 @@
       <div>
         <mat-form-field>
           <mat-label>Inversión</mat-label>
-          <mat-select placeholder="Select" >
+          <mat-select formControlName="inversion" placeholder="Select" >
             <mat-option value="0" >Inversión</mat-option>
-            <mat-option value="0" >Residencia propia</mat-option>
+            <mat-option value="1" >Residencia propia</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -125,7 +125,7 @@
       <div fxLayout="row">
         <label class="fw-400 pr-3">500 &euro;</label>
         <mat-slider min="500" max="1000000" step="500" discrete [displayWith]="formatLabel">
-          <input matSliderThumb>
+          <input formControlName="presupuesto" matSliderThumb>
         </mat-slider>
         <label class="fw-400 pl-3">1.000.000 &euro;</label>
       </div>
@@ -142,7 +142,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Tipo de propiedad</mat-label>
-          <mat-select placeholder="Select">
+          <mat-select formControlName="activos" placeholder="Select">
             <mat-option value="0" >Todos</mat-option>
             <mat-option value="1" >Subasta</mat-option>
             <mat-option value="2" >Venta directa</mat-option>
