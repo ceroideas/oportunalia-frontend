@@ -21,3 +21,20 @@
 .mat-expansion-panel-header {
   padding:0 0 0 24px;
 }
+
+.mat-panel-title {
+  justify-content: space-between; /* Align items horizontally */
+}
+
+.mat-panel-title .material-icons {
+  display: flex; /* Make the icons inline-block elements */
+  align-items: center; /* Vertically center the icons */
+  margin: 0 5px; /* Add spacing between the icons */
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none !important;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}

@@ -304,7 +304,7 @@ export class AppService {
 
   public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null){
 
-    if (type1) {
+    if (type1 && type1 != '/properties') {
 
       if (type1 == '/auction') {
         type1 = 'Subasta';

@@ -1,88 +1,93 @@
-<app-header-image [backgroundImage]="'assets/images/others/faqs.png'" [bgImageAnimate]="false"
-  [contentOffsetToTop]="true" [title]="''" [desc]="'Oportunidades inmobiliarias con grandes descuentos'">
-</app-header-image>
-
-
-<div class="p-3">
-  <div class="theme-container">
-    <div class="my-3">
-      <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
-        <h1 class="fc-primary pb-3">Preguntas frecuentes</h1>
-      </div>
-
-      <div fxLayout="row wrap" fxLayoutAlign="space-around">
-        <div fxFlex="100" fxFlex.gt-xs="50">
-          <h2 class="fc-primary pb-3 text-center">Preguntas Genéricas</h2>
-
-          <mat-accordion multi="true">
-            <mat-expansion-panel *ngFor="let faqg of faqsGen; let i = index;" [expanded]="i === 0" hideToggle>
-              <mat-expansion-panel-header class="disable_ripple">
-                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
-                  <div class="fw-500 fc-primary">{{faqg.question}} </div>
-                  <!-- <span class="material-icons">plus</span> -->
-                  <span class="material-icons open">add</span>
-                  <span class="material-icons close">close</span>
-                </mat-panel-title>
-
-              </mat-expansion-panel-header>
-              <p>{{faqg.answer}} </p>
-            </mat-expansion-panel>
-          </mat-accordion>
-
+<div style="background: white; display: flex; flex-grow: 1; flex-direction: column;">
+  
+  <app-header-image [backgroundImage]="'assets/images/others/faqs.png'" [bgImageAnimate]="false"
+    [contentOffsetToTop]="true" [title]="''" [desc]="'Oportunidades inmobiliarias con grandes descuentos'">
+  </app-header-image>  
+  
+  
+  <div class="p-3">
+    <div class="theme-container" style="padding: 3rem;">
+      <div class="my-3">
+        <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
+          <h1 class="fc-primary pb-3">Preguntas frecuentes</h1>
         </div>
-        <div fxFlex="100" fxFlex.gt-xs="50">
-          <h2 class="fc-primary pb-3 text-center">Preguntas Específicas</h2>
-          <mat-accordion multi="true">
-
-            <mat-expansion-panel hideToggle>
-              <mat-expansion-panel-header class="disable_ripple">
-                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
-                  <div class="fw-500 fc-primary">¿Cuál es la diferencia entre subasta, cesión de remate y venta directa?</div>
-                  <span class="material-icons open">add</span>
-                  <span class="material-icons close">close</span>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <p><u>Subasta:</u> Se realizan pujas por medio de la web y puedes hacer tantas pujas como quieras mientras la subasta esté activa. Cada subasta se regirá por sus propias reglas, que podrás consultar en las Condiciones particulares que están en la pestaña de “Condiciones específicas”.</p>
-
-                <p><u>Venta directa:</u> En este proceso se realiza oferta a través de la web. Es un proceso confidencial de manera que la web te mostrará el número de ofertas recibidas, pero nunca el importe. Una vez finalice el proceso se contactará con el usuario que haya realizado la oferta más alta.</p>
-
-                <p><u>Cesión de remate: </u>En este caso, se trata de activos que ya han sido subastados y en los que el adjudicatario cede su derecho de adjudicación a un tercero. El proceso para realizar ofertas es el mismo que en la Venta directa.</p>
-            </mat-expansion-panel>
-
-
-            <mat-expansion-panel *ngFor="let faqe of faqsEsp; let i = index;" [expanded]="i === 0" hideToggle>
-              <mat-expansion-panel-header class="disable_ripple">
-                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
-                  <div class="fw-500 fc-primary">{{faqe.question}}</div>
-                  <span class="material-icons open">add</span>
-                  <span class="material-icons close">close</span>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <p>{{faqe.answer}} </p>
-            </mat-expansion-panel>
-
-
-            <mat-expansion-panel hideToggle>
-              <mat-expansion-panel-header class="disable_ripple">
-                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
-                  <div class="fw-500 fc-primary">¿Qué documentación es necesaria para cumplir con los requisitos de Prevención de Blanqueo de Capitales y Financiación del Terrorismo?</div>
-                  <span class="material-icons open">add</span>
-                  <span class="material-icons close">close</span>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <ul>Tendrás que aportar como mínimo la siguiente documentación:
-                <li>DNI/NIE/CIF</li>
-                <li>Origen de los fondos (fondos propios, hipoteca, etc.)</li>
-                <li>Extracto bancario (60 días)</li>
-                <li>Nómina o IRPF</li>
-                <li>Vida laboral</li>
-                <li>Certificado empadronamiento</li>
-                <li>Escritura constitución y nombramiento administrador (sólo empresas)</li>
-                <li>Impuesto sociedades</li>
-                <li>IVA</li>
-              </ul>
-            </mat-expansion-panel>
-          </mat-accordion>
+  
+        <div fxLayout="row wrap" fxLayoutAlign="space-around">
+          <div fxFlex="100" fxFlex.gt-xs="50">
+            <h2 class="fc-primary pb-3 text-center">Preguntas Genéricas</h2>
+  
+            <mat-accordion multi="true">
+              <mat-expansion-panel *ngFor="let faqg of faqsGen; let i = index;" [expanded]="i === 0" hideToggle>
+                <mat-expansion-panel-header class="disable_ripple">
+                  <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
+                    <div class="fw-500 fc-primary">{{faqg.question}} </div>
+                    <!-- <span class="material-icons">plus</span> -->
+                    <span class="material-icons open"                     
+                      style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">add</span>
+                    <span class="material-icons close"                     
+                      style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-height: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">close</span>
+                  </mat-panel-title>
+  
+                </mat-expansion-panel-header>
+                <p>{{faqg.answer}} </p>
+              </mat-expansion-panel>
+            </mat-accordion>
+  
+          </div>
+          <div fxFlex="100" fxFlex.gt-xs="50">
+            <h2 class="fc-primary pb-3 text-center">Preguntas Específicas</h2>
+            <mat-accordion multi="true">
+  
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header class="disable_ripple">
+                  <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
+                    <div class="fw-500 fc-primary">¿Cuál es la diferencia entre subasta, cesión de remate y venta directa?</div>
+                    <span class="material-icons open" style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">add</span>
+                    <span class="material-icons close" style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">close</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p><u>Subasta:</u> Se realizan pujas por medio de la web y puedes hacer tantas pujas como quieras mientras la subasta esté activa. Cada subasta se regirá por sus propias reglas, que podrás consultar en las Condiciones particulares que están en la pestaña de “Condiciones específicas”.</p>
+  
+                  <p><u>Venta directa:</u> En este proceso se realiza oferta a través de la web. Es un proceso confidencial de manera que la web te mostrará el número de ofertas recibidas, pero nunca el importe. Una vez finalice el proceso se contactará con el usuario que haya realizado la oferta más alta.</p>
+  
+                  <p><u>Cesión de remate: </u>En este caso, se trata de activos que ya han sido subastados y en los que el adjudicatario cede su derecho de adjudicación a un tercero. El proceso para realizar ofertas es el mismo que en la Venta directa.</p>
+              </mat-expansion-panel>
+  
+  
+              <mat-expansion-panel *ngFor="let faqe of faqsEsp; let i = index;" [expanded]="i === 0" hideToggle>
+                <mat-expansion-panel-header class="disable_ripple">
+                  <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
+                    <div class="fw-500 fc-primary">{{faqe.question}}</div>
+                    <span class="material-icons open" style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">add</span>
+                    <span class="material-icons close" style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">close</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{faqe.answer}} </p>
+              </mat-expansion-panel>
+  
+  
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header class="disable_ripple">
+                  <mat-panel-title fxLayout="row" fxLayoutAlign="space-between">
+                    <div class="fw-500 fc-primary">¿Qué documentación es necesaria para cumplir con los requisitos de Prevención de Blanqueo de Capitales y Financiación del Terrorismo?</div>
+                    <span class="material-icons open" style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">add</span>
+                    <span class="material-icons close" style="border-radius: 40px; max-width: 24px; min-width: 24px; max-height: 24px; min-width: 24px; background: #32b49d; text-align: center; padding: 4px; margin: 0">close</span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul>Tendrás que aportar como mínimo la siguiente documentación:
+                  <li>DNI/NIE/CIF</li>
+                  <li>Origen de los fondos (fondos propios, hipoteca, etc.)</li>
+                  <li>Extracto bancario (60 días)</li>
+                  <li>Nómina o IRPF</li>
+                  <li>Vida laboral</li>
+                  <li>Certificado empadronamiento</li>
+                  <li>Escritura constitución y nombramiento administrador (sólo empresas)</li>
+                  <li>Impuesto sociedades</li>
+                  <li>IVA</li>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
       </div>
     </div>

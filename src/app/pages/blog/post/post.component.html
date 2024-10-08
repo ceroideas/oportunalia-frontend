@@ -8,8 +8,8 @@
 <div class="px-3">
   <div class="theme-container">            
     <div>
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.publish_date }}</p>
+      <p style="color: #30dacc;">{{ post.publish_date }}</p>
+      <h1 style="color: #12127f; text-align: center;">{{ post.title }}</h1>
     </div>
     <hr>
     <div [innerHTML]="this.renderHTML(post.content)"></div>    

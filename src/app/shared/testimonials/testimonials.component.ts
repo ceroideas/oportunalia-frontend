@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperConfigInterface, SwiperPaginationInterface } from 'src/app/theme/components/swiper/swiper.module';
 import { AppService } from 'src/app/app.service';
 
@@ -9,13 +9,20 @@ import { AppService } from 'src/app/app.service';
 })
 export class TestimonialsComponent implements OnInit {
   public testimonials;
-  public config: SwiperConfigInterface = { };
+  public config: SwiperConfigInterface = {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  };
   private pagination: SwiperPaginationInterface = {
     el: '.swiper-pagination',
     clickable: true
   };
-
+  
   constructor(public appService:AppService) { }
+  
+  @ViewChild('swiper') swiper: any; // Reference to the Swiper instance
 
   ngOnInit() {
     this.testimonials = this.appService.getTestimonials();
@@ -55,4 +62,16 @@ export class TestimonialsComponent implements OnInit {
     }
   }
 
+
+  previousSlide() {
+    if (this.swiper) {      
+      this.swiper.slidePrev();
+    }
+  }
+
+  nextSlide() {
+    if (this.swiper) {
+      this.swiper.slideNext();
+    }
+  }
 }
