@@ -5,8 +5,17 @@
                 <app-property-item [property]="property" [viewType]="'grid'"></app-property-item>
             </div>
         </div>
+        <br>
+        <br>
+        <div class="swiper-pagination gray"></div>
         <button mat-mini-fab color="primary" class="prop-prev swiper-button-prev swipe-arrow"><mat-icon>keyboard_arrow_left</mat-icon></button>
         <button mat-mini-fab color="primary" class="prop-next swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button>
+
+    </div>
+    <br>
+    <br>
+    <div class="btn">
+      <p class="btn-title fw-600 mb-3"><a [routerLink]="['/properties']" mat-stroked-button color="primary" class="uppercase">Ver todas</a></p>
     </div>
 </div>
 <!-- <div class="testimonials-carousel">
