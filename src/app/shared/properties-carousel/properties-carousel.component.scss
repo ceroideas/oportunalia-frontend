@@ -28,3 +28,31 @@
       }
   }
 }
+
+.btn-title{
+  /* width: 60%;*/
+  /* height: 100px; */
+  //padding: 0 20px 0 10px;
+  text-align: center;
+  border-radius: 10px;
+  border: solid 3px #242863;
+  /* font-size: 1.3rem;
+  font-weight: 500; */
+  line-height: 56px;
+  color: #fff;
+  box-shadow: 0 8px 16px #60617029,0 2px 4px #28293d0a;
+  background-color: #242863;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  margin: auto;
+  width: 220px;
+}
+.btn{
+    a:link, a:visited, a:active {
+      text-decoration:none;
+      color:#fff;
+
+    }
+  }

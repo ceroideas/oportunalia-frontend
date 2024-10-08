@@ -60,6 +60,11 @@ a{
   color:#7D7D7D
 }
 
+.fc-black{
+  color:#333333;
+  font-weight: 600;
+}
+
 .fs-0-5x{
   font-size: 12px;
 }
@@ -790,6 +795,9 @@ button.swipe-arrow{
 }
 .swiper-pagination.white .swiper-pagination-bullet{
     background: #fff;
+}
+.swiper-pagination.gray .swiper-pagination-bullet{
+    background: gray;
 }
 .swiper-pagination-bullet-active{
     width: 10px;
