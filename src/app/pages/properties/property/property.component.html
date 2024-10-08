@@ -109,12 +109,12 @@
 
                       <form class="gap-1 p-3 mt-3 bg-sky flx column" *ngIf="this.userService.isLoggedIn && property.deposit_valid" [formGroup]="bidForm" (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                
 
-                        <!-- <div fxLayout="col wrap">
+                        <div fxLayout="col wrap">
                           <mat-label>Representado</mat-label>
                           <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
-                        </div>   -->         
+                        </div>           
                         
                         <div class="row">
                           <div class="label">Mejor Puja</div>
@@ -142,10 +142,10 @@
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div> -->
 
-                        <div fxLayout="row wrap my-bid" class="file-upload">
+                        <!-- <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
                           <mat-label>Subir justificante de depósito:</mat-label>
                           <input type="file" id="fileInput" class="file-input" />                       
-                        </div>
+                        </div> -->
 
                         <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
                       </form>
@@ -193,9 +193,13 @@
                           </mat-select>
                         </div> -->
 
-                        <div fxLayout="col wrap">
+                        <!-- <div fxLayout="col wrap">
                           <mat-label>Comprobante de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
+                        </div> -->
+                        <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
+                          <mat-label>Subir justificante de depósito:</mat-label>
+                          <input type="file" id="fileInput" (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" class="file-input" />
                         </div>
 
                         <button mat-raised-button color="primary" (click)="onDepositFormSubmit(depositForm.value)" type="button" class="btn-primary">Enviar comprobante</button>

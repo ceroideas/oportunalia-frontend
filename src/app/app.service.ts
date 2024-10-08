@@ -36,7 +36,7 @@ export class AppService {
   )
 
   public url = environment.url + '/assets/data/';
-  public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
+  public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
 
   constructor(public http:HttpClient,
               private bottomSheet: MatBottomSheet,
