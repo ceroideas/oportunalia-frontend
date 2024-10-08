@@ -9,6 +9,7 @@ import { Property, Pagination } from '../../app.models';
 import { DomHandlerService } from 'src/app/dom-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { UactionsService } from 'src/app/services/uactions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-properties',
@@ -19,7 +20,7 @@ export class PropertiesComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public properties: Property[];
+  public properties: Property[] = [];
   public viewType: string = 'grid';
   public viewCol: number = 33.3;
   public count: number = 12;
@@ -35,6 +36,7 @@ export class PropertiesComponent implements OnInit {
               public appService:AppService,
               public mediaObserver: MediaObserver,
               public route: ActivatedRoute,
+              public router: Router,
               public uactions: UactionsService,
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
@@ -61,8 +63,25 @@ export class PropertiesComponent implements OnInit {
 
   }
 
+  filter = null;
+  bgImage = 'assets/images/others/blog.png';
+
   ngOnInit() {
     console.log("getProperties OnInit");
+    console.log(this.router.url);
+    this.filter = this.router.url;
+
+    if (this.filter == '/auction') {
+      this.bgImage = 'assets/images/subasta.png';
+    }
+    if (this.filter == '/direct-sale') {
+      this.bgImage = "assets/images/venta.png";
+    }
+    if (this.filter == '/auction-assignment') {
+      this.bgImage = "assets/images/cesion.png";
+    }
+
+
     this.getProperties();
   }
 
@@ -78,7 +97,7 @@ export class PropertiesComponent implements OnInit {
     origin.subscribe(data => {           
                 
       data = data.map(data => data?.response ? data.response : data);
-      data = [].concat(...data);      
+      data = [].concat(...data);
 
       let result = this.filterData(data);
       if(result.data.length == 0){
@@ -109,7 +128,7 @@ export class PropertiesComponent implements OnInit {
   }
 
   public filterData(data){
-    return this.appService.filterData(data, this.searchFields, this.sort, this.pagination.page, this.pagination.perPage);
+    return this.appService.filterData(data, this.searchFields, this.sort, this.pagination.page, this.pagination.perPage, this.filter);
   }
 
   public searchClicked(){

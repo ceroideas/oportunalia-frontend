@@ -302,7 +302,25 @@ export class AppService {
   }
 
 
-  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){
+  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null){
+
+    if (type1) {
+
+      if (type1 == '/auction') {
+        type1 = 'Subasta';
+      }
+      if (type1 == '/direct-sale') {
+        type1 = "Venta Directa";
+      }
+      if (type1 == '/auction-assignment') {
+        type1 = "Cesión de Remate";
+      }
+
+      console.log(type1);
+
+      data = data.filter(x=>x.type == type1);
+      console.log(data);
+    }
 
     if(params){
 
