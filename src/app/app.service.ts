@@ -36,7 +36,7 @@ export class AppService {
   )
 
   public url = environment.url + '/assets/data/';
-  public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
+  public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
 
   constructor(public http:HttpClient,
               private bottomSheet: MatBottomSheet,
@@ -54,9 +54,19 @@ export class AppService {
 
   public getProperties(): Observable<any>{
 
-    const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc',
-      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc',
-      '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc'];
+    const paths: string[] = [
+      // '/auction?auction_status_id=1&featured=1&order=end_date__asc',
+      // '/auction?auction_status_id=7&featured=1&order=end_date__asc',
+      
+      '/auction?auction_status_id=1&featured=1&order=end_date__asc',
+      '/auction?auction_status_id=7&featured=1&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=2&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=2&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc',
+      ];
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
 
@@ -69,6 +79,10 @@ export class AppService {
     }else{
       return this.http.get(GlobalConstants.apiURL + `/auction/${ id }` );
     }
+  }
+
+  public saveInterests(data): Observable<any>{
+    return this.http.post(GlobalConstants.apiURL + `/interests`, data, { headers: { 'Authorization': this.getToken()}, });
   }
 
   public getPostById(id): Observable<any>{
@@ -302,7 +316,27 @@ export class AppService {
   }
 
 
-  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any){
+  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null){
+
+    if (type1 && type1.indexOf('/properties') === -1) {
+
+      if (type1 == '/auction') {
+        type1 = 'Subasta';
+      }
+      if (type1 == '/direct-sale') {
+        type1 = "Venta Directa";
+      }
+      if (type1 == '/auction-assignment') {
+        type1 = "Cesión de Remate";
+      }
+
+      console.log(type1);
+
+      data = data.filter(x=>x.type == type1);
+      console.log(data);
+    }
+
+    console.log(data);
 
     if(params){
 

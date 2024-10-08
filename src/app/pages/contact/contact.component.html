@@ -36,33 +36,33 @@
                 <h3 class="w-100 text-center py-3">FORMULARIO DE CONTACTO</h3> -->
 
                 <!-- <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
-                    <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Nombre</mat-label>
+                    <div fxFlex="100" fxFlex.gt-sm="33.3"  custom-form-fieldclass="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                        <mat-label>Nombre*</mat-label>
+                        <mat-form-field>
                             <input matInput placeholder="Name" formControlName="name" required>
-                            <mat-error *ngIf="contactForm.controls.name.errors?.required">Nombre obligatorio</mat-error>
+                            <mat-error style="background: white !important;" *ngIf="contactForm.controls.name.errors?.required">Nombre obligatorio</mat-error>
                         </mat-form-field>
                     </div>
-                    <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Email</mat-label>
+                    <div fxFlex="100" fxFlex.gt-sm="33.3"  custom-form-fieldclass="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                        <mat-label>Email*</mat-label>
+                        <mat-form-field>
                             <input matInput placeholder="Email" formControlName="email" required>
-                            <mat-error *ngIf="contactForm.controls.email.errors?.required">Email obligatorio</mat-error>
-                            <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Direcci&oacute;n de email erronea</mat-error>
+                            <mat-error style="background: white !important;" *ngIf="contactForm.controls.email.errors?.required">Email obligatorio</mat-error>
+                            <mat-error style="background: white !important;" *ngIf="contactForm.controls.email.hasError('invalidEmail')">Direcci&oacute;n de email erronea</mat-error>
                         </mat-form-field>
                     </div>
-                    <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Tel&eacute;fono</mat-label>
+                    <div fxFlex="100" fxFlex.gt-sm="33.3"  custom-form-fieldclass="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                        <mat-label>Tel&eacute;fono*</mat-label>
+                        <mat-form-field>
                             <input matInput placeholder="Phone" formControlName="phone" required>
-                            <mat-error *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
+                            <mat-error style="background: white !important;" *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
                         </mat-form-field>
                     </div>
-                    <div fxFlex="100" class="px-1 mt-1">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Mensaje</mat-label>
+                    <div fxFlex="100" class="px-1 mt-1 custom-form-field">
+                        <mat-label>Mensaje*</mat-label>
+                        <mat-form-field>
                             <textarea matInput placeholder="Message" formControlName="message" required rows="7"></textarea>
-                            <mat-error *ngIf="contactForm.controls.message.errors?.required">Mensaje obligatorio</mat-error>
+                            <mat-error style="background: white !important;" *ngIf="contactForm.controls.message.errors?.required">Mensaje obligatorio</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="w-100 py-2 text-center">
@@ -108,47 +108,48 @@
               </div> -->
 
               <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
-                <div fxFlex="100" class="px-1 mt-1">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Nombre</mat-label>
+                <div fxFlex="100" class="px-1 mt-1 custom-form-field">
+                    <mat-label>Nombre*</mat-label>
+                    <mat-form-field>
                         <input matInput placeholder="Nombre" formControlName="firstname" required>
-                        <mat-error *ngIf="contactForm.controls.firstname.errors?.required">Nombre obligatorio</mat-error>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.firstname.errors?.required">Nombre obligatorio</mat-error>
                     </mat-form-field>
                 </div>
-                <div fxFlex="100" class="px-1 mt-1">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Apellido</mat-label>                        
-                        <input matInput placeholder="Apellido" formControlName="lastname" required>
-                        <mat-error *ngIf="contactForm.controls.lastname.errors?.required">Apellido obligatorio</mat-error>
+                <div fxFlex="100" class="px-1 mt-1 custom-form-field">
+                    <mat-label>Apellido*</mat-label>                        
+                    <mat-form-field>
+                    <input                                            
+                        matInput placeholder="Apellido" formControlName="lastname" required>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.lastname.errors?.required">Apellido obligatorio</mat-error>
                     </mat-form-field>
                 </div>                 
-                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Email</mat-label>
+                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1 custom-form-field" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                    <mat-label>Email*</mat-label>
+                    <mat-form-field>
                         <input matInput placeholder="Email" formControlName="email" required>
-                        <mat-error *ngIf="contactForm.controls.email.errors?.required">Email obligatorio</mat-error>
-                        <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Direcci&oacute;n de email erronea</mat-error>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.email.errors?.required">Email obligatorio</mat-error>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.email.hasError('invalidEmail')">Direcci&oacute;n de email erronea</mat-error>
                     </mat-form-field>
                 </div>
-                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Tel&eacute;fono</mat-label>
+                <div fxFlex="100" fxFlex.gt-sm="100" class="px-1 custom-form-field" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                    <mat-label>Tel&eacute;fono*</mat-label>
+                    <mat-form-field>
                         <input matInput placeholder="Teléfono" type="phone" formControlName="phone" required>
-                        <mat-error *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
                     </mat-form-field>
                 </div>                
-                <div fxFlex="100" class="px-1 mt-1">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Asunto</mat-label>                        
+                <div fxFlex="100" class="px-1 mt-1 custom-form-field">
+                    <mat-label>Asunto*</mat-label>                        
+                    <mat-form-field>
                         <input matInput placeholder="Asunto" formControlName="subject" required>
-                        <mat-error *ngIf="contactForm.controls.subject.errors?.required">Asunto obligatorio</mat-error>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.subject.errors?.required">Asunto obligatorio</mat-error>
                     </mat-form-field>
                 </div>               
-                <div fxFlex="100" class="px-1 mt-1">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Mensaje</mat-label>
+                <div fxFlex="100" class="px-1 mt-1 custom-form-field">
+                    <mat-label>Mensaje*</mat-label>
+                    <mat-form-field>
                         <textarea matInput placeholder="Escribe tu mensaje" formControlName="message" required rows="7"></textarea>
-                        <mat-error *ngIf="contactForm.controls.message.errors?.required">Mensaje obligatorio</mat-error>
+                        <mat-error style="background: white !important;" *ngIf="contactForm.controls.message.errors?.required">Mensaje obligatorio</mat-error>
                     </mat-form-field>
                 </div>
                 <section>

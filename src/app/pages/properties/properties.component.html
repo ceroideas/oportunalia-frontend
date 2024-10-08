@@ -1,12 +1,31 @@
-<app-header-image [backgroundImage]="'assets/images/others/blog.png'"
+<app-header-image [backgroundImage]="bgImage"
                   [bgImageAnimate]="false"
                   [contentOffsetToTop]="true"
                   [desc]="'Oportunidades inmobiliarias con grandes descuentos'"
                   >
 </app-header-image>
 
-<div class="px-3">
+
+<div class="section px-3">
   <div class="theme-container">
+    
+    <div *ngIf="filter == '/auction'">
+        <h1 class="section-title">Subasta</h1>
+
+        <p class="pl-6 pr-6 fc-primary fs-0-8x text-center">Encuentra pisos embargados por bancos en subasta a un solo clic. Realiza tantas pujas como quieras mientras la subasta esté activa para conseguir activos inmobiliarios con descuentos únicos.</p>
+    </div>
+
+    <div *ngIf="filter == '/direct-sale'">
+        <h1 class="section-title">Venta directa</h1>
+        <p class="pl-6 pr-6 fc-primary fs-0-8x text-center">A partir de este proceso podrás invertir en activos inmobiliarios que pertenecen a bancos u otros fondos de inversión y ahora están en venta a un precio muy inferior al de una vivienda en el mercado actual con descuentos de hasta el 50%</p>
+    </div>
+
+    <div *ngIf="filter == '/auction-assignment'">
+        <h1 class="section-title">Cesión de remate</h1>
+        <p class="pl-6 pr-6 fc-primary fs-0-8x text-center">Invierte en activos inmobiliarios en cesión de remate, es decir, inmuebles que ya han sido subastados pero su adjudicatario cede su derecho de adjudicación a un tercero.</p>
+    </div>
+
+
     <mat-sidenav-container class="all-properties mt-3">
 
       <!-- Barra lateral -->

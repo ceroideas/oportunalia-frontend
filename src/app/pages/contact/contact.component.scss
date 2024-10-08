@@ -14,4 +14,20 @@
   padding: 10px 0 10px 10px;
 }
 
+.theme-container {
+  padding: 1rem 3rem;
+}
 
+.custom-form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none !important;
+  background: transparent;
+}
+
+mat-label {
+  font-weight: bolder;
+  font-size: 1.2rem;
+  color: #292C63;
+}

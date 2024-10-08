@@ -17,7 +17,9 @@ export class UactionsService {
 
   constructor(private _http: HttpClient) { }
 
-  searchFilter(): Observable<any> {    
+  searchFilter(): Observable<any> {
+
+    console.log('aqui')
 
     return forkJoin([
       this._http.get(this.apiURL + this.status1Path),

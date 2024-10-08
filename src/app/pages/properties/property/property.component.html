@@ -106,6 +106,51 @@
                       </mat-card>
 
                       <!-- Form pujas -->
+
+                      <form class="gap-1 p-3 mt-3 bg-sky flx column" *ngIf="this.userService.isLoggedIn && property.deposit_valid" [formGroup]="bidForm" (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                
+
+                        <div fxLayout="col wrap">
+                          <mat-label>Representado</mat-label>
+                          <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
+                            <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
+                          </mat-select>
+                        </div>           
+                        
+                        <div class="row">
+                          <div class="label">Mejor Puja</div>
+                          <div class="value">250.000 €</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="label">Pujas</div>
+                          <div class="value">1</div>
+                        </div>
+
+                        <!-- <div fxLayout="col wrap my-bid">
+                          <mat-label>Mi puja: </mat-label>
+                          <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
+                        </div> -->
+
+                        <div fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
+                          <mat-label style="font-weight: 300; color: grey;">Mi puja:</mat-label>
+                          <input matInput step="3" placeholder="Importe" [defaultValue]="1000" type="number" min="1000" formControlName="import" class="my-input" />
+                          <div class="value">€</div>
+                        </div>
+
+                       <!--  <div fxLayout="col wrap">
+                          <mat-label>Comprobande de depósito</mat-label>
+                          <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
+                        </div> -->
+
+                        <!-- <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
+                          <mat-label>Subir justificante de depósito:</mat-label>
+                          <input type="file" id="fileInput" class="file-input" />                       
+                        </div> -->
+
+                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
+                      </form>
+
+                      <!-- 
                       <form
                         *ngIf="this.userService.isLoggedIn && property.deposit_valid" class="gap-1 p-3 mt-3 bg-sky flx column"
                         [formGroup]="bidForm"
@@ -123,13 +168,13 @@
                           </mat-select>
                         </div>
 
-                        <!-- <div fxLayout="col wrap">
+                        <div fxLayout="col wrap">
                           <mat-label>Comprobande de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
-                        </div> -->
+                        </div>
 
                         <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
-                      </form>
+                      </form> -->
 
                       <form
                         *ngIf="this.userService.isLoggedIn && !property.deposit_valid" class="gap-1 p-3 mt-3 bg-sky flx column"
@@ -148,9 +193,13 @@
                           </mat-select>
                         </div> -->
 
-                        <div fxLayout="col wrap">
+                        <!-- <div fxLayout="col wrap">
                           <mat-label>Comprobante de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
+                        </div> -->
+                        <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
+                          <mat-label>Subir justificante de depósito:</mat-label>
+                          <input type="file" id="fileInput" (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" class="file-input" />
                         </div>
 
                         <button mat-raised-button color="primary" (click)="onDepositFormSubmit(depositForm.value)" type="button" class="btn-primary">Enviar comprobante</button>
@@ -191,28 +240,28 @@
                     <!-- Contact form -->
                     <div class="brd p-3">
                       <!-- <h3 class="widget-title bg-primary">Reply to the listing</h3> -->
-                      <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
+                      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
                           <p class="fc-primary fw-400 fs-1x">Pregúntanos sobre este inmueble</p>
-                          <mat-form-field appearance="outline" class="w-100">
+                          <mat-form-field appearance="fill" class="w-100">
                               <mat-label>Nombre</mat-label>
                               <input matInput placeholder="Nombre" autocomplete="off" formControlName="name">
                               <mat-error *ngIf="contactForm.controls.name.errors?.required">Nombre requerido</mat-error>
                           </mat-form-field>
 
-                          <mat-form-field appearance="outline" class="w-100">
+                          <mat-form-field appearance="fill" class="w-100">
                               <mat-label>E-mail*</mat-label>
                               <input matInput placeholder="Email" autocomplete="off" formControlName="email">
                               <mat-error *ngIf="contactForm.controls.email.errors?.required">Email requerido</mat-error>
                               <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Dirección de email invalida</mat-error>
                           </mat-form-field>
 
-                          <mat-form-field appearance="outline" class="w-100">
+                          <mat-form-field appearance="fill" class="w-100">
                               <mat-label>Télefono</mat-label>
                               <input matInput placeholder="Télefono (Opcional)" autocomplete="off" formControlName="phone" type="number" inputmode="numeric">
                               <!-- <mat-error *ngIf="contactForm.controls.phone.errors?.required">Télefono requerido</mat-error> -->
                           </mat-form-field>
 
-                          <mat-form-field appearance="outline" class="w-100">
+                          <mat-form-field appearance="fill" class="w-100">
                               <mat-label>Mensaje</mat-label>
                               <textarea matInput placeholder="Mensaje (Opcional)" formControlName="message" rows="6"></textarea>
                               <!-- <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error> -->
