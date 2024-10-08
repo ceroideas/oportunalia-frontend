@@ -54,9 +54,19 @@ export class AppService {
 
   public getProperties(): Observable<any>{
 
-    const paths: string[] = ['/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc', '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc',
-      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=1&featured=1&order=end_date__asc', '/auction?auction_status_id=7&featured=1&order=end_date__asc',
-      '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc', '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc'];
+    const paths: string[] = [
+      // '/auction?auction_status_id=1&featured=1&order=end_date__asc',
+      // '/auction?auction_status_id=7&featured=1&order=end_date__asc',
+      
+      '/auction?auction_status_id=1&featured=1&order=end_date__asc',
+      '/auction?auction_status_id=7&featured=1&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=1&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=2&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=1&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=2&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc',
+      ];
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
 
@@ -304,7 +314,7 @@ export class AppService {
 
   public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null){
 
-    if (type1 && type1 != '/properties') {
+    if (type1 && type1.indexOf('/properties') === -1) {
 
       if (type1 == '/auction') {
         type1 = 'Subasta';
@@ -321,6 +331,8 @@ export class AppService {
       data = data.filter(x=>x.type == type1);
       console.log(data);
     }
+
+    console.log(data);
 
     if(params){
 

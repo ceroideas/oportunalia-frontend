@@ -196,6 +196,7 @@ export class HomeComponent implements OnInit {
   }
 
   public searchProperties() {    
+    console.log(this.searchPropertiesValues);
     this.uActionsService.buildURL(this.searchPropertiesValues);
     this.router.navigateByUrl('/properties?search=true');
   }

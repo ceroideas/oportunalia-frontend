@@ -89,6 +89,14 @@ export class PropertiesComponent implements OnInit {
     this.watcher.unsubscribe();
   }
 
+  removeDuplicates(properties: Property[]): Property[] {
+    return properties.filter((property, index, self) =>
+      index === self.findIndex((t) => (
+        t.id === property.id
+      ))
+    );
+  }
+
   public getProperties(reset: boolean = false){
     
     const search = this.route.snapshot.queryParamMap.has('search');
@@ -99,7 +107,7 @@ export class PropertiesComponent implements OnInit {
       data = data.map(data => data?.response ? data.response : data);
       data = [].concat(...data);
 
-      let result = this.filterData(data);
+      let result = this.filterData(this.removeDuplicates(data));
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
@@ -116,7 +124,7 @@ export class PropertiesComponent implements OnInit {
 
     const search = this.route.snapshot.queryParamMap.has('search');        
 
-    if (search) {  
+    if (search) {
       this.getProperties(true);
     } else {
 
