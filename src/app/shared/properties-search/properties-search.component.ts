@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { AppService } from '../../app.service';
+import { SearchProperties } from '../../pages/home/interfaces/search-properties';
+import { PublicService } from 'src/app/api/public.service';
 import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
@@ -24,7 +26,15 @@ export class PropertiesSearchComponent implements OnInit {
   public streets: any[] = [];
   public features: any[] = [];
 
-  constructor(public appService:AppService, public fb: UntypedFormBuilder) { }
+  categoryList: any;
+
+  public searchPropertiesValues: SearchProperties = {
+    search: '',
+    type: 0,
+    category: 0
+  }
+
+  constructor(public appService:AppService, public fb: UntypedFormBuilder, public publicService: PublicService) { }
 
   ngOnInit() {
     if(this.vertical){
@@ -43,7 +53,8 @@ export class PropertiesSearchComponent implements OnInit {
     this.features = this.appService.getFeatures();
     this.form = this.fb.group({
       propertyType: null,
-      propertyStatus: null,
+      // propertyStatus: null,
+      propertyCategory: null,
       price: this.fb.group({
         from: null,
         to: null
@@ -74,6 +85,8 @@ export class PropertiesSearchComponent implements OnInit {
       }),
       features: this.buildFeatures()
     });
+
+    this.getCategoryList();
 
     this.onSearchChange.emit(this.form);
 
@@ -110,7 +123,8 @@ export class PropertiesSearchComponent implements OnInit {
   public reset(){
     this.form.reset({
       propertyType: null,
-      propertyStatus: null,
+      // propertyStatus: null,
+      propertyCategory: null,
       price: {
         from: null,
         to: null
@@ -160,6 +174,22 @@ export class PropertiesSearchComponent implements OnInit {
   }
   public getFloatLabel(): FloatLabelType {
     return (this.variant == 1) ? 'always' : 'auto';
+  }
+
+  getCategoryList(){
+    this.publicService.categoryList()
+      .subscribe(
+        (response) => {
+          this.categoryList = response.response;
+        },
+        (error) => {
+
+        }
+      )
+  }
+
+  setSearchProps(value: any, key: string) {    
+    this.searchPropertiesValues[key] = isNaN(parseInt(value)) ? value : parseInt(value);
   }
 
 

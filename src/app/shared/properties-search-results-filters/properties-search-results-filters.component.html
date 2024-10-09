@@ -1,8 +1,32 @@
 <mat-chip-listbox>
-    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType" >
-        {{searchFields?.propertyType.name}}
+    
+    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType && searchFields?.propertyType == 0" >
+        Todos
         <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
     </mat-chip-option>
+    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType && searchFields?.propertyType == 1" >
+        Subasta
+        <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
+    </mat-chip-option>
+    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType && searchFields?.propertyType == 2" >
+        Venta directa
+        <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
+    </mat-chip-option>
+    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType && searchFields?.propertyType == 3" >
+        Cesión de remate
+        <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
+    </mat-chip-option>
+
+    <!-- <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType" >
+        {{searchFields?.propertyType.name}}
+        <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
+    </mat-chip-option> -->
+
+    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyCategory" >
+        {{searchFields?.propertyCategory.name}}
+        <mat-icon color="warn" matChipRemove (click)="remove('propertyCategory')">cancel</mat-icon>
+    </mat-chip-option>
+
     <mat-chip-option selectable="false" *ngIf="searchFields?.propertyStatus && searchFields?.propertyStatus.length > 0">
         <span *ngFor="let type of searchFields?.propertyStatus; let last = last;" class="mr-1">{{type.name}}<span *ngIf="!last">,</span></span>
         <mat-icon color="warn" matChipRemove (click)="remove('propertyStatus')">cancel</mat-icon>

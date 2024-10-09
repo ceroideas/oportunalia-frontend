@@ -35,7 +35,7 @@
     <div class="flex-container" fxLayout="row">
       <div fxFlex>
           <div>Tipo</div>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: calc(100% - 16px);">
           <!-- <mat-label>Tipo de propiedad</mat-label> -->
           <mat-select placeholder="Tipo de propiedad" (selectionChange)="setSearchProps($event.value, 'type')">
             <mat-option value="0" >Todos</mat-option>
@@ -47,7 +47,7 @@
       </div>
       <div fxFlex>
         <div>Categoría</div>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: calc(100% - 16px);">
           <!-- <mat-label>Categoría</mat-label> -->
           <mat-select placeholder="Categoría" (selectionChange)="setSearchProps($event.value, 'category')">
             <mat-option value="0">Todas</mat-option>
@@ -57,7 +57,7 @@
       </div>
       <div fxFlex>
           <div>Ubicación</div>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: calc(100% - 16px);">
           <!-- <mat-label>Ubicación</mat-label> -->
           <mat-select placeholder="Ubicación" (selectionChange)="setSearchProps($event.value, 'search')">
             <mat-option value="0">Todas</mat-option>
@@ -73,10 +73,10 @@
 
 
       </div>
-      <div fxFlex>
+      <!-- <div fxFlex>
           <div>Otros criterios</div>
         <mat-form-field appearance="fill">
-          <!-- <mat-label>Otros criterios</mat-label> -->
+          <mat-label>Otros criterios</mat-label>
           <mat-select placeholder="Playas, Ciudades..." (selectionChange)="setSearchProps($event.value, 'extra')">
             <mat-option value="0">Todos</mat-option>
             <mat-option value="1">Playas</mat-option>
@@ -85,11 +85,11 @@
 
           </mat-select>
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div fxFlex>
         <div>&nbsp;</div>
-        <button style="width: 100%; border-radius: 8px;" (click)="searchProperties()" mat-flat-button class="btn-secondary">Buscar</button>
+        <button style="width: calc(100% - 16px); border-radius: 8px;" (click)="searchProperties()" mat-flat-button class="btn-secondary">Buscar</button>
       </div>
     </div>
   </div>
