@@ -5,15 +5,19 @@
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Tipo de propiedad</mat-label>
-                <mat-select placeholder="Selecciona tipo de propiedad" formControlName="propertyType">
-                    <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
+                <mat-select placeholder="Selecciona tipo de propiedad" formControlName="propertyType" (selectionChange)="setSearchProps($event.value, 'type')">
+                    <!-- <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                         {{propertyType.name}}
-                    </mat-option>
+                    </mat-option> -->
+                    <mat-option value="0" >Todos</mat-option>
+                    <mat-option value="1" >Subasta</mat-option>
+                    <mat-option value="2" >Venta directa</mat-option>
+                    <mat-option value="3" >Cesión de remate</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
-        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+        <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Estado propiedad</mat-label>
                 <mat-select placeholder="Selecciona el estado de la propiedad" formControlName="propertyStatus" multiple>
@@ -22,9 +26,18 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+        </div> -->
+
+        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+            <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
+                <mat-label>Categoría</mat-label>
+                <mat-select placeholder="Selecciona la categoría" formControlName="propertyCategory" (selectionChange)="setSearchProps($event.value, 'category')">
+                    <mat-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
-        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="price">
+        <!-- <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="price">
 
             <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                 <div fxFlex="45">
@@ -44,15 +57,15 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
 
         <div *ngIf="showMore" [fxLayout]="(vertical) ? 'column' : 'row wrap'" class="w-100">
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Ciudad</mat-label>
-                    <mat-select placeholder="Selecciona ciudad..." formControlName="city" (selectionChange)="onSelectCity()">
+                    <mat-label>Ubicación</mat-label>
+                    <mat-select placeholder="Selecciona ciudad..." formControlName="city" (selectionChange)="setSearchProps($event.value, 'search')">
                         <mat-option *ngFor="let city of cities" [value]="city">
                             {{city.name}}
                         </mat-option>

@@ -20,8 +20,9 @@ export class MyPropertiesComponent implements OnInit {
   constructor(public appService:AppService) { }
 
   ngOnInit() {
-    this.appService.getProperties().subscribe(res => {      
-      this.initDataSource(res);
+    this.appService.getPropertiesOffered().subscribe(res => {      
+      this.initDataSource(res[0].response);
+      console.log(res[0].response);
     }, catchError(e => {
       console.log(e);
       return [];
