@@ -36,7 +36,7 @@ export class UserService {
   }
   
   updateFavorite(id: string) {
-    return this.http.put(GlobalConstants.apiURL + `/auction/${ id }/favorite`, { headers: { 'Authorization': this.getToken()}, })
+    return this.http.put(GlobalConstants.apiURL + `/auction/${ id }/favorite`, null, { headers: { 'Authorization': this.getToken()}, })
   }
 
   saveRepresentation(userRepresentation: any): Observable<any> {  

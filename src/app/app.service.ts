@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DomHandlerService } from './dom-handler.service';
 import { GlobalConstants } from './global-constants';
 import { UserService } from './api/user.service';
+import { Router } from '@angular/router';
 
 export class Data {
   constructor(public properties: Property[],
@@ -36,9 +37,11 @@ export class AppService {
   )
 
   public url = environment.url + '/assets/data/';
-  public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
+  // public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
+  public apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
 
   constructor(public http:HttpClient,
+              private router: Router,
               private bottomSheet: MatBottomSheet,
               private snackBar: MatSnackBar,
               public appSettings:AppSettings,
@@ -66,6 +69,20 @@ export class AppService {
       '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc',
       '/auction?auction_status_id=1&auction_type_id=2&active_category_id=0&order=end_date__asc',
       '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc',
+      ];
+
+    /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
+
+    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));
+  }
+
+  public getPropertiesOffered(): Observable<any>{
+
+    const paths: string[] = [
+      // '/auction?auction_status_id=1&featured=1&order=end_date__asc',
+      // '/auction?auction_status_id=7&featured=1&order=end_date__asc',
+      
+      '/auction?bidded=1&interacted=1',
       ];
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
@@ -145,6 +162,14 @@ export class AppService {
         duration: 3000,
         direction
       });
+    },err=>{
+      this.snackBar.open('Debe iniciar sesión para agregar la propiedad a favoritos', '×', {
+        verticalPosition: 'top',
+        duration: 3000,
+        direction
+      });
+      this.router.navigate(['/login']);
+      console.log(err);
     });
     /* if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
       this.Data.favorites.push(property);
