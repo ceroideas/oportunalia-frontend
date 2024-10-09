@@ -88,9 +88,9 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Ubicación</mat-label>
-          <mat-select formControlName="ubicacion" placeholder="Select">
+          <mat-select formControlName="ubicacion" placeholder="Select" multiple>
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{ province.id }} - {{province.name}}</mat-option>
+            <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
