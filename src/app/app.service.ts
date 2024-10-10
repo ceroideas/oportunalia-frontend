@@ -82,7 +82,7 @@ export class AppService {
       // '/auction?auction_status_id=1&featured=1&order=end_date__asc',
       // '/auction?auction_status_id=7&featured=1&order=end_date__asc',
       
-      '/auction?bidded=1&interacted=1',
+      '/auction?interacted=1',
       ];
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
