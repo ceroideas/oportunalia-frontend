@@ -107,7 +107,7 @@
 
                       <!-- Form pujas -->
 
-                      <form class="gap-1 p-3 mt-3 bg-sky flx column" *ngIf="this.userService.isLoggedIn && property.deposit_valid" [formGroup]="bidForm" (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                
+                      <form class="gap-1 p-3 mt-3 bg-sky flx column" *ngIf="this.userService.isLoggedIn && property.deposit_valid && property?.auction_type_id==1" [formGroup]="bidForm" (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                
 
                         <div fxLayout="col wrap">
                           <mat-label>Representado</mat-label>
@@ -118,12 +118,12 @@
                         
                         <div class="row">
                           <div class="label">Mejor Puja</div>
-                          <div class="value">250.000 €</div>
+                          <div class="value">{{property.max_bid ?? 0 }} </div>
                         </div>
 
                         <div class="row">
                           <div class="label">Pujas</div>
-                          <div class="value">1</div>
+                          <div class="value">{{property.bids}} </div>
                         </div>
 
                         <!-- <div fxLayout="col wrap my-bid">
@@ -131,7 +131,7 @@
                           <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
                         </div> -->
 
-                        <div fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
+                        <div  fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
                           <mat-label style="font-weight: 300; color: grey;">Mi puja:</mat-label>
                           <input matInput step="3" placeholder="Importe" [defaultValue]="1000" type="number" min="1000" formControlName="import" class="my-input" />
                           <div class="value">€</div>
@@ -147,34 +147,36 @@
                           <input type="file" id="fileInput" class="file-input" />                       
                         </div> -->
 
-                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
+                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Pujar</button>
+                        <p *ngIf="property.deposit === 0" class="fw-300 fc-primary">Este inmueble no requiere deposito</p>
                       </form>
 
-                      <!-- 
-                      <form
-                        *ngIf="this.userService.isLoggedIn && property.deposit_valid" class="gap-1 p-3 mt-3 bg-sky flx column"
-                        [formGroup]="bidForm"
-                        (ngSubmit)="onBidFormSubmit(bidForm.value)">
-
-                        <div fxLayout="col wrap">
-                          <mat-label>Tu oferta: </mat-label>
-                          <input matInput placeholder="Importe" type="number" min="1" formControlName="import" />
+                      
+                      <div
+                        *ngIf="this.userService.isLoggedIn && property.deposit_valid &&  property?.auction_type_id==2 || property?.auction_type_id==3" class="gap-1 p-3 mt-3 bg-sky flx column"
+                       
+                        >
+                        <div  fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
+                          <mat-label style="font-weight: 300; color: grey;">Tu Ofertar:</mat-label>
+                          <input matInput step="3" placeholder="Importe" type="number" min="1000" [(ngModel)]="import"    class="my-input" />
+                          <div class="value">€</div>
                         </div>
 
-                        <div fxLayout="col wrap">
+<!--                         <div fxLayout="col wrap">
                           <mat-label>Representado</mat-label>
                           <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
-                        </div>
-
+                        </div> -->
+<!-- 
                         <div fxLayout="col wrap">
                           <mat-label>Comprobande de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
-                        </div>
+                        </div> -->
 
-                        <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Enviar oferta</button>
-                      </form> -->
+                        <button mat-raised-button color="primary" (click)="onSubmit()" type="button" class="btn-primary uppercase">Enviar oferta</button>
+                        <p *ngIf="property.deposit === 0" class="fw-300 fc-primary">Este inmueble no requiere deposito</p>
+                      </div> 
 
                       <form
                         *ngIf="this.userService.isLoggedIn && !property.deposit_valid" class="gap-1 p-3 mt-3 bg-sky flx column"
@@ -198,8 +200,9 @@
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div> -->
                         <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
-                          <mat-label>Subir justificante de depósito:</mat-label>
+                          <mat-label for="fileInput">Subir justificante de depósito:</mat-label>
                           <input type="file" id="fileInput" (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" class="file-input" />
+                          <button mat-raised-button color="primary" (click)="fileInput.click()">Seleccionar archivo</button>
                         </div>
 
                         <button mat-raised-button color="primary" (click)="onDepositFormSubmit(depositForm.value)" type="button" class="btn-primary">Enviar comprobante</button>

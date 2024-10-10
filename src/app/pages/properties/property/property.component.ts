@@ -1,9 +1,23 @@
-import { Component, OnInit, ViewChild, HostListener, ViewChildren, QueryList } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  HostListener,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import moment from 'moment';
-import { SwiperConfigInterface, SwiperDirective } from 'src/app/theme/components/swiper/swiper.module';
+import {
+  SwiperConfigInterface,
+  SwiperDirective,
+} from 'src/app/theme/components/swiper/swiper.module';
 import { AppSettings, Settings } from 'src/app/app.settings';
 import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compare-overview.component';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
@@ -17,12 +31,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   selector: 'app-property',
   templateUrl: './property.component.html',
   styleUrls: ['./property.component.scss'],
-  providers: [EmbedVideoService]
+  providers: [EmbedVideoService],
 })
 export class PropertyComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   @ViewChildren(SwiperDirective) swipers: QueryList<SwiperDirective>;
-  public sidenavOpen:boolean = true;
+  public sidenavOpen: boolean = true;
   public config: SwiperConfigInterface = {};
   public config2: SwiperConfigInterface = {};
   private sub: any;
@@ -31,22 +45,22 @@ export class PropertyComponent implements OnInit {
   public embedVideo: any;
   public relatedProperties: any[];
   public featuredProperties: any[];
-  public agent:any;
+  public agent: any;
   public selectedImage: Blob;
   public mortgageForm: UntypedFormGroup;
   public depositForm: UntypedFormGroup;
   public bidForm: UntypedFormGroup;
-  public monthlyPayment:any;
+  public monthlyPayment: any;
   public contactForm: UntypedFormGroup;
   mapOptions: google.maps.MapOptions = {
     mapTypeControl: true,
-    fullscreenControl: true
-  }
+    fullscreenControl: true,
+  };
   lat: number = 0;
   lng: number = 0;
-  auction_type: string = "";
+  auction_type: string = '';
   representations: any[] = [];
-
+  import: any = 1000;
 
   /* depositFulfilled = false;
   userVerified = false;
@@ -54,17 +68,18 @@ export class PropertyComponent implements OnInit {
   auctionEnded = true;
   currentRoute=""; */
 
-  constructor(public appSettings:AppSettings,
-              public appService:AppService,
-              private activatedRoute: ActivatedRoute,
-              private embedService: EmbedVideoService,
-              public fb: UntypedFormBuilder,
-              public userService: UserService,
-              public snackBar: MatSnackBar,
-              public sanitizer: DomSanitizer,
-              private domHandlerService: DomHandlerService,
-              public route: ActivatedRoute,
-) {
+  constructor(
+    public appSettings: AppSettings,
+    public appService: AppService,
+    private activatedRoute: ActivatedRoute,
+    private embedService: EmbedVideoService,
+    public fb: UntypedFormBuilder,
+    public userService: UserService,
+    public snackBar: MatSnackBar,
+    public sanitizer: DomSanitizer,
+    private domHandlerService: DomHandlerService,
+    public route: ActivatedRoute
+  ) {
     this.settings = this.appSettings.settings;
     this.depositForm = this.fb.group({
       file: ['', [Validators.required]],
@@ -79,7 +94,7 @@ export class PropertyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.activatedRoute.params.subscribe(params => {
+    this.sub = this.activatedRoute.params.subscribe((params) => {
       this.getPropertyById(params['id']);
     });
     this.userService.getRepresentations().subscribe(({ response }: any) => {
@@ -88,37 +103,40 @@ export class PropertyComponent implements OnInit {
     this.getRelatedProperties();
     this.getFeaturedProperties();
     this.getAgent(1);
-    if(this.domHandlerService.window?.innerWidth < 960){
+    if (this.domHandlerService.window?.innerWidth < 960) {
       this.sidenavOpen = false;
-      if(this.sidenav){
+      if (this.sidenav) {
         this.sidenav.close();
       }
-    };
+    }
     this.mortgageForm = this.fb.group({
       principalAmount: ['', Validators.required],
       downPayment: ['', Validators.required],
       interestRate: ['', Validators.required],
-      period: ['', Validators.required]
+      period: ['', Validators.required],
     });
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
-      message: ['', Validators.required]
+      message: ['', Validators.required],
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
+  get fileInput() {
+    return document.getElementById('fileInput') as HTMLInputElement;
+  }
   @HostListener('window:resize')
-  public onWindowResize():void {
-    (this.domHandlerService.window?.innerWidth < 960) ? this.sidenavOpen = false : this.sidenavOpen = true;
+  public onWindowResize(): void {
+    this.domHandlerService.window?.innerWidth < 960
+      ? (this.sidenavOpen = false)
+      : (this.sidenavOpen = true);
   }
 
   public onBidFormSubmit(values: object) {
-
     if (this.bidForm.valid) {
       const formInfo = new FormData();
 
@@ -128,26 +146,34 @@ export class PropertyComponent implements OnInit {
 
       console.log(formInfo, values);
 
-      this.userService.bid(formInfo, this.property.link_rewrite).subscribe((response) => {
-        console.log(response);
-        this.snackBar.open('Oferta enviada exitosamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.userService.bid(formInfo, this.property.link_rewrite).subscribe(
+        (response) => {
+          console.log(response);
+          this.snackBar.open('Oferta enviada exitosamente', '×', {
+            panelClass: 'success',
+            verticalPosition: 'top',
+            duration: 3000,
+          });
 
-        let id = this.property.link_rewrite;
-        this.property = null;
-        this.bidForm.value['import'] = null;
-        this.getPropertyById(id);
-
-      }, (error) => {
-        console.log(error);
-        this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
-      });
-
+          let id = this.property.link_rewrite;
+          this.property = null;
+          this.bidForm.value['import'] = null;
+          this.getPropertyById(id);
+        },
+        (error) => {
+          console.log(error);
+          this.snackBar.open(
+            'Ha ocurrido un error! ' + error['error']['messages'][0],
+            '×',
+            { panelClass: 'error', verticalPosition: 'top', duration: 3000 }
+          );
+        }
+      );
     }
   }
 
   public onDepositFormSubmit(values: object) {
-
-    console.log(this.depositForm.value,this.depositForm.valid)
+    console.log(this.depositForm.value, this.depositForm.valid);
 
     if (this.depositForm.valid) {
       const formInfo = new FormData();
@@ -162,15 +188,24 @@ export class PropertyComponent implements OnInit {
 
       console.log(formInfo, values);
 
-      this.userService.deposit(formInfo, this.property.link_rewrite).subscribe((response) => {
-        console.log(response);
-        this.snackBar.open('Deposito enviado exitosamente', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
-
-      }, (error) => {
-        console.log(error);
-        this.snackBar.open('Ha ocurrido un error! '+error['error']['messages'][0], '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 })
-      });
-
+      this.userService.deposit(formInfo, this.property.link_rewrite).subscribe(
+        (response) => {
+          console.log(response);
+          this.snackBar.open('Deposito enviado exitosamente', '×', {
+            panelClass: 'success',
+            verticalPosition: 'top',
+            duration: 3000,
+          });
+        },
+        (error) => {
+          console.log(error);
+          this.snackBar.open(
+            'Ha ocurrido un error! ' + error['error']['messages'][0],
+            '×',
+            { panelClass: 'error', verticalPosition: 'top', duration: 3000 }
+          );
+        }
+      );
     }
   }
 
@@ -187,21 +222,22 @@ export class PropertyComponent implements OnInit {
   }
 
   public calculateLeftTime1(): void {
-    const propertyCard: any = document.querySelector(`.left-time1-${ this.property.guid }`);
+    const propertyCard: any = document.querySelector(
+      `.left-time1-${this.property.guid}`
+    );
     const timeToEnd: any = new Date(this.property.end_date_original);
 
     const interval = setInterval(() => {
-
       try {
         let leftTime: any = timeToEnd - (new Date() as any);
-        const hours = moment(leftTime).format("HH:mm:ss");
-        const days = moment(leftTime).format("DD");
+        const hours = moment(leftTime).format('HH:mm:ss');
+        const days = moment(leftTime).format('DD');
 
         if (leftTime <= 0) {
           clearInterval(interval);
         }
 
-        propertyCard.textContent = `${ days }D ${ hours }`;
+        propertyCard.textContent = `${days}D ${hours}`;
       } catch (e) {
         console.log(e);
         clearInterval(interval);
@@ -209,38 +245,41 @@ export class PropertyComponent implements OnInit {
     }, 1000);
   }
 
-  public getPropertyById(id: number){
-    this.appService.getPropertyById(id).subscribe(data=>{
-
+  public getPropertyById(id: number) {
+    this.appService.getPropertyById(id).subscribe((data) => {
       console.log('getPropertyById');
 
-
       this.property = data.response;
-      setTimeout(()=>{
+      console.log(data.response, 'AS');
+      setTimeout(() => {
         this.calculateLeftTime1();
-      },1000);
+      }, 1000);
 
-      this.property.start_date = moment(this.property.start_date).format('DD-MM-YYYY');
+      this.property.start_date = moment(this.property.start_date).format(
+        'DD-MM-YYYY'
+      );
       this.property.end_date_original = this.property.end_date;
-      this.property.end_date = moment(this.property.end_date).format('DD-MM-YYYY');
+      this.property.end_date = moment(this.property.end_date).format(
+        'DD-MM-YYYY'
+      );
 
-
-
-      this.embedVideo = this.property.videos.length ? this.embedService.embed(this.property.videos[1].link) : null;
+      this.embedVideo = this.property.videos.length
+        ? this.embedService.embed(this.property.videos[1].link)
+        : null;
       this.lat = +this.property.location.lat;
       this.lng = +this.property?.location.lng;
-      if (this.property.auction_type_id ==1){
-        this.auction_type = "Subasta";
-      }else if(this.property.auction_type_id ==2){
-        this.auction_type = "Venta directa";
-      }else{
-        this.auction_type = "Cesión de remate";
+      if (this.property.auction_type_id == 1) {
+        this.auction_type = 'Subasta';
+      } else if (this.property.auction_type_id == 2) {
+        this.auction_type = 'Venta directa';
+      } else {
+        this.auction_type = 'Cesión de remate';
       }
       setTimeout(() => {
         this.config.observer = true;
         this.config2.observer = true;
-        this.swipers.forEach(swiper => {
-          if(swiper){
+        this.swipers.forEach((swiper) => {
+          if (swiper) {
             swiper.setIndex(0);
           }
         });
@@ -248,7 +287,7 @@ export class PropertyComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.config = {
       observer: false,
       slidesPerView: 1,
@@ -262,8 +301,8 @@ export class PropertyComponent implements OnInit {
       lazy: true,
       autoplay: {
         delay: 5000,
-        disableOnInteraction: false
-      }
+        disableOnInteraction: false,
+      },
     };
 
     this.config2 = {
@@ -279,47 +318,44 @@ export class PropertyComponent implements OnInit {
       lazy: true,
       breakpoints: {
         200: {
-          slidesPerView: 2
+          slidesPerView: 2,
         },
         480: {
-          slidesPerView: 3
+          slidesPerView: 3,
         },
         600: {
-          slidesPerView: 4
-        }
-      }
-    }
-
+          slidesPerView: 4,
+        },
+      },
+    };
   }
 
-
-  public onOpenedChange(){
-    this.swipers.forEach(swiper => {
-      if(swiper){
+  public onOpenedChange() {
+    this.swipers.forEach((swiper) => {
+      if (swiper) {
         swiper.update();
       }
     });
   }
 
-  public selectImage(index:number){
-    this.swipers.forEach(swiper => {
-      if(swiper['elementRef'].nativeElement.id == 'main-carousel'){
+  public selectImage(index: number) {
+    this.swipers.forEach((swiper) => {
+      if (swiper['elementRef'].nativeElement.id == 'main-carousel') {
         swiper.setIndex(index);
       }
     });
   }
 
   public onIndexChange(index: number) {
-    this.swipers.forEach(swiper => {
+    this.swipers.forEach((swiper) => {
       let elem = swiper['elementRef'].nativeElement;
-      if(elem.id == 'small-carousel'){
+      if (elem.id == 'small-carousel') {
         swiper.setIndex(index);
         for (let i = 0; i < elem.children[0].children.length; i++) {
           const element = elem.children[0].children[i];
-          if(element.classList.contains('thumb-'+index)){
+          if (element.classList.contains('thumb-' + index)) {
             element.classList.add('active-thumb');
-          }
-          else{
+          } else {
             element.classList.remove('active-thumb');
           }
         }
@@ -327,69 +363,127 @@ export class PropertyComponent implements OnInit {
     });
   }
 
-  public addToCompare(){
-    this.appService.addToCompare(this.property, CompareOverviewComponent, (this.settings.rtl) ? 'rtl':'ltr');
+  public addToCompare() {
+    this.appService.addToCompare(
+      this.property,
+      CompareOverviewComponent,
+      this.settings.rtl ? 'rtl' : 'ltr'
+    );
   }
 
-  public onCompare(){
-    return this.appService.Data.compareList.filter(item=>item.id == this.property.id)[0];
+  public onCompare() {
+    return this.appService.Data.compareList.filter(
+      (item) => item.id == this.property.id
+    )[0];
   }
 
-  public addToFavorites(){
-    this.appService.addToFavorites(this.property, (this.settings.rtl) ? 'rtl':'ltr');
+  public addToFavorites() {
+    this.appService.addToFavorites(
+      this.property,
+      this.settings.rtl ? 'rtl' : 'ltr'
+    );
   }
 
-  public onFavorites(){
-    return this.appService.Data.favorites.filter(item=>item.id == this.property.id)[0];
+  public onFavorites() {
+    return this.appService.Data.favorites.filter(
+      (item) => item.id == this.property.id
+    )[0];
   }
 
-  public getRelatedProperties(){
+  public getRelatedProperties() {
     this.appService.getRelatedProperties().subscribe((properties: any) => {
       this.relatedProperties = properties.response;
-    })
+    });
   }
 
-  public getFeaturedProperties(){
-    this.appService.getFeaturedProperties().subscribe(properties=>{
+  public getFeaturedProperties() {
+    this.appService.getFeaturedProperties().subscribe((properties) => {
       console.log(properties);
-      this.featuredProperties = properties.response;//.slice(0,3);
-    })
+      this.featuredProperties = properties.response; //.slice(0,3);
+    });
   }
 
-  public getAgent(agentId:number = 1){
-    var ids = [1,2,3,4,5]; //agent ids
-    agentId = ids[Math.floor(Math.random()*ids.length)]; //random agent id
-    this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0];
+  public getAgent(agentId: number = 1) {
+    var ids = [1, 2, 3, 4, 5]; //agent ids
+    agentId = ids[Math.floor(Math.random() * ids.length)]; //random agent id
+    this.agent = this.appService
+      .getAgents()
+      .filter((agent) => agent.id == agentId)[0];
   }
 
-  public onContactFormSubmit(values:Object){
+  public onContactFormSubmit(values: Object) {
     if (this.contactForm.valid) {
       console.log(values);
       this.showConfirmation();
     }
   }
 
-  public onMortgageFormSubmit(values:Object){
+  public onMortgageFormSubmit(values: Object) {
     if (this.mortgageForm.valid) {
-      var principalAmount = values['principalAmount']
-      var down = values['downPayment']
-      var interest = values['interestRate']
-      var term = values['period']
-      this.monthlyPayment = this.calculateMortgage(principalAmount, down, interest / 100 / 12, term * 12).toFixed(2);
+      var principalAmount = values['principalAmount'];
+      var down = values['downPayment'];
+      var interest = values['interestRate'];
+      var term = values['period'];
+      this.monthlyPayment = this.calculateMortgage(
+        principalAmount,
+        down,
+        interest / 100 / 12,
+        term * 12
+      ).toFixed(2);
     }
   }
-  public calculateMortgage(principalAmount:any, downPayment:any, interestRate:any, period:any){
-    return ((principalAmount-downPayment) * interestRate) / (1 - Math.pow(1 + interestRate, -period));
+  public calculateMortgage(
+    principalAmount: any,
+    downPayment: any,
+    interestRate: any,
+    period: any
+  ) {
+    return (
+      ((principalAmount - downPayment) * interestRate) /
+      (1 - Math.pow(1 + interestRate, -period))
+    );
   }
 
-  public showInfo(){
+  public showInfo() {
     const message = 'deposit';
     let dialogRef = this.appService.showInfoMessage(message);
   }
 
-  public showConfirmation(){
+  public showConfirmation() {
     const message = 'enviado';
     let dialogRef = this.appService.showInfoMessage(message);
   }
 
+  onSubmit() {
+    const value = { import: +this.import };
+    console.log(value);
+
+    if (!this.import || this.import < 1) {
+      return;
+    }
+
+    this.userService.directSale(value, this.property.link_rewrite).subscribe(
+      (response) => {
+        console.log(response);
+        this.snackBar.open('Oferta enviada exitosamente', '×', {
+          panelClass: 'success',
+          verticalPosition: 'top',
+          duration: 3000,
+        });
+
+        let id = this.property.link_rewrite;
+        this.property = null;
+        this.bidForm.value['import'] = null;
+        this.getPropertyById(id);
+      },
+      (error) => {
+        console.log(error);
+        this.snackBar.open(
+          'Ha ocurrido un error! ' + error['error']['messages'][0],
+          '×',
+          { panelClass: 'error', verticalPosition: 'top', duration: 3000 }
+        );
+      }
+    );
+  }
 }

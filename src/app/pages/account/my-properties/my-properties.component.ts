@@ -12,7 +12,7 @@ import { catchError } from 'rxjs';
   styleUrls: ['./my-properties.component.scss']
 })
 export class MyPropertiesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'image', 'title', 'published', 'views', 'actions' ];
+  displayedColumns: string[] = ['id', 'image', 'title', 'published', 'views'/*, 'actions' */];
   dataSource: MatTableDataSource<Property>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
