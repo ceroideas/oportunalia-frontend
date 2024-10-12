@@ -30,6 +30,7 @@ export class Property {
                 public end_date: string,
                 public auction_type_id: number,
                 public auction_status_id: number,
+                public active_category_id: number,
                 public appraisal_value: Price,
                 public start_price: Price,
                 public minimum_bid: Price,
