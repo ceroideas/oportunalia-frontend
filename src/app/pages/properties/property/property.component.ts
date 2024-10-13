@@ -26,6 +26,7 @@ import { DomHandlerService } from 'src/app/dom-handler.service';
 import { UserService } from 'src/app/api/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { UactionsService } from 'src/app/services/uactions.service';
 
 @Component({
   selector: 'app-property',
@@ -62,6 +63,8 @@ export class PropertyComponent implements OnInit {
   representations: any[] = [];
   import: any = 1000;
 
+  viewMap:any = false;
+
   /* depositFulfilled = false;
   userVerified = false;
   auctionFavorite = false;
@@ -78,6 +81,7 @@ export class PropertyComponent implements OnInit {
     public snackBar: MatSnackBar,
     public sanitizer: DomSanitizer,
     private domHandlerService: DomHandlerService,
+    public uactions: UactionsService,
     public route: ActivatedRoute
   ) {
     this.settings = this.appSettings.settings;
@@ -248,8 +252,10 @@ export class PropertyComponent implements OnInit {
   public getPropertyById(id: number) {
     this.appService.getPropertyById(id).subscribe((data) => {
       console.log('getPropertyById');
-
       this.property = data.response;
+
+      this.geocodeAddress(this.property.city+', '+this.property.address+', '+this.property.province+', España');
+
       console.log(data.response, 'AS');
       setTimeout(() => {
         this.calculateLeftTime1();
@@ -266,8 +272,8 @@ export class PropertyComponent implements OnInit {
       this.embedVideo = this.property.videos.length
         ? this.embedService.embed(this.property.videos[1].link)
         : null;
-      this.lat = +this.property.location.lat;
-      this.lng = +this.property?.location.lng;
+      /*this.lat = +this.property.location.lat;
+      this.lng = +this.property?.location.lng;*/
       if (this.property.auction_type_id == 1) {
         this.auction_type = 'Subasta';
       } else if (this.property.auction_type_id == 2) {
@@ -485,5 +491,18 @@ export class PropertyComponent implements OnInit {
         );
       }
     );
+  }
+
+  geocodeAddress(address: string): void {
+    this.uactions.getCoordinates(address).subscribe(response => {
+      if (response.status === 'OK') {
+        const location = response.results[0].geometry.location;
+        this.lat = location.lat;
+        this.lng = location.lng;
+        this.viewMap = true;
+      } else {
+        console.error('Geocoding error:', response.status);
+      }
+    });
   }
 }

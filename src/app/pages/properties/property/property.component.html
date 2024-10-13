@@ -391,7 +391,7 @@
                 </mat-card>
 
                 <!-- Mapa localizacion -->
-                <mat-card class="p-3 mt-3">
+                <mat-card class="p-3 mt-3" *ngIf="viewMap">
                   <h3 class="fw-700 fs-1x">Mapa</h3>
                     <mat-card-content class="p-0 pt-2">
                         <google-map [center]="{ lat: lat, lng: lng }" [options]="mapOptions" height="350px" width="100%">
