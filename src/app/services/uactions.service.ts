@@ -9,10 +9,15 @@ import { SearchProperties } from '../pages/home/interfaces/search-properties';
 })
 export class UactionsService {  
 
+  private apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
+  private apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+  public parameters = {type:null,category:null,search:null};
+
   private uActionsFilter1: string = '/auction?auction_status_id=0&auction_type_id=0&active_category_id=0&order=end_date__asc';
   private uActionsFilter7: string = '/auction?auction_status_id=0&auction_type_id=0&active_category_id=0&order=end_date__asc';
-  private readonly status1Path:  string = '/auction?auction_status_id=1&featured=1&order=end_date__asc';
-  private readonly status7Path: string = '/auction?auction_status_id=7&featured=1&order=end_date__asc';
+  private status1Path:  string = '/auction?auction_status_id=1&featured=1&order=end_date__asc';
+  private status7Path: string = '/auction?auction_status_id=7&featured=1&order=end_date__asc';
   private readonly apiURL: string = GlobalConstants.apiURL;
 
   constructor(private _http: HttpClient) { }
@@ -21,12 +26,15 @@ export class UactionsService {
 
     console.log('aqui')
 
-    return forkJoin([
-      this._http.get(this.apiURL + this.status1Path),
-      this._http.get(this.apiURL + this.status7Path),
-      this._http.get(this.apiURL + this.uActionsFilter1),
-      this._http.get(this.apiURL + this.uActionsFilter7),
-    ]).pipe(map((values: any) => {
+    let urls = [];
+    if (this.uActionsFilter1) { urls.push(this._http.get(this.apiURL + this.uActionsFilter1)); }
+    if (this.uActionsFilter7) { urls.push(this._http.get(this.apiURL + this.uActionsFilter7)); }
+    if (this.status1Path) { urls.push(this._http.get(this.apiURL + this.status1Path)); }
+    if (this.status7Path) { urls.push(this._http.get(this.apiURL + this.status7Path)); }
+
+    console.log(urls);
+
+    return forkJoin(urls).pipe(map((values: any) => {
 
       let responseFiltered: any[] = [];      
 
@@ -42,8 +50,19 @@ export class UactionsService {
     }, catchError(error => throwError(() => error))));
   }
 
-  buildURL({ type, category, search }: SearchProperties): void {       
-    this.uActionsFilter1 = `/auction?auction_status_id=1&auction_type_id=${ type }&active_category_id=${ category }&search=${ search }&order=end_date__asc`;
-    this.uActionsFilter7 = `/auction?auction_status_id=7&auction_type_id=${ type }&active_category_id=${ category }&search=${ search }&order=end_date__asc`;    
+  buildURL({ type, category, search }: SearchProperties): void {
+    this.parameters.type = type;
+    this.parameters.category = category;
+    this.parameters.search = search;
+
+    this.status1Path = null;
+    this.status7Path = null;
+    this.uActionsFilter1 = `/auction?auction_status_id=1&auction_type_id=${ type }&active_category_id=${ category.id ?? 0 }&search=${ search.name ?? '' }&order=end_date__asc`;
+    this.uActionsFilter7 = `/auction?auction_status_id=7&auction_type_id=${ type }&active_category_id=${ category.id ?? 0 }&search=${ search.name ?? '' }&order=end_date__asc`;    
+  }
+
+  getCoordinates(address: string): Observable<any> {
+    const url = `${this.apiUrl}?address=${encodeURIComponent(address)}&key=${this.apiKey}`;
+    return this._http.get(url);
   }
 }

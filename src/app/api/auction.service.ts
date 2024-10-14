@@ -281,6 +281,4 @@ export class AuctionService {
       )
   }
 
-
-
 }

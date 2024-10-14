@@ -1,5 +1,5 @@
 export interface SearchProperties {    
     type: number;
-    category: number;
-    search: string;
+    category: any;
+    search: any;
 }

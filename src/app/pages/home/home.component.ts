@@ -38,9 +38,9 @@ export class HomeComponent implements OnInit {
   }
 
   public searchPropertiesValues: SearchProperties = {
-    search: '',
+    search: null,
     type: 0,
-    category: 0
+    category: null
   }
   public slides: any[] = [];
   public properties: Property[];

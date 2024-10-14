@@ -361,12 +361,20 @@ export class AppService {
       console.log(data);
     }
 
-    console.log(data);
+    // console.log(data);
 
     if(params){
 
+      console.log(params);
+
       if(params.propertyType){
-        data = data.filter(property => property?.active_category_id?.toString() == params?.propertyType?.id?.toString())
+        data = data.filter(property => property?.auction_type_id?.toString() == params?.propertyType?.toString())
+      }
+
+      console.log(data);
+
+      if(params.propertyCategory){
+        data = data.filter(property => property?.active_category_id?.toString() == params?.propertyCategory?.id?.toString())
       }
 
       if(params.propertyStatus && params.propertyStatus.length){
@@ -406,7 +414,7 @@ export class AppService {
 
       }
 
-      if(params.price){
+      /*if(params.price){
         if(this.appSettings.settings.currency == 'USD'){
           if(params.price.from){
             data = data.filter(property => {
@@ -456,17 +464,17 @@ export class AppService {
             });
           }
         }
-      }
+      }*/
 
       if(params.city){
         data = data.filter(property => property.city == params.city.name)
       }
 
-      if(params.zipCode){
+      /*if(params.zipCode){
         data = data.filter(property => property.zipCode == params.zipCode)
-      }
+      }*/
 
-      if(params.neighborhood && params.neighborhood.length){
+      /*if(params.neighborhood && params.neighborhood.length){
         let neighborhoods: any[] = [];
         params.neighborhood.forEach(item => { neighborhoods.push(item.name) });
         let properties: any[] = [];
@@ -563,7 +571,7 @@ export class AppService {
           data = properties;
         }
 
-      }
+      }*/
 
     }
     console.log("app.service filterData: ");

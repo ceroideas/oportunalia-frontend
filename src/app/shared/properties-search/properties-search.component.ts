@@ -4,6 +4,7 @@ import { AppService } from '../../app.service';
 import { SearchProperties } from '../../pages/home/interfaces/search-properties';
 import { PublicService } from 'src/app/api/public.service';
 import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field';
+import { UactionsService } from 'src/app/services/uactions.service';
 
 @Component({
   selector: 'app-properties-search',
@@ -34,9 +35,10 @@ export class PropertiesSearchComponent implements OnInit {
     category: 0
   }
 
-  constructor(public appService:AppService, public fb: UntypedFormBuilder, public publicService: PublicService) { }
+  constructor(public appService:AppService, public fb: UntypedFormBuilder, public publicService: PublicService, public uActionsService: UactionsService) { }
 
   ngOnInit() {
+    console.log("parameters",this.uActionsService.parameters);
     if(this.vertical){
       this.showMore = true;
     };
@@ -47,6 +49,9 @@ export class PropertiesSearchComponent implements OnInit {
     this.propertyStatuses = this.appService.getPropertyStatuses();
     this.appService.getCities().subscribe((citiesData: any) => {
       this.cities = citiesData.response;
+      /*this.form.patchValue({
+        city: this.uActionsService.parameters.search,
+      });*/
     });    
     this.neighborhoods = this.appService.getNeighborhoods();
     this.streets = this.appService.getStreets();
@@ -181,6 +186,9 @@ export class PropertiesSearchComponent implements OnInit {
       .subscribe(
         (response) => {
           this.categoryList = response.response;
+          /*this.form.patchValue({
+            propertyCategory: this.uActionsService.parameters.category,
+          });*/
         },
         (error) => {
 

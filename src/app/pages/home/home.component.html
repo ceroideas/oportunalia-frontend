@@ -51,7 +51,7 @@
           <!-- <mat-label>Categoría</mat-label> -->
           <mat-select placeholder="Categoría" (selectionChange)="setSearchProps($event.value, 'category')">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</mat-option>
+            <mat-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -61,7 +61,7 @@
           <!-- <mat-label>Ubicación</mat-label> -->
           <mat-select placeholder="Ubicación" (selectionChange)="setSearchProps($event.value, 'search')">
             <mat-option value="0">Todas</mat-option>
-            <mat-option *ngFor="let province of provinceList" value="{{province.name}}">{{province.name}}</mat-option>
+            <mat-option *ngFor="let province of provinceList" [value]="province">{{province.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
