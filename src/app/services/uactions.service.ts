@@ -57,8 +57,8 @@ export class UactionsService {
 
     this.status1Path = null;
     this.status7Path = null;
-    this.uActionsFilter1 = `/auction?auction_status_id=1&auction_type_id=${ type }&active_category_id=${ category.id ?? 0 }&search=${ search.name ?? '' }&order=end_date__asc`;
-    this.uActionsFilter7 = `/auction?auction_status_id=7&auction_type_id=${ type }&active_category_id=${ category.id ?? 0 }&search=${ search.name ?? '' }&order=end_date__asc`;    
+    this.uActionsFilter1 = `/auction?auction_status_id=1&auction_type_id=${ type }&active_category_id=${ category?.id ?? 0 }&search=${ search?.name ?? '' }&order=end_date__asc`;
+    this.uActionsFilter7 = `/auction?auction_status_id=7&auction_type_id=${ type }&active_category_id=${ category?.id ?? 0 }&search=${ search?.name ?? '' }&order=end_date__asc`;    
   }
 
   getCoordinates(address: string): Observable<any> {
