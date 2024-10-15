@@ -98,6 +98,10 @@ export class AppService {
     }
   }
 
+  public saveLatLng(data): Observable<any>{
+    return this.http.post(GlobalConstants.apiURL + `/saveLatLng`, data);
+  }
+
   public saveInterests(data): Observable<any>{
     return this.http.post(GlobalConstants.apiURL + `/interests`, data, { headers: { 'Authorization': this.getToken()}, });
   }

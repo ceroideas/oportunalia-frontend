@@ -10,6 +10,10 @@ export class Property {
                 public street: string[],
                 public location: Location,
                 public formattedAddress: string,
+
+                public lat: string,
+                public lng: string,
+
                 public features: string[],
                 public featured: boolean,
                 public priceDollar: Price,

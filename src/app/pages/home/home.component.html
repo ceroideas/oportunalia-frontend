@@ -228,8 +228,10 @@
 </div>
 
 <google-map [center]="center" [zoom]="zoom" [options]="mapOptions" height="800px" width="100%">
-  <map-marker *ngFor="let markerPosition of markerPositions"
-              [position]="markerPosition"
+  <map-marker *ngFor="let marker of markerPositions"
+              [position]="{lat: marker.lat, lng: marker.lng}"
+              [title]="marker.title"
+              (mapClick)="navigateTo(marker.route)"
               [options]="markerOptions"></map-marker>
 </google-map>
 

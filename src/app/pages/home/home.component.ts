@@ -29,9 +29,7 @@ export class HomeComponent implements OnInit {
   center: google.maps.LatLngLiteral = { lat: 40.416775, lng: -3.703790};
   zoom: number = 7;
   markerOptions: google.maps.MarkerOptions = { draggable: false };
-  markerPositions: google.maps.LatLngLiteral[] = [
-    { lat: 40.416775, lng: -3.703790 }
-  ];
+  markerPositions: { lat: number, lng: number, title: string, route: string }[] = [];
   mapOptions: google.maps.MapOptions = {
     fullscreenControl: true,
     mapTypeControl: true
@@ -223,6 +221,14 @@ export class HomeComponent implements OnInit {
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
       this.featuredProperties = properties.response;
+      for(let i of this.featuredProperties)
+      {
+        if (!i.lat || !i.lng) {
+          this.geocodeAddress(i.city+', '+i.address+', '+i.province+', España',i.title,'/#/properties/'+i.link_rewrite,i.active_id);
+        }else{
+          this.markerPositions.push({lat:parseFloat(i.lat),lng:parseFloat(i.lng),title:i.title,route:'/#/properties/'+i.link_rewrite});
+        }
+      }
     })
   }
 
@@ -259,6 +265,27 @@ export class HomeComponent implements OnInit {
 
   setSearchProps(value: any, key: string) {    
     this.searchPropertiesValues[key] = isNaN(parseInt(value)) ? value : parseInt(value);
+  }
+
+  navigateTo(route: string): void {
+    window.location.href = route;
+  }
+
+  geocodeAddress(address: string,title:string,route:string,active_id): void {
+    this.uActionsService.getCoordinates(address).subscribe(response => {
+      if (response.status === 'OK') {
+        const location = response.results[0].geometry.location;
+        this.markerPositions.push({lat:location.lat,lng:location.lng,title:title,route:route});
+
+        this.appService.saveLatLng({active_id,lat:location.lat,lng:location.lng}).subscribe(data=>{
+          console.log('saved');
+        });
+
+
+      } else {
+        console.error('Geocoding error:', response.status);
+      }
+    });
   }
 
 }

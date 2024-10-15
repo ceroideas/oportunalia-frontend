@@ -46,6 +46,10 @@ import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/ver
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
 
+import { provideRouter, withHashLocation } from '@angular/router';
+
+import { routes } from './app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +89,7 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
   providers: [
     // provideClientHydration(),
     // provideHttpClient(withFetch()),
+    provideRouter(routes, withHashLocation()),
     AppSettings,
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },

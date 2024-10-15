@@ -254,7 +254,13 @@ export class PropertyComponent implements OnInit {
       console.log('getPropertyById');
       this.property = data.response;
 
-      this.geocodeAddress(this.property.city+', '+this.property.address+', '+this.property.province+', España');
+      if (!this.property.lat || !this.property.lng) {
+        this.geocodeAddress(this.property.city+', '+this.property.address+', '+this.property.province+', España',this.property.active_id);
+      }else{
+        this.lat = parseFloat(this.property.lat);
+        this.lng = parseFloat(this.property.lng);
+        this.viewMap = true;
+      }
 
       console.log(data.response, 'AS');
       setTimeout(() => {
@@ -493,13 +499,18 @@ export class PropertyComponent implements OnInit {
     );
   }
 
-  geocodeAddress(address: string): void {
+  geocodeAddress(address: string,active_id): void {
     this.uactions.getCoordinates(address).subscribe(response => {
       if (response.status === 'OK') {
         const location = response.results[0].geometry.location;
         this.lat = location.lat;
         this.lng = location.lng;
         this.viewMap = true;
+
+        this.appService.saveLatLng({active_id,lat:location.lat,lng:location.lng}).subscribe(data=>{
+          console.log('saved');
+        });
+
       } else {
         console.error('Geocoding error:', response.status);
       }
