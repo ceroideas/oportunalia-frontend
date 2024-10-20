@@ -157,7 +157,7 @@
                        
                         >
                         <div  fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
-                          <mat-label style="font-weight: 300; color: grey;">Tu Ofertar:</mat-label>
+                          <mat-label style="font-weight: 300; color: grey;">Tu Oferta:</mat-label>
                           <input matInput step="3" placeholder="Importe" type="number" min="1000" [(ngModel)]="import"    class="my-input" />
                           <div class="value">€</div>
                         </div>
@@ -295,7 +295,9 @@
                         <div id="main-carousel" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
                             <div class="swiper-wrapper">
                                 <div *ngFor="let image of property?.images" class="swiper-slide">
-                                    <img [attr.data-src]="image.path" class="swiper-lazy">
+                                  
+                                    <div class="mainCover h100" [ngStyle]="{'background-image': 'url(' + image.path + ')'}"></div>
+                                    <img [attr.data-src]="image.path" class="swiper-lazy" style="display: none;">
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>
                             </div>
@@ -308,6 +310,7 @@
                         <div id="small-carousel" class="swiper-container" [swiper]="config2">
                             <div class="swiper-wrapper">
                                 <div *ngFor="let image of property?.images; let i=index;" class="swiper-slide" [ngClass]="'thumb-'+i" [class.active-thumb]="i == 0">
+                                    <div class="mainCover" [ngStyle]="{'background-image': 'url(' + image.path + ')'}" (click)="selectImage(i)"></div>
                                     <img [attr.data-src]="image.path" class="swiper-lazy mw-100" (click)="selectImage(i)">
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>

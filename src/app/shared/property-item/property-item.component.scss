@@ -283,3 +283,17 @@
     }
 
 }
+
+
+.swiper-slide .cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.swiper-slide img {
+    display: none; /* Ocultar la etiqueta img */
+}

@@ -38,3 +38,7 @@
   border-radius: 0;
   margin-bottom: 1rem;
 }
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+  height: fit-content;
+}

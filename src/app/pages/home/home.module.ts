@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home.component';
 import { HotOfferTodayComponent } from './hot-offer-today/hot-offer-today.component';
 import { FeaturedPropertiesComponent } from './featured-properties/featured-properties.component';
+import { TimelineComponent } from '../../shared/timeline/timeline.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  }
@@ -14,7 +15,8 @@ export const routes: Routes = [
   declarations: [
     HomeComponent, 
     HotOfferTodayComponent,
-    FeaturedPropertiesComponent
+    FeaturedPropertiesComponent,
+    TimelineComponent
   ],
   imports: [
     CommonModule,

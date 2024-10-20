@@ -21,7 +21,7 @@
 </app-header-map>
 
 <app-header-video *ngIf="settings.header == 'video'"
-                [backgroundVideo]="'http://themeseason.com/data/videos/video-1.mp4'"
+                [backgroundVideo]="'https://themeseason.com/data/videos/video-1.mp4'"
                 [contentOffsetToTop]="true"
                 [title]="'Oportunalia'"
                 [desc]="'Tu web de oportunanidades inmobiliarias'"
@@ -32,8 +32,8 @@
 <!-- Buscador principal -->
 <div class="px-3 pt-6 pb-6 bg-blue" >
   <div class="theme-container text-center">
-    <div class="flex-container" fxLayout="row">
-      <div fxFlex>
+    <div class="flex-container" fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="50" fxFlex.xs="100">
           <div>Tipo</div>
         <mat-form-field appearance="fill" style="width: calc(100% - 16px);">
           <!-- <mat-label>Tipo de propiedad</mat-label> -->
@@ -45,7 +45,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div fxFlex>
+      <div fxFlex="50" fxFlex.xs="100">
         <div>Categoría</div>
         <mat-form-field appearance="fill" style="width: calc(100% - 16px);">
           <!-- <mat-label>Categoría</mat-label> -->
@@ -55,7 +55,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div fxFlex>
+      <div fxFlex="50" fxFlex.xs="100">
           <div>Ubicación</div>
         <mat-form-field appearance="fill" style="width: calc(100% - 16px);">
           <!-- <mat-label>Ubicación</mat-label> -->
@@ -73,7 +73,7 @@
 
 
       </div>
-      <!-- <div fxFlex>
+      <!-- <div fxFlex="50" fxFlex.xs="100">
           <div>Otros criterios</div>
         <mat-form-field appearance="fill">
           <mat-label>Otros criterios</mat-label>
@@ -87,7 +87,7 @@
         </mat-form-field>
       </div> -->
 
-      <div fxFlex>
+      <div fxFlex="50" fxFlex.xs="100">
         <div>&nbsp;</div>
         <button style="width: calc(100% - 16px); border-radius: 8px;" (click)="searchProperties()" mat-flat-button class="btn-secondary">Buscar</button>
       </div>
@@ -162,9 +162,8 @@
           <div class="theme-container text-center">
             <!-- <h1 class="section-title mb-3 fc-primary">¿Que es <b>Oportunalia</b>?</h1> -->
             <h1 class="text-center mb-4 fw-400 fc-primary fs-2x">¿Qué es <b>Oportunalia</b>?</h1>
-            <p class="pl-6 pr-6 fc-primary fs-1x"><b>Oportunalia</b> es una plataforma de <b>oportunidades inmobiliarias</b> que ofrece pisos procedentes de bancos y
-              otros procedimientos judiciales de forma &aacute;gil y completamente segura. Adem&aacute;s, proporciona acompañamiento
-              legal a lo largo de todo el proceso. Descubre viviendas, fincas, garajes y m&aacute;s a precios por debajo del mercado.</p>
+            <p class="pl-6 pr-6 fc-primary fs-1x"><b>Oportunalia</b> es una plataforma de oportunidades <b>inmobiliarias</b> especializada  en la gestión de subastas, cesiones de remate y ventas de <b>todo tipo de activos</b> procedentes de bancos, con precios muy atractivos. Ofreciendo agilidad, publicidad, transparencia y acompañamiento durante todo el proceso. <br> <br>
+            A través de <b>Oportunalia</b> podrás comprar a precios muy competitivos y obtener un alto rendimiento en tu inversión.
           </div>
         </div>
           <app-header-video
@@ -188,6 +187,8 @@
 
 <app-featured-properties [properties]="featuredProperties"></app-featured-properties>
 
+<app-timeline></app-timeline>
+
 
 <div class="section mt-3">
   <div class="px-3">
@@ -201,8 +202,8 @@
 <!-- Buscador mapa -->
 <div class="px-3 pt-6 pb-6 bg-blue" >
   <div class="theme-container text-center" >
-    <div class="flex-container" fxLayout="row">
-      <div class="child-1" fxFlex>
+    <div class="flex-container" fxLayout="row" fxLayout.xs="column">
+      <div class="child-1" fxFlex="50" fxFlex.xs="100">
         <mat-form-field appearance="fill" style="width: 90%; opacity: .7;">
           <mat-label>Ubicación</mat-label>
           <mat-select placeholder="Select">
@@ -211,7 +212,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="child-2" fxFlex>
+      <div class="child-2" fxFlex="50" fxFlex.xs="100">
         <mat-form-field appearance="fill" style="width: 90%; opacity: .7;">
           <mat-label>Categoría</mat-label>
           <mat-select placeholder="Select">
@@ -220,7 +221,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="child-3" fxFlex>
+      <div class="child-3" fxFlex="50" fxFlex.xs="100">
         <button style="width: 90%;" mat-flat-button class="btn-secondary">Buscar</button>
       </div>
     </div>

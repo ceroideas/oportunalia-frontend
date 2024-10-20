@@ -5,6 +5,7 @@ import { AppService } from '../../app.service';
 import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-field';
 import { FormControl,FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
+import { PublicService } from 'src/app/api/public.service';
 
 @Component({
   selector: 'app-interest',
@@ -16,37 +17,60 @@ export class InterestComponent implements OnInit{
   @Input() variant:number = 1;
   public interestForm: UntypedFormGroup;
   public provinces: any[] = [];
-  areas = new FormControl('');
+
   areaList: string[] = ['Toda España', 'Madrid', 'Barcelona', 'Valencia', 'Otros'];
-  inversiones = new FormControl('');
   inversionList: string[] = ['Inversión', 'Residencia propia'];
 
+  ubicacion = new FormControl([]);
+  inversiones = new FormControl('');
+  presupuesto = new FormControl('');
   properties = new FormControl('');
+
   propertyList: string[] = ['Viviendas', 'Naves industriales','Garajes','Trasteros','Locales', 'Lotes inmobiliarios','Aplicaciones informáticas',
                             'Derechos de cobro y créditos','Maquinaria','Solares', 'Vehículos','Arte y antigüedades','Unidades productivas', 'Oficinas', 'Rústicos'];
   formatLabel(value: number): string {
     /* if (value >= 1000) {
       return Math.round(value / 1000) + 'k';
     } */
-
     return `${value}`;
   }
-  constructor(public router:Router, public fb: UntypedFormBuilder, public appService:AppService,) { }
+  constructor(public publicService:PublicService,public router:Router, public fb: UntypedFormBuilder, public appService:AppService,) { }
 
   ngOnInit() {
-    this.interestForm =  this.fb.group({
-      name: ''});
+    this.interestForm = this.fb.group({
+      name: ''
+    });
 
-    this.appService.getProvinces().subscribe((data: any) => { this.provinces = data });
+    /*this.appService.getProvinces().subscribe((data: any) => { this.provinces = data });*/
+    this.getProvinceList();
 
   }
 
+  getProvinceList(){
+    this.publicService.provinceList(1)
+      .subscribe(
+        (response) => {
+          this.provinces = response.response;
+        },
+        (error) => {
+
+        }
+      )
+  }
 
 
   public onInterestFormSubmit(values:Object):void {
     if (this.interestForm.valid) {
-      //console.log(values);
-      this.router.navigate(['/account/profile']);
+
+      this.appService.saveInterests({
+        ubicacion:this.ubicacion.value.map(num=>num.toString()),
+        inversion:this.inversiones.value.toString(),
+        presupuesto:this.presupuesto.value,
+        activos:this.properties.value
+      }).subscribe(data=>{
+        console.log('guardado');
+        this.router.navigate(['/account/profile']);
+      })
     }
   }
 

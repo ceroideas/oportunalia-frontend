@@ -18,13 +18,13 @@
     <div class="pt-3">
       <div *ngIf="title.length>1">
         <!-- titulo en busquedas -->
-        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary">{{title}}</span></a></h1>
+        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary ellipsis" [title]="title">{{title}}</span></a></h1>
         <h3 *ngIf="title.length<=34">&nbsp;</h3>
       </div>
 
       <div *ngIf="title.length<1">
         <!-- Titulo en home -->
-        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary">{{property.title}}</span></a></h1>
+        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary ellipsis" [title]="property.title">{{property.title}}</span></a></h1>
         <h3 *ngIf="property.title.length<=33">&nbsp;</h3>
       </div>
 
@@ -63,6 +63,7 @@
             <div class="swiper-container" [swiper]="config">
                 <div class="swiper-wrapper">
                     <div *ngFor="let image of property.images" class="swiper-slide">
+                        <div class="cover" [ngStyle]="{'background-image': 'url(' + image.path + ')'}"></div>
                         <img [attr.data-src]="image.path" class="swiper-lazy">
                         <div class="swiper-lazy-preloader"></div>
                     </div>

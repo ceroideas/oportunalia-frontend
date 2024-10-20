@@ -38,12 +38,12 @@
 }
 .small-carousel{
     .swiper-slide{
-        img{
+        .mainCover {
             display: block;
             opacity: 0.3;
         }
         &.active-thumb{
-            img{
+            .mainCover {
                 border-width: 3px;
                 border-style: solid;
                 box-sizing: border-box;
@@ -327,4 +327,23 @@ input[type="number"] {
     border: none; /* Elimina el borde del label */
     background-color: inherit; /* Hereda el color de fondo del contenedor */
     cursor: pointer;
+}
+
+.swiper-slide .mainCover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 150px !important;
+    position: absolute;
+}
+
+.swiper-slide .mainCover.h100 {
+    height: 100% !important;
+}
+
+.swiper-slide img {
+    // display: none;
+    opacity: 0;
+    height: 150px;
 }

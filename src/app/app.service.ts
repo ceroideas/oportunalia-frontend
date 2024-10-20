@@ -37,8 +37,8 @@ export class AppService {
   )
 
   public url = environment.url + '/assets/data/';
-  // public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
-  public apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
+  public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
+  // public apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
 
   constructor(public http:HttpClient,
               private router: Router,
@@ -87,7 +87,7 @@ export class AppService {
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
 
-    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));
+    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path, { headers: { 'Authorization': this.getToken()}, })));
   }
 
   public getPropertyById(id): Observable<any>{
@@ -347,6 +347,8 @@ export class AppService {
 
   public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null){
 
+    console.log("filter data")
+
     if (type1 && type1.indexOf('/properties') === -1) {
 
       if (type1 == '/auction') {
@@ -471,7 +473,7 @@ export class AppService {
       }*/
 
       if(params.city){
-        data = data.filter(property => property.city == params.city.name)
+        data = data.filter(property => property.province == params.city.name)
       }
 
       /*if(params.zipCode){

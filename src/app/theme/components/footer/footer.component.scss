@@ -6,3 +6,25 @@ a {
 ul {
   list-style-type: none;
 }
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .visible-xs {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-xs {
+    display: none;
+  }
+}

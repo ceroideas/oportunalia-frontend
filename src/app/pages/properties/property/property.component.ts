@@ -351,6 +351,7 @@ export class PropertyComponent implements OnInit {
   }
 
   public selectImage(index: number) {
+    console.log(index);
     this.swipers.forEach((swiper) => {
       if (swiper['elementRef'].nativeElement.id == 'main-carousel') {
         swiper.setIndex(index);

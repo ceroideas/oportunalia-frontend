@@ -114,9 +114,20 @@ export class HomeComponent implements OnInit {
   public getProperties(){
     //console.log('get properties by : ', this.searchFields);
     this.appService.getProperties().subscribe(info => {
-      const data = info?.response && info?.code === 200 ? info.response : [];      
+      // const data = info?.response && info?.code === 200 ? info.response : [];
 
-      if(this.properties && this.properties.length > 0){
+      for(let properties of info) {
+        for(let i of properties.response)
+        {
+          if (!i.lat || !i.lng) {
+            this.geocodeAddress(i.city+', '+i.address+', '+i.province+', España',i.title,'/#/properties/'+i.link_rewrite,i.active_id);
+          }else{
+            this.markerPositions.push({lat:parseFloat(i.lat),lng:parseFloat(i.lng),title:i.title,route:'/#/properties/'+i.link_rewrite});
+          }
+        }
+      }
+
+      /*if(this.properties && this.properties.length > 0){
         this.settings.loadMore.page++;
         this.pagination.page = this.settings.loadMore.page;
       }
@@ -151,7 +162,7 @@ export class HomeComponent implements OnInit {
           this.locations.push(loc);
         });
         this.locations = [...this.locations];
-      }
+      }*/
       return true;
     })
   }
@@ -221,14 +232,6 @@ export class HomeComponent implements OnInit {
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
       this.featuredProperties = properties.response;
-      for(let i of this.featuredProperties)
-      {
-        if (!i.lat || !i.lng) {
-          this.geocodeAddress(i.city+', '+i.address+', '+i.province+', España',i.title,'/#/properties/'+i.link_rewrite,i.active_id);
-        }else{
-          this.markerPositions.push({lat:parseFloat(i.lat),lng:parseFloat(i.lng),title:i.title,route:'/#/properties/'+i.link_rewrite});
-        }
-      }
     })
   }
 

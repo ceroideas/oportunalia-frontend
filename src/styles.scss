@@ -8,3 +8,22 @@
 .mat-mdc-text-field-wrapper {
     border-radius: 8px !important;
 }
+
+.swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: 0 !important;
+}
+
+.header-image-wrapper .header-image-content.offset-bottom {
+  padding-bottom: 80px !important;
+  min-height: 480px !important;
+  padding-top: 80px !important;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90%;
+  display: block;
+  overflow: hidden;
+  margin: auto;
+}

@@ -32,6 +32,14 @@ export const routes: Routes = [
           { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) },
           { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule) },          
           { path: 'interest', loadChildren: () => import('./pages/interest/interest.module').then(m => m.InterestModule) },
+
+          { path: 'service1', loadChildren: () => import('./pages/service1/service1.module').then(m => m.Service1Module) },
+          { path: 'service2', loadChildren: () => import('./pages/service2/service2.module').then(m => m.Service2Module) },
+          { path: 'service3', loadChildren: () => import('./pages/service3/service3.module').then(m => m.Service3Module) },
+
+          // { path: 'timeline', loadChildren: () => import('./shared/timeline/timeline.module').then(m => m.TimelineModule) },
+
+          // { path: 'interest', redirectTo: '/account/interests', pathMatch: 'full' },
           { path: 'cuenta-verificada/:token', loadChildren: () => import('./pages/verificar-cuenta/verificar-cuenta.module').then(m => m.VerificarCuentaModule) },
           { path: 'reestablecer-contra/:token', loadChildren: () => import('./pages/change-password/change-password.module').then(m => m.ChangePasswordModule) }
       ]
