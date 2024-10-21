@@ -19,7 +19,7 @@ export const horizontalMenuItems = [
       new Menu (61, 'NAV.ABOUT_US', '/about', null, null, false, 60),
       new Menu (62, 'NAV.HOW_TO_BUY', '/how-to-buy', null, null, false, 60),
       new Menu (63, 'Preguntas frecuentes', '/faq', null, null, false, 60),
-      new Menu (64, 'BLOG', 'https://oportunalia.com/oportunidades-inmobiliarias/', null, '_blank', false, 60),
+      new Menu (64, 'BLOG', null, 'https://oportunalia.com/oportunidades-inmobiliarias/', '_blank', false, 60),
     new Menu (70, 'NAV.CONTACT', '/contact', null, null, false, 0),
     new Menu (80, 'LOGIN', '/login', null, null, false, 0),
 ]
@@ -44,7 +44,7 @@ export const verticalMenuItems = [
     new Menu (61, 'NAV.ABOUT_US', '/about', null, null, false, 60),
       new Menu (62, 'NAV.HOW_TO_BUY', '/how-to-buy', null, null, false, 60),
       new Menu (63, 'Preguntas frecuentes', '/faq', null, null, false, 60),
-      new Menu (64, 'BLOG', 'https://oportunalia.com/oportunidades-inmobiliarias/', null, '_blank', false, 60),
+      new Menu (64, 'BLOG', null, 'https://oportunalia.com/oportunidades-inmobiliarias/', '_blank', false, 60),
     new Menu (70, 'NAV.CONTACT', '/contact', null, null, false, 0),
     new Menu (80, 'LOGIN', '/login', null, null, false, 0)
 ]
