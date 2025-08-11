@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Settings, AppSettings } from '../app.settings';
 import { DomHandlerService } from '../dom-handler.service';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-pages',
@@ -23,6 +24,7 @@ export class PagesComponent implements OnInit {
   public settings: Settings;
   constructor(public appSettings:AppSettings,
               public router:Router,
+              public analyticsService: AnalyticsService,
               private domHandlerService: DomHandlerService) {
     this.settings = this.appSettings.settings;
   }
@@ -31,6 +33,7 @@ export class PagesComponent implements OnInit {
     this.toolbarTypeOption = this.settings.toolbar;
     this.headerTypeOption = this.settings.header;
     this.searchPanelVariantOption = this.settings.searchPanelVariant;
+    this.analyticsService.trackEvent("page loaded","page loaded successfuly","start load");
   }
 
   public changeTheme(theme){

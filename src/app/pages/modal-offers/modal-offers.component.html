@@ -1,0 +1,30 @@
+<!-- <mat-sidenav-content ngClass.gt-sm="distance"> -->
+
+	<img src="assets/images/4_1 1.png" alt="">
+
+	<button style="opacity: 0; top: 8%; right: 0;" class="btn-oculto" mat-dialog-close>
+		CERRAR
+	</button>
+
+	<button style="opacity: 0; width: 200px; height: 100px; bottom: 24%; left: 5%;" class="btn-oculto" mat-dialog-close [routerLink]="['/propiedades']" [queryParams]="{ ofertas: 1 }">
+		DESCUBRELAS
+	</button>
+
+	<!-- <div style="padding: 32px; overflow: auto; max-height: 90vh;">
+
+
+		<h1 style="text-align: center;" class="text-center mb-4 fw-400 fc-primary fs-2x" *ngIf="offers?.length">
+			<img src="assets/images/ofertas-semana.png" alt="" style="max-height: 200px;" class="image-123">
+		</h1>
+
+
+        <div fxLayout="row wrap" class="properties-wrapper mt-0">
+
+			<div *ngFor="let property of offers; let i = index" [fxFlex]="(viewType=='grid') ? viewCol : 100"  class="item">
+			    <app-property-item *ngIf="i < 10" [property]="property" [viewType]="viewType" [viewColChanged]="viewCol" [fullWidthPage]="false"></app-property-item>
+			</div>
+
+		</div>
+	</div> -->
+
+<!-- </mat-sidenav-content> -->

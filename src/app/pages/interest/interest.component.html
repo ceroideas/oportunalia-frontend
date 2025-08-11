@@ -3,13 +3,13 @@
 
     <!-- <div fxLayout="row" fxLayoutAlign="center center" class="my-3"> -->
     <div class="my-3">
-      <div class="pt-3 ml-7 mr-7">
+      <div class="pt-3 ml-3 mr-3">
         <div fxLayout="column">
           <h1 class="fw-400 fc-primary">Responde algunas preguntas</h1>
         </div>
 
         <form [formGroup]="interestForm" (ngSubmit)="onInterestFormSubmit(interestForm.value)">
-          <div class="mr-7">
+          <div class="">
             <p class="fw-600 fc-primary fs-1x pt-5">¿Qué zonas te interesan?</p>
             <div fxLayout="column">
               <mat-form-field>
@@ -34,12 +34,14 @@
             <p class="fw-600 fc-primary fs-1x">¿Cuál es tu presupuesto?</p>
 
             <div fxLayout="row" fxLayoutAlign="center center">
-              <label class="fw-400 pr-3">500 &euro;</label>
-              <mat-slider min="500" max="1000000" step="500" discrete [displayWith]="formatLabel">
+              <label class="fw-400 pr-3">30.000 &euro;</label>
+              <mat-slider min="30000" max="1000000" step="500" discrete [displayWith]="formatLabel" (change)="presupuestoChange()">
                 <input matSliderThumb [formControl]="presupuesto">
               </mat-slider>
               <label class="fw-400 pl-3">1.000.000 &euro;</label>
             </div>
+            <label for=""><i>(O escribe el monto)</i></label>&nbsp;
+            <input type="number" [formControl]="presupuesto1" step="500" min="30000" max=1000000 (change)="changePresupuesto()">
 
             <p class="pt-5 fw-600 fc-primary fs-1x">¿Qué tipo de activos te interesan?</p>
             <div fxLayout="column">

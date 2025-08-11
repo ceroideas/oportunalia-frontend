@@ -10,16 +10,50 @@
 .bg-card-subasta {
   background-image: url('../../../assets/images/props/subasta_home.jpg') !important;
   background-size:cover !important;
+  
+  height:450px !important;
+  
+  display: flex;
+  justify-content: center !important;
 }
 
 .bg-card-venta {
   background-image: url('../../../assets/images/props/venta_home.jpg') !important;
   background-size:cover !important;
+
+  height:450px !important;
+  
+  display: flex;
+  justify-content: center !important;
 }
 
 .bg-card-cesion {
   background-image: url('../../../assets/images/props/cesion_home.jpg') !important;
   background-size:cover !important;
+
+  height:450px !important;
+  
+  display: flex;
+  justify-content: center !important;
+}
+
+.card-article {
+  width: fit-content;
+  text-align: center;
+  border-radius: 10px;
+  border: solid 3px #242863;
+  font-size: 11px;
+  font-weight: 200;
+  // line-height: 56px;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 8px 16px #60617029,0 2px 4px #28293d0a;
+  background-color: #242863;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 8px;
 }
 
 .card-title{

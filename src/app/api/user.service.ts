@@ -105,7 +105,7 @@ export class UserService {
   }
 
   changePassword(password: string, token: string): Observable<any> {
-    return this.http.post(GlobalConstants.apiURL + `reset-password/${token}`, {
+    return this.http.post(GlobalConstants.apiURL + `/auth/reset-password/${token}`, {
       password,
     });
   }

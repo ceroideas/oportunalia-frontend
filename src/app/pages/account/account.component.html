@@ -1,12 +1,12 @@
 <div class="p-3">
     <div class="theme-container">
 
-        <mat-sidenav-container class="account">
+        <mat-sidenav-container class="account main-sidenav">
             <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="account-sidenav">
                 <!-- before <mat-card> -->
                 <div>
-                    <button fxHide="false" fxHide.gt-sm mat-mini-fab color="warn" class="close" (click)="sidenav.toggle()">
-                        <mat-icon>close</mat-icon>
+                    <button fxHide="false" style="right: 18px;" fxHide.gt-sm mat-mini-fab color="warn" class="close" (click)="sidenav.toggle()">
+                        <mat-icon style="position: relative; top: 3px;">close</mat-icon>
                     </button>
                     <!-- <mat-card-header fxLayoutAlign="start center">
                         <img mat-card-avatar src="assets/images/others/user.jpg" alt="avatar" class="mb-0">
@@ -29,7 +29,10 @@
             <mat-sidenav-content ngClass.gt-sm="distance">
               <mat-card *ngIf="!sidenavOpen" fxLayout="row" fxLayoutAlign="space-between center" class="text-muted mb-3 p-3">
                   <button mat-icon-button (click)="sidenav.toggle()">
-                      <mat-icon>more_vert</mat-icon>
+                      <mat-icon style="    position: relative;
+    top: -4px;
+    left: -2px;
+    overflow: unset;">more_vert</mat-icon>
                   </button>
                   <h3>Mi cuenta</h3>
               </mat-card>

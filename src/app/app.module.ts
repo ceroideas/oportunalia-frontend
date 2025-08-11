@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
@@ -50,6 +51,21 @@ import { provideRouter, withHashLocation } from '@angular/router';
 
 import { routes } from './app-routing.module';
 
+import { SnackbarComponent } from './custom/snackbar/snackbar.component';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CustomDateAdapter } from './pages/custom-date-adapter';
+import { CUSTOM_DATE_FORMATS } from './pages/custom-date-formats';
+
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+
+registerLocaleData(localeEs, 'es');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,15 +81,24 @@ import { routes } from './app-routing.module';
     HorizontalMenuComponent,
     VerticalMenuComponent,
     FooterComponent,
-    LockScreenComponent
+    LockScreenComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    
+    ShareButtonsModule,
+    ShareIconsModule,
+
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     GoogleMapsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -89,11 +114,14 @@ import { routes } from './app-routing.module';
   providers: [
     // provideClientHydration(),
     // provideHttpClient(withFetch()),
-    provideRouter(routes, withHashLocation()),
+    // provideRouter(routes, withHashLocation()),
     AppSettings,
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+    { provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
   ],
   bootstrap: [AppComponent]
 })

@@ -19,18 +19,22 @@ export class FavoritesComponent implements OnInit {
   constructor(public appService:AppService) { }
 
   ngOnInit() {
+    this.appService.getFavorites();
     this.dataSource = new MatTableDataSource(this.appService.Data.favorites);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   public remove(property:Property) {
+    console.log(property);
     const index: number = this.dataSource.data.indexOf(property);
     if (index !== -1) {
       this.dataSource.data.splice(index,1);
       this.dataSource = new MatTableDataSource<Property>(this.dataSource.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.appService.addToFavorites(property, 'rtl');
+      // this.appService.deleteFavorite(property.id);
     }
   }
 

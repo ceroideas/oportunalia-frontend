@@ -1,5 +1,6 @@
 import {
   Component,
+  inject,
   OnInit,
   ViewChild,
   HostListener,
@@ -27,6 +28,20 @@ import { UserService } from 'src/app/api/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { UactionsService } from 'src/app/services/uactions.service';
+import { PublicService } from 'src/app/api/public.service';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
+import { BuyProccessComponent } from '../../buy-proccess/buy-proccess.component';
+
+import { AnalyticsService } from '../../../services/analytics.service';
+
+import { SnackbarComponent } from '../../../custom/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-property',
@@ -56,14 +71,20 @@ export class PropertyComponent implements OnInit {
   mapOptions: google.maps.MapOptions = {
     mapTypeControl: true,
     fullscreenControl: true,
+    gestureHandling: 'greedy'
   };
+  zoom: number = 10;
   lat: number = 0;
   lng: number = 0;
   auction_type: string = '';
   representations: any[] = [];
-  import: any = 1000;
+  import: any = 0;
 
   viewMap:any = false;
+
+  markerOptions: google.maps.MarkerOptions = { draggable: false, icon: {url:'assets/marker.png', scaledSize: new google.maps.Size(60, 60)} };
+
+  shareList:any = false;
 
   /* depositFulfilled = false;
   userVerified = false;
@@ -72,6 +93,7 @@ export class PropertyComponent implements OnInit {
   currentRoute=""; */
 
   constructor(
+    public analyticsService: AnalyticsService,
     public appSettings: AppSettings,
     public appService: AppService,
     private activatedRoute: ActivatedRoute,
@@ -82,7 +104,8 @@ export class PropertyComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private domHandlerService: DomHandlerService,
     public uactions: UactionsService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public publicService: PublicService,
   ) {
     this.settings = this.appSettings.settings;
     this.depositForm = this.fb.group({
@@ -97,7 +120,14 @@ export class PropertyComponent implements OnInit {
     });
   }
 
+  dialog = inject(MatDialog);
+
+  openDialog() {
+    this.dialog.open(BuyProccessComponent);
+  }
+
   ngOnInit() {
+
     this.sub = this.activatedRoute.params.subscribe((params) => {
       this.getPropertyById(params['id']);
     });
@@ -120,10 +150,12 @@ export class PropertyComponent implements OnInit {
       period: ['', Validators.required],
     });
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
+      firstname: ['', Validators.required],
+      message: [''],
+      subject: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
-      phone: ['', Validators.required],
-      message: ['', Validators.required],
+      phone: [''],
+      lastname: ['']
     });
   }
 
@@ -153,10 +185,16 @@ export class PropertyComponent implements OnInit {
       this.userService.bid(formInfo, this.property.link_rewrite).subscribe(
         (response) => {
           console.log(response);
-          this.snackBar.open('Oferta enviada exitosamente', '×', {
+          /*this.snackBar.open('Oferta enviada exitosamente', '×', {
             panelClass: 'success',
             verticalPosition: 'top',
             duration: 3000,
+          });*/
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['success'],
+            data: { message: "Oferta enviada exitosamente" }
           });
 
           let id = this.property.link_rewrite;
@@ -195,10 +233,16 @@ export class PropertyComponent implements OnInit {
       this.userService.deposit(formInfo, this.property.link_rewrite).subscribe(
         (response) => {
           console.log(response);
-          this.snackBar.open('Deposito enviado exitosamente', '×', {
+          /*this.snackBar.open('Deposito enviado exitosamente', '×', {
             panelClass: 'success',
             verticalPosition: 'top',
             duration: 3000,
+          });*/
+          this.snackBar.openFromComponent(SnackbarComponent, {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['success'],
+            data: { message: "Deposito enviado exitosamente" }
           });
         },
         (error) => {
@@ -233,15 +277,20 @@ export class PropertyComponent implements OnInit {
 
     const interval = setInterval(() => {
       try {
-        let leftTime: any = timeToEnd - (new Date() as any);
-        const hours = moment(leftTime).format('HH:mm:ss');
-        const days = moment(leftTime).format('DD');
+        const now = new Date();
+        const leftTime = moment.duration(moment(timeToEnd).diff(moment(now)));
 
-        if (leftTime <= 0) {
+        const days = Math.floor(leftTime.asDays());
+        const hours = leftTime.hours().toString().padStart(2, '0');
+        const minutes = leftTime.minutes().toString().padStart(2, '0');
+        const seconds = leftTime.seconds().toString().padStart(2, '0');
+
+        if (leftTime.asMilliseconds() <= 0) {
           clearInterval(interval);
+          propertyCard.textContent = "00D 00:00:00";
+        } else {
+          propertyCard.textContent = `${days}D ${hours}:${minutes}:${seconds}`;
         }
-
-        propertyCard.textContent = `${days}D ${hours}`;
       } catch (e) {
         console.log(e);
         clearInterval(interval);
@@ -249,10 +298,17 @@ export class PropertyComponent implements OnInit {
     }, 1000);
   }
 
+
   public getPropertyById(id: number) {
+    this.property = null;
     this.appService.getPropertyById(id).subscribe((data) => {
       console.log('getPropertyById');
       this.property = data.response;
+
+      this.analyticsService.trackEvent("property loaded",this.property.link_rewrite,"properties");
+
+      this.import = this.property.start_price;
+      this.bidForm.patchValue({'import':this.import});
 
       if (!this.property.lat || !this.property.lng) {
         this.geocodeAddress(this.property.city+', '+this.property.address+', '+this.property.province+', España',this.property.active_id);
@@ -425,9 +481,13 @@ export class PropertyComponent implements OnInit {
   }
 
   public onContactFormSubmit(values: Object) {
+    this.contactForm.patchValue({
+      subject: this.property.title
+    })
     if (this.contactForm.valid) {
-      console.log(values);
-      this.showConfirmation();
+      this.publicService.sendContactData(values)
+      .subscribe((_) => this.appService.openAlertDialog('Mensaje enviado'), 
+        (_) => this.appService.openAlertDialog('Error al enviar mensaje'));
     }
   }
 
@@ -478,10 +538,16 @@ export class PropertyComponent implements OnInit {
     this.userService.directSale(value, this.property.link_rewrite).subscribe(
       (response) => {
         console.log(response);
-        this.snackBar.open('Oferta enviada exitosamente', '×', {
+        /*this.snackBar.open('Oferta enviada exitosamente', '×', {
           panelClass: 'success',
           verticalPosition: 'top',
           duration: 3000,
+        });*/
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['success'],
+          data: { message: "Oferta enviada exitosamente" }
         });
 
         let id = this.property.link_rewrite;
@@ -502,8 +568,15 @@ export class PropertyComponent implements OnInit {
 
   geocodeAddress(address: string,active_id): void {
     this.uactions.getCoordinates(address).subscribe(response => {
+      console.log(address);
       if (response.status === 'OK') {
-        const location = response.results[0].geometry.location;
+
+        if (response.results.length > 0) {
+          var location = response.results[1].geometry.location;
+        }else{
+          var location = response.results[0].geometry.location;
+        }
+
         this.lat = location.lat;
         this.lng = location.lng;
         this.viewMap = true;
@@ -516,5 +589,21 @@ export class PropertyComponent implements OnInit {
         console.error('Geocoding error:', response.status);
       }
     });
+  }
+
+  copyUrl(url)
+  {
+    navigator.clipboard.writeText(url)
+    .then(() => {
+      this.snackBar.openFromComponent(SnackbarComponent, {
+        duration: 3000,
+        verticalPosition: 'top',
+        panelClass: ['success'],
+        data: { message: 'URL copiada al portapapeles' }
+      });
+    })
+    .catch(err => {
+      console.error('Error al copiar al portapapeles:', err)
+    })
   }
 }

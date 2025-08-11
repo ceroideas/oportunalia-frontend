@@ -22,11 +22,11 @@
 
                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
 
-                  <div fxFlex="100" fxFlex.gt-sm="40" fxFlex.sm="45">
+                  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="20">
                         <a class="logo" routerLink="/"><app-logo></app-logo></a>
-                        <div class="pb-7 hidden-xs"></div>
-                        <div class="pb-7 hidden-xs"></div>
-                        <div class="pb-4 hidden visible-xs"></div>
+                        <!-- <div class="pb-7 hidden-xs"></div>
+                        <div class="pb-7 hidden-xs"></div> -->
+                        <div class="pb-4"></div>
                         <!-- <p class="mt-5 mb-3">Oportunalia es una plataforma de comercialización de activos inmobiliarios provenientes de procedimientos judiciales y liquidaciones de concursos de acreedores.</p>
                         <p fxLayout="row" fxLayoutAlign="start center" class="mt-2">
                             <mat-icon color="primary">location_on</mat-icon>
@@ -46,6 +46,10 @@
                         </p> -->
                         <h2 class="pb-3">S&Iacute;GUENOS EN</h2>
                         <app-social-icons [iconSize]="'lg'" fxLayout="row" fxLayoutAlign="start center" class="desc"></app-social-icons>
+
+                        <br>
+
+                        <img src="assets/images/clients/fotocasa.png" alt="" style="width: 100%; left: -16px; position: relative;">
                   </div>
 
                   <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="45" ngClass.xs="pt-5">
@@ -60,27 +64,29 @@
                       <h2 class="pb-3">INICIO</h2>
                       <h4 class="pb-3">INMUEBLES</h4>
                       <ul>
-                        <li class="pb-3"><a href="/#/auction" >Subasta</a></li>
-                        <li class="pb-3"><a href="/#/direct-sale" >Venta Directa</a></li>
-                        <li class="pb-3"><a href="/#/auction-assignment" >Cesi&oacute;n de remate</a></li>
+                        <li class="pb-3"><a href="/subasta" >Subasta</a></li>
+                        <li class="pb-3"><a href="/venta-directa" >Venta Directa</a></li>
+                        <li class="pb-3"><a href="/cesion-de-remate" >Cesi&oacute;n de remate</a></li>
                       </ul>
-                      <h4 class="pb-3">CONOCE M&Aacute;S</h4>
+                  </div>
+                  <div fxFlex="100" fxFlex.gt-sm="20" ngClass.lt-md="pt-5">
+                      <h2 class="pb-3">CONOCE M&Aacute;S</h2>
                       <ul>
-                        <li class="pb-3"><a href="/#/about" >Sobre nosotros</a></li>
-                        <li class="pb-3"><a href="/#/faq" >¿Tienes dudas?</a></li>
-                        <li class="pb-3"><a target="_blank" href="https://oportunalia.com/oportunidades-inmobiliarias/" >Actualidad</a></li>
+                        <li class="pb-3"><a href="https://oportunalia.com/oportunidades-inmobiliarias/conoce-mas/" >Sobre nosotros</a></li>
+                        <li class="pb-3"><a href="https://oportunalia.com/oportunidades-inmobiliarias/faq/" >¿Tienes dudas?</a></li>
+                        <li class="pb-3"><a href="https://oportunalia.com/oportunidades-inmobiliarias/" >Actualidad</a></li>
                       </ul>
-                      <h4><a href="/#/register" >REGISTRO</a></h4>
-
-
+                      <h4><a href="/register" >REGISTRO</a></h4>
                   </div>
                   <div fxFlex="100" fxFlex.gt-sm="20" ngClass.lt-md="pt-5">
                       <h2 class="mb-3">LEGAL</h2>
                       <ul>
-                        <li class="pb-3"><a href="/#/legal-disclaimer">Aviso legal</a></li>
-                        <li class="pb-3"><a href="/#/privacy-policy">Pol&iacute;tica de Privacidad</a></li>
-                        <li class="pb-3"><a href="/#/cookie-policy">Pol&iacute;tica de Cookies</a></li>
-                        <li class="pb-3"><a href="/#/terms-conditions">T&eacute;rminos y condiciones</a></li>
+                        <li class="pb-3"><a href="/legal-disclaimer">Aviso legal</a></li>
+                        <li class="pb-3"><a href="/privacy-policy">Pol&iacute;tica de Privacidad</a></li>
+                        <li class="pb-3"><a href="/quality-policy">Pol&iacute;tica de Calidad</a></li>
+                        <li class="pb-3"><a href="/environmental-policy">Pol&iacute;tica de Medioambiente</a></li>
+                        <li class="pb-3"><a href="/cookie-policy">Pol&iacute;tica de Cookies</a></li>
+                        <li class="pb-3"><a href="/terms-conditions">T&eacute;rminos y condiciones</a></li>
                       </ul>
                   </div>
                 </div>

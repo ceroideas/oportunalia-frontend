@@ -1,13 +1,13 @@
 <div fxLayout="row wrap">
-  <div fxFlex="100" fxFlex.gt-sm="100">
+  <div fxFlex="100" fxFlex.gt-sm="100" class="pr-3">
     <p class="horizontal-menu-active pt-4 pb-3 pl-3 uppercase">Mi cuenta</p>
-    <p class="fc-primary fw-400 fs-1-5x ml-4 uppercase">Datos personales</p>
+    <p class="fc-primary fw-400 fs-1-5x ml-4- uppercase">Datos personales</p>
   </div>
 </div>
 
 <form [formGroup]="infoForm" (ngSubmit)="onInfoFormSubmit(infoForm.value)">
   <!-- <div fxLayout="row wrap" fxLayoutAlign="space-around">
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nombre: </mat-label>
         <input matInput placeholder="Nombre" formControlName="firstname" required autocomplete="off">
@@ -47,7 +47,7 @@
 
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
     <!-- row 1 -->
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field  appearance="outline" class="w-100">
         <mat-label>Usuario (Alias): </mat-label>
         <input matInput placeholder="Usuario" formControlName="username" required>
@@ -66,7 +66,7 @@
     </div>
 
     <!-- row 2 -->
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nombre: </mat-label>
         <input matInput placeholder="Nombre" formControlName="firstname" required autocomplete="off">
@@ -82,7 +82,7 @@
       </mat-form-field>
     </div>
     <!-- row 3 -->
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>CIF/NIF: </mat-label>
         <input matInput placeholder="CIF/NIF" formControlName="document_number" required autocomplete="off">
@@ -90,21 +90,26 @@
       </mat-form-field>
     </div>
     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <input matInput [matDatepicker]="picker" formControlName="birthdate" placeholder="Fecha de nacimiento">
+      <!-- <mat-form-field appearance="outline" class="w-100"> -->
+        <!-- <input matInput [matDatepicker]="picker" [formControl]="date" placeholder="Fecha de nacimiento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+        <mat-datepicker #picker></mat-datepicker> -->
+      <!-- </mat-form-field> -->
+      <div class="form-group" style="position: relative;">
+        <label style=" top: 14px;background: #fff;left: 12px;padding: 0px 6px; color: gray" matformfieldfloatinglabel="" class="mdc-floating-label mat-mdc-floating-label ng-tns-c1798928316-23 ng-star-inserted mdc-floating-label--float-above" ng-reflect-floating="true" ng-reflect-monitor-resize="true" id="mat-mdc-form-field-label-6" for="mat-input-3"><mat-label _ngcontent-ng-c2197834210="" class="ng-tns-c1798928316-23">Fecha de nacimiento: </mat-label><span aria-hidden="true" class="mat-mdc-form-field-required-marker mdc-floating-label--required ng-tns-c1798928316-23 ng-star-inserted"></span><!--container--></label>
+        <input type="date" id="birthdate" class="form-control" placeholder="dd-mm-yyyy" (input)="formatDate($event)">
+      </div>
+
     </div>
     <!-- row 4 -->
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Teléfono móvil</mat-label>
         <input matInput placeholder="Teléfono" formControlName="phone" required onlyNumber autocomplete="off">
         <mat-error *ngIf="infoForm.controls.phone?.errors?.required">Teléfono requerido</mat-error>
       </mat-form-field>
     </div>
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 mb-3">
       <button (click)="goToChangePassword()" mat-raised-button class="btn-change-password">Cambio de contraseña</button>
     </div>
 
@@ -115,15 +120,15 @@
   <!-- <div class="divider"></div>
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-sm="100">
-      <p class="fc-primary fw-400 fs-1-5x ml-4">Dirección</p>
+      <p class="fc-primary fw-400 fs-1-5x ml-4-">Dirección</p>
     </div>
-    <mat-form-field appearance="outline" class="w-100 pl-3 pr-3">
+    <mat-form-field appearance="outline" class="w-100 pl-3- pr-3">
       <mat-label>Dirección: </mat-label>
       <input matInput placeholder="Dirección" formControlName="address" autocomplete="off">
     </mat-form-field>
 
     <div fxLayout="row wrap" fxLayoutAlign="space-around">
-      <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+      <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Ciudad</mat-label>
           <input matInput placeholder="Ciudad" formControlName="city">
@@ -153,14 +158,14 @@
 
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
     <div fxFlex="100" fxFlex.gt-sm="100">
-      <p class="fc-primary fw-400 fs-1-5x ml-4 uppercase">Dirección</p>
+      <p class="fc-primary fw-400 fs-1-5x ml-4- uppercase">Dirección</p>
     </div>
-    <mat-form-field appearance="outline" class="w-100 pl-3 pr-3">
+    <mat-form-field appearance="outline" class="w-100 pl-3- pr-3">
       <mat-label>Dirección: </mat-label>
       <input matInput placeholder="Dirección" formControlName="address" autocomplete="off">
     </mat-form-field>
 
-    <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Ciudad</mat-label>
         <input matInput placeholder="Ciudad" formControlName="city">
@@ -186,13 +191,13 @@
     </div> -->
 
     <!-- Row 1 -->
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Ciudad</mat-label>
         <input matInput placeholder="Ciudad" formControlName="city">
       </mat-form-field>
     </div>
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Código postal</mat-label>
         <input matInput placeholder="Código postal" formControlName="cp">
@@ -200,19 +205,19 @@
     </div>
 
     <!-- Row 2 -->
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
 
       <mat-form-field  appearance="outline" class="w-100 mt-2">
         <mat-label>País</mat-label>
         <!-- <mat-select placeholder="País" formControlName="country_id" (selectionChange)="getProvinceList($event.value)" [(value)]="selectedCountry"> -->
         <!-- <mat-select placeholder="País" formControlName="country_id" [(ngModel)]="selectedCountry" (selectionChange)="getProvinceList($event.value)"> -->
-        <mat-select placeholder="País" formControlName="country_id" [(value)]="selected" (selectionChange)="getProvinceList($event.value)">
+        <mat-select placeholder="País" formControlName="country_id" (selectionChange)="getProvinceList($event.value)">
           <mat-option *ngFor="let country of countryList" value="{{country.id}}">{{country.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <p>Selected country:{{selectedCountry}} selected: {{selected}}</p>
+      <!-- <p>Pais seleccionado :{{selectedCountry}}</p> -->
     </div>
-    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3">
+    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3 pl-3-">
       <!-- <mat-form-field appearance="outline" class="w-100">
         <mat-label>Provincia</mat-label>
           <input matInput placeholder="Province" formControlName="province">
@@ -224,24 +229,32 @@
           <mat-option *ngFor="let province of provinceList" value="{{province.id}}">{{province.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <p>Selected Province:{{selectedProvince}} </p>
+      <!-- <p>Selected Province:{{selectedProvince}} </p> -->
     </div>
 
   </div>
 
   <!-- Documentos -->
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
-    <div fxFlex="100" fxFlex.gt-sm="100">
-      <p class="horizontal-menu-active pt-4 pb-3 pl-3">Debes subir tu documento de identidad para poder realizar una oferta</p>
+    <div fxFlex="100" fxFlex.gt-sm="100" class="pr-3">
+      <p class="horizontal-menu-active pt-4 pb-3 pl-3 pr-3">Debes subir tu documento de identidad para poder realizar una oferta</p>
     </div>
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
       <div class="mb-3">
-        <input-file placeholder="Documento de identidad (frente)" formControlName="image1" [fileLimit]="1" fileAccept=".pdf, image/*" [linkEnabled]="false"></input-file>
+        <label style="font-size: 1.1rem;">Documento de identidad (frente)</label>
+        <input type="file" id="previewUrl" (change)="onFileChange($event)" accept=".pdf, image/*" style="opacity: 0; height: 0; position: absolute;"/>
+        <label for="previewUrl" class="image-preview" [style.background-image]="getBackgroundImage()">
+          <mat-icon _ngcontent-ng-c1059423576="" role="img" class="mat-icon notranslate input-icon material-icons mat-ligature-font mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">add</mat-icon>
+        </label>
       </div>
     </div>
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
       <div class="mb-3">
-        <input-file placeholder="Documento de identidad (Anverso)" formControlName="image2" [fileLimit]="1" fileAccept=".pdf, image/*" [linkEnabled]="false"></input-file>
+        <label style="font-size: 1.1rem;">Documento de identidad (Anverso)</label>
+        <input type="file" id="previewUrl2" (change)="onFileChange2($event)" accept=".pdf, image/*" style="opacity: 0; height: 0; position: absolute;"/>
+        <label for="previewUrl2" class="image-preview" [style.background-image]="getBackgroundImage2()">
+          <mat-icon _ngcontent-ng-c1059423576="" role="img" class="mat-icon notranslate input-icon material-icons mat-ligature-font mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">add</mat-icon>
+        </label>
       </div>
     </div>
   </div>
@@ -257,7 +270,7 @@
 </form>
 
 
-<!-- <div fxLayout="row wrap" class="pl-3">
+<!-- <div fxLayout="row wrap" class="pl-3-">
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
         <form [formGroup]="infoForm" (ngSubmit)="onInfoFormSubmit(infoForm.value)">
             <mat-form-field appearance="outline" class="w-100">
@@ -302,7 +315,7 @@
 
 <!-- <div class="divider"></div> -->
 <!-- <form [formGroup]="passwordForm" (ngSubmit)="onPasswordFormSubmit(passwordForm.value)">
-  <div fxLayout="row wrap" class="pl-3">
+  <div fxLayout="row wrap" class="pl-3-">
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Contraseña actual</mat-label>
@@ -330,7 +343,7 @@
 
 <!-- <div fxLayout="row wrap">
   <div fxFlex="100" fxFlex.gt-sm="100">
-    <p class="horizontal-menu-active pt-4 pb-3 pl-3">Debes subir tu documento de identidad para poder realizar una oferta</p>
+    <p class="horizontal-menu-active pt-4 pb-3 pl-3-">Debes subir tu documento de identidad para poder realizar una oferta</p>
   </div>
   <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
     <div class="mb-3">
@@ -355,7 +368,7 @@
   <div fxFlex="100" fxFlex.gt-sm="100">
     <p class="fc-primary fw-400 fs-1-5x ml-4">Dirección</p>
   </div>
-  <mat-form-field appearance="outline" class="w-100 pl-3 pr-3">
+  <mat-form-field appearance="outline" class="w-100 pl-3- pr-3">
     <mat-label>Dirección: </mat-label>
     <input matInput placeholder="Dirección" formControlName="address" autocomplete="off">
   </mat-form-field>

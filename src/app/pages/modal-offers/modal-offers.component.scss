@@ -1,0 +1,12 @@
+@media screen and (max-width: 600px) {
+  .image-123 {
+    max-height: 100px !important;
+  }
+}
+
+.btn-oculto {
+  position: absolute;
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
+}

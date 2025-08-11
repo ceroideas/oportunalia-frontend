@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-properties-toolbar',
@@ -18,14 +19,16 @@ export class PropertiesToolbarComponent implements OnInit {
   public counts = [8, 12, 16, 24, 36];
   public count:any;
   //public sortings = ['Sort by Default', 'Newest', 'Oldest', 'Popular', 'Price (Low to High)', 'Price (High to Low)'];
-  public sortings = ['Orden por defecto', 'Nuevo', 'Antiguo', 'Popular', 'Precio: De menor a mayor', 'Precio: De mayor a menor'];
+  public sortings = ['Orden por defecto', 'Mayor a menor descuento', 'Nuevo', 'Antiguo', 'Popular', 'Precio: De menor a mayor', 'Precio: De mayor a menor'];
   public sort:any;
 
-  constructor() { }
+  constructor(public route: ActivatedRoute) { 
+  }
 
   ngOnInit() {
     this.count = (this.isHomePage) ? this.counts[0] : this.counts[1];
     this.sort = this.sortings[0];
+    this.route.queryParams.subscribe(params => { this.sort = (+params['ofertas'] ? 'Mayor a menor descuento' : this.sortings[0]); });
   }
 
   ngOnChanges(){

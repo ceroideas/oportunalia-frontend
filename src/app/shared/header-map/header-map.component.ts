@@ -10,6 +10,7 @@ import { AppSettings, Settings } from 'src/app/app.settings';
   styleUrls: ['./header-map.component.scss']
 })
 export class HeaderMapComponent implements OnInit {
+    @Input('custom') custom: any;
     @Input('locations') locations: Array<any> = [];
     @Input('contentOffsetToTop') contentOffsetToTop: boolean = false; 
     @Input('fullscreen') fullscreen: boolean = false;
@@ -288,6 +289,9 @@ export class HeaderMapComponent implements OnInit {
     public settings: Settings;
 
     constructor(public appSettings:AppSettings, public appService:AppService) {
+        
+        console.log(this.custom);
+
         this.settings = this.appSettings.settings; 
     }
 
@@ -299,7 +303,7 @@ export class HeaderMapComponent implements OnInit {
         } 
     }
 
-    ngOnChanges(changes: {[propKey: string]: SimpleChange}){  
+    ngOnChanges(changes: {[propKey: string]: SimpleChange}){
         if(changes.locations){
             if(!changes.locations.isFirstChange()){     
                 //reset map position on filter

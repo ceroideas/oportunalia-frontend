@@ -12,7 +12,7 @@ export class UactionsService {
   private apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
   private apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
-  public parameters = {type:null,category:null,search:null};
+  public parameters = {min:null,max:null,type:null,category:null,search:null};
 
   private uActionsFilter1: string = '/auction?auction_status_id=0&auction_type_id=0&active_category_id=0&order=end_date__asc';
   private uActionsFilter7: string = '/auction?auction_status_id=0&auction_type_id=0&active_category_id=0&order=end_date__asc';
@@ -50,15 +50,20 @@ export class UactionsService {
     }, catchError(error => throwError(() => error))));
   }
 
-  buildURL({ type, category, search }: SearchProperties): void {
+  buildURL({ min, max, type, category, search }: SearchProperties): void {
+
+    console.log(min,max,type);
+
+    this.parameters.min = min;
+    this.parameters.max = max;
     this.parameters.type = type;
     this.parameters.category = category;
     this.parameters.search = search;
 
     this.status1Path = null;
     this.status7Path = null;
-    this.uActionsFilter1 = `/auction?auction_status_id=1&auction_type_id=${ type }&active_category_id=${ category?.id ?? 0 }&search=${ search?.name ?? '' }&order=end_date__asc`;
-    this.uActionsFilter7 = `/auction?auction_status_id=7&auction_type_id=${ type }&active_category_id=${ category?.id ?? 0 }&search=${ search?.name ?? '' }&order=end_date__asc`;    
+    this.uActionsFilter1 = `/auction?auction_status_id=1&auction_type_id=${ type }&active_category_id=${ category?.id ?? 0 }&search=${ search?.name ?? '' }&min=${ min ?? '' }&max=${ max ?? '' }&order=end_date__asc`;
+    this.uActionsFilter7 = `/auction?auction_status_id=7&auction_type_id=${ type }&active_category_id=${ category?.id ?? 0 }&search=${ search?.name ?? '' }&min=${ min ?? '' }&max=${ max ?? '' }&order=end_date__asc`;    
   }
 
   getCoordinates(address: string): Observable<any> {

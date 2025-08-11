@@ -24,6 +24,7 @@ export class InterestComponent implements OnInit{
   ubicacion = new FormControl([]);
   inversiones = new FormControl('');
   presupuesto = new FormControl('');
+  presupuesto1 = new FormControl('30000');
   properties = new FormControl('');
 
   propertyList: string[] = ['Viviendas', 'Naves industriales','Garajes','Trasteros','Locales', 'Lotes inmobiliarios','Aplicaciones informáticas',
@@ -66,12 +67,25 @@ export class InterestComponent implements OnInit{
         ubicacion:this.ubicacion.value.map(num=>num.toString()),
         inversion:this.inversiones.value.toString(),
         presupuesto:this.presupuesto.value,
+        presupuesto1:this.presupuesto.value,
         activos:this.properties.value
       }).subscribe(data=>{
         console.log('guardado');
         this.router.navigate(['/account/profile']);
       })
     }
+  }
+
+  changePresupuesto()
+  {
+    console.log(this.presupuesto1.value);
+    this.presupuesto.patchValue(this.presupuesto1.value)
+  }
+
+  presupuestoChange()
+  {
+    console.log(this.presupuesto.value);
+    this.presupuesto1.patchValue(this.presupuesto.value)
   }
 
 

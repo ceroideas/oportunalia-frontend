@@ -36,7 +36,8 @@ export class ChangePasswordComponent {
       this.userService.changePassword(this.password, this.token)
         .subscribe(
           (_) => {            
-            this.appService.showInfoMessage('Cambio de clave exitoso');            
+            let t = this.appService.openAlertDialog('Cambio de clave exitoso');
+            console.log(t);
           },
           (error) => {
             const message = 'error_reset_pass';

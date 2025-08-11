@@ -6,6 +6,10 @@ import { AppService } from '../../app.service';
 import { CompareOverviewComponent } from '../compare-overview/compare-overview.component';
 import moment from 'moment';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { SnackbarComponent } from '../../custom/snackbar/snackbar.component';
+
 @Component({
   selector: 'app-property-item',
   templateUrl: './property-item.component.html',
@@ -26,11 +30,17 @@ export class PropertyItemComponent implements OnInit {
     clickable: true
   };
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService) {
+  constructor(public appSettings:AppSettings, public appService:AppService, private snackBar: MatSnackBar) {
     this.settings = this.appSettings.settings;
   }
 
   ngOnInit() { }
+
+  capitalizarTexto(texto: string): string {
+    return texto.toLowerCase()
+      /*.replace(/\b\w/g, (letra) => letra.toUpperCase())
+      .replace(/(\sde\s|\sdel\s|\sla\s|\sel\s|\slos\s|\sLas\s)/gi, (preposicion) => preposicion.toLowerCase());*/
+  }
 
   ngAfterViewInit(){
     this.initCarousel();
@@ -158,33 +168,68 @@ export class PropertyItemComponent implements OnInit {
   }
 
   public addToFavorites(){
-    this.appService.addToFavorites(this.property, (this.settings.rtl) ? 'rtl':'ltr');
+    this.property.favorite = this.appService.addToFavorites(this.property, (this.settings.rtl) ? 'rtl':'ltr');
   }
 
   public onFavorites(){
     return this.appService.Data.favorites.filter(item=>item.id == this.property.id)[0];
   }
 
+  public isFavorite(): boolean {
+    return this.appService.Data.favorites.some(item => item.id === this.property.id);
+  }
+
   public calculateLeftTime(): void {
-    const propertyCard: any = document.querySelector(`.left-time-${ this.property.guid }`);
+    const propertyCard: any = document.querySelector(`.left-time-${this.property.guid}`);
     const timeToEnd: any = new Date(this.property.end_date);
 
     const interval = setInterval(() => {
-
       try {
-        let leftTime: any = timeToEnd - (new Date() as any);
-        const hours = moment(leftTime).format("HH:mm:ss");
-        const days = moment(leftTime).format("DD");
+        const now = new Date();
+        const leftTime = moment.duration(moment(timeToEnd).diff(moment(now)));
 
-        if (leftTime <= 0) {
+        const days = Math.floor(leftTime.asDays());
+        const hours = leftTime.hours().toString().padStart(2, '0');
+        const minutes = leftTime.minutes().toString().padStart(2, '0');
+        const seconds = leftTime.seconds().toString().padStart(2, '0');
+
+        if (leftTime.asMilliseconds() <= 0) {
           clearInterval(interval);
+          propertyCard.textContent = "00D 00:00:00";
+        } else {
+          propertyCard.textContent = `${days}D ${hours}:${minutes}:${seconds}`;
         }
-
-        propertyCard.textContent = `${ days }D ${ hours }`;
       } catch (e) {
         console.log(e);
         clearInterval(interval);
       }
     }, 1000);
+  }
+
+  shareList:any;
+
+  copyUrl(url)
+  {
+    navigator.clipboard.writeText(url)
+    .then(() => {
+      this.snackBar.openFromComponent(SnackbarComponent, {
+        duration: 3000,
+        verticalPosition: 'top',
+        panelClass: ['success'],
+        data: { message: 'URL copiada al portapapeles' }
+      });
+    })
+    .catch(err => {
+      console.error('Error al copiar al portapapeles:', err)
+    })
+  }
+
+  toggleShare(id)
+  {
+    if (this.shareList && this.shareList == id) {
+      this.shareList = null;
+    }else{
+      this.shareList = id;
+    }
   }
 }

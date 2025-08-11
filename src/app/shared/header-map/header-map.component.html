@@ -1,4 +1,4 @@
-<div class="map-wrapper" [class.fullscreen]="fullscreen" [ngClass]="'toolbar-'+settings.toolbar"> 
+<div class="map-wrapper" [class.fullscreen]="fullscreen" [ngClass]="'toolbar-'+settings.toolbar" [ngClass]="custom ? 'h100' : ''"> 
 
     <google-map [center]="center" 
                 [zoom]="zoom" 

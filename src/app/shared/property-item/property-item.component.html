@@ -1,188 +1,239 @@
-<mat-card class="property-item p-0" [ngClass]="[viewType + '-item', 'column-'+column]" [class.full-width-page]="fullWidthPage" fxLayout="row wrap">
+<div style="position: relative;">
+    <mat-card class="property-item p-0" [ngClass]="[viewType + '-item', 'column-'+column]" [class.full-width-page]="fullWidthPage" fxLayout="row wrap">
 
+        <div class="allOver" *ngIf="property?.auction_status_id == 7" [routerLink]="['/propiedades', property.link_rewrite]">
+            
+            <span>Próximamente</span>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
-    <div fxLayout="row wrap" class="property-status pt-3 pl-3">
-      <span [style.background-color]="getStatusBgColor(property.type)"
-              [style.color]="getStatusColor(property.type)">{{property.type}}</span>
-    </div>
-    <div *ngIf="property?.appraisal_value > 1" fxLayout="row wrap" class="property-discount pt-3 pr-3">
-      <span [style.background-color]="getStatusBgColor('discount')"
-              [style.color]="getStatusColor('discount')">
-              -{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}%
-      </span>
-    </div>
-  </div>
-
-    <!-- Carrusel imagenes -->
-    <div class="pt-3">
-      <div *ngIf="title.length>1">
-        <!-- titulo en busquedas -->
-        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary ellipsis" [title]="title">{{title}}</span></a></h1>
-        <h3 *ngIf="title.length<=34">&nbsp;</h3>
-      </div>
-
-      <div *ngIf="title.length<1">
-        <!-- Titulo en home -->
-        <h1 class="title text-center"><a [routerLink]="['/properties', property.link_rewrite]"><span class="fc-primary ellipsis" [title]="property.title">{{property.title}}</span></a></h1>
-        <h3 *ngIf="property.title.length<=33">&nbsp;</h3>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
-          <mat-icon class="fc-primary">location_on</mat-icon>
-          <!-- <span>{{property.formattedAddress}}</span> -->
-          <span>{{property?.province}}, {{property?.city}}</span>
-      </div>
-    </div>
-
-    <div fxFlex="100" fxShrink="3" [fxFlex.gt-sm]="(viewType=='list') ? 40 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="thumbnail-section">
-
-        <!-- Etiqueta de estado -->
-        <!-- <div fxLayout="row wrap" class="property-status"> -->
-            <!-- <span *ngFor="let status of property.propertyStatus"
-                        [style.background-color]="getStatusBgColor(status)"
-                        [style.color]="getStatusColor(status)">{{status}}</span> -->
-            <!-- <span [style.background-color]="getStatusBgColor(property.status)"
-            [style.color]="getStatusColor(property.status)">{{property.status}}</span>
-            <span [style.background-color]="getStatusBgColor(property.type)"
-            [style.color]="getStatusColor(property.type)">{{property.type}}</span> -->
-        <!-- </div> -->
-
-
-        <!-- <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.id]">{{title}}</a></h1>
-        <h3 *ngIf="title.length<=28">&nbsp;</h3>
-        <div fxLayout="row" fxLayoutAlign="center" class="address">
-            <mat-icon class="text-muted">location_on</mat-icon>
-            <span>{{property?.neighborhood}}, {{property?.city}}</span>
-        </div> -->
-
-        <div *ngIf="property.images.length == 1" class="mat-card-image w-100 m-0">
-            <img [src]="property.images[0].path">
         </div>
-        <div *ngIf="property.images.length > 1" class="mat-card-image w-100 m-0">
-            <div class="swiper-container" [swiper]="config">
-                <div class="swiper-wrapper">
-                    <div *ngFor="let image of property.images" class="swiper-slide">
-                        <div class="cover" [ngStyle]="{'background-image': 'url(' + image.path + ')'}"></div>
-                        <img [attr.data-src]="image.path" class="swiper-lazy">
-                        <div class="swiper-lazy-preloader"></div>
-                    </div>
-                </div>
-                <div class="swiper-pagination white"></div>
-                <button mat-icon-button class="swiper-button-prev swipe-arrow"><mat-icon class="mat-icon-lg">keyboard_arrow_left</mat-icon></button>
-                <button mat-icon-button class="swiper-button-next swipe-arrow"><mat-icon class="mat-icon-lg">keyboard_arrow_right</mat-icon></button>
+
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray" style="width: 100%;">
+        <div fxLayout="row wrap" class="property-status pt-3 pl-3">
+          <span [style.background-color]="getStatusBgColor(property.type)"
+                  [style.color]="getStatusColor(property.type)">{{property.type}}</span>
+        </div>
+        <div *ngIf="property?.appraisal_value > 1" fxLayout="row wrap" class="property-discount pt-3 pr-3" style="float: right; transform: scale(1.5); right: 12px; top: -4px;">
+          <span [style.background-color]="getStatusBgColor('discount')"
+                  [style.color]="getStatusColor('discount')">
+                  {{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}%
+          </span>
+        </div>
+      </div>
+
+        <!-- Carrusel imagenes -->
+        <div class="pt-3" style="width: 100%;">
+          <div *ngIf="title.length>1">
+            <!-- titulo en busquedas -->
+            <h1 class="title text-center"><a [routerLink]="['/propiedades', property.link_rewrite]"><span class="fc-primary ellipsis" [title]="title" style="text-transform: capitalize;">{{capitalizarTexto(title)}}</span></a></h1>
+            <!-- <h3 *ngIf="title.length<=34">&nbsp;</h3> -->
+            <h3>&nbsp;</h3>
+          </div>
+
+          <div *ngIf="title.length<1">
+            <!-- Titulo en home -->
+            <h1 class="title text-center"><a [routerLink]="['/propiedades', property.link_rewrite]"><span class="fc-primary ellipsis" [title]="property.title" style="text-transform: capitalize;">{{capitalizarTexto(property.title)}}</span></a></h1>
+            <!-- <h3 *ngIf="property.title.length<=33">&nbsp;</h3> -->
+                <h3>&nbsp;</h3>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
+              <mat-icon class="fc-primary">location_on</mat-icon>
+              <!-- <span>{{property.formattedAddress}}</span> -->
+              <span style="text-transform: capitalize;">{{ capitalizarTexto(property?.province)}}, {{capitalizarTexto(property?.city)}}</span>
+          </div>
+        </div>
+
+        <div fxFlex="100" fxShrink="3" [fxFlex.gt-sm]="(viewType=='list') ? 40 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="thumbnail-section">
+
+            <!-- Etiqueta de estado -->
+            <!-- <div fxLayout="row wrap" class="property-status"> -->
+                <!-- <span *ngFor="let status of property.propertyStatus"
+                            [style.background-color]="getStatusBgColor(status)"
+                            [style.color]="getStatusColor(status)">{{status}}</span> -->
+                <!-- <span [style.background-color]="getStatusBgColor(property.status)"
+                [style.color]="getStatusColor(property.status)">{{property.status}}</span>
+                <span [style.background-color]="getStatusBgColor(property.type)"
+                [style.color]="getStatusColor(property.type)">{{property.type}}</span> -->
+            <!-- </div> -->
+
+
+            <!-- <h1 class="title text-center fc-primary"><a [routerLink]="['/propiedades', property.id]">{{title}}</a></h1>
+            <h3 *ngIf="title.length<=28">&nbsp;</h3>
+            <div fxLayout="row" fxLayoutAlign="center" class="address">
+                <mat-icon class="text-muted">location_on</mat-icon>
+                <span>{{property?.neighborhood}}, {{property?.city}}</span>
+            </div> -->
+
+            <div *ngIf="property.images.length == 1" class="mat-card-image w-100 m-0">
+                <img [src]="property.images[0].path">
             </div>
-        </div>
-
-
-        <div class="control-icons">
-            <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
-                <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
-            </button>
-            <!-- comparador
-            <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Añadir a comparador">
-                <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
-            </button> -->
-        </div>
-
-    </div>
-
-
-    <div fxFlex="100" [fxFlex.gt-sm]="(viewType=='list') ? 60 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="p-3">
-
-        <div fxLayout="column" fxLayoutAlign="start stretch" class="h-100">
-            <mat-card-content class="mb-0 p-0">
-
-
-                <!-- <div *ngIf="title.length>1">
-                  <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.link_rewrite]">{{title}}</a></h1>
-                  <h3 *ngIf="title.length<=28">&nbsp;</h3>
-                </div>
-
-                <div *ngIf="title.length<1">
-                  <h1 class="title text-center fc-primary"><a [routerLink]="['/properties', property.link_rewrite]">{{property.title}}</a></h1>
-                  <h3 *ngIf="property.title.length<=29">&nbsp;</h3>
-                </div>
-
-                <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
-                    <mat-icon class="text-muted">location_on</mat-icon>
-                    <span>{{property?.province}}, {{property?.city}}</span>
-                </div> -->
-
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
-                  <div style="font-size: 12px; color: silver;">Tasación: </div>
-                  <div style="font-size: 12px; color: silver;">Precio mínimo: </div>
-                </div>
-
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-black">
-                  <p>{{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.0'}}</p>
-                  <p>{{ property.start_price | currency : 'EUR' : 'symbol' : '1.0'}}</p>
-                </div>
-
-
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div>
-                        <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
-                            <!-- <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span> -->
-                        </h3>
-                        <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
-                            <!-- <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span> -->
-                        </h3>
+            <div *ngIf="property.images.length > 1" class="mat-card-image w-100 m-0">
+                <div class="swiper-container" [swiper]="config">
+                    <div class="swiper-wrapper">
+                        <div *ngFor="let image of property.images" class="swiper-slide">
+                            <div class="cover" [ngStyle]="{'background-image': 'url(' + image.path + ')'}"></div>
+                            <img [attr.data-src]="image.path" class="swiper-lazy">
+                            <div class="swiper-lazy-preloader"></div>
+                        </div>
                     </div>
-                    <!-- <app-rating [ratingsCount]="property.ratingsCount" [ratingsValue]="property.ratingsValue"></app-rating> -->
-                    <div>
-                      <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
-                          <!-- <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
-                          <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span> -->
-                      </h3>
-                      <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
-                          <!-- <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                          <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span> -->
-                      </h3>
+                    <div class="swiper-pagination white"></div>
+                    <button mat-icon-button class="swiper-button-prev swipe-arrow"><mat-icon class="mat-icon-lg">keyboard_arrow_left</mat-icon></button>
+                    <button mat-icon-button class="swiper-button-next swipe-arrow"><mat-icon class="mat-icon-lg">keyboard_arrow_right</mat-icon></button>
+                </div>
+            </div>
+
+
+            <div class="control-icons">
+                <!-- <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
+                    <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
+                </button> -->
+                <!-- Botón para añadir a favoritos -->
+                <button *ngIf="!isFavorite() && property.favorite != 1" mat-button (click)="addToFavorites()" matTooltip="Añadir a favoritos">
+                  <mat-icon class="mat-icon-sm">favorite_border</mat-icon>
+                </button>
+
+                <!-- Botón para eliminar de favoritos -->
+                <button *ngIf="isFavorite() || property.favorite == 1" mat-button (click)="addToFavorites()" matTooltip="Eliminar de favoritos">
+                  <mat-icon class="mat-icon-sm">favorite</mat-icon>
+                </button>
+
+                <button mat-button (click)="toggleShare(property.id)" matTooltip="Compartir">
+                    <!-- <mat-icon class="m-0">share</mat-icon> -->
+                    <img src="/assets/share.png" alt="" style="width: 18px;">
+                </button>
+
+                <div class="share-list" *ngIf="shareList == property.id" style="position: absolute;
+                bottom: 36px;
+                top: unset;
+                left: -150px;">
+                  <h4>Compartir el anuncio</h4>
+                  <share-buttons theme="modern-dark"
+                    [include]="['email', 'whatsapp', 'twitter','facebook']"
+                    [showIcon]="true"
+                    [showText]="true"
+                    [url]="'https://oportunalia.com/propiedades/'+property.link_rewrite"
+                    [description]="property?.title"
+                    class="pt-2">
+                  </share-buttons>
+
+                  <br>
+
+                  <mat-label style="font-weight: 400; color: #333;">Copiar URL</mat-label>
+                  <div fxLayout="col wrap">
+                    <input matInput type="text" [value]="'https://oportunalia.com/propiedades/'+property.link_rewrite" readonly="" style="float: left; width: 80%;">
+                    <div class="value" style="float: rigth; width: 20%;">
+                      <button class="btn-share" (click)="copyUrl('https://oportunalia.com/propiedades/'+property.link_rewrite)" style="top: 0;">
+                        Copiar
+                      </button>
+                    </div>
+                    <div style="clear: both;"></div>
                   </div>
                 </div>
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-
-
-                <!-- <div *ngIf="viewType=='list' && fullWidthPage" fxShow="false" fxShow.gt-sm class="mt-3">
-                    <p>{{property.desc}}</p>
-                </div> -->
-
-                <!-- <div class="features mt-3">
-                    <p><span>Superficie</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
-                    <p><span>Habitaciones</span><span>{{property.bedrooms}}</span></p>
-                    <p><span>Baños</span><span>{{property.bathrooms}}</span></p>
-                    <p><span>Garages</span><span>{{property.garages}}</span></p>
-                </div> -->
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray mt-2">
-                  <div style="font-size: 12px; color: silver;">Referencia:</div>
-                  <div style="font-size: 12px; color: silver;">Tiempo restante:</div>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-black fw-400-">
-                  <p>{{property?.auto}}</p>
-                  <p class="left-time-{{ property.guid }}"></p>
-                </div>
-
-            </mat-card-content>
-            <!-- <div class="sticky-footer-helper" fxFlex="grow"></div> -->
-            <!-- <mat-card-actions class="m-0 p-0" fxLayoutAlign="space-between center">
-                <p fxLayout="row" class="date mb-0">
-                    <mat-icon class="text-muted">date_range</mat-icon>
-                    <span class="mx-2">{{property.published | date:"dd MMMM, yyyy" }}</span>
-                </p>
-                <div>
-                    <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Detalles</a>
-                </div>
-            </mat-card-actions> -->
-            <mat-card-actions>
-              <!-- <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Detalles</a> -->
-            </mat-card-actions>
-            <div class="btn">
-              <p class="btn-title fw-600 mb-3"><a [routerLink]="['/properties', property.link_rewrite]" mat-stroked-button color="primary" class="uppercase">Ver detalles</a></p>
+                <!-- comparador
+                <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Añadir a comparador">
+                    <mat-icon class="mat-icon-sm">compare_arrows</mat-icon>
+                </button> -->
             </div>
         </div>
-    </div>
 
-</mat-card>
+
+        <div fxFlex="100" [fxFlex.gt-sm]="(viewType=='list') ? 60 : 100" [fxFlex.sm]="(viewType=='list') ? 50 : 100" class="p-3">
+
+            <div fxLayout="column" fxLayoutAlign="start stretch" class="h-100">
+                <mat-card-content class="mb-0 p-0">
+
+
+                    <!-- <div *ngIf="title.length>1">
+                      <h1 class="title text-center fc-primary"><a [routerLink]="['/propiedades', property.link_rewrite]">{{title}}</a></h1>
+                      <h3 *ngIf="title.length<=28">&nbsp;</h3>
+                    </div>
+
+                    <div *ngIf="title.length<1">
+                      <h1 class="title text-center fc-primary"><a [routerLink]="['/propiedades', property.link_rewrite]">{{property.title}}</a></h1>
+                      <h3 *ngIf="property.title.length<=29">&nbsp;</h3>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="center" class="address mb-3">
+                        <mat-icon class="text-muted">location_on</mat-icon>
+                        <span>{{property?.province}}, {{property?.city}}</span>
+                    </div> -->
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
+                      <div style="font-size: 12px; color: silver;">Tasación: </div>
+                      <div style="font-size: 12px; color: silver;">Precio mínimo: </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-black">
+                      <p>{{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.2-2' }}</p>
+                      <p>{{ property.start_price | currency : 'EUR' : 'symbol' : '1.2-2'}}</p>
+                    </div>
+
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div>
+                            <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
+                                <!-- <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
+                                <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span> -->
+                            </h3>
+                            <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
+                                <!-- <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                                <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span> -->
+                            </h3>
+                        </div>
+                        <!-- <app-rating [ratingsCount]="property.ratingsCount" [ratingsValue]="property.ratingsValue"></app-rating> -->
+                        <div>
+                          <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
+                              <!-- <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
+                              <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /m</span> -->
+                          </h3>
+                          <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
+                              <!-- <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                              <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /m</span> -->
+                          </h3>
+                      </div>
+                    </div>
+                    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+
+
+                    <!-- <div *ngIf="viewType=='list' && fullWidthPage" fxShow="false" fxShow.gt-sm class="mt-3">
+                        <p>{{property.desc}}</p>
+                    </div> -->
+
+                    <!-- <div class="features mt-3">
+                        <p><span>Superficie</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
+                        <p><span>Habitaciones</span><span>{{property.bedrooms}}</span></p>
+                        <p><span>Baños</span><span>{{property.bathrooms}}</span></p>
+                        <p><span>Garages</span><span>{{property.garages}}</span></p>
+                    </div> -->
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray mt-2">
+                      <div style="font-size: 12px; color: silver;">Referencia:</div>
+                      <div style="font-size: 12px; color: silver;">Tiempo restante:</div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-black fw-400-">
+                      <p>{{property?.auto}}</p>
+                      <p class="left-time-{{ property.guid }}"></p>
+                    </div>
+
+                </mat-card-content>
+                <!-- <div class="sticky-footer-helper" fxFlex="grow"></div> -->
+                <!-- <mat-card-actions class="m-0 p-0" fxLayoutAlign="space-between center">
+                    <p fxLayout="row" class="date mb-0">
+                        <mat-icon class="text-muted">date_range</mat-icon>
+                        <span class="mx-2">{{property.published | date:"dd MMMM, yyyy" }}</span>
+                    </p>
+                    <div>
+                        <a [routerLink]="['/propiedades', property.id]" mat-stroked-button color="primary" class="uppercase">Detalles</a>
+                    </div>
+                </mat-card-actions> -->
+                <mat-card-actions>
+                  <!-- <a [routerLink]="['/propiedades', property.id]" mat-stroked-button color="primary" class="uppercase">Detalles</a> -->
+                </mat-card-actions>
+                <div class="btn">
+                  <p class="btn-title fw-600 mb-3"><a [routerLink]="['/propiedades', property.link_rewrite]" mat-dialog-close mat-stroked-button color="primary" class="uppercase">Ver detalles</a></p>
+                </div>
+            </div>
+        </div>
+
+    </mat-card>
+</div>

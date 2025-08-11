@@ -45,9 +45,22 @@ export class RegisterComponent implements OnInit {
 
   maxDate;
 
+  formatDate(event: any) {
+    const input = event.target.value;
+
+    console.log(input);
+
+    this.registerForm.patchValue({
+      birthdate: input
+    });
+  }
+
   constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar, public appService:AppService,public userService: UserService ) { }
 
   ngOnInit() {
+    /*const message = 'questions';
+    let dialogRef = this.appService.showInfoMessage(message);*/
+
     this.registerForm = this.fb.group({
       firstname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       lastname: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -103,7 +116,7 @@ export class RegisterComponent implements OnInit {
           },
           (e) => {'Error al obtener token'});
 
-          const message = 'register';
+          const message = 'questions';
           let dialogRef = this.appService.showInfoMessage(message);
         },
         (error)=>{

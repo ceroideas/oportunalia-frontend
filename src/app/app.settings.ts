@@ -37,7 +37,7 @@ export class AppSettings {
         'image',     // default, image, carousel, map, video
         false,       // true = rtl, false = ltr
         1,           //  1, 2  or 3
-        false,       //  true = search on button click
+        true,       //  true = search on button click
         'EUR',       // USD, EUR
 
         //NOTE:  don't change additional options values, they used for theme performance

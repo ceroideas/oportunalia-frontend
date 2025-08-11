@@ -1,20 +1,20 @@
 <div *ngIf="message == 'deposit'" class="bg-deposit">
   <h1 mat-dialog-title>
     <div class="text-center fw-900 fc-primary">
-        Instrucciones para hacer un deposito
+        Instrucciones para hacer un depósito
     </div>
   </h1>
 
   <div mat-dialog-content class="m-3">
     <ol class="fc-primary">
-      <li class="pb-4">Haz la transferencia del importe del depósito en la siguiente cuenta titularidad de OPORTUNALIA ACTIVOS en BBVA: <br>ES80-0182-2487-7202-0188-4132</li>
+      <li class="pb-4">Haz la transferencia del importe del depósito en la siguiente cuenta titularidad de <b>OPORTUNALIA ACTIVOS SL. (B88524988)</b> en <br> BANCO SANTANDER S.A.: <br>IBAN: <b>ES45-0049-1811-3028-1050-4470</b> <br> SWIFT: <b>BSCHES MM</b> </li>
       <li class="pb-4">Sube el justificante de la transferencia.</li>
-      <li>Cuando esté validado tu depósito te llegará un correo electrónico del Equipo de Oportunalia y a podrás hacer tu puja/oferta.</li>
+      <li>Cuando esté validado tu depósito te llegará un correo electrónico del equipo de Oportunalia y a podrás hacer tu puja/oferta.</li>
     </ol>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
+    <button mat-raised-button color="primary" style="background-color: #242863 !important;" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
   </div>
 </div>
 
@@ -26,7 +26,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="goQuestions()" class="m-auto uppercase">Verificar cuenta</button>
+    <button mat-raised-button color="primary" style="background-color: #242863 !important;" (click)="goQuestions()" class="m-auto uppercase">Verificar cuenta</button>
   </div>
 
   <div class="mt-4 mb-4">
@@ -42,23 +42,23 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="goInterest()" class="m-auto uppercase">Responde las siguientes preguntas</button>
+    <button mat-raised-button color="primary" style="background-color: #242863 !important;" (click)="goInterest()" class="m-auto uppercase">Responde las siguientes preguntas</button>
   </div>
 
   <div class="mt-4 mb-4">
-    <p class="fc-primary">¡Pulsa en el botón verificar y sigamos!</p>
+    <p class="fc-primary">¡Pulsa en el botón de arriba y sigamos!</p>
   </div>
 </div>
 
 
 <div *ngIf="message == 'error_register_user'" class="bg-register text-center ">
-  <img src ="assets/images/icons/like.png" alt="like" class="mt-5">
+  <img src ="assets/images/icons/alert.png" alt="like" class="mt-5" style="width: 100px;">
   <div mat-dialog-content class="m-3 ml-7 mr-7">
     <p class="fc-primary">Error en el registro de usuario</p>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="goRegister()" class="m-auto uppercase">Volver a intentarlo</button>
+    <button mat-raised-button color="primary" style="background-color: #242863 !important;" (click)="goRegister()" class="m-auto uppercase">Volver a intentarlo</button>
   </div>
 
   <!-- <div class="mt-4 mb-4">
@@ -81,7 +81,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
+    <button mat-raised-button color="primary" style="background-color: #242863 !important;" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
   </div>
 </div>
 
@@ -100,7 +100,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
+    <button mat-raised-button color="primary" style="background-color: #242863 !important;" (click)="close()" class="m-auto">{{ 'BTN.OK' | translate }}</button>
   </div>
 </div>
 

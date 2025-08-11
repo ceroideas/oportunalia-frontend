@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PublicService } from 'src/app/api/public.service';
 import { AppService } from '../../../app.service';
 import { UserService } from 'src/app/api/user.service';
+import { SnackbarComponent } from '../../../custom/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-interests',
@@ -26,8 +27,11 @@ export class InterestsComponent implements OnInit{
 
   constructor(public fb: UntypedFormBuilder, public userService: UserService, public appService: AppService, public snackBar: MatSnackBar,private publicService: PublicService){}
 
+  presupuesto:any;
+
   ngOnInit() {
     this.getProvinceList();
+
     this.interestForm = this.fb.group({
 
       viviendas: [false],
@@ -49,6 +53,7 @@ export class InterestsComponent implements OnInit{
       ubicacion: null,
       inversion: null,
       presupuesto: null,
+      presupuesto1: null,
       activos: null,
 
     });
@@ -80,11 +85,30 @@ export class InterestsComponent implements OnInit{
           ubicacion: interests.ubicacion,
           inversion: interests.inversion,
           presupuesto: interests.presupuesto,
+          presupuesto1: interests.presupuesto,
           activos: interests.activos,
         });
+
+        this.presupuesto = interests.presupuesto;
       }
     });
 
+  }
+
+  changePresupuesto()
+  {
+    console.log('aqui1',this.interestForm.value.presupuesto1);
+    this.interestForm.patchValue({
+      presupuesto: this.interestForm.value.presupuesto1
+    })
+  }
+
+  presupuestoChange()
+  {
+    console.log('aqui1',this.interestForm.value.presupuesto);
+    this.interestForm.patchValue({
+      presupuesto1: this.interestForm.value.presupuesto
+    })
   }
 
 
@@ -94,7 +118,13 @@ export class InterestsComponent implements OnInit{
 
       this.appService.saveInterests(values).subscribe(data=>{
         console.log('guardado');
-        this.snackBar.open('Tu información se ha almacenado correctamente!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['success'],
+          data: { message: 'Tu información se ha almacenado correctamente!' }
+        });
+        // this.snackBar.open('Tu información se ha almacenado correctamente!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       })
 
     }

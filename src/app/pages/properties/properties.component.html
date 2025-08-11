@@ -5,22 +5,66 @@
                   >
 </app-header-image>
 
-
 <div class="section px-3">
-  <div class="theme-container">
+  <div class="theme-container-">
 
-    <div *ngIf="filter == '/auction'">
+    <div [ngClass]="fixedMap ? 'sticky-filter' : 'up-filter'" style="margin-bottom:-32px;">
+        <div style="
+            z-index: 10001;
+            box-shadow: 0 6px 10px silver;
+            text-align: center;
+            position: relative;
+            top: -40px;
+            width: 100vw;
+            left: -16px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #fff;
+        " (mouseover)="restoreMap()">
+            <h2>Filtra tu búsqueda</h2>
+        </div>
+
+        <div class="fab-container">
+          <button mat-fab color="light" aria-label="Example icon button" (click)="openFilter = !openFilter;">
+            <mat-icon>filter_alt</mat-icon>
+          </button>
+        </div>
+
+        <div class="downFilters" *ngIf="openFilter">
+            <ng-scrollbar pointerEventsMethod="scrollbar" autoHeightDisabled="false" class="mat-elevation-z1">
+                <mat-card class="p-3">
+                    <!-- <button fxHide="false" fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon color="accent">close</mat-icon>
+                    </button> -->
+
+                    <app-properties-search
+                        [variant]="settings.searchPanelVariant"
+                        [vertical]="true"
+                        [searchOnBtnClick]="settings.searchOnBtnClick"
+                        [removedSearchField]="removedSearchField"
+                        (onSearchChange)="searchChanged($event)"
+                        (onSearchClick)="searchClicked()">
+                    </app-properties-search>
+
+                </mat-card>
+            </ng-scrollbar>
+        </div>
+    </div>
+
+    <br>
+
+    <div *ngIf="filter == '/subasta'">
         <h1 class="section-title">Subasta</h1>
 
         <p class="pl-6 pr-6 fc-primary fs-0-8x text-center">Una <b>subasta</b> inmobiliaria es un proceso de venta pública donde un inmueble se ofrece al mejor postor. Las subastas de activos inmobiliarios suponen una gran oportunidad para adquirir un inmueble por un precio muy por debajo de su valor de mercado, llegando este ahorro a suponer hasta el 50% en algunos casos. Encuentra la oportunidad que buscas y realiza tu puja.</p>
     </div>
 
-    <div *ngIf="filter == '/direct-sale'">
+    <div *ngIf="filter == '/venta-directa'">
         <h1 class="section-title">Venta directa</h1>
         <p class="pl-6 pr-6 fc-primary fs-0-8x text-center">La <b>venta directa</b> permite invertir en activos propiedad de bancos y fondos de inversión, adquiriendo directamente la propiedad a precios con grandes descuentos.</p>
     </div>
 
-    <div *ngIf="filter == '/auction-assignment'">
+    <div *ngIf="filter == '/cesion-de-remate'">
         <h1 class="section-title">Cesión de remate</h1>
         <p class="pl-6 pr-6 fc-primary fs-0-8x text-center">La <b>cesión de remate</b> constituye una de las formas a través de la cual se puede adquirir un bien inmueble ejecutado por una entidad bancaria. Inmuebles en los que el banco tras adjudicarse el activo cede el derecho de adjudicación a un tercero.</p>
     </div>
@@ -29,13 +73,13 @@
     <mat-sidenav-container class="all-properties mt-3">
 
       <!-- Barra lateral -->
-      <mat-sidenav #sidenav [autoFocus]="false" [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="search-sidenav">
+      <!-- <mat-sidenav #sidenav [autoFocus]="false" [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="search-sidenav">
         <ng-scrollbar pointerEventsMethod="scrollbar" autoHeightDisabled="false" class="mat-elevation-z1">
             <mat-card class="p-3">
                 <button fxHide="false" fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon color="accent">close</mat-icon>
                 </button>
-                <!-- Buscador barra lateral -->
+
                 <app-properties-search
                     [variant]="settings.searchPanelVariant"
                     [vertical]="true"
@@ -47,59 +91,96 @@
 
             </mat-card>
         </ng-scrollbar>
-      </mat-sidenav>
+      </mat-sidenav> -->
 
 
       <!-- Propiedades -->
       <mat-sidenav-content ngClass.gt-sm="distance">
-
-        <div fxLayout="row wrap" class="properties-wrapper mt-0">
-
-            <div fxFlex="100" class="px-2 pb-2 pt-0">
-                <app-properties-toolbar [showSidenavToggle]="!sidenavOpen"
-                                        (onSidenavToggle)="sidenav.toggle()"
-                                        (onChangeCount)="changeCount($event)"
-                                    (onChangeSorting)="changeSorting($event)"
-                                        (onChangeViewType)="changeViewType($event)">
-                </app-properties-toolbar>
+          <div fxLayout="row" class="main-container">
+            <!-- Toolbar -->
+            <div [fxFlex]="fixedMap ? 40 : 100" class="px-2 pb-2 pt-0">
+              <app-properties-toolbar [showSidenavToggle]="!sidenavOpen"
+                                      (onSidenavToggle)="sidenav.toggle()"
+                                      (onChangeCount)="changeCount($event)"
+                                      (onChangeSorting)="changeSorting($event)"
+                                      (onChangeViewType)="changeViewType($event)">
+              </app-properties-toolbar>
             </div>
+          </div>
+          <div fxLayout="row" class="main-container">
+            <div fxFlex="50" fxFlex.xs="100" class="properties-wrapper" style="min-height: 785px;">
+              <div fxLayout="row wrap" class="properties-content mt-0" style="min-height: 785px; position: relative;">
+                
 
-            <!-- Chip # propiedades  -->
-            <div fxFlex="100" fxLayoutAlign="start start" class="p-2">
-                <mat-chip-listbox [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
+                <!-- Chip # propiedades -->
+                <div fxFlex="100" fxLayoutAlign="start start" class="p-2">
+                  <mat-chip-listbox [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
                     <mat-chip-option highlighted selectable="false" disableRipple="true" style="background-color: #292C63; color:#ffffff;" class="uppercase ws-nowrap">
-                        {{ pagination?.total }} Propiedades
+                      {{ pagination?.total }} Propiedades
                     </mat-chip-option>
-                </mat-chip-listbox>
-                <app-properties-search-results-filters
-                    [searchFields]="searchFields"
-                    (onRemoveSearchField)="removeSearchField($event)">
-                </app-properties-search-results-filters>
-            </div>
+                  </mat-chip-listbox>
+                  <app-properties-search-results-filters
+                      [searchFields]="searchFields"
+                      (onRemoveSearchField)="removeSearchField($event)">
+                  </app-properties-search-results-filters>
+                </div>
 
-            <div *ngFor="let property of properties" [fxFlex]="(viewType=='grid') ? viewCol : 100"  class="item">
-                <app-property-item [property]="property" [viewType]="viewType" [viewColChanged]="viewCol" [fullWidthPage]="false"></app-property-item>
-            </div>
+                <!-- Properties List -->
+                <div *ngFor="let property of properties" [fxFlex]="(viewType=='grid') ? viewCol : 100"  class="item">
+                  <app-property-item (mouseover)="changeCenter(property)" [property]="property" [viewType]="viewType" [viewColChanged]="viewCol" [fullWidthPage]="false"></app-property-item>
+                  <!-- <app-property-item (mouseover)="changeCenter(property.lat,property.lng,property.title)" [property]="property" [viewType]="viewType" [viewColChanged]="viewCol" [fullWidthPage]="false"></app-property-item> -->
+                </div>
 
-            <div *ngIf="properties?.length == 0" fxFlex="100" fxLayoutAlign="center center" [style.min-height.px]="200">
-                <mat-spinner *ngIf="!message"></mat-spinner>
-                <mat-chip-listbox *ngIf="message">
+                <!-- No properties message -->
+                <div *ngIf="properties?.length == 0" fxFlex="100" fxLayoutAlign="center center" [style.min-height.px]="200" style="    top: 150px !important;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;">
+                  <mat-spinner *ngIf="!message"></mat-spinner>
+                  <mat-chip-listbox *ngIf="message">
                     <mat-chip-option highlighted selectable="false" disableRipple="true" style="background-color: #292C63; color:#ffffff;" class="uppercase ws-nowrap">
-                        {{message}}
+                      {{message}}
                     </mat-chip-option>
-                </mat-chip-listbox>
+                  </mat-chip-listbox>
+                </div>
+
+                <!-- Paginator -->
+                <div *ngIf="properties?.length > 0" fxFlex="100" fxLayoutAlign="center center" class="p-2">
+                  <mat-paginator [length]="pagination?.total"
+                                 [pageSize]="pagination?.perPage"
+                                 [pageIndex]="pageIndex"
+                                 (page)="onPageChange($event)"
+                                 class="w-100 mat-elevation-z1">
+                  </mat-paginator>
+                </div>
+              </div>
             </div>
 
-            <div *ngIf="properties?.length > 0" fxFlex="100" fxLayoutAlign="center center" class="p-2">
-                <mat-paginator [length]="pagination?.total"
-                              [pageSize]="pagination?.perPage"
-                              (page)="onPageChange($event)"
-                              class="w-100 mat-elevation-z1">
-                </mat-paginator>
+            <!-- Map -->
+            <div fxFlex="50" fxHide.xs [ngClass]="atFooter ? 'fixed-footer' : (fixedMap ? 'sticky-map' : '')">
+              <google-map [center]="center" [zoom]="zoom" [options]="mapOptions" width="100%">
+                  <map-marker *ngIf="newmarker"
+                      [title]="newmarker.title+ ' - ' +(newmarker.start_price | currency : 'EUR' : 'symbol' : '1.2-2')"
+                      [position]="{lat: newmarker.lat, lng: newmarker.lng}"
+                      
+                      (mapClick)="navigateTo(newmarker.route)"
+                      [options]="markerOptions2"/>
+                  <!-- <map-marker-clusterer [imagePath]="markerClustererOptions.imagePath" [styles]="markerClustererOptions.styles"> -->
+                    @for (marker of markerPositions; track marker) {
+                      <map-marker 
+                      [title]="marker.title+ ' - ' +(marker.start_price | currency : 'EUR' : 'symbol' : '1.2-2')"
+                      [position]="{lat: marker.lat, lng: marker.lng}"
+                      
+                      (mapClick)="navigateTo(marker.route)"
+                      [options]="markerOptions"/>
+                    }
+                  <!-- </map-marker-clusterer> -->
+                </google-map>
             </div>
+          </div>
+        </mat-sidenav-content>
 
-        </div>
-      </mat-sidenav-content>
 
     </mat-sidenav-container>
 

@@ -1,51 +1,179 @@
 <div class="section mt-3">
     <div class="px-3">
         <div class="theme-container">
-            <br>
-            <br>
-            <h1 class="text-center fw-400 fc-primary">Encuentra activos inmobiliarios con</h1>
-            <h1 class="text-center fw-700 fc-primary">grandes descuentos</h1>
-            <div fxLayout="row wrap" class="services-wrapper pt-5">
-                <div fxFlex="100" fxFlex.gt-md="33" fxFlex.gt-sm="50" class="p-2">
-                    <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-3 fc-primary bg-card-subasta">
-                        <!-- <mat-icon class="mat-icon-xlg" color="primary">location_on</mat-icon> -->
-                        <h2 class="card-title fw-600 mt-5">Subasta</h2>
-                        <p class="mr-5 ml-5 mt-7">Participa en una subasta de pisos embargados por los bancos a un solo clic </p>
-                        <p>¡Elige tu precio!</p>
-                        <a class="pt-5 uppercase fw-600 fc-primary mb-5" href="/#/auction">Descubrir oportunidades
-                          <mat-icon class="mat-icon-xlg" color="#242863">arrow_right_alt</mat-icon>
-                        </a>
-                        <br>
-                        <br>
-                    </mat-card>
-                  </div>
-                <div fxFlex="100" fxFlex.gt-md="33" fxFlex.gt-sm="50" class="p-2">
-                    <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-3 fc-primary bg-card-venta">
-                        <!-- <mat-icon class="mat-icon-xlg" color="primary">supervisor_account</mat-icon> -->
-                        <h2 class="card-title fw-600 mt-5">Venta directa</h2>
-                        <p class="mr-5 ml-5 mt-7">Invierte en inmuebles de bancos a trav&eacute;s de venta directa.</p>
-                        <p>¡Descuento medio 50%!</p>
-                        <a class="pt-5 uppercase fw-600 fc-primary mb-5" href="/#/direct-sale">Descubrir oportunidades
-                          <mat-icon class="mat-icon-xlg" color="#242863">arrow_right_alt</mat-icon>
-                        </a>
-                        <br>
-                        <br>
-                    </mat-card>
+
+            <h1 class="text-center mb-4 fw-400 fc-primary fs-2x">Últimas entradas del <b>Blog</b></h1>
+
+            <div  class="services-wrapper pt-5">
+
+                <div class="swiper-container h-100 carousel-outer" [swiper]="config">
+                    <div class="swiper-wrapper h-100">
+                        
+                        <div  class="swiper-slide" *ngFor="let post of posts">
+                            <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-justify fc-primary">
+
+                                <img style="width: 100%;" [src]="post._embedded['wp:featuredmedia'][0].source_url" alt="">
+
+                                <div class="p-3">
+
+                                <h5 class="card-article">{{post._embedded['wp:term'][0][0].name}}</h5>
+                                    
+                                <a target="_blank" style="display: block;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: 380px;" class="pt-2 uppercase fw-600 fc-primary mb-2" [href]="post.link">{{post.title.rendered}}
+                                </a>
+                                
+                                <div style="font-size: 14px; color: #5c6368;" [innerHTML]="post.excerpt.rendered"></div>
+
+                                <h5>{{post.new_date}}
+                                    <!-- <span style="float: right;"><b>Posteado por:</b> {{post._embedded['author'][0].name}}</span> -->
+                                    <!-- <div style="clear: both;"></div> -->
+                                </h5>
+                                </div>
+                            </mat-card>
+                        </div>
+                        <!-- <div  class="swiper-slide">
+                            <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-3 fc-primary bg-card-subasta">
+                                <h2 class="card-title fw-600 mt-5" [routerLink]="['/subasta']">Subasta</h2>
+                                <p class="mr-5 ml-5 mt-7">Participa en una subasta de pisos embargados por los bancos a un solo clic </p>
+                                <p>¡Elige tu precio!</p>
+                                <a class="pt-5 uppercase fw-600 fc-primary mb-5" href="/subasta">Descubrir oportunidades
+                                  <mat-icon class="mat-icon-xlg" color="#242863">arrow_right_alt</mat-icon>
+                                </a>
+                                <br>
+                                <br>
+                            </mat-card>
+                        </div>
+                        <div  class="swiper-slide">
+                            <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-3 fc-primary bg-card-venta">
+                                <h2 class="card-title fw-600 mt-5" [routerLink]="['/venta-directa']">Venta directa</h2>
+                                <p class="mr-5 ml-5 mt-7">Invierte en inmuebles de bancos a trav&eacute;s de venta directa.</p>
+                                <p>¡Descuento medio 50%!</p>
+                                <a class="pt-5 uppercase fw-600 fc-primary mb-5" href="/venta-directa">Descubrir oportunidades
+                                  <mat-icon class="mat-icon-xlg" color="#242863">arrow_right_alt</mat-icon>
+                                </a>
+                                <br>
+                                <br>
+                            </mat-card>
+                        </div>
+                        <div  class="swiper-slide">
+                            <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-3 fc-primary bg-card-cesion">
+                                <h2 class="card-title fw-600 mt-5" [routerLink]="['/cesion-de-remate']">Cesión de remate</h2>
+                                <p class="mr-5 ml-5 mt-7">Invierte en activos en cesi&oacute;n de remate</p>
+                                <p>¡Descuento medio 50%!</p>
+                                <br>
+                                <a class="pt-5 uppercase fw-600 fc-primary mb-5" href="/cesion-de-remate">Descubrir oportunidades
+                                  <mat-icon class="mat-icon-xlg" color=#242863>arrow_right_alt</mat-icon>
+                                </a>
+                                <br>
+                                <br>
+                            </mat-card>
+                        </div> -->
+
+                    </div>
+
                 </div>
-                <div fxFlex="100" fxFlex.gt-md="33" fxFlex.gt-sm="50" class="p-2">
-                    <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-3 fc-primary bg-card-cesion">
-                        <!-- <mat-icon class="mat-icon-xlg" color="primary">home</mat-icon> -->
-                        <h2 class="card-title fw-600 mt-5">Cesión de remate</h2>
-                        <p class="mr-5 ml-5 mt-7">Invierte en activos en cesi&oacute;n de remate</p>
-                        <p>¡Descuento medio 50%!</p>
-                        <a class="pt-5 uppercase fw-600 fc-primary mb-5" href="/#/auction-assignment">Descubrir oportunidades
-                          <mat-icon class="mat-icon-xlg" color=#242863>arrow_right_alt</mat-icon>
-                        </a>
-                        <br>
-                        <br>
-                    </mat-card>
-                </div>
+
+
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="section mt-0" style="padding-top: 0">
+  <div class="px-3">
+      <div class="theme-container" style="max-width: 1366px; padding-left: 32px;">
+        <!-- <div class="px-3 pb-6">
+          <div class="theme-container">
+            <h1 class="text-center fw-400 fc-primary">¡Síguenos en redes!</h1>
+          </div>
+        </div> -->
+
+        <div fxFlex="100" fxFlex.xs="100" class="properties-wrapper" style="">
+            <div fxLayout="row wrap" class="properties-content mt-0" style="position: relative;">
+
+              <div fxFlex="100" fxFlex.xs="100" fxLayoutAlign="start start" class="" style="padding-right: 8px;">
+                <div class="swiper-container h-100 carousel-outer" [swiper]="config">
+                    <div class="swiper-wrapper h-100">
+
+                        <div  class="swiper-slide" *ngFor="let rate of ratings">
+                            <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-4 fc-primary {{rate.bg}}">
+                                <!-- <h2 class="card-title fw-600 mt-5" [routerLink]="['/subasta']">Subasta</h2> -->
+                                <div>
+                                    <div style="text-align: center;" class="pb-2">
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 1 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 2 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 3 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 4 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 5 ? 'star' : 'star_outline'}}</mat-icon>
+                                    </div>
+
+                                    <p class="mr-5 ml-5 mt-2">{{rate.text}}</p>
+
+                                    <b><a target="_blank" style="color: #242863" [href]="rate.author_url">{{rate.author_name}}</a></b>
+
+                                    <p><small style="color: #333">{{rate.relative_time_description}}</small></p>
+                                    
+                                    <img [src]="rate.image_url" style="width: 60px; height:60px;">
+
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+              <!-- <div fxFlex="100" fxFlex.xs="100" fxLayoutAlign="start start" class="p-3">
+                <div style="margin: auto;" class="elfsight-app-156d88f8-0365-482d-8510-8622d46233a6" data-elfsight-app-lazy></div>
+              </div> -->
+            </div>
+      </div>
+
+      </div>
+  </div>
+</div>
+
+<div class="section" style="padding-top: 0">
+  <div class="px-3">
+      <div class="theme-container" style="max-width: 1366px; padding-left: 32px;">
+        
+      <div fxFlex="100" fxFlex.xs="100" class="properties-wrapper" style="">
+            <div fxLayout="row wrap" class="properties-content mt-0" style="position: relative;">
+
+              <!-- <div fxFlex="100" fxFlex.xs="100" fxLayoutAlign="start start" class="" style="padding-right: 8px;">
+                <div class="swiper-container h-100 carousel-outer" [swiper]="config">
+                    <div class="swiper-wrapper h-100">
+
+                        <div  class="swiper-slide" *ngFor="let rate of ratings">
+                            <mat-card fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100 text-center p-4 fc-primary bg-card-subasta">
+                                <div>
+                                    <div style="text-align: center;" class="pb-2">
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 1 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 2 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 3 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 4 ? 'star' : 'star_outline'}}</mat-icon>
+                                        <mat-icon class="mat-icon-lg" style="color: #cc9933">{{rate.rating >= 5 ? 'star' : 'star_outline'}}</mat-icon>
+                                    </div>
+
+                                    <p class="mr-5 ml-5 mt-2">{{rate.text}}</p>
+
+                                    <b><a target="_blank" style="color: #242863" [href]="rate.author_url">{{rate.author_name}}</a></b>
+
+                                    <p><small style="color: #333">{{rate.relative_time_description}}</small></p>
+                                    
+                                    <img [src]="rate.image_url" style="width: 60px; height:60px;">
+
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+
+              </div> -->
+              <div fxFlex="100" fxFlex.xs="100" fxLayoutAlign="start start">
+                <div style="margin: auto;" class="elfsight-app-156d88f8-0365-482d-8510-8622d46233a6" data-elfsight-app-lazy></div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 .property-item{
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
     .thumbnail-section{
         position: relative;
     }
@@ -296,4 +296,31 @@
 
 .swiper-slide img {
     display: none; /* Ocultar la etiqueta img */
+}
+
+.allOver {
+    position: absolute;
+    background-color: rgba(255, 255, 255, .80);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    span {
+        position: absolute; color: #292C63; font-size: 28px; font-weight: 400; top: 0; bottom: 0; left: 0; right: 0; display: table; vertical-align: middle; text-align: center; margin: auto;
+    }
+    &:hover {
+        background-color: rgba(200, 200, 200, .90);
+        cursor: pointer;
+    }
+}
+
+input:not(input[type="button"], input[type="submit"], input[type="file"]) {
+    height: 2rem;
+    width: 100%;
+    border: 2px solid #242863;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0.2rem;
+    box-sizing: border-box;
 }

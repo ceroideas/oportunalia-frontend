@@ -60,11 +60,15 @@
                 </div>
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
                   <!-- Fecha de nacimiento -->
-                  <mat-form-field appearance="outline" class="w-100 mt-2">
+                  <!-- <mat-form-field appearance="outline" class="w-100 mt-2">
                     <input matInput formControlName="birthdate" [max]="maxDate" [matDatepicker]="picker"  placeholder="Fecha de nacimiento">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
+                  </mat-form-field> -->
+                  <div class="form-group" style="position: relative; margin-top: 8px;">
+                    <label style=" top: 14px;background: #fff;left: 12px;padding: 0px 6px; color: gray" matformfieldfloatinglabel="" class="mdc-floating-label mat-mdc-floating-label ng-tns-c1798928316-23 ng-star-inserted mdc-floating-label--float-above" ng-reflect-floating="true" ng-reflect-monitor-resize="true" id="mat-mdc-form-field-label-6" for="mat-input-3"><mat-label _ngcontent-ng-c2197834210="" class="ng-tns-c1798928316-23">Fecha de nacimiento: </mat-label><span aria-hidden="true" class="mat-mdc-form-field-required-marker mdc-floating-label--required ng-tns-c1798928316-23 ng-star-inserted"></span><!--container--></label>
+                    <input type="date" id="birthdate" class="form-control" placeholder="dd-mm-yyyy" (input)="formatDate($event)">
+                  </div>
                 </div>
                 <!-- Row 4 -->
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
@@ -81,8 +85,8 @@
                 <div fxFlex="100" fxFlex.gt-xs="50" class="pr-3">
                   <!-- Confirm password -->
                   <mat-form-field  appearance="outline" class="w-100 mt-2">
-                    <mat-label>Confirm Password</mat-label>
-                    <input matInput placeholder="Confirm Password" formControlName="password_confirmation" type="password" required [type]="hide ? 'password' : 'text'">
+                    <mat-label>Confirma la Contraseña</mat-label>
+                    <input matInput placeholder="Confirma la Contraseña" formControlName="password_confirmation" type="password" required [type]="hide ? 'password' : 'text'">
                     <mat-error *ngIf="registerForm.controls.password_confirmation.errors?.required">El campo confirmar contraseña es requerido</mat-error>
                     <mat-error *ngIf="registerForm.controls.password_confirmation.hasError('mismatchedPasswords')">La contraseña no coincide</mat-error>
                     <button mat-icon-button matSuffix (click)="hide = !hide" type="button" class="text-muted">
@@ -129,7 +133,7 @@
                         {{press.name}}
                     </mat-option>
                 </mat-select>
-                <mat-label> &nbsp; (Prensa)</mat-label>
+                <!-- <mat-label> &nbsp; (Prensa)</mat-label> -->
               </mat-form-field>
 
               <p class="fc-primary mb-4">* Campos obligatorios</p>
@@ -147,7 +151,7 @@
                 </div>
 
                 <div class="w-100 pt-4 pb-6">
-                  <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button>
+                  <button mat-raised-button color="primary" style="background-color: #242863 !important;" type="submit" class="uppercase pt-4 pb-4 pr-5 pl-5">Aceptar y continuar</button>
                 </div>
             </form>
             <a routerLink="/login" class="fc-primary uppercase fw-200"><u>inicia sesión</u></a>

@@ -1,5 +1,5 @@
 /* import { Component, OnInit, Input } from '@angular/core'; */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Settings, AppSettings } from '../../app.settings';
 import { AppService } from '../../app.service';
 import { Property, Pagination, Location } from '../../app.models';
@@ -12,6 +12,18 @@ import { PublicService } from 'src/app/api/public.service';
 import { UactionsService } from 'src/app/services/uactions.service';
 import { SearchProperties } from './interfaces/search-properties';
 import { Router } from '@angular/router';
+import { FormControl,FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+
+import { ModalOffersComponent } from '../modal-offers/modal-offers.component';
+
+import { MarkerClustererOptions } from '@angular/google-maps';
 
 @Component({
   selector: 'app-home',
@@ -25,17 +37,199 @@ export class HomeComponent implements OnInit {
   provinceList: any;
   categoryList: any;
 
-  //center: google.maps.LatLngLiteral = { lat: 40.678178, lng: -73.944158};
-  center: google.maps.LatLngLiteral = { lat: 40.416775, lng: -3.703790};
-  zoom: number = 7;
-  markerOptions: google.maps.MarkerOptions = { draggable: false };
-  markerPositions: { lat: number, lng: number, title: string, route: string }[] = [];
-  mapOptions: google.maps.MapOptions = {
-    fullscreenControl: true,
-    mapTypeControl: true
+  values = [{ "value": "60000", "show": "60.000 €"},
+  { "value": "80000", "show": "80.000 €"},
+  { "value": "100000", "show": "100.000 €"},
+  { "value": "120000", "show": "120.000 €"},
+  { "value": "140000", "show": "140.000 €"},
+  { "value": "150000", "show": "150.000 €"},
+  { "value": "160000", "show": "160.000 €"},
+  { "value": "180000", "show": "180.000 €"},
+  { "value": "200000", "show": "200.000 €"},
+  { "value": "220000", "show": "220.000 €"},
+  { "value": "240000", "show": "240.000 €"},
+  { "value": "260000", "show": "260.000 €"},
+  { "value": "280000", "show": "280.000 €"},
+  { "value": "300000", "show": "300.000 €"},
+  { "value": "320000", "show": "320.000 €"},
+  { "value": "340000", "show": "340.000 €"},
+  { "value": "360000", "show": "360.000 €"},
+  { "value": "380000", "show": "380.000 €"},
+  { "value": "400000", "show": "400.000 €"},
+  { "value": "450000", "show": "450.000 €"},
+  { "value": "500000", "show": "500.000 €"},
+  { "value": "550000", "show": "550.000 €"},
+  { "value": "600000", "show": "600.000 €"},
+  { "value": "650000", "show": "650.000 €"},
+  { "value": "700000", "show": "700.000 €"},
+  { "value": "750000", "show": "750.000 €"},
+  { "value": "800000", "show": "800.000 €"},
+  { "value": "850000", "show": "850.000 €"},
+  { "value": "900000", "show": "900.000 €"},
+  { "value": "950000", "show": "950.000 €"},
+  { "value": "1000000", "show": "1 millón €"},
+  { "value": "1100000", "show": "1,1 millones €"},
+  { "value": "1200000", "show": "1,2 millones €"},
+  { "value": "1300000", "show": "1,3 millones €"},
+  { "value": "1400000", "show": "1,4 millones €"},
+  { "value": "1500000", "show": "1,5 millones €"},
+  { "value": "1600000", "show": "1,6 millones €"},
+  { "value": "1700000", "show": "1,7 millones €"},
+  { "value": "1800000", "show": "1,8 millones €"},
+  { "value": "1900000", "show": "1,9 millones €"},
+  { "value": "2000000", "show": "2 millones €"},
+  { "value": "2100000", "show": "2,1 millones €"},
+  { "value": "2200000", "show": "2,2 millones €"},
+  { "value": "2300000", "show": "2,3 millones €"},
+  { "value": "2400000", "show": "2,4 millones €"},
+  { "value": "2500000", "show": "2,5 millones €"},
+  { "value": "2600000", "show": "2,6 millones €"},
+  { "value": "2700000", "show": "2,7 millones €"},
+  { "value": "2800000", "show": "2,8 millones €"},
+  { "value": "2900000", "show": "2,9 millones €"},
+  { "value": "3000000", "show": "3 millones €"}];
+
+  markerClustererOptions: MarkerClustererOptions = {
+    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+    styles: [
+    {
+      textColor: 'white',
+      url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png', // URL de la imagen del cluster
+      height: 53, // Altura de la imagen
+      width: 53, // Ancho de la imagen
+      textSize: 14, // Tamaño del texto dentro del cluster
+      anchorText: [19, 0]
+    },
+    {
+      textColor: 'white',
+      url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png', // URL de la imagen del cluster
+      height: 56,
+      width: 56,
+      textSize: 14,
+      anchorText: [19, 0]
+    },
+    {
+      textColor: 'white',
+      url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png', // URL de la imagen del cluster
+      height: 66,
+      width: 66,
+      textSize: 14,
+      anchorText: [19, 0]
+    }]
+  };
+  // 40.4380986, -3.844343
+  getLat()
+  {var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (screenWidth > 1920) {
+      return 40.4380986;
+    } else if (screenWidth == 1920) {
+      return 40.4380986;
+    } else {
+      return 40.4380986;
+    }
+  }
+  getLng()
+  {var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (screenWidth > 1920) {
+      return -3.844343;
+    } else if (screenWidth == 1920) {
+      return -3.844343;
+    } else {
+      return -3.844343;
+    }
   }
 
+  getZoomLevel() {
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    console.log(screenWidth);
+    if (screenWidth > 2048) {
+      console.log(7)
+      return 7;
+    } else if (screenWidth >= 1920) {
+      return 6;
+    } else {
+      return 5;
+    }
+  }
+
+  getGreedy() {
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    console.log(screenWidth);
+    if (screenWidth > 2048) {
+      return null;
+    } else if (screenWidth >= 1360) {
+      return null;
+    } else {
+      return "greedy";
+    }
+  }
+
+  markerClustererImagePath =
+      'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m';
+
+  //center: google.maps.LatLngLiteral = { lat: 40.678178, lng: -73.944158};
+  center: google.maps.LatLngLiteral = { lat: this.getLat(), lng: this.getLng() };
+  zoom: number = this.getZoomLevel();
+  markerOptions: google.maps.MarkerOptions = { draggable: false, icon: {url:'assets/marker.png', scaledSize: new google.maps.Size(60, 60)} };
+  markerPositions: { lat: number, lng: number, title: string, route: string, category: number, province: string}[] = [];
+  mapOptions: google.maps.MapOptions = {
+    fullscreenControl: true,
+    mapTypeControl: true,
+    gestureHandling: this.getGreedy()
+  }
+
+  options: any[] = [];
+  options1: any[] = [];
+  selectedValue: string;
+  selectedValue1 = new FormControl("");
+  isEditable: boolean = false;
+  edited:boolean = false;
+
+  onSelectionChange(event: any) {
+    this.isEditable = event.value === 'custom'; // Cambia esta condición según tus necesidades
+    if (this.isEditable) {
+      this.selectedValue1.patchValue("");
+    }
+  }
+
+  onBlur() {
+    if (this.edited) {
+      this.options.shift();
+    }
+    this.isEditable = false;
+    this.options.unshift({value:this.selectedValue1.value, show: new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(parseFloat(this.selectedValue1.value))});
+    this.selectedValue = this.selectedValue1.value;
+
+    this.edited = true;
+  }
+
+  selectedValue2: string;
+  selectedValue3 = new FormControl("");
+  isEditable1: boolean = false;
+  edited1:boolean = false;
+
+  onSelectionChange1(event: any) {
+    this.isEditable1 = event.value === 'custom'; // Cambia esta condición según tus necesidades
+    if (this.isEditable1) {
+      this.selectedValue3.patchValue("");
+    }
+  }
+
+  onBlur1() {
+    if (this.edited1) {
+      this.options1.shift();
+    }
+    this.isEditable1 = false;
+    this.options1.unshift({value:this.selectedValue3.value, show: new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(parseFloat(this.selectedValue3.value))});
+    this.selectedValue2 = this.selectedValue3.value;
+
+    this.edited1 = true;
+  }
+
+
   public searchPropertiesValues: SearchProperties = {
+    min: null,
+    max: null,
     search: null,
     type: 0,
     category: null
@@ -51,6 +245,7 @@ export class HomeComponent implements OnInit {
   public pagination:Pagination = new Pagination(1, 8, null, 2, 0, 0);
   public message: string | null;
   public featuredProperties: any[];
+  public soonProperties: any[];
   public locations: Location[];
 
   public settings: Settings;
@@ -77,14 +272,35 @@ export class HomeComponent implements OnInit {
     });
 
   }
+  
+  dialog = inject(MatDialog);
+
+  openDialog() {
+    if (!localStorage.getItem('popupofertas') && !localStorage.getItem('token')) {
+      localStorage.setItem('popupofertas','1');
+      /*this.dialog.open(ModalOffersComponent, {
+        maxWidth: '95vw'
+      });*/
+    }
+  }
 
   ngOnInit() {
     this.getSlides();
-    this.getLocations();
+    // this.getLocations();
     this.getProperties();
     this.getFeaturedProperties();
+    this.getSoonProperties();
     this.getProvinceList();
     this.getCategoryList();
+    this.openDialog();
+
+    for (let i = 0; i < this.values.length; i++)
+    {
+      this.options.push(this.values[i]);
+      this.options1.push(this.values[i]);
+    }
+    this.options.push({value: 'custom', show: 'Personalizado'});
+    this.options1.push({value: 'custom', show: 'Personalizado'});
   }
 
   ngDoCheck(){
@@ -120,9 +336,9 @@ export class HomeComponent implements OnInit {
         for(let i of properties.response)
         {
           if (!i.lat || !i.lng) {
-            this.geocodeAddress(i.city+', '+i.address+', '+i.province+', España',i.title,'/#/properties/'+i.link_rewrite,i.active_id);
+            this.geocodeAddress(i.city+', '+i.address+', '+i.province+', España',i.title,'/propiedades/'+i.link_rewrite,i.active_id, i.active_category_id, i.province);
           }else{
-            this.markerPositions.push({lat:parseFloat(i.lat),lng:parseFloat(i.lng),title:i.title,route:'/#/properties/'+i.link_rewrite});
+            this.markerPositions.push({lat:parseFloat(i.lat),lng:parseFloat(i.lng),title:i.title,route:'/propiedades/'+i.link_rewrite,category:i.active_category_id, province:i.province});
           }
         }
       }
@@ -207,7 +423,7 @@ export class HomeComponent implements OnInit {
   public searchProperties() {    
     console.log(this.searchPropertiesValues);
     this.uActionsService.buildURL(this.searchPropertiesValues);
-    this.router.navigateByUrl('/properties?search=true');
+    this.router.navigateByUrl('/propiedades?search=true');
   }
 
   public changeCount(count){
@@ -232,6 +448,13 @@ export class HomeComponent implements OnInit {
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
       this.featuredProperties = properties.response;
+    })
+  }
+
+  public getSoonProperties(){
+    this.appService.getSoonProperties().subscribe(properties=>{
+      this.soonProperties = properties.response;
+      console.log(this.soonProperties);
     })
   }
 
@@ -266,7 +489,8 @@ export class HomeComponent implements OnInit {
       )
   }
 
-  setSearchProps(value: any, key: string) {    
+  setSearchProps(value: any, key: string) {
+  console.log(value,key);
     this.searchPropertiesValues[key] = isNaN(parseInt(value)) ? value : parseInt(value);
   }
 
@@ -274,11 +498,11 @@ export class HomeComponent implements OnInit {
     window.location.href = route;
   }
 
-  geocodeAddress(address: string,title:string,route:string,active_id): void {
+  geocodeAddress(address: string,title:string,route:string,active_id,category,province): void {
     this.uActionsService.getCoordinates(address).subscribe(response => {
       if (response.status === 'OK') {
         const location = response.results[0].geometry.location;
-        this.markerPositions.push({lat:location.lat,lng:location.lng,title:title,route:route});
+        this.markerPositions.push({lat:location.lat,lng:location.lng,title:title,route:route,category:category,province:province});
 
         this.appService.saveLatLng({active_id,lat:location.lat,lng:location.lng}).subscribe(data=>{
           console.log('saved');
@@ -289,6 +513,35 @@ export class HomeComponent implements OnInit {
         console.error('Geocoding error:', response.status);
       }
     });
+  }
+
+  province_map:any;
+  category_map:any;
+
+  markersAux = [];
+
+  filterMapMarkers()
+  {
+    if (!this.markersAux.length) {
+      this.markersAux = this.markerPositions;
+    }
+    
+    this.markerPositions = this.markersAux;
+
+    console.log(this.markersAux,this.province_map, this.category_map);
+
+    if (this.province_map && this.province_map != '' && this.province_map != 0) {
+      console.log('aqui 1')
+      this.markerPositions = this.markersAux.filter(x=>x.province == this.province_map);
+    }
+
+    if (this.category_map && this.category_map != '' && this.category_map != 0) {
+      console.log('aqui 2')
+      this.markerPositions = this.markersAux.filter(x=>x.category == this.category_map);
+    }
+
+    console.log(this.markerPositions);
+
   }
 
 }

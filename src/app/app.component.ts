@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Settings, AppSettings } from './app.settings';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,6 +11,11 @@ import { UserService } from './api/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  @HostListener('window:beforeunload', [ '$event' ])
+  beforeUnloadHandler(event) {
+    localStorage.removeItem('popupofertas');
+  }
 
   public settings: Settings;
   constructor(public appSettings:AppSettings,

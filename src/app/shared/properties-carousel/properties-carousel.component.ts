@@ -23,7 +23,7 @@ export class PropertiesCarouselComponent implements OnInit {
       spaceBetween: 16,       
       keyboard: true,
       navigation: { nextEl: '.prop-next', prevEl: '.prop-prev'},
-      pagination: true,
+      pagination: false,
       grabCursor: true,        
       loop: false,
       preloadImages: true,

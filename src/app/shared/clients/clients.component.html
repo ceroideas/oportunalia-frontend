@@ -1,6 +1,31 @@
 <div class="section mt-3">
   <div class="px-3">
     <div class="theme-container">
+      <h1 class="section-title mb-3">Nos certifican...</h1>
+      <!-- <p class="text-center">Sed magna ipsum, ultricies sed sagittis nec, scelerisque eu libero. Donec at metus ac eros accumsan semper.</p> -->
+      <div class="clients-carousel">
+        <div class="swiper-container h-100" [swiper]="config2">
+          <div class="swiper-wrapper h-100">
+            <div *ngFor="let client of certificados" class="swiper-slide">
+              <div class="client-item">
+                <a [href]="client.url" target="_blank" style="margin: auto;">
+                <img [attr.data-src]="client.image" class="swiper-lazy" style="height: 80px;">
+                <div class="swiper-lazy-preloader"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="section mt-3">
+  <div class="px-3">
+    <div class="theme-container">
       <h1 class="section-title mb-3">Hablan sobre nosotros...</h1>
       <!-- <p class="text-center">Sed magna ipsum, ultricies sed sagittis nec, scelerisque eu libero. Donec at metus ac eros accumsan semper.</p> -->
       <div class="clients-carousel">
@@ -8,8 +33,10 @@
           <div class="swiper-wrapper h-100">
             <div *ngFor="let client of clients" class="swiper-slide">
               <div class="client-item">
+                <a [href]="client.url" target="_blank">
                 <img [attr.data-src]="client.image" class="swiper-lazy">
                 <div class="swiper-lazy-preloader"></div>
+                </a>
               </div>
             </div>
           </div>

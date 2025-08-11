@@ -1,1 +1,26 @@
+.form-group {
+  margin-bottom: 1rem;
+}
 
+.form-control {
+  width: calc(100% - 28px);
+  padding: 0.95rem 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: Poppins;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none !important;
+  border-color: #9b9b9b;
+}
+
+.form-control:hover {
+  border-color: rgba(0,0,0, 0.87);
+}
+.form-control:focus {
+  border-color: #0d47a1;
+}

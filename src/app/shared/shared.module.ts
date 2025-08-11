@@ -70,6 +70,8 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
 import { PropertyOfferComponent } from './property-offer/property-offer.component';
 
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 @NgModule({
   imports: [
@@ -115,7 +117,9 @@ import { PropertyOfferComponent } from './property-offer/property-offer.componen
     NgScrollbarModule,
     GoogleMapsModule,
     PipesModule,
-    DirectivesModule
+    DirectivesModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   exports: [
     RouterModule,

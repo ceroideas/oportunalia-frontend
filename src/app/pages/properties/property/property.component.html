@@ -21,19 +21,31 @@
               <div *ngIf="this.property?.auction_type_id==2" class="type-venta">Venta directa</div>
               <div *ngIf="this.property?.auction_type_id==3" class="type-cesion">Cesión de remate</div>
 
-              <h2 class="uppercase fc-primary fw-700 fs-1-5x pb-3" ngClass.xs="text-center">{{property?.title}}</h2>
-              <div fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
+              <h3 class="uppercase fc-primary fw-700 fs-1-5x pb-3" ngClass.xs="text-center">{{property?.title}}</h3>
+              <div fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0 ocultar-en-movil">
                   <mat-icon class="fc-primary">location_on</mat-icon>
                   <div class="mr-7 fc-primary">{{property?.city}}, {{property?.province}} <!-- {{property|json}} --> </div>
                   <div class="fc-primary">Referencia: {{property?.auto}}</div>
+              </div>
+
+              <div class="address mb-0 mostrar-en-movil text-center">
+                  <mat-icon class="fc-primary">location_on</mat-icon>
+                  <div class="fc-primary">{{property?.city}}, {{property?.province}} <!-- {{property|json}} --> </div>
+                  <div style="clear: both;"></div>
+                  <div class="mt-3 fc-primary">Referencia: {{property?.auto}}</div>
               </div>
           </div>
 
           <div fxLayout="column" fxLayoutAlign.xs="center center" class="mx-3">
             <!--  -->
               <!-- <p>Descuento: {{(((property?.appraisal_value.sale-property?.start_price.sale)*100)/property?.appraisal_value.sale) | currency : 'EUR' : 'symbol' : '1.0'}}</p> -->
-              <div *ngIf="property?.appraisal_value > 1" class="btn">
-                <span class="btn-title fw-700 mb-3 fs-1-5x p-2">-{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
+              <div *ngIf="property?.appraisal_value > 1" class="btn ocultar-en-movil">
+                <span style="background-color: #ed431d !important; border-color: #ed431d !important;" class="btn-title fw-700 mb-3 fs-1-5x p-2">{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
+
+              </div>
+
+              <div *ngIf="property?.appraisal_value > 1" class="btn mostrar-en-movil">
+                <span style="background-color: #ed431d !important; border-color: #ed431d !important; line-height: 32px;" class="btn-title fw-700 mt-3 mb-3 fs-1-5x p-2">-{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
 
               </div>
               <!-- <div *ngIf="property?.appraisal_value > 1" class="pt-6 pb-6">1</div> -->
@@ -48,8 +60,9 @@
               </h2>
               <p>Referencia:</p> -->
           </div>
-          <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
-              <mat-icon>more_vert</mat-icon>
+          <button *ngIf="!sidenavOpen" mat-raised-button color="primary" (click)="sidenav.toggle()">
+              <!-- <mat-icon>more_vert</mat-icon> -->
+              Mas información
           </button>
         </mat-card>
         <!-- Fin Card titulo -->
@@ -64,14 +77,25 @@
                 <mat-card class="p-3">
                     <!-- Precio minimo -->
                     <div class="widget">
-                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary">
-                        <div>
-                          <p>Precio mínimo: </p>
-                          <p>Tasación:</p>
+                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary ocultar-en-movil">
+                        <div style="margin-top: 6px;">
+                          <p style="margin-bottom:22px;">Precio mínimo: </p>
+                          <p style="margin-bottom:22px;">Tasación:</p>
+                          <!-- <p *ngIf="property?.max_bid" style="margin-bottom:22px;">Mejor Oferta:</p> -->
                         </div>
                         <div class="text-right">
                           <p class="fw-700 fs-1x"><span *ngIf="property?.start_price">{{property?.start_price | currency : 'EUR' : 'symbol' : '1.0'}}</span></p>
                           <p class="fw-700 fs-1x">{{property?.appraisal_value | currency : 'EUR' : 'symbol' : '1.0'}}</p>
+                          <!-- <p *ngIf="property?.max_bid" class="fw-700 fs-1x">{{property?.max_bid | currency : 'EUR' : 'symbol' : '1.0'}}</p> -->
+                        </div>
+                      </div>
+
+                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-4 fc-primary mostrar-en-movil">
+                        <div class="text-center">
+                          <p class="fw-700 fs-1x"><span *ngIf="property?.start_price"><small style="font-weight: 300;">Precio mínimo:</small> {{property?.start_price | currency : 'EUR' : 'symbol' : '1.0'}}</span></p>
+                          <p class="fw-700 fs-1x"><small style="font-weight: 300;">Tasación:</small> {{property?.appraisal_value | currency : 'EUR' : 'symbol' : '1.0'}}</p>
+
+                          <!-- <p *ngIf="property?.max_bid" class="fw-700 fs-1x"><small style="font-weight: 300;">Mejor Oferta:</small> {{property?.max_bid | currency : 'EUR' : 'symbol' : '1.0'}}</p> -->
                         </div>
                       </div>
 
@@ -114,11 +138,12 @@
                           <mat-select formControlName="representation_id" (selectionChange)="onRepresentationChange($event.value)" placeholder="Tipo de representación">
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
-                        </div>           
+                          <mat-error *ngIf="bidForm.get('representation_id').hasError('required')"> Este campo es obligatorio. </mat-error>
+                        </div>
                         
                         <div class="row">
                           <div class="label">Mejor Puja</div>
-                          <div class="value">{{property.max_bid ?? 0 }} </div>
+                          <div class="value">{{property.max_bid ?? 0 | currency : 'EUR' : 'symbol' : '1.0'}} </div>
                         </div>
 
                         <div class="row">
@@ -133,7 +158,7 @@
 
                         <div  fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
                           <mat-label style="font-weight: 300; color: grey;">Mi puja:</mat-label>
-                          <input matInput step="3" placeholder="Importe" [defaultValue]="1000" type="number" min="1000" formControlName="import" class="my-input" />
+                          <input matInput step="3" placeholder="Importe" [defaultValue]="500" type="number" min="500" formControlName="import" class="my-input" />
                           <div class="value">€</div>
                         </div>
 
@@ -153,12 +178,18 @@
 
                       
                       <div
-                        *ngIf="this.userService.isLoggedIn && property.deposit_valid &&  property?.auction_type_id==2 || property?.auction_type_id==3" class="gap-1 p-3 mt-3 bg-sky flx column"
+                        *ngIf="this.userService.isLoggedIn && property.deposit_valid &&  (property?.auction_type_id==2 || property?.auction_type_id==3)" class="gap-1 p-3 mt-3 bg-sky flx column"
                        
                         >
+
+                        <div class="row">
+                          <div class="label">Mejor Oferta</div>
+                          <div class="value">{{property.max_bid ?? 0 | currency : 'EUR' : 'symbol' : '1.0'}} </div>
+                        </div>
+
                         <div  fxLayout="my-bid" style="width: 100%;justify-content: space-between;align-items: center !important;background-color: transparent !important;    border-radius: 4px;border: 1px solid grey !important;border-radius: 5px;padding: 0 0.5rem;display: flex !important;">
                           <mat-label style="font-weight: 300; color: grey;">Tu Oferta:</mat-label>
-                          <input matInput step="3" placeholder="Importe" type="number" min="1000" [(ngModel)]="import"    class="my-input" />
+                          <input matInput step="3" placeholder="Importe" type="number" min="500" [(ngModel)]="import"    class="my-input" />
                           <div class="value">€</div>
                         </div>
 
@@ -199,6 +230,16 @@
                           <mat-label>Comprobante de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
                         </div> -->
+                        <div class="row">
+                          <div class="label">Mejor Puja</div>
+                          <div class="value">{{property.max_bid ?? 0 }} </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="label">Pujas</div>
+                          <div class="value">{{property.bids}} </div>
+                        </div>
+                        
                         <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
                           <mat-label for="fileInput">Subir justificante de depósito:</mat-label>
                           <input type="file" id="fileInput" (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" class="file-input" />
@@ -206,9 +247,18 @@
                         </div>
 
                         <button mat-raised-button color="primary" (click)="onDepositFormSubmit(depositForm.value)" type="button" class="btn-primary">Enviar comprobante</button>
+
+                        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="p-3 mt-1 fc-primary">
+                              <div class="text-left">
+                                <a>Depósito</a>
+                              </div>
+                              <div class="text-right">
+                                <a class="showInfo" (click)="showInfo()" matTooltip="Ver instrucciones"><u>Ver instrucciones</u></a>
+                              </div>
+                            </div>
                       </form>
 
-                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="p-3 mt-4 fc-primary">
+                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" class="p-3 mt-3 fc-primary ocultar-en-movil">
                         <div >
                           Inicio:
                         </div>
@@ -217,22 +267,23 @@
                         </div>
                       </div>
 
-                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="fc-primary">
+                      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="fc-primary mt-3">
 
                         <div fxLayout="row">
                           <div><mat-icon>date_range</mat-icon></div>
-                          <span class="ml-1">Inicio: {{ property?.start_date }}h</span>
+                          <span class="ml-1">Inicio: {{ property?.start_date }}</span>
                         </div>
                         <div fxLayout="row">
                           <div><mat-icon>date_range</mat-icon></div>
-                          <span>Fin: {{ property?.end_date }}h</span>
+                          <span>Fin: {{ property?.end_date }}</span>
                         </div>
                       </div>
 
                       <div class="p-3 mt-3 text-center">
-                        <p class="fs-8x fw-600 fc-primary uppercase">Conoce el proceso de compra
-                          <img src="/assets/images/icons/arrow_right.svg">
-                          <!-- <mat-icon color="primary">arrow_right_alt</mat-icon> --></p>
+                        <!-- <p class="fs-8x fw-600 fc-primary uppercase" (click)="openDialog()" style="cursor: pointer;">Conoce el proceso de compra
+                          <img src="/assets/images/icons/arrow_right.svg"></p> -->
+                        <a class="fs-8x fw-600 fc-primary uppercase" href="https://oportunalia.com/oportunidades-inmobiliarias/como-comprar" style="cursor: pointer;">Conoce el proceso de compra
+                          <img src="/assets/images/icons/arrow_right.svg"></a>
                         <div class="p-0 pt-2 fc-primary">
                             <p class="fs-0-8x">Habla con nosotros</p>
                             <p class="fw-700 fs-2x">911 254 530</p>
@@ -247,8 +298,14 @@
                           <p class="fc-primary fw-400 fs-1x">Pregúntanos sobre este inmueble</p>
                           <mat-form-field appearance="fill" class="w-100">
                               <mat-label>Nombre</mat-label>
-                              <input matInput placeholder="Nombre" autocomplete="off" formControlName="name">
-                              <mat-error *ngIf="contactForm.controls.name.errors?.required">Nombre requerido</mat-error>
+                              <input matInput placeholder="Nombre" autocomplete="off" formControlName="firstname">
+                              <mat-error *ngIf="contactForm.controls.firstname.errors?.required">Nombre requerido</mat-error>
+                          </mat-form-field>
+
+                          <mat-form-field appearance="fill" class="w-100">
+                              <mat-label>Apellido</mat-label>
+                              <input matInput placeholder="Apellido" autocomplete="off" formControlName="lastname">
+                              <mat-error *ngIf="contactForm.controls.lastname.errors?.required">Apellido requerido</mat-error>
                           </mat-form-field>
 
                           <mat-form-field appearance="fill" class="w-100">
@@ -287,6 +344,35 @@
                             <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                                 <mat-icon class="m-0">favorite_border</mat-icon>
                             </button>
+
+                            <button mat-button (click)="shareList = !shareList" matTooltip="Compartir">
+                                <!-- <mat-icon class="m-0">share</mat-icon> -->
+                                <img src="assets/share.png" alt="" style="width: 18px; position: relative;">
+                            </button>
+                            <div class="share-list" *ngIf="shareList">
+                              <h4>Compartir el anuncio</h4>
+                              <share-buttons theme="modern-dark"
+                                [include]="['email', 'whatsapp', 'twitter','facebook']"
+                                [showIcon]="true"
+                                [showText]="true"
+                                [url]="'https://oportunalia.com/propiedades/'+property.link_rewrite"
+                                [description]="property?.title"
+                                class="pt-2">
+                              </share-buttons>
+
+                              <br>
+
+                              <mat-label style="font-weight: 400; color: #333;">Copiar URL</mat-label>
+                              <div fxLayout="col wrap">
+                                <input matInput type="text" [value]="'https://oportunalia.com/propiedades/'+property.link_rewrite" readonly="" style="float: left; width: 80%;">
+                                <div class="value" style="float: rigth; width: 20%;">
+                                  <button class="btn-share" (click)="copyUrl('https://oportunalia.com/propiedades/'+property.link_rewrite)">
+                                    Copiar
+                                  </button>
+                                </div>
+                                <div style="clear: both;"></div>
+                              </div>
+                            </div>
                             <!-- Comparador
                             <button mat-button [disabled]="onCompare()" (click)="addToCompare()" matTooltip="Add To Compare">
                                 <mat-icon class="m-0">compare_arrows</mat-icon>
@@ -369,15 +455,15 @@
                 <!-- Card condiciones particulares -->
                 <mat-card class="p-3 mt-3 fc-primary">
                   <h3 class="fw-700 fs-1x">Condiciones particulares</h3>
-                  <mat-card-content class="pt-2">
-                    <ol>
-                      <li>Valoración: {{ property?.appraisal_value | currency : 'EUR' }}</li>
-                      <li>Precio mínimo: {{ property?.start_price | currency : 'EUR' }}</li>
-                      <!-- <li>Impuestos y gastos: </li>
-                      <li>Situación posesoria: </li>
-                      <li>Visitas: </li> -->
+                  <mat-card-content class="pt-2" style="padding-left: 0 !important;">
+                    <div [innerHTML]="property.conditions">
+                      
+                    </div>
+                    <!-- <ol>
+                      <li>Valoración: {{ property?.appraisal_value | currency : 'EUR' : 'symbol' : '1.2-2' }}</li>
+                      <li>Precio mínimo: {{ property?.start_price | currency : 'EUR' : 'symbol' : '1.2-2' }}</li>
                       <li>Honorarios entidad especializada: 3% del valor de compra + IVA</li>
-                    </ol>
+                    </ol> -->
                   </mat-card-content>
 
                   <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
@@ -397,8 +483,8 @@
                 <mat-card class="p-3 mt-3" *ngIf="viewMap">
                   <h3 class="fw-700 fs-1x">Mapa</h3>
                     <mat-card-content class="p-0 pt-2">
-                        <google-map [center]="{ lat: lat, lng: lng }" [options]="mapOptions" height="350px" width="100%">
-                            <map-marker [position]="{ lat: lat, lng: lng }"></map-marker>
+                        <google-map [center]="{ lat: lat, lng: lng }" [zoom]="zoom" [options]="mapOptions" height="350px" width="100%">
+                            <map-marker [options]="markerOptions" [position]="{ lat: lat, lng: lng }"></map-marker>
                         </google-map>
                     </mat-card-content>
                 </mat-card>
@@ -406,6 +492,8 @@
                 <!-- <div>
                  {{property|json}}
                 </div> -->
+
+                <br>
 
                 <!-- Expansion panels -->
                 <!-- <mat-card class="p-3 mt-3">

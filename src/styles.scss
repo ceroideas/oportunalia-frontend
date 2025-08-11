@@ -27,3 +27,144 @@
   overflow: hidden;
   margin: auto;
 }
+.property-discount {
+  span {
+    background-color: #ed431d !important;
+  }
+}
+
+.mat-mdc-dialog-surface {
+  background-color: transparent !important;
+  box-shadow: unset !important;
+}
+
+google-map {
+  max-height: 100vh;
+  height: calc(100vh - 200px);
+  display: block;
+}
+
+.map-container {
+  height: 100% !important;
+}
+
+.sticky-map {
+  position: fixed;
+  top: 175px;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  google-map {
+    max-height: 100vh;
+    height: calc(100vh - 200px);
+    display: block;
+  }
+  .map-container {
+    width: 98.5% !important;
+    right: -1.5%;
+    height: calc(100vh - 200px) !important;
+  }
+}
+
+.fixed-footer {
+  position: relative;
+  google-map {
+    position: absolute;
+    max-height: 775px;
+    width: 100%;
+    display: block;
+    bottom: 15px;
+  }
+}
+
+.h100 {
+  max-height: 760px;
+  height: 100% !important;
+}
+
+.fab-container {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  z-index: 10001;
+  top: 0px;
+  text-align: center;
+}
+
+
+.sticky-filter
+{
+  position: fixed;
+  top: 112px;
+  z-index: 1000;
+}
+.up-filter
+{
+  position: relative;
+}
+
+.downFilters {
+  position: absolute;
+  padding: 12px;
+  padding-bottom: 0;
+  padding-top: 48px;
+  box-shadow: 0 6px 10px silver;
+  width: 100vw;
+  left: -32px;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+}
+.icons-xs {
+  flex-wrap: wrap !important;
+  place-content: center !important;
+}
+share-button {
+  // width: 100% !important;
+  button {
+    // width: 100% !important;
+    color: #292c63 !important;
+    border: 1px solid #292c63 !important;
+    --button-color: #fff !important
+  }
+}
+
+.share-list {
+    position: absolute;
+    top: 40px;
+    right: 6px;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 450px;
+    padding: 12px;
+    box-shadow: 0px 0px 5px gray;
+    z-index: 9999;
+}
+share-buttons {
+    padding: 0 !important;
+    margin: auto -4px;
+}
+.sb-circles-dark.sb-group.ng-star-inserted {
+    display: block !important;
+}
+
+.btn-share {
+  padding: 6px;
+  position: relative;
+  top: -7px;
+  margin-left: 8px;
+  border-radius: 5px;
+  border: 2px solid #292c63;
+  width: calc(100% - 8px);
+  background: #fff;
+  color:#000;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .share-list {
+    left: -310px !important;
+    width: auto !important;
+  }
+}

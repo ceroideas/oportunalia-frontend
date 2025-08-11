@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,6 +15,8 @@ import { DomHandlerService } from './dom-handler.service';
 import { GlobalConstants } from './global-constants';
 import { UserService } from './api/user.service';
 import { Router } from '@angular/router';
+
+import { SnackbarComponent } from './custom/snackbar/snackbar.component';
 
 export class Data {
   constructor(public properties: Property[],
@@ -37,8 +39,9 @@ export class AppService {
   )
 
   public url = environment.url + '/assets/data/';
-  public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k';
-  // public apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
+  public apiKey = 'AIzaSyALrXOtjf-VGndljqeKZsA07bJJ8F0XwQw'; // paddeo
+  // public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k'; // actual
+  // public apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko'; // no se
 
   constructor(public http:HttpClient,
               private router: Router,
@@ -48,11 +51,28 @@ export class AppService {
               public dialog: MatDialog,
               public translateService: TranslateService,
               private domHandlerService: DomHandlerService,
-              public userService: UserService) { }
+              public userService: UserService) {
+    this.getFavorites();
+  }
 
   getToken() {
     const token = localStorage.getItem('token');
     return token;
+  }
+
+  public getFavorites():void {
+    console.log('getFavorites')
+    if (this.getToken()) {
+      this.http.get(GlobalConstants.apiURL + `/user/favorite`, { headers: { 'Authorization': this.getToken()}, }).subscribe((data:any)=>{
+        this.Data.favorites = data.response.map(item => ({
+          ...item,
+          propertyType: item.auction_type_id === 1 ? 'Subasta' :
+                        item.auction_type_id === 2 ? 'Venta directa' :
+                        item.auction_type_id === 3 ? 'Cesión de remate' : 'desconocido'
+        }));
+
+      });
+    }
   }
 
   public getProperties(): Observable<any>{
@@ -73,7 +93,13 @@ export class AppService {
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
 
-    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path)));
+    let headers;
+
+    if (this.getToken()) {
+      headers = new HttpHeaders().set('Authorization', this.getToken());
+    }
+
+    return forkJoin(paths.map((path: string) => this.http.get(GlobalConstants.apiURL + path, { headers })));
   }
 
   public getPropertiesOffered(): Observable<any>{
@@ -112,6 +138,10 @@ export class AppService {
 
   public getFeaturedProperties(): Observable<any>{
     return this.http.get(GlobalConstants.apiURL + '/auction_last?auction_status_id=1&featured=1&order=end_date__asc');
+  }
+
+  public getSoonProperties(): Observable<any>{
+    return this.http.get(GlobalConstants.apiURL + '/auction_soon?auction_status_id=1&featured=1&order=end_date__asc');
   }
 
   public getRelatedProperties(): Observable<any[]>{
@@ -155,17 +185,52 @@ export class AppService {
 
   public addToFavorites(property: any, direction){
     console.log("app.service addToFavorites");
-    this.userService.updateFavorite(property.link_rewrite.toString()).subscribe((_) => {
+    this.userService.updateFavorite(property.link_rewrite.toString()).subscribe((_:any) => {
 
-      if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
-        this.Data.favorites.push(property);
+      if (_.total == 0) {
+        
+        if(this.Data.favorites.filter(item=>item.id == property.id)[0]){
+
+          this.Data.favorites = this.Data.favorites.filter(item=>item.id != property.id).map(item => ({
+            ...item,
+            propertyType: item.auction_type_id === 1 ? 'Subasta' :
+                          item.auction_type_id === 2 ? 'Venta directa' :
+                          item.auction_type_id === 3 ? 'Cesión de remate' : 'desconocido'
+          }));
+        }
+
+        /*this.snackBar.open('La propiedad "' + property.title + '" ha sido eliminada de favoritos.', '×', {
+          verticalPosition: 'top',
+          duration: 3000,
+          direction
+        });*/
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['success'],
+          data: { message: 'La propiedad "' + property.title + '" ha sido eliminada de favoritos.' }
+        });
+      }else{
+
+        if(!this.Data.favorites.filter(item=>item.id == property.id)[0]){
+          this.Data.favorites.push(property);
+        }
+
+        // this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
+        //   verticalPosition: 'top',
+        //   duration: 3000,
+        //   direction
+        // });
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['success'],
+          data: { message: 'La propiedad "' + property.title + '" ha sido agregada a favoritos.' }
+        });
       }
 
-      this.snackBar.open('La propiedad "' + property.title + '" ha sido agregada a favoritos.', '×', {
-        verticalPosition: 'top',
-        duration: 3000,
-        direction
-      });
+      return _.total;
+
     },err=>{
       this.snackBar.open('Debe iniciar sesión para agregar la propiedad a favoritos', '×', {
         verticalPosition: 'top',
@@ -345,19 +410,19 @@ export class AppService {
   }
 
 
-  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null){
+  public filterData(data: any, params: any, sort?: any, page?: any, perPage?: any, type1:any = null, map:any = null){
 
-    console.log("filter data")
+    console.log("filterData",params);
 
-    if (type1 && type1.indexOf('/properties') === -1) {
+    if (type1 && type1.indexOf('/propiedades') === -1) {
 
-      if (type1 == '/auction') {
+      if (type1 == '/subasta') {
         type1 = 'Subasta';
       }
-      if (type1 == '/direct-sale') {
+      if (type1 == '/venta-directa') {
         type1 = "Venta Directa";
       }
-      if (type1 == '/auction-assignment') {
+      if (type1 == '/cesion-de-remate') {
         type1 = "Cesión de Remate";
       }
 
@@ -371,9 +436,21 @@ export class AppService {
 
     if(params){
 
+      if (params.min && (!params.max || params.max == '')) {
+        data = data.filter(property => property?.start_price >= params?.min)
+      }
+
+      if ((!params.min || params.min == '') && params.max) {
+        data = data.filter(property => property?.start_price <= params?.max)
+      }
+
+      if (params.min && params.max) {
+        data = data.filter(property => property?.start_price >= params?.min && property?.start_price <= params?.max)
+      }
+
       console.log(params);
 
-      if(params.propertyType){
+      if(params.propertyType && params.propertyType != 0) {
         data = data.filter(property => property?.auction_type_id?.toString() == params?.propertyType?.toString())
       }
 
@@ -424,10 +501,10 @@ export class AppService {
         if(this.appSettings.settings.currency == 'USD'){
           if(params.price.from){
             data = data.filter(property => {
-              if(property.priceDollar.sale && property.priceDollar.sale >= params.price.from ){
+              if(property.start_price && property.start_price >= params.price.from ){
                 return true;
               }
-              if(property.priceDollar.rent && property.priceDollar.rent >= params.price.from ){
+              if(pro && pro >= params.price.from ){
                 return true;
               }
               return false;
@@ -435,10 +512,10 @@ export class AppService {
           }
           if(params.price.to){
             data = data.filter(property => {
-              if(property.priceDollar.sale && property.priceDollar.sale <= params.price.to){
+              if(property.start_price && property.start_price <= params.price.to){
                 return true;
               }
-              if(property.priceDollar.rent && property.priceDollar.rent <= params.price.to){
+              if(pro && pro <= params.price.to){
                 return true;
               }
               return false;
@@ -448,10 +525,10 @@ export class AppService {
         if(this.appSettings.settings.currency == 'EUR'){
           if(params.price.from){
             data = data.filter(property => {
-              if(property.priceEuro.sale && property.priceEuro.sale >= params.price.from ){
+              if(property.start_price && property.start_price >= params.price.from ){
                 return true;
               }
-              if(property.priceEuro.rent && property.priceEuro.rent >= params.price.from ){
+              if(pro && pro >= params.price.from ){
                 return true;
               }
               return false;
@@ -460,10 +537,10 @@ export class AppService {
           }
           if(params.price.to){
             data = data.filter(property => {
-              if(property.priceEuro.sale && property.priceEuro.sale <= params.price.to){
+              if(property.start_price && property.start_price <= params.price.to){
                 return true;
               }
-              if(property.priceEuro.rent && property.priceEuro.rent <= params.price.to){
+              if(pro && pro <= params.price.to){
                 return true;
               }
               return false;
@@ -582,16 +659,35 @@ export class AppService {
     }
     console.log("app.service filterData: ");
     this.sortData(sort, data);
+
+    // Ordenar el array para que los elementos con auction_status_id 7 estén al final
+    data.sort((a, b) => {
+      if (a.auction_status_id === 7 && b.auction_status_id !== 7) {
+        return 1; // Mover a al final
+      } else if (a.auction_status_id !== 7 && b.auction_status_id === 7) {
+        return -1; // Mantener b en su posición
+      } else {
+        return 0; // Mantener el orden original
+      }
+    });
+
+    if (map) {
+      return this.paginator(data, page, data.length);
+    }
+
     return this.paginator(data, page, perPage);
   }
 
   public sortData(sort, data){
     if(sort){
       switch (sort) {
-        case 'Newest':
+        case 'Mayor a menor descuento':
+          data = data.sort((a, b)=> {return <any>new Date(((b?.appraisal_value-b.start_price)*100)/b.appraisal_value) - <any>new Date(((a.appraisal_value-a.start_price)*100)/a.appraisal_value)});
+          break;
+        case 'Nuevo':
           data = data.sort((a, b)=> {return <any>new Date(b.published) - <any>new Date(a.published)});
           break;
-        case 'Oldest':
+        case 'Antiguo':
           data = data.sort((a, b)=> {return <any>new Date(a.published) - <any>new Date(b.published)});
           break;
         case 'Popular':
@@ -605,13 +701,13 @@ export class AppService {
             return 0;
           });
           break;
-        case 'Price (Low to High)':
+        case 'Precio: De menor a mayor':
           if(this.appSettings.settings.currency == 'USD'){
             data = data.sort((a,b) => {
-              if((a.priceDollar.sale || a.priceDollar.rent) > (b.priceDollar.sale || b.priceDollar.rent)){
+              if((a.start_price) > (b.start_price)){
                 return 1;
               }
-              if((a.priceDollar.sale || a.priceDollar.rent) < (b.priceDollar.sale || b.priceDollar.rent)){
+              if((a.start_price) < (b.start_price)){
                 return -1;
               }
               return 0;
@@ -619,23 +715,23 @@ export class AppService {
           }
           if(this.appSettings.settings.currency == 'EUR'){
             data = data.sort((a,b) => {
-              if((a.priceEuro.sale || a.priceEuro.rent) > (b.priceEuro.sale || b.v.rent)){
+              if((a.start_price) > (b.start_price)){
                 return 1;
               }
-              if((a.priceEuro.sale || a.priceEuro.rent) < (b.priceEuro.sale || b.priceEuro.rent)){
+              if((a.start_price) < (b.start_price)){
                 return -1;
               }
               return 0;
             })
           }
           break;
-        case 'Price (High to Low)':
+        case 'Precio: De mayor a menor':
           if(this.appSettings.settings.currency == 'USD'){
             data = data.sort((a,b) => {
-              if((a.priceDollar.sale || a.priceDollar.rent) < (b.priceDollar.sale || b.priceDollar.rent)){
+              if((a.start_price) < (b.start_price)){
                 return 1;
               }
-              if((a.priceDollar.sale || a.priceDollar.rent) > (b.priceDollar.sale || b.priceDollar.rent)){
+              if((a.start_price) > (b.start_price)){
                 return -1;
               }
               return 0;
@@ -643,10 +739,10 @@ export class AppService {
           }
           if(this.appSettings.settings.currency == 'EUR'){
             data = data.sort((a,b) => {
-              if((a.priceEuro.sale || a.priceEuro.rent) < (b.priceEuro.sale || b.v.rent)){
+              if((a.start_price) < (b.start_price || b.v.rent)){
                 return 1;
               }
-              if((a.priceEuro.sale || a.priceEuro.rent) > (b.priceEuro.sale || b.priceEuro.rent)){
+              if((a.start_price) > (b.start_price)){
                 return -1;
               }
               return 0;
@@ -806,10 +902,12 @@ export class AppService {
 
   public getClients(){
     return [
-        { name: 'idealista', image: 'assets/images/clients/idealista.png' },
-        { name: 'lawyer', image: 'assets/images/clients/lawyer.png' },
-        { name: 'opress', image: 'assets/images/clients/opress.png' },
-        { name: 'vanguardia', image: 'assets/images/clients/vanguardia.png' }
+        { name: 'idealista', image: 'assets/images/clients/idealista.png', url: 'https://www.idealista.com/news/inmobiliario/vivienda/2022/11/02/799933-del-boe-a-tu-smartphone-oportunalia-lleva-el-proceso-de-subastas-hipotecarias-al' },
+        { name: 'lawyer', image: 'assets/images/clients/lawyer.png', url: 'https://www.lawyerpress.com/2023/01/26/oportunalia-integra-los-activos-concursales-de-asemar/' },
+        { name: 'opress', image: 'assets/images/clients/opress.png', url: 'https://officialpress.es/oportunalia/' },
+        { name: 'vanguardia', image: 'assets/images/clients/vanguardia.png', url: 'https://www.lavanguardia.com/economia/bolsillo/20221208/8633292/hacienda-agencia-tributaria-subasta-web-pisos-baratos-barcelona-madrid.html' },
+        { name: 'sanse', image: 'assets/images/clients/sanse.png', url: 'https://www.diariodesanse.com/2025/02/12/oportunalia-la-plataforma-inmobiliaria-que-esta-revolucionando-el-mercado-con-casas-de-hasta-el-50-de-descuento/' },
+        // { name: 'fotocasa', image: 'assets/images/clients/fotocasa.png' }
 /*         { name: 'original', image: 'assets/images/clients/original.png' },
         { name: 'retro', image: 'assets/images/clients/retro.png' },
         { name: 'king', image: 'assets/images/clients/king.png' },
@@ -819,6 +917,13 @@ export class AppService {
         { name: 'with', image: 'assets/images/clients/with.png' },
         { name: 'special', image: 'assets/images/clients/special.png' },
         { name: 'bravo', image: 'assets/images/clients/bravo.png' } */
+    ];
+  }
+
+  public getCertificados(){
+    return [
+        { name: 'fotocasa', image: 'assets/images/clients/fotocasa2.png', url: 'https://www.fotocasa.es/es/comprar/inmuebles/espana/todas-las-zonas/l?clientId=9202771974290&text=oportunalia' },
+        { name: 'idealista', image: 'assets/images/clients/idealista.svg', url: 'https://www.idealista.com/pro/oportunalia/venta-viviendas/' },
     ];
   }
 

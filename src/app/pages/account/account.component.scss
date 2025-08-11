@@ -54,6 +54,22 @@
 //     }
 // }
 
+@media (max-width: 768px) {
+  .account-sidenav {
+    background-color: rgba(255, 255, 255, 1) !important;
+    width: 300px !important;
+    padding-right: 16px !important;
+  }
+
+  .close {
+    margin: 5px; /* Ajusta el margen para tablet y móvil */
+  }
+
+  .mat-drawer-backdrop {
+    background-color: rgba(0, 0, 0, 1); /* Ajusta el color del backdrop */
+  }
+}
+
 
 .horizontal-menu-link {
   background: rgba(0, 0, 0, 0.04);

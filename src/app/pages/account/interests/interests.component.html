@@ -123,16 +123,20 @@
     <div fxFlex="100" fxFlex.gt-xs="60" class="pr-3">
 
       <div fxLayout="row">
-        <label class="fw-400 pr-3">500 &euro;</label>
-        <mat-slider min="500" max="1000000" step="500" discrete [displayWith]="formatLabel">
+        <label class="fw-400 pr-3">30.000 &euro;</label>
+        <mat-slider min="30000" max="1000000" step="500" discrete [displayWith]="formatLabel" (change)="presupuestoChange()">
           <input formControlName="presupuesto" matSliderThumb>
         </mat-slider>
         <label class="fw-400 pl-3">1.000.000 &euro;</label>
       </div>
+      <label for=""><i>(O escribe el monto)</i></label>&nbsp;
+      <input type="number" formControlName="presupuesto1" step="500" min="30000" max=1000000 (change)="changePresupuesto()">
 
 
     </div>
   </div>
+
+  <br>
 
   <div fxLayout="row wrap" fxLayoutAlign="space-around">
     <div fxFlex="100" fxFlex.gt-xs="40" class="pl-3 pb-4">
