@@ -1,0 +1,33 @@
+.confirm-dialog-wrapper {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+}
+
+::ng-deep .confirm-dialog-container {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 
+              0 24px 38px 3px rgba(0, 0, 0, 0.14), 
+              0 9px 46px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+::ng-deep .confirm-dialog-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+::ng-deep .mat-dialog-container.confirm-dialog-container {
+  background: #ffffff !important;
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-dialog-container.confirm-dialog-container * {
+  opacity: 1 !important;
+  color: #000000 !important;
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}

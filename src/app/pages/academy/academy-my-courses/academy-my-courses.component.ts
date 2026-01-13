@@ -11,7 +11,10 @@ import { GlobalConstants } from '../../../global-constants';
 export class AcademyMyCoursesComponent implements OnInit {
 
   public courses: any[] = [];
+  public opportunities: any[] = [];
   public loading = true;
+  public loadingOpportunities = false;
+  public activeTab: 'courses' | 'opportunities' = 'courses';
 
   constructor(
     public router: Router,
@@ -24,6 +27,38 @@ export class AcademyMyCoursesComponent implements OnInit {
       return;
     }
     this.loadMyCourses();
+  }
+
+  switchTab(tab: 'courses' | 'opportunities'): void {
+    this.activeTab = tab;
+    if (tab === 'opportunities' && this.opportunities.length === 0 && !this.loadingOpportunities) {
+      this.loadOpportunities();
+    }
+  }
+
+  loadOpportunities(): void {
+    this.loadingOpportunities = true;
+    this.academyService.getOpportunities().subscribe(
+      (response: any) => {
+        if (response.code === 200) {
+          this.opportunities = response.response || [];
+        }
+        this.loadingOpportunities = false;
+      },
+      (error: any) => {
+        console.error('Error al cargar oportunidades:', error);
+        if (error.status === 401) {
+          // Token inválido, redirigir a login
+          this.router.navigate(['/academy/login'], { queryParams: { returnUrl: '/academy/my-courses' } });
+        }
+        this.loadingOpportunities = false;
+      }
+    );
+  }
+
+  goToOpportunity(linkRewrite: string): void {
+    // Redirigir a la subasta en Oportunalia
+    window.open(`/subasta/${linkRewrite}`, '_blank');
   }
 
   loadMyCourses(): void {

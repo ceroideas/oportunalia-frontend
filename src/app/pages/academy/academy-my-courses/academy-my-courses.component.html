@@ -2,17 +2,32 @@
   [backgroundImage]="'assets/images/header/3.png'"
   [bgImageAnimate]="false"
   [contentOffsetToTop]="true"
-  [title]="'Mis Cursos'"
-  [desc]="'Cursos a los que tienes acceso'"
+  [title]="activeTab === 'courses' ? 'Mis Cursos' : 'Oportunidades'"
+  [desc]="activeTab === 'courses' ? 'Cursos a los que tienes acceso' : 'Oportunidades exclusivas para estudiantes'"
   [isHomePage]="false"
   [fullscreen]="false">
 </app-header-image>
 
 <div class="theme-container py-6">
   
-  <!-- Barra de acciones -->
+  <!-- Barra de acciones con pestañas -->
   <div fxLayout="row" fxLayoutAlign="space-between center" class="mb-4">
-    <div></div>
+    <div fxLayout="row" fxLayoutGap="8px">
+      <button 
+        mat-raised-button 
+        [color]="activeTab === 'courses' ? 'primary' : ''"
+        (click)="switchTab('courses')">
+        <mat-icon>school</mat-icon>
+        Mis Cursos
+      </button>
+      <button 
+        mat-raised-button 
+        [color]="activeTab === 'opportunities' ? 'primary' : ''"
+        (click)="switchTab('opportunities')">
+        <mat-icon>business</mat-icon>
+        Oportunidades
+      </button>
+    </div>
     <div>
       <button mat-button (click)="router.navigate(['/academy'])">
         <mat-icon>arrow_back</mat-icon>
@@ -21,13 +36,15 @@
     </div>
   </div>
   
-  <!-- Loading -->
-  <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="py-12">
-    <mat-spinner></mat-spinner>
-  </div>
+  <!-- Contenido de Mis Cursos -->
+  <div *ngIf="activeTab === 'courses'">
+    <!-- Loading -->
+    <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="py-12">
+      <mat-spinner></mat-spinner>
+    </div>
 
-  <!-- Lista de cursos -->
-  <div *ngIf="!loading">
+    <!-- Lista de cursos -->
+    <div *ngIf="!loading">
     
     <!-- No hay cursos -->
     <div *ngIf="courses.length === 0" class="text-center py-12">
@@ -71,7 +88,74 @@
         </mat-card-content>
       </mat-card>
     </div>
+    </div>
+  </div>
 
+  <!-- Contenido de Oportunidades -->
+  <div *ngIf="activeTab === 'opportunities'">
+    <!-- Loading -->
+    <div *ngIf="loadingOpportunities" fxLayout="row" fxLayoutAlign="center center" class="py-12">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <!-- Lista de oportunidades -->
+    <div *ngIf="!loadingOpportunities">
+      
+      <!-- No hay oportunidades -->
+      <div *ngIf="opportunities.length === 0" class="text-center py-12">
+        <mat-icon style="font-size: 64px; width: 64px; height: 64px; color: #ccc;">business</mat-icon>
+        <h2>No hay oportunidades disponibles</h2>
+        <p>Las oportunidades exclusivas aparecerán aquí cuando estén disponibles</p>
+      </div>
+
+      <!-- Grid de oportunidades -->
+      <div *ngIf="opportunities.length > 0" fxLayout="row wrap" fxLayoutGap="16px">
+        <mat-card 
+          *ngFor="let opportunity of opportunities" 
+          class="opportunity-card"
+          style="width: calc(33.333% - 12px);"
+          fxFlex.xs="100">
+          <mat-card-header>
+            <mat-card-title>{{ opportunity.title }}</mat-card-title>
+            <mat-card-subtitle *ngIf="opportunity.required_course">
+              Requiere: {{ opportunity.required_course.title }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutGap="8px">
+              <div fxLayout="row" fxLayoutAlign="space-between">
+                <span><strong>Precio inicial:</strong></span>
+                <span>{{ opportunity.start_price | number:'1.2-2' }} €</span>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="opportunity.appraisal_value">
+                <span><strong>Tasación:</strong></span>
+                <span>{{ opportunity.appraisal_value | number:'1.2-2' }} €</span>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="opportunity.last_bid">
+                <span><strong>Última puja:</strong></span>
+                <span>{{ opportunity.last_bid | number:'1.2-2' }} €</span>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="space-between" *ngIf="opportunity.total_bids !== undefined">
+                <span><strong>Pujas:</strong></span>
+                <span>{{ opportunity.total_bids }}</span>
+              </div>
+              <div *ngIf="opportunity.start_date">
+                <small><strong>Inicio:</strong> {{ opportunity.start_date | date:'dd/MM/yyyy HH:mm' }}</small>
+              </div>
+              <div *ngIf="opportunity.end_date">
+                <small><strong>Fin:</strong> {{ opportunity.end_date | date:'dd/MM/yyyy HH:mm' }}</small>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="goToOpportunity(opportunity.link_rewrite)">
+              Ver Oportunidad
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
   </div>
 
 </div>

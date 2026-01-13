@@ -258,7 +258,11 @@ export class AppService {
     const dialogData = new ConfirmDialogModel(title, message);
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
-      data: dialogData
+      data: dialogData,
+      panelClass: 'confirm-dialog-container',
+      hasBackdrop: true,
+      backdropClass: 'confirm-dialog-backdrop',
+      disableClose: false
     });
     return dialogRef;
   }

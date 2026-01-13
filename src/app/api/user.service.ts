@@ -14,7 +14,13 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getToken() {
-    const token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
+    // Limpiar "Bearer " si existe al inicio del token
+    if (token && token.startsWith('Bearer ')) {
+      token = token.replace(/^Bearer\s+/i, '');
+      // Guardar el token limpio
+      localStorage.setItem('token', token);
+    }
     return token;
   }
 
@@ -25,8 +31,13 @@ export class UserService {
 
   setAuthToken(token) {
     this.isLoggedIn = true;
-    localStorage.setItem('token', token);
-    this.authToken = token;
+    // Limpiar "Bearer " si existe al inicio del token antes de guardarlo
+    let cleanToken = token;
+    if (cleanToken && cleanToken.startsWith('Bearer ')) {
+      cleanToken = cleanToken.replace(/^Bearer\s+/i, '');
+    }
+    localStorage.setItem('token', cleanToken);
+    this.authToken = cleanToken;
   }
 
   getRepresentations(): Observable<any> {

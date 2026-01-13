@@ -12,7 +12,14 @@
   <div fxLayout="row" fxLayoutAlign="center center">
     <div fxFlex="100" fxFlex.gt-xs="500px">
       
-      <mat-card>
+      <!-- Loading al verificar usuario de Oportunalia -->
+      <div *ngIf="checkingOportunalia || (oportunaliaUser && !showForm)" fxLayout="row" fxLayoutAlign="center center" class="py-12">
+        <mat-spinner></mat-spinner>
+        <span class="ml-3" *ngIf="checkingOportunalia">Verificando tu cuenta de Oportunalia...</span>
+        <span class="ml-3" *ngIf="!checkingOportunalia && oportunaliaUser && !showForm">Conectando con la academia...</span>
+      </div>
+
+      <mat-card *ngIf="!checkingOportunalia && showForm && registerForm">
         <mat-card-header>
           <mat-card-title>Registro - Academia</mat-card-title>
         </mat-card-header>
@@ -42,7 +49,7 @@
 
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Email</mat-label>
-              <input matInput formControlName="email" type="email" required>
+              <input matInput formControlName="email" type="email" required [disabled]="emailDisabled">
               <mat-icon matPrefix>email</mat-icon>
               <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
                 El email es requerido
@@ -50,6 +57,7 @@
               <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
                 Email no válido
               </mat-error>
+              <mat-hint *ngIf="emailDisabled">Este email corresponde a tu cuenta de Oportunalia y no puede ser modificado</mat-hint>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">

@@ -85,8 +85,17 @@ export class AcademyService {
   /**
    * Registrar estudiante de academia
    */
-  register(data: any): Observable<any> {
-    return this.http.post(GlobalConstants.apiURL + '/auth/academy/register', data)
+  register(data: any, oportunaliaToken?: string): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (oportunaliaToken) {
+      // Limpiar "Bearer " si ya existe
+      let cleanToken = oportunaliaToken;
+      if (cleanToken.startsWith('Bearer ')) {
+        cleanToken = cleanToken.replace(/^Bearer\s+/i, '');
+      }
+      headers = headers.set('Authorization', `Bearer ${cleanToken}`);
+    }
+    return this.http.post(GlobalConstants.apiURL + '/auth/academy/register', data, { headers })
       .pipe(
         catchError((error) => {
           return throwError(() => error);
@@ -97,8 +106,17 @@ export class AcademyService {
   /**
    * Login de estudiante de academia
    */
-  login(data: any): Observable<any> {
-    return this.http.post(GlobalConstants.apiURL + '/auth/academy/login', data)
+  login(data: any, oportunaliaToken?: string): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (oportunaliaToken) {
+      // Limpiar "Bearer " si ya existe
+      let cleanToken = oportunaliaToken;
+      if (cleanToken.startsWith('Bearer ')) {
+        cleanToken = cleanToken.replace(/^Bearer\s+/i, '');
+      }
+      headers = headers.set('Authorization', `Bearer ${cleanToken}`);
+    }
+    return this.http.post(GlobalConstants.apiURL + '/auth/academy/login', data, { headers })
       .pipe(
         catchError((error) => {
           return throwError(() => error);
@@ -242,6 +260,98 @@ export class AcademyService {
       { payment_intent_id: paymentIntentId },
       { headers: this.getHeaders() }
     )
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  /**
+   * Verificar si el usuario de Oportunalia está logueado
+   */
+  checkOportunaliaUser(oportunaliaToken: string): Observable<any> {
+    // Limpiar el token si ya tiene "Bearer " (asegurar que solo se agregue una vez)
+    let cleanToken = oportunaliaToken || '';
+    if (cleanToken.startsWith('Bearer ')) {
+      cleanToken = cleanToken.replace(/^Bearer\s+/i, '');
+    }
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${cleanToken}`,
+      'Content-Type': 'application/json'
+    });
+    
+    console.log('📤 Enviando request a check-oportunalia-user con token:', {
+      originalTokenLength: oportunaliaToken?.length,
+      cleanTokenLength: cleanToken?.length,
+      tokenPreview: cleanToken ? cleanToken.substring(0, 20) + '...' : null,
+      hasBearerPrefix: oportunaliaToken?.startsWith('Bearer ')
+    });
+    
+    return this.http.get(GlobalConstants.apiURL + '/auth/academy/check-oportunalia-user', { headers })
+      .pipe(
+        catchError((error) => {
+          console.error('❌ Error en checkOportunaliaUser:', error);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  /**
+   * Auto-registro automático desde Oportunalia
+   */
+  autoRegister(oportunaliaToken: string): Observable<any> {
+    // Limpiar "Bearer " si ya existe
+    let cleanToken = oportunaliaToken;
+    if (cleanToken && cleanToken.startsWith('Bearer ')) {
+      cleanToken = cleanToken.replace(/^Bearer\s+/i, '');
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${cleanToken}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(GlobalConstants.apiURL + '/auth/academy/auto-register', {}, { headers })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  /**
+   * Obtener oportunidades (auctions) accesibles (requiere autenticación)
+   */
+  getOpportunities(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + '/academy/oportunidades', { headers: this.getHeaders() })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  /**
+   * Valorar un curso (requiere autenticación)
+   */
+  rateCourse(courseId: number, rating: number, comment?: string): Observable<any> {
+    const data: any = { rating };
+    if (comment) {
+      data.comment = comment;
+    }
+    return this.http.post(GlobalConstants.apiURL + '/academy/course/' + courseId + '/rate', data, { headers: this.getHeaders() })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  /**
+   * Obtener valoraciones de un curso
+   */
+  getCourseRatings(courseId: number): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + '/academy/course/' + courseId + '/ratings')
       .pipe(
         catchError((error) => {
           return throwError(() => error);

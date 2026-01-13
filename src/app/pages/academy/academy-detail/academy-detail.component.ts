@@ -20,6 +20,15 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
   public youtubeEmbedUrl: SafeResourceUrl | null = null;
   private progressInterval: any;
 
+  // Valoraciones
+  public userRating: number = 0; // Valoración del usuario actual (0 = no valorado)
+  public hoveredRating: number = 0; // Para el hover sobre las estrellas
+  public averageRating: number = 0;
+  public totalRatings: number = 0;
+  public ratings: any[] = [];
+  public loadingRatings = false;
+  public ratingComment: string = '';
+
   constructor(
     private route: ActivatedRoute,
     public router: Router,
@@ -67,12 +76,92 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
           if (this.academyService.isAuthenticated()) {
             this.loadProgress();
           }
+
+          // Cargar valoraciones
+          this.loadRatings();
         }
         this.loading = false;
       },
       (error: any) => {
         console.error('Error al cargar curso:', error);
         this.loading = false;
+      }
+    );
+  }
+
+  loadRatings(): void {
+    this.loadingRatings = true;
+    this.academyService.getCourseRatings(this.courseId).subscribe(
+      (response: any) => {
+        if (response.code === 200 && response.response) {
+          this.averageRating = response.response.average_rating || 0;
+          this.totalRatings = response.response.total_ratings || 0;
+          this.ratings = response.response.ratings || [];
+
+          // Si el usuario está autenticado, buscar su valoración
+          if (this.academyService.isAuthenticated()) {
+            const studentStr = localStorage.getItem('academy_student') || sessionStorage.getItem('academy_student');
+            if (studentStr) {
+              try {
+                const student = JSON.parse(studentStr);
+                const userRating = this.ratings.find((r: any) => r.student && r.student.id === student.id);
+                if (userRating) {
+                  this.userRating = userRating.rating;
+                  this.ratingComment = userRating.comment || '';
+                }
+              } catch (e) {
+                console.error('Error al parsear student:', e);
+              }
+            }
+          }
+        }
+        this.loadingRatings = false;
+      },
+      (error: any) => {
+        console.error('Error al cargar valoraciones:', error);
+        this.loadingRatings = false;
+      }
+    );
+  }
+
+  onStarHover(rating: number): void {
+    if (this.academyService.isAuthenticated()) {
+      this.hoveredRating = rating;
+    }
+  }
+
+  onStarLeave(): void {
+    this.hoveredRating = 0;
+  }
+
+  onStarClick(rating: number): void {
+    if (!this.academyService.isAuthenticated()) {
+      this.goToLogin();
+      return;
+    }
+
+    this.userRating = rating;
+    this.submitRating();
+  }
+
+  submitRating(): void {
+    if (!this.academyService.isAuthenticated() || this.userRating === 0) {
+      return;
+    }
+
+    this.academyService.rateCourse(this.courseId, this.userRating, this.ratingComment).subscribe(
+      (response: any) => {
+        if (response.code === 200 && response.response) {
+          // Actualizar valoraciones
+          this.averageRating = response.response.average_rating || 0;
+          this.totalRatings = response.response.total_ratings || 0;
+          
+          // Recargar valoraciones para obtener la lista actualizada
+          this.loadRatings();
+        }
+      },
+      (error: any) => {
+        console.error('Error al valorar curso:', error);
       }
     );
   }
