@@ -9,11 +9,30 @@
 
 
       <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray" style="width: 100%;">
-        <div fxLayout="row wrap" class="property-status pt-3 pl-3">
+        <div fxLayout="row wrap" class="property-status {{property?.auction_type_id == 4 ? 'pt-5' : 'pt-3'}} pl-3">
           <span [style.background-color]="getStatusBgColor(property.type)"
                   [style.color]="getStatusColor(property.type)">{{property.type}}</span>
         </div>
-        <div *ngIf="property?.appraisal_value > 1" fxLayout="row wrap" class="property-discount pt-3 pr-3" style="float: right; transform: scale(1.5); right: 12px; top: -4px;">
+        <!-- Burbujas de porcentajes - Solo para auction_type_id = 4 -->
+        <div *ngIf="property?.auction_type_id == 4" fxLayout="row wrap" class="property-discount pt-3 pr-3" style="float: right; transform: scale(1.5); right: 44px; top: -4px;">
+          <div fxLayout="column" fxLayoutAlign="center center" style="margin-right: 36px;">
+            <div style="font-size: 11px; color: #666; margin-bottom: -6px; font-weight: 500;">TASACIÓN</div>
+            <span [style.background-color]="getStatusBgColor('discount')"
+                  [style.color]="getStatusColor('discount')">
+                  {{(property?.discount_appraisal_percentage || 0) | number:'1.0-0'}}%
+            </span>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div style="font-size: 11px; color: #666; margin-bottom: -6px; font-weight: 500;">DEUDA</div>
+            <span [style.background-color]="getStatusBgColor('discount')"
+                  [style.color]="getStatusColor('discount')">
+                  {{(property?.discount_debt_percentage || 0) | number:'1.0-0'}}%
+            </span>
+          </div>
+        </div>
+
+        <!-- Burbuja de descuento original - Para otros tipos de subasta -->
+        <div *ngIf="property?.auction_type_id != 4 && property?.appraisal_value > 1" fxLayout="row wrap" class="property-discount pt-3 pr-3" style="float: right; transform: scale(1.5); right: 12px; top: -4px;">
           <span [style.background-color]="getStatusBgColor('discount')"
                   [style.color]="getStatusColor('discount')">
                   {{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}%
@@ -65,10 +84,10 @@
                 <span>{{property?.neighborhood}}, {{property?.city}}</span>
             </div> -->
 
-            <div *ngIf="property.images.length == 1" class="mat-card-image w-100 m-0">
+            <!-- <div *ngIf="property.images.length == 1" class="mat-card-image w-100 m-0">
                 <img [src]="property.images[0].path">
-            </div>
-            <div *ngIf="property.images.length > 1" class="mat-card-image w-100 m-0">
+            </div> -->
+            <div *ngIf="property.images.length >= 1" class="mat-card-image w-100 m-0">
                 <div class="swiper-container" [swiper]="config">
                     <div class="swiper-wrapper">
                         <div *ngFor="let image of property.images" class="swiper-slide">
@@ -159,12 +178,24 @@
                         <span>{{property?.province}}, {{property?.city}}</span>
                     </div> -->
 
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
+                    <!-- Para auction_type_id = 4 -->
+                    <div *ngIf="property?.auction_type_id == 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
+                      <div style="font-size: 12px; color: silver;">Deuda: </div>
+                      <div style="font-size: 12px; color: silver;">Precio mínimo: </div>
+                    </div>
+
+                    <div *ngIf="property?.auction_type_id == 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-black">
+                      <p>{{ property.debt_amount | currency : 'EUR' : 'symbol' : '1.2-2' }}</p>
+                      <p>{{ property.minimum_bid | currency : 'EUR' : 'symbol' : '1.2-2'}}</p>
+                    </div>
+
+                    <!-- Para otros tipos de subasta -->
+                    <div *ngIf="property?.auction_type_id != 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray">
                       <div style="font-size: 12px; color: silver;">Tasación: </div>
                       <div style="font-size: 12px; color: silver;">Precio mínimo: </div>
                     </div>
 
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-black">
+                    <div *ngIf="property?.auction_type_id != 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-black">
                       <p>{{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.2-2' }}</p>
                       <p>{{ property.start_price | currency : 'EUR' : 'symbol' : '1.2-2'}}</p>
                     </div>
@@ -206,11 +237,22 @@
                         <p><span>Baños</span><span>{{property.bathrooms}}</span></p>
                         <p><span>Garages</span><span>{{property.garages}}</span></p>
                     </div> -->
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray mt-2">
+                    <!-- Para auction_type_id = 4 -->
+                    <div *ngIf="property?.auction_type_id == 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray mt-2">
+                      <div style="font-size: 12px; color: silver;">Referencia:</div>
+                      <div style="font-size: 12px; color: silver;">Tasación:</div>
+                    </div>
+                    <div *ngIf="property?.auction_type_id == 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-black fw-400-">
+                      <p>{{property?.auto}}</p>
+                      <p>{{ property.appraisal_value | currency : 'EUR' : 'symbol' : '1.2-2' }}</p>
+                    </div>
+
+                    <!-- Para otros tipos de subasta -->
+                    <div *ngIf="property?.auction_type_id != 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-gray mt-2">
                       <div style="font-size: 12px; color: silver;">Referencia:</div>
                       <div style="font-size: 12px; color: silver;">Tiempo restante:</div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="fc-black fw-400-">
+                    <div *ngIf="property?.auction_type_id != 4" fxLayout="row" fxLayoutAlign="space-between center" class="fc-black fw-400-">
                       <p>{{property?.auto}}</p>
                       <p class="left-time-{{ property.guid }}"></p>
                     </div>

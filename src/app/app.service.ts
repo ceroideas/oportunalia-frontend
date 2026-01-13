@@ -68,7 +68,8 @@ export class AppService {
           ...item,
           propertyType: item.auction_type_id === 1 ? 'Subasta' :
                         item.auction_type_id === 2 ? 'Venta directa' :
-                        item.auction_type_id === 3 ? 'Cesión de remate' : 'desconocido'
+                        item.auction_type_id === 3 ? 'Cesión de remate' : 
+                        item.auction_type_id === 4 ? 'Cesión de crédito' : 'desconocido'
         }));
 
       });
@@ -89,6 +90,8 @@ export class AppService {
       '/auction?auction_status_id=1&auction_type_id=3&active_category_id=0&order=end_date__asc',
       '/auction?auction_status_id=1&auction_type_id=2&active_category_id=0&order=end_date__asc',
       '/auction?auction_status_id=7&auction_type_id=3&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=1&auction_type_id=4&active_category_id=0&order=end_date__asc',
+      '/auction?auction_status_id=7&auction_type_id=4&active_category_id=0&order=end_date__asc',
       ];
 
     /* PATHS PARA AMBIENTE DE PRUEBAS  const paths: string[] = ['/auction?auction_type_id=1']; */
@@ -195,7 +198,8 @@ export class AppService {
             ...item,
             propertyType: item.auction_type_id === 1 ? 'Subasta' :
                           item.auction_type_id === 2 ? 'Venta directa' :
-                          item.auction_type_id === 3 ? 'Cesión de remate' : 'desconocido'
+                          item.auction_type_id === 3 ? 'Cesión de remate' :
+                          item.auction_type_id === 4 ? 'Cesión de crédito' : 'desconocido'
           }));
         }
 
@@ -424,6 +428,9 @@ export class AppService {
       }
       if (type1 == '/cesion-de-remate') {
         type1 = "Cesión de Remate";
+      }
+      if (type1 == '/cesion-de-credito') {
+        type1 = "Cesión de Crédito";
       }
 
       console.log(type1);

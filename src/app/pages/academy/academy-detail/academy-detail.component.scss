@@ -1,0 +1,86 @@
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; // 16:9 aspect ratio
+  height: 0;
+  overflow: hidden;
+  
+  .video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.course-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  
+  .badge {
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    
+    &.free {
+      background-color: #4caf50;
+    }
+    
+    &.paid {
+      background-color: #2196f3;
+    }
+    
+    &.purchased {
+      background-color: #4caf50;
+    }
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+.progress-info {
+  color: #666;
+  font-size: 14px;
+}
+
+.actions {
+  button {
+    margin: 0 8px;
+  }
+}
+
+.thumbnail-banner {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.materials-sidebar {
+  .material-item {
+    &:last-child {
+      border-bottom: none !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .thumbnail-banner {
+    height: 300px;
+  }
+}
+

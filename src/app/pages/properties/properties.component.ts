@@ -244,6 +244,10 @@ export class PropertiesComponent implements OnInit {
       this.bgImage = "assets/images/cesion.jpg";
       this.regulador = 100;
     }
+    if (this.filter == '/cesion-de-credito') {
+      this.bgImage = "assets/images/cesion.jpg";
+      this.regulador = 100;
+    }
 
     if (localStorage.getItem('actualFilter') != this.filter) {
       localStorage.setItem('actualPage','1');

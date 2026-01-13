@@ -1,0 +1,78 @@
+<app-header-image 
+  [backgroundImage]="'assets/images/header/3.png'"
+  [bgImageAnimate]="false"
+  [contentOffsetToTop]="true"
+  [title]="'Mis Cursos'"
+  [desc]="'Cursos a los que tienes acceso'"
+  [isHomePage]="false"
+  [fullscreen]="false">
+</app-header-image>
+
+<div class="theme-container py-6">
+  
+  <!-- Barra de acciones -->
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="mb-4">
+    <div></div>
+    <div>
+      <button mat-button (click)="router.navigate(['/academy'])">
+        <mat-icon>arrow_back</mat-icon>
+        Volver a todos los cursos
+      </button>
+    </div>
+  </div>
+  
+  <!-- Loading -->
+  <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="py-12">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Lista de cursos -->
+  <div *ngIf="!loading">
+    
+    <!-- No hay cursos -->
+    <div *ngIf="courses.length === 0" class="text-center py-12">
+      <mat-icon style="font-size: 64px; width: 64px; height: 64px; color: #ccc;">school</mat-icon>
+      <h2>No tienes cursos todavía</h2>
+      <p>Explora nuestros cursos disponibles y comienza tu formación</p>
+      <button mat-raised-button color="primary" (click)="router.navigate(['/academy'])">
+        Ver Cursos Disponibles
+      </button>
+    </div>
+
+    <!-- Grid de cursos -->
+    <div *ngIf="courses.length > 0" fxLayout="row wrap" fxLayoutGap="16px">
+      <mat-card 
+        *ngFor="let course of courses" 
+        class="course-card"
+        style="width: calc(33.333% - 12px);"
+        fxFlex.xs="100"
+        (click)="goToCourse(course.id)">
+        <div *ngIf="course.thumbnail_url" class="course-thumbnail">
+          <img [src]="course.thumbnail_url" [alt]="course.title">
+          <div *ngIf="course.is_free" class="course-badge free">Gratis</div>
+          <div *ngIf="!course.is_free && (!course.pivot?.payment_status || course.pivot?.payment_status !== 'paid')" class="course-badge paid">{{ course.price }} €</div>
+          <div *ngIf="!course.is_free && course.pivot?.payment_status === 'paid'" class="course-badge purchased">Comprado</div>
+        </div>
+        <mat-card-header>
+          <mat-card-title>{{ course.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p *ngIf="course.description" [innerHTML]="course.description | slice:0:100"></p>
+          <div *ngIf="course.tags && course.tags.length > 0" class="mt-2">
+            <mat-chip-listbox>
+              <mat-chip *ngFor="let tag of course.tags.slice(0, 3)">
+                {{ tag.tag_name }}
+              </mat-chip>
+            </mat-chip-listbox>
+          </div>
+          <div *ngIf="course.pivot?.purchased_at" class="mt-2 purchase-date">
+            <small>Comprado: {{ course.pivot.purchased_at | date:'dd/MM/yyyy' }}</small>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+
+</div>
+

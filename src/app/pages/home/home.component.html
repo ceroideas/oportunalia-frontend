@@ -1,12 +1,25 @@
-<app-header-image *ngIf="settings.header == 'image'"
-                [backgroundImage]="'assets/images/header/3.png'"
-                [bgImageAnimate]="false"
-                [contentOffsetToTop]="true"
-                [title]=""
-                [desc]="'Oportunidades inmobiliarias con grandes descuentos'"
-                [isHomePage]="false"
-                [fullscreen]="false">
-</app-header-image>
+<div style="position: relative;">
+  <app-header-image *ngIf="settings.header == 'image'"
+                  [backgroundImage]="'assets/images/header/3.png'"
+                  [bgImageAnimate]="false"
+                  [contentOffsetToTop]="true"
+                  [title]=""
+                  [desc]="'Oportunidades inmobiliarias con grandes descuentos'"
+                  [isHomePage]="false"
+                  [fullscreen]="false">
+  </app-header-image>
+
+  <!-- ============================================ -->
+  <!-- ACADEMY MODULE BUTTON - Para desactivar, comenta este bloque -->
+  <!-- ============================================ -->
+  <div class="academy-button-wrapper">
+    <a routerLink="/academy" mat-raised-button style="background-color: #21B6B0 !important; color: white !important; padding: 12px 24px; font-size: 16px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.2);" class="uppercase">
+      <mat-icon style="margin-right: 8px; vertical-align: middle;">school</mat-icon>
+      Oportunalia Academy
+    </a>
+  </div>
+  <!-- ============================================ -->
+</div>
 
 <app-header-carousel *ngIf="settings.header == 'carousel'"
                     [slides]="slides"
@@ -75,6 +88,7 @@
             <mat-option value="1" >Subasta</mat-option>
             <mat-option value="2" >Venta directa</mat-option>
             <mat-option value="3" >Cesión de remate</mat-option>
+            <mat-option value="4" >Cesión de crédito</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

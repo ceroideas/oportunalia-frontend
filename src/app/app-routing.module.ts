@@ -17,6 +17,7 @@ export const routes: Routes = [
           { path: 'subasta', loadChildren: () => import('./pages/properties/properties.module').then(m => m.PropertiesModule) },
           { path: 'cesion-de-remate', loadChildren: () => import('./pages/properties/properties.module').then(m => m.PropertiesModule) },
           { path: 'venta-directa', loadChildren: () => import('./pages/properties/properties.module').then(m => m.PropertiesModule) },
+          { path: 'cesion-de-credito', loadChildren: () => import('./pages/properties/properties.module').then(m => m.PropertiesModule) },
           { path: 'agents', loadChildren: () => import('./pages/agents/agents.module').then(m => m.AgentsModule) },
           { path: 'compare', loadChildren: () => import('./pages/compare/compare.module').then(m => m.CompareModule) },
           { path: 'pricing', loadChildren: () => import('./pages/pricing/pricing.module').then(m => m.PricingModule) },
@@ -44,7 +45,14 @@ export const routes: Routes = [
 
           // { path: 'interest', redirectTo: '/account/interests', pathMatch: 'full' },
           { path: 'cuenta-verificada/:token', loadChildren: () => import('./pages/verificar-cuenta/verificar-cuenta.module').then(m => m.VerificarCuentaModule) },
-          { path: 'reestablecer-contra/:token', loadChildren: () => import('./pages/change-password/change-password.module').then(m => m.ChangePasswordModule) }
+          { path: 'reestablecer-contra/:token', loadChildren: () => import('./pages/change-password/change-password.module').then(m => m.ChangePasswordModule) },
+
+          // ============================================
+          // ACADEMY MODULE
+          // Para desactivar el módulo de Academia, comenta las siguientes líneas
+          // ============================================
+          { path: 'academy', loadChildren: () => import('./pages/academy/academy.module').then(m => m.AcademyModule) },
+          // ============================================
       ]
   },
   { path: 'landing', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },

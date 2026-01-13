@@ -1,0 +1,84 @@
+<app-header-image 
+  [backgroundImage]="'assets/images/header/3.png'"
+  [bgImageAnimate]="false"
+  [contentOffsetToTop]="true"
+  [title]="'Acceso a Oportunalia Academy'"
+  [desc]="'Inicia sesión como estudiante'"
+  [isHomePage]="false"
+  [fullscreen]="false">
+</app-header-image>
+
+<div class="theme-container py-6">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="100" fxFlex.gt-xs="400px">
+      
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Iniciar Sesión - Academia</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit(loginForm.value)">
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" type="email" required>
+              <mat-icon matPrefix>email</mat-icon>
+              <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                El email es requerido
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                Email no válido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+              <mat-icon matPrefix>lock</mat-icon>
+              <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                La contraseña es requerida
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+                La contraseña debe tener al menos 6 caracteres
+              </mat-error>
+            </mat-form-field>
+
+            <mat-checkbox formControlName="rememberMe" class="mb-3">
+              Recordarme
+            </mat-checkbox>
+
+            <button 
+              mat-raised-button 
+              color="primary" 
+              type="submit" 
+              class="full-width"
+              [disabled]="loginForm.invalid">
+              Iniciar Sesión
+            </button>
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <div class="text-center py-3">
+            <p>¿No tienes cuenta?</p>
+            <button mat-button color="accent" (click)="goToRegister()">
+              Regístrate aquí
+            </button>
+          </div>
+          <div class="text-center">
+            <button mat-button (click)="router.navigate(['/academy'])">
+              Volver a cursos
+            </button>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+  </div>
+</div>
+

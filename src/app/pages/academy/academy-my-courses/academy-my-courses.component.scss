@@ -1,0 +1,90 @@
+.course-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.course-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.course-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  
+  &.free {
+    background-color: #4caf50;
+  }
+  
+  &.paid {
+    background-color: #2196f3;
+  }
+}
+
+.payment-status {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  
+  &.status-paid {
+    background-color: #4caf50;
+  }
+  
+  &.status-pending {
+    background-color: #ff9800;
+  }
+  
+  &.status-failed {
+    background-color: #f44336;
+  }
+  
+  &.status-refunded {
+    background-color: #9e9e9e;
+  }
+}
+
+.purchase-date {
+  color: #666;
+  font-size: 12px;
+}
+
+.badge-purchased {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.course-badge {
+  &.purchased {
+    background-color: #4caf50;
+  }
+}
+

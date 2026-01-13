@@ -39,14 +39,36 @@
           <div fxLayout="column" fxLayoutAlign.xs="center center" class="mx-3">
             <!--  -->
               <!-- <p>Descuento: {{(((property?.appraisal_value.sale-property?.start_price.sale)*100)/property?.appraisal_value.sale) | currency : 'EUR' : 'symbol' : '1.0'}}</p> -->
-              <div *ngIf="property?.appraisal_value > 1" class="btn ocultar-en-movil">
-                <span style="background-color: #ed431d !important; border-color: #ed431d !important;" class="btn-title fw-700 mb-3 fs-1-5x p-2">{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
-
+              <!-- Para auction_type_id = 4 - Burbujas separadas de TASACIÓN y DEUDA -->
+              <div *ngIf="property?.auction_type_id == 4" class="btn ocultar-en-movil">
+                <div fxLayout="row" fxLayoutAlign="center center" style="gap: 8px;">
+                  <span style="background-color: #ed431d !important; border-color: #ed431d !important;" class="btn-title fw-700 mb-3 fs-1-5x p-2">
+                    Tasación: {{(property?.discount_appraisal_percentage || 0) | number:'1.0-0'}}%
+                  </span>
+                  <span style="background-color: #ed431d !important; border-color: #ed431d !important;" class="btn-title fw-700 mb-3 fs-1-5x p-2">
+                    Deuda: {{(property?.discount_debt_percentage || 0) | number:'1.0-0'}}%
+                  </span>
+                </div>
               </div>
 
-              <div *ngIf="property?.appraisal_value > 1" class="btn mostrar-en-movil">
-                <span style="background-color: #ed431d !important; border-color: #ed431d !important; line-height: 32px;" class="btn-title fw-700 mt-3 mb-3 fs-1-5x p-2">-{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
+              <div *ngIf="property?.auction_type_id == 4" class="btn mostrar-en-movil">
+                <div fxLayout="row" fxLayoutAlign="center center" style="gap: 8px;">
+                  <span style="background-color: #ed431d !important; border-color: #ed431d !important; line-height: 32px;" class="btn-title fw-700 mt-3 mb-3 fs-1-5x p-2">
+                    Tasación: {{(property?.discount_appraisal_percentage || 0) | number:'1.0-0'}}%
+                  </span>
+                  <span style="background-color: #ed431d !important; border-color: #ed431d !important; line-height: 32px;" class="btn-title fw-700 mt-3 mb-3 fs-1-5x p-2">
+                    Deuda: {{(property?.discount_debt_percentage || 0) | number:'1.0-0'}}%
+                  </span>
+                </div>
+              </div>
 
+              <!-- Para otros tipos de subasta - Descuento original -->
+              <div *ngIf="property?.auction_type_id != 4 && property?.appraisal_value > 1" class="btn ocultar-en-movil">
+                <span style="background-color: #ed431d !important; border-color: #ed431d !important;" class="btn-title fw-700 mb-3 fs-1-5x p-2">{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
+              </div>
+
+              <div *ngIf="property?.auction_type_id != 4 && property?.appraisal_value > 1" class="btn mostrar-en-movil">
+                <span style="background-color: #ed431d !important; border-color: #ed431d !important; line-height: 32px;" class="btn-title fw-700 mt-3 mb-3 fs-1-5x p-2">-{{(((property?.appraisal_value-property?.start_price)*100)/property?.appraisal_value) | number:'1.0-0'}}% de Dto.</span>
               </div>
               <!-- <div *ngIf="property?.appraisal_value > 1" class="pt-6 pb-6">1</div> -->
               <!-- <p>Descuento: {{(((property?.appraisal_value.sale-property?.start_price.sale)*100)/property?.appraisal_value.sale) | number:'1.0-0'}}%</p> -->
@@ -99,8 +121,16 @@
                         </div>
                       </div>
 
-                      <!-- Oferta -->
-                      <div class="p-3 mt-3 text-center">
+                      <!-- Para auction_type_id = 4 - Monto de deuda -->
+                      <div *ngIf="property?.auction_type_id == 4" class="p-3 mt-3 text-center">
+                        <p class="fs-1x fc-secondary">Deuda: </p>
+                        <div class="p-0 pt-2 fc-primary">
+                            <p class="fw-700 fs-2x">{{ property.debt_amount | currency : 'EUR' : 'symbol' : '1.2-2' }}</p>
+                        </div>
+                      </div>
+
+                      <!-- Para otros tipos de subasta - Tiempo restante -->
+                      <div *ngIf="property?.auction_type_id != 4" class="p-3 mt-3 text-center">
                         <p class="fs-1x fc-secondary">Tiempo restante: </p>
                         <div class="p-0 pt-2 fc-primary">
                             <p class="left-time1-{{ property?.guid }} fw-700 fs-2x"></p>
@@ -178,7 +208,7 @@
 
                       
                       <div
-                        *ngIf="this.userService.isLoggedIn && property.deposit_valid &&  (property?.auction_type_id==2 || property?.auction_type_id==3)" class="gap-1 p-3 mt-3 bg-sky flx column"
+                        *ngIf="this.userService.isLoggedIn && property.deposit_valid &&  (property?.auction_type_id==2 || property?.auction_type_id==3 || property?.auction_type_id==4)" class="gap-1 p-3 mt-3 bg-sky flx column"
                        
                         >
 

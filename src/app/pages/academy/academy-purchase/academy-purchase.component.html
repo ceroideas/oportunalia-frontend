@@ -1,0 +1,115 @@
+<div class="theme-container py-6" *ngIf="!loading && course">
+  
+  <!-- Botón volver -->
+  <div class="mb-4">
+    <button mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Volver al curso
+    </button>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="100" fxFlex.gt-md="600px">
+      
+      <!-- Información del curso -->
+      <mat-card class="mb-4">
+        <mat-card-header>
+          <mat-card-title>Comprar Curso</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2 class="mb-3">{{ course.title }}</h2>
+          <div class="price-display mb-4">
+            <span class="price-label">Precio:</span>
+            <span class="price-amount">{{ course.price }} €</span>
+          </div>
+          <div *ngIf="course.description" class="course-description-preview mb-4">
+            <h4>Descripción:</h4>
+            <div [innerHTML]="course.description"></div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Modo simulado -->
+      <mat-card class="mb-4" *ngIf="SIMULATE_MODE">
+        <mat-card-content>
+          <div class="simulate-notice mb-4">
+            <mat-icon style="color: #ff9800; vertical-align: middle; margin-right: 8px;">info</mat-icon>
+            <strong>Modo de Prueba</strong>
+            <p class="mt-2">Actualmente estamos en modo de simulación. Al hacer clic en "Simular Pago", se procesará un pago simulado sin realizar ningún cargo real.</p>
+          </div>
+
+          <button 
+            mat-raised-button 
+            color="primary" 
+            class="w-100"
+            (click)="simulatePayment()"
+            [disabled]="processing">
+            <span *ngIf="processing">
+              <mat-spinner diameter="20" style="display: inline-block; margin-right: 8px;"></mat-spinner>
+              Procesando...
+            </span>
+            <span *ngIf="!processing">
+              <mat-icon style="position: relative; top: 6px;">payment</mat-icon>
+              Simular Pago de {{ course.price }} €
+            </span>
+          </button>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Formulario de pago real (oculto en modo simulado) -->
+      <mat-card *ngIf="!SIMULATE_MODE && paymentIntent">
+        <mat-card-header>
+          <mat-card-title>Información de Pago</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- Mostrar spinner mientras se inicializa Stripe -->
+          <div *ngIf="!stripeInitialized" class="text-center py-4">
+            <mat-spinner diameter="40"></mat-spinner>
+            <p class="mt-3">Cargando formulario de pago...</p>
+          </div>
+          
+          <!-- Contenedor del elemento de tarjeta (siempre en el DOM, pero oculto hasta que se inicialice) -->
+          <div [style.display]="stripeInitialized ? 'block' : 'none'">
+            <div id="card-element" class="mb-4">
+              <!-- Stripe Elements se montará aquí -->
+            </div>
+            <div id="card-errors" role="alert" *ngIf="cardError" class="error-message mb-3">
+              <mat-icon style="color: #f44336; vertical-align: middle; margin-right: 4px;">error</mat-icon>
+              {{ cardError }}
+            </div>
+            
+            <button 
+              mat-raised-button 
+              color="primary" 
+              class="w-100"
+              (click)="confirmPayment()"
+              [disabled]="processing || !stripeInitialized">
+              <span *ngIf="processing">
+                <mat-spinner diameter="20" style="display: inline-block; margin-right: 8px;"></mat-spinner>
+                Procesando pago...
+              </span>
+              <span *ngIf="!processing">
+                <mat-icon style="position: relative; top: 6px;">payment</mat-icon>
+                Pagar {{ course.price }} €
+              </span>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Loading del payment intent -->
+      <div *ngIf="!SIMULATE_MODE && !paymentIntent && !loading" class="text-center py-4">
+        <mat-spinner></mat-spinner>
+        <p class="mt-3">Preparando el pago...</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Loading -->
+<div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="py-12">
+  <mat-spinner></mat-spinner>
+</div>
+

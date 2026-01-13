@@ -1,0 +1,118 @@
+<app-header-image 
+  [backgroundImage]="'assets/images/header/3.png'"
+  [bgImageAnimate]="false"
+  [contentOffsetToTop]="true"
+  [title]="'Oportunalia Academy'"
+  [desc]="'Formación especializada en inversión inmobiliaria'"
+  [isHomePage]="false"
+  [fullscreen]="false">
+</app-header-image>
+
+<div class="theme-container py-6">
+  
+  <!-- Barra de acciones -->
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="mb-4">
+    <div>
+      <h1 style="margin: 0; font-size: 1.8rem; font-weight: 600;">Cursos Disponibles</h1>
+    </div>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <button 
+        *ngIf="academyService.isAuthenticated()" 
+        mat-raised-button 
+        color="primary" 
+        (click)="router.navigate(['/academy/my-courses'])">
+        <mat-icon>school</mat-icon>
+        Mis Cursos
+      </button>
+      <button 
+        *ngIf="!academyService.isAuthenticated()" 
+        mat-raised-button 
+        color="primary" 
+        (click)="router.navigate(['/academy/login'])">
+        <mat-icon>login</mat-icon>
+        Iniciar Sesión
+      </button>
+    </div>
+  </div>
+  
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="24px">
+    
+    <!-- Sidebar de filtros -->
+    <div fxFlex="25" fxFlex.xs="100" fxHide.xs>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Filtrar por tags</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="tags-list">
+            <mat-chip-listbox multiple>
+              <mat-chip-option 
+                *ngFor="let tag of tags" 
+                [selected]="selectedTags.includes(tag.tag_name)"
+                (click)="onTagToggle(tag.tag_name)">
+                {{ tag.tag_name }}
+              </mat-chip-option>
+            </mat-chip-listbox>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Lista de cursos -->
+    <div fxFlex="75" fxFlex.xs="100">
+      
+      <!-- Buscador -->
+      <mat-card class="mb-4">
+        <mat-card-content>
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Buscar cursos</mat-label>
+            <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" placeholder="Escribe para buscar...">
+            <mat-icon matSuffix (click)="onSearch()">search</mat-icon>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Loading -->
+      <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="py-6">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <!-- Grid de cursos -->
+      <div *ngIf="!loading" fxLayout="row wrap" fxLayoutGap="16px">
+        <mat-card 
+          *ngFor="let course of courses" 
+          class="course-card"
+          style="width: calc(33.333% - 12px);"
+          fxFlex.xs="100"
+          (click)="goToCourse(course.id)">
+        <div *ngIf="course.thumbnail_url" class="course-thumbnail">
+          <img [src]="course.thumbnail_url" [alt]="course.title">
+          <div *ngIf="course.is_free" class="course-badge free">Gratis</div>
+          <div *ngIf="!course.is_free && !(course.is_purchased || course.has_access)" class="course-badge paid">{{ course.price }} €</div>
+          <div *ngIf="!course.is_free && (course.is_purchased || course.has_access)" class="course-badge purchased">Comprado</div>
+        </div>
+          <mat-card-header>
+            <mat-card-title>{{ course.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p *ngIf="course.description" [innerHTML]="course.description | slice:0:100"></p>
+            <div *ngIf="course.tags && course.tags.length > 0" class="mt-2">
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let tag of course.tags.slice(0, 3)">
+                  {{ tag.tag_name }}
+                </mat-chip>
+              </mat-chip-listbox>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- No hay cursos -->
+        <div *ngIf="courses.length === 0" fxFlex="100" class="text-center py-6">
+          <p>No se encontraron cursos</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

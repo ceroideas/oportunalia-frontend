@@ -9,6 +9,22 @@
   padding: 2em;
 }
 
+.academy-button-wrapper {
+  position: absolute;
+  top: 120px;
+  right: 50px;
+  z-index: 10;
+  
+  @media (max-width: 959px) {
+    position: relative;
+    top: auto;
+    right: auto;
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+}
+
 /* .child-1
 {
     background-color: orange;
@@ -17,7 +33,6 @@
 .child-2{
     background-color: yellow;
 }
-
 .child-3{
     background-color: green;
 } */

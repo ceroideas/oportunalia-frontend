@@ -16,6 +16,10 @@
         Cesión de remate
         <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
     </mat-chip-option>
+    <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType && searchFields?.propertyType == 4" >
+        Cesión de crédito
+        <mat-icon color="warn" matChipRemove (click)="remove('propertyType')">cancel</mat-icon>
+    </mat-chip-option>
 
     <!-- <mat-chip-option selectable="false" *ngIf="searchFields?.propertyType" >
         {{searchFields?.propertyType.name}}
