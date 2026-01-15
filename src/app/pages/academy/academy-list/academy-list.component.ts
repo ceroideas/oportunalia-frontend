@@ -16,11 +16,6 @@ export class AcademyListComponent implements OnInit {
   public tags: any[] = [];
   public selectedTags: string[] = [];
   public searchTerm: string = '';
-  
-  // Filtros
-  public sortBy: string = 'order'; // 'order', 'date', 'rating', 'views', 'price'
-  public sortOrder: string = 'asc'; // 'asc', 'desc'
-  public priceFilter: string = 'all'; // 'all', 'free', 'paid', '0-50', '50-100', etc.
 
   constructor(
     public router: Router,
@@ -78,19 +73,6 @@ export class AcademyListComponent implements OnInit {
     if (this.searchTerm) {
       params.search = this.searchTerm;
     }
-    
-    // Agregar filtros de ordenamiento
-    if (this.sortBy) {
-      params.sort_by = this.sortBy;
-    }
-    if (this.sortOrder) {
-      params.sort_order = this.sortOrder;
-    }
-    
-    // Agregar filtro de precio
-    if (this.priceFilter && this.priceFilter !== 'all') {
-      params.price_filter = this.priceFilter;
-    }
 
     this.academyService.getCourses(params).subscribe(
       (response: any) => {
@@ -99,10 +81,7 @@ export class AcademyListComponent implements OnInit {
           // Construir URLs completas para thumbnails
           this.courses = this.courses.map(course => ({
             ...course,
-            thumbnail_url: course.thumbnail_path ? this.getFileUrl(course.thumbnail_path) : null,
-            average_rating: course.average_rating || 0,
-            total_ratings: course.total_ratings || 0,
-            total_views: course.total_views || 0
+            thumbnail_url: course.thumbnail_path ? this.getFileUrl(course.thumbnail_path) : null
           }));
         }
         this.loading = false;
@@ -142,14 +121,6 @@ export class AcademyListComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.loadCourses();
-  }
-
-  onSortChange(): void {
-    this.loadCourses();
-  }
-
-  onPriceFilterChange(): void {
     this.loadCourses();
   }
 

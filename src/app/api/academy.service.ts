@@ -330,33 +330,5 @@ export class AcademyService {
         })
       );
   }
-
-  /**
-   * Valorar un curso (requiere autenticación)
-   */
-  rateCourse(courseId: number, rating: number, comment?: string): Observable<any> {
-    const data: any = { rating };
-    if (comment) {
-      data.comment = comment;
-    }
-    return this.http.post(GlobalConstants.apiURL + '/academy/course/' + courseId + '/rate', data, { headers: this.getHeaders() })
-      .pipe(
-        catchError((error) => {
-          return throwError(() => error);
-        })
-      );
-  }
-
-  /**
-   * Obtener valoraciones de un curso
-   */
-  getCourseRatings(courseId: number): Observable<any> {
-    return this.http.get(GlobalConstants.apiURL + '/academy/course/' + courseId + '/ratings')
-      .pipe(
-        catchError((error) => {
-          return throwError(() => error);
-        })
-      );
-  }
 }
 
