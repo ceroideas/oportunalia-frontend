@@ -19,6 +19,9 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
   public videoElement: HTMLVideoElement | null = null;
   public youtubeEmbedUrl: SafeResourceUrl | null = null;
   private progressInterval: any;
+  public userRating: number = 0;
+  public userComment: string = '';
+  public userExistingRating: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +51,18 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
         if (response.code === 200) {
           this.course = response.response;
           
+          // Formatear valoraciones si vienen con objeto student en lugar de student_name
+          if (this.course.ratings && Array.isArray(this.course.ratings)) {
+            this.course.ratings = this.course.ratings.map((rating: any) => {
+              if (!rating.student_name && rating.student) {
+                const firstName = (rating.student.firstname || '').trim();
+                const lastName = (rating.student.lastname || '').trim();
+                rating.student_name = (firstName + ' ' + lastName).trim() || rating.student.email || 'Estudiante';
+              }
+              return rating;
+            });
+          }
+          
           // Construir URLs completas
           if (this.course.thumbnail_path) {
             this.course.thumbnail_url = this.getFileUrl(this.course.thumbnail_path);
@@ -66,6 +81,13 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
           // Cargar progreso si está autenticado
           if (this.academyService.isAuthenticated()) {
             this.loadProgress();
+          }
+          
+          // Cargar valoración del usuario si existe
+          if (this.course.user_rating) {
+            this.userExistingRating = this.course.user_rating;
+            this.userRating = this.course.user_rating.rating;
+            this.userComment = this.course.user_rating.comment || '';
           }
         }
         this.loading = false;
@@ -224,6 +246,39 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
     const sizes = ['B', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  }
+
+  setUserRating(rating: number): void {
+    this.userRating = rating;
+  }
+
+  calculateAverageRating(): number {
+    if (!this.course || !this.course.ratings || this.course.ratings.length === 0) {
+      return 0;
+    }
+    const sum = this.course.ratings.reduce((acc: number, rating: any) => acc + (rating.rating || 0), 0);
+    return sum / this.course.ratings.length;
+  }
+
+  submitRating(): void {
+    if (this.userRating === 0 || !this.academyService.isAuthenticated()) {
+      return;
+    }
+
+    this.academyService.submitRating(this.courseId, this.userRating, this.userComment).subscribe(
+      (response: any) => {
+        if (response.code === 200) {
+          // Recargar el curso para obtener las valoraciones actualizadas
+          this.loadCourse();
+        } else {
+          alert('Error al enviar valoración: ' + (response.messages?.join(', ') || 'Error desconocido'));
+        }
+      },
+      (error: any) => {
+        console.error('Error al enviar valoración:', error);
+        alert('Error al enviar valoración. Por favor, intenta de nuevo.');
+      }
+    );
   }
 }
 

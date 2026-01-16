@@ -93,6 +93,105 @@
         </mat-card-content>
       </mat-card>
 
+      <!-- Sección de Valoraciones -->
+      <mat-card class="mb-4">
+        <mat-card-header>
+          <mat-card-title>Valoraciones</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          
+          <!-- Resumen de valoraciones -->
+          <div class="mb-4" *ngIf="course.ratings && course.ratings.length > 0">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+              <div>
+                <h2 style="font-size: 3rem; font-weight: bold; margin: 0; color: #333;">
+                  {{ course.average_rating || calculateAverageRating() | number:'1.1-1' }}
+                </h2>
+              </div>
+              <div>
+                <div fxLayout="row" fxLayoutGap="4px">
+                  <mat-icon *ngFor="let i of [1,2,3,4,5]" 
+                    [style.color]="i <= (course.average_rating || calculateAverageRating()) ? '#ffd700' : '#e0e0e0'">
+                    star
+                  </mat-icon>
+                </div>
+                <p style="margin: 8px 0 0 0; color: #666;">
+                  {{ course.ratings?.length || 0 }} {{ (course.ratings?.length || 0) === 1 ? 'valoración' : 'valoraciones' }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario para valorar (solo si está autenticado y tiene acceso) -->
+          <div *ngIf="academyService.isAuthenticated() && canAccessCourse()" class="mb-4" style="border-top: 1px solid #e0e0e0; padding-top: 16px;">
+            <h3>Tu valoración</h3>
+            <div fxLayout="column" fxLayoutGap="16px">
+              <!-- Estrellas para calificar -->
+              <div fxLayout="row" fxLayoutGap="4px">
+                <mat-icon 
+                  *ngFor="let i of [1,2,3,4,5]" 
+                  [style.color]="i <= userRating ? '#ffd700' : '#e0e0e0'"
+                  [style.cursor]="'pointer'"
+                  (click)="setUserRating(i)">
+                  star
+                </mat-icon>
+              </div>
+              
+              <!-- Comentario -->
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Comentario (opcional)</mat-label>
+                <textarea matInput 
+                  [(ngModel)]="userComment" 
+                  rows="4"
+                  placeholder="Escribe tu comentario aquí..."></textarea>
+              </mat-form-field>
+              
+              <!-- Botón para enviar/actualizar valoración -->
+              <button 
+                mat-raised-button 
+                color="primary" 
+                [disabled]="userRating === 0"
+                (click)="submitRating()">
+                <mat-icon>edit</mat-icon>
+                {{ userExistingRating ? 'Actualizar valoración' : 'Enviar valoración' }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Lista de valoraciones de estudiantes -->
+          <div *ngIf="course.ratings && course.ratings.length > 0" style="border-top: 1px solid #e0e0e0; padding-top: 16px;">
+            <h3>Valoraciones de estudiantes</h3>
+            <div fxLayout="column" fxLayoutGap="16px" class="mt-3">
+              <div *ngFor="let rating of course.ratings" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 16px;">
+                <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center" class="mb-2">
+                  <div fxLayout="row" fxLayoutGap="2px">
+                    <mat-icon 
+                      *ngFor="let i of [1,2,3,4,5]" 
+                      [style.color]="i <= rating.rating ? '#ffd700' : '#e0e0e0'"
+                      [style.font-size]="'20px'"
+                      [style.width]="'20px'"
+                      [style.height]="'20px'">
+                      star
+                    </mat-icon>
+                  </div>
+                  <span style="font-weight: 500;">{{ rating.student_name || 'Estudiante' }}</span>
+                  <span style="color: #999; font-size: 0.9rem;">{{ rating.created_at | date:'dd/MM/yyyy' }}</span>
+                </div>
+                <p *ngIf="rating.comment" style="margin: 8px 0 0 0; color: #333;">
+                  {{ rating.comment }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mensaje si no hay valoraciones -->
+          <div *ngIf="!course.ratings || course.ratings.length === 0" class="text-center py-4" style="color: #999;">
+            <p>Aún no hay valoraciones para este curso. ¡Sé el primero en valorarlo!</p>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
     </div>
 
     <!-- Panel de Materiales de Apoyo (solo si hay materiales y acceso) -->

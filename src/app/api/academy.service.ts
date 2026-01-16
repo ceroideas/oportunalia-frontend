@@ -330,5 +330,21 @@ export class AcademyService {
         })
       );
   }
+
+  /**
+   * Crear o actualizar valoración de un curso
+   */
+  submitRating(courseId: number, rating: number, comment?: string): Observable<any> {
+    const body = {
+      rating: rating,
+      comment: comment || null
+    };
+    return this.http.post(GlobalConstants.apiURL + `/academy/course/${courseId}/rating`, body, { headers: this.getHeaders() })
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
 }
 
