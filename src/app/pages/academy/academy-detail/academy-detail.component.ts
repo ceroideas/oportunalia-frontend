@@ -78,16 +78,23 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
             this.youtubeEmbedUrl = null;
           }
 
-          // Cargar progreso si está autenticado
-          if (this.academyService.isAuthenticated()) {
-            this.loadProgress();
-          }
-          
           // Cargar valoración del usuario si existe
           if (this.course.user_rating) {
             this.userExistingRating = this.course.user_rating;
             this.userRating = this.course.user_rating.rating;
             this.userComment = this.course.user_rating.comment || '';
+          }
+
+          // Cargar progreso si está autenticado
+          if (this.academyService.isAuthenticated()) {
+            this.loadProgress();
+            // Registrar visualización inicial cuando se carga el curso (si tiene acceso)
+            // Usar setTimeout para asegurar que el curso esté completamente cargado
+            setTimeout(() => {
+              if (this.canAccessCourse()) {
+                this.recordInitialView();
+              }
+            }, 500);
           }
         }
         this.loading = false;
@@ -139,6 +146,39 @@ export class AcademyDetailComponent implements OnInit, OnDestroy {
       this.videoProgress = 100;
       this.saveProgress();
     });
+  }
+
+  recordInitialView(): void {
+    // Registrar una visualización inicial cuando se carga el curso
+    // Solo si el usuario tiene acceso
+    if (!this.academyService.isAuthenticated()) {
+      console.log('No autenticado, no se registra visualización');
+      return;
+    }
+    
+    if (!this.course) {
+      console.log('Curso no cargado, no se registra visualización');
+      return;
+    }
+    
+    if (!this.canAccessCourse()) {
+      console.log('Usuario no tiene acceso al curso, no se registra visualización');
+      return;
+    }
+    
+    console.log('Registrando visualización inicial para curso:', this.courseId);
+    this.academyService.recordView(
+      this.courseId,
+      0, // Progreso inicial 0
+      0  // Posición inicial 0
+    ).subscribe(
+      (response: any) => {
+        console.log('Visualización inicial registrada:', response);
+      },
+      (error: any) => {
+        console.error('Error al registrar visualización inicial:', error);
+      }
+    );
   }
 
   saveProgress(): void {
