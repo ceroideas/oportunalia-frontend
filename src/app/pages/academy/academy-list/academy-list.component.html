@@ -135,27 +135,30 @@
       </div>
 
       <!-- Grid de cursos -->
-      <div *ngIf="!loading" fxLayout="row wrap" fxLayoutGap="16px">
+      <div *ngIf="!loading" class="courses-grid">
         <mat-card 
-          *ngFor="let course of courses" 
-          class="course-card"
-          style="width: calc(33.333% - 12px);"
-          fxFlex.xs="100"
-          (click)="goToCourse(course.id)">
+          *ngFor="let course of paginatedCourses" 
+          class="course-card">
         <div *ngIf="course.thumbnail_url" class="course-thumbnail">
           <img [src]="course.thumbnail_url" [alt]="course.title">
           <div *ngIf="course.is_free" class="course-badge free">Gratis</div>
-          <div *ngIf="!course.is_free && !(course.is_purchased || course.has_access)" class="course-badge paid">{{ course.price }} €</div>
+          <div *ngIf="!course.is_free && !(course.is_purchased || course.has_access)" class="course-badge paid">{{ course.price || 0.0 }} €</div>
           <div *ngIf="!course.is_free && (course.is_purchased || course.has_access)" class="course-badge purchased">Comprado</div>
         </div>
           <mat-card-header>
-            <mat-card-title>{{ course.title }}</mat-card-title>
+            <mat-card-title class="course-title">{{ course.title }}</mat-card-title>
           </mat-card-header>
-          <mat-card-content>
-            <p *ngIf="course.description" [innerHTML]="course.description | slice:0:100"></p>
+          <mat-card-content style="text-align: center;">
+            <!-- Precio -->
+            <div class="course-price">
+              <span *ngIf="course.is_free" style="font-size: 18px; font-weight: bold; color: #4caf50;">Gratis</span>
+              <span *ngIf="!course.is_free" style="font-size: 18px; font-weight: bold; color: #333;">
+                {{ course.price || 0.0 }}€
+              </span>
+            </div>
             
             <!-- Valoración -->
-            <div *ngIf="course.average_rating > 0 || course.ratings_count > 0" class="mt-2 mb-2">
+            <div *ngIf="course.average_rating > 0 || course.ratings_count > 0" class="mt-2 mb-2" style="text-align: center;">
               <mat-icon style="color: #ffd700; font-size: 18px; width: 18px; height: 18px; vertical-align: middle;">star</mat-icon>
               <span style="font-weight: 500; color: #333;">
                 {{ course.average_rating | number:'1.1-1' }} 
@@ -165,7 +168,7 @@
               </span>
             </div>
             
-            <div *ngIf="course.tags && course.tags.length > 0" class="mt-2">
+            <div *ngIf="course.tags && course.tags.length > 0" class="mt-2" style="text-align: center;">
               <mat-chip-listbox>
                 <mat-chip *ngFor="let tag of course.tags.slice(0, 3)">
                   {{ tag.tag_name }}
@@ -173,12 +176,40 @@
               </mat-chip-listbox>
             </div>
           </mat-card-content>
+          <mat-card-actions style="justify-content: center; padding: 16px;">
+            <button mat-raised-button color="primary" (click)="goToCourse(course.id)" style="width: 100%;">
+              Ver
+            </button>
+          </mat-card-actions>
         </mat-card>
 
         <!-- No hay cursos -->
         <div *ngIf="courses.length === 0" fxFlex="100" class="text-center py-6">
           <p>No se encontraron cursos</p>
         </div>
+      </div>
+
+      <!-- Paginación -->
+      <div *ngIf="!loading && courses.length > 0" class="pagination-container">
+        <button 
+          mat-raised-button 
+          color="primary"
+          [disabled]="currentPage === 1"
+          (click)="previousPage()">
+          <mat-icon>arrow_back</mat-icon>
+          Anterior
+        </button>
+        <span class="pagination-info">
+          Página {{ currentPage }} de {{ totalPages }}
+        </span>
+        <button 
+          mat-raised-button 
+          color="primary"
+          [disabled]="currentPage === totalPages"
+          (click)="nextPage()">
+          Siguiente
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
       </div>
     </div>
 

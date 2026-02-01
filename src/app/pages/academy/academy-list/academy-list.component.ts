@@ -12,6 +12,7 @@ import { UserService } from '../../../api/user.service';
 export class AcademyListComponent implements OnInit {
 
   public courses: any[] = [];
+  public paginatedCourses: any[] = [];
   public loading = true;
   public tags: any[] = [];
   public selectedTags: string[] = [];
@@ -19,6 +20,9 @@ export class AcademyListComponent implements OnInit {
   public sortCriteria: string = 'default';
   public sortOrder: string = 'asc';
   public priceFilter: string = 'all';
+  public currentPage: number = 1;
+  public itemsPerPage: number = 12;
+  public totalPages: number = 1;
 
   constructor(
     public router: Router,
@@ -99,6 +103,9 @@ export class AcademyListComponent implements OnInit {
             ...course,
             thumbnail_url: course.thumbnail_path ? this.getFileUrl(course.thumbnail_path) : null
           }));
+          
+          // Aplicar paginación
+          this.applyPagination();
         }
         this.loading = false;
       },
@@ -175,10 +182,12 @@ export class AcademyListComponent implements OnInit {
   }
 
   onSortChange(): void {
+    this.currentPage = 1; // Reset a la primera página cuando cambia el orden
     this.loadCourses();
   }
 
   onPriceFilterChange(): void {
+    this.currentPage = 1; // Reset a la primera página cuando cambia el filtro
     this.loadCourses();
   }
 
@@ -206,11 +215,49 @@ export class AcademyListComponent implements OnInit {
     } else {
       this.selectedTags.push(tag);
     }
+    this.currentPage = 1; // Reset a la primera página cuando cambian los tags
     this.loadCourses();
   }
 
   onSearch(): void {
+    this.currentPage = 1; // Reset a la primera página cuando se busca
     this.loadCourses();
+  }
+
+  applyPagination(): void {
+    // Calcular total de páginas
+    this.totalPages = Math.ceil(this.courses.length / this.itemsPerPage);
+    
+    // Si la página actual es mayor que el total de páginas (por ejemplo, después de filtrar),
+    // ajustar a la última página disponible o a la página 1 si no hay cursos
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = this.totalPages;
+    } else if (this.totalPages === 0) {
+      this.currentPage = 1;
+    }
+    
+    // Aplicar paginación
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedCourses = this.courses.slice(startIndex, endIndex);
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.applyPagination();
+      // Scroll al inicio del grid
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.applyPagination();
+      // Scroll al inicio del grid
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   goToCourse(courseId: number): void {

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { PublicService } from 'src/app/api/public.service';
 import { Router } from '@angular/router';
-
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-offers',
@@ -24,7 +24,7 @@ export class ModalOffersComponent implements OnInit {
   public viewType: string = 'grid';
   public watcher: Subscription;
 
-  constructor(private publicService: PublicService,public mediaObserver: MediaObserver,){
+  constructor(private publicService: PublicService,public mediaObserver: MediaObserver, public dialogRef: MatDialogRef<ModalOffersComponent>){
     this.watcher = mediaObserver.asObservable()
     .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
     .subscribe((change: MediaChange) => {
@@ -62,6 +62,10 @@ export class ModalOffersComponent implements OnInit {
 
         }
       )*/
+  }
+
+  closeModal(){
+    this.dialogRef.close(true as boolean);
   }
 
 }

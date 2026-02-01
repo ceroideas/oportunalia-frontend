@@ -276,11 +276,11 @@ export class HomeComponent implements OnInit {
   dialog = inject(MatDialog);
 
   openDialog() {
-    if (!localStorage.getItem('popupofertas') && !localStorage.getItem('token')) {
+    if (!localStorage.getItem('popupofertas') /*&& !localStorage.getItem('token')*/) {
       localStorage.setItem('popupofertas','1');
-      /*this.dialog.open(ModalOffersComponent, {
+      this.dialog.open(ModalOffersComponent, {
         maxWidth: '95vw'
-      });*/
+      });
     }
   }
 
