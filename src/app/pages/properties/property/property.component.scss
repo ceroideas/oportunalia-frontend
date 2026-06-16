@@ -44,7 +44,8 @@
         z-index: 2;
         top: 24px;
         right: 20px;
-        button.mat-mdc-button{
+        button.mat-mdc-button,
+        a.mat-mdc-button.catastro-link{
             min-width: 36px;
             width: 36px;
             padding: 0;
@@ -55,9 +56,27 @@
             &:disabled{
                 color: rgba(0, 0, 0, 0.26);
             }
-            &:hover:enabled{
+            &:hover:enabled,
+            &:hover{
                 background: rgba(255, 252, 252, 1);
             }
+        }
+
+        a.mat-mdc-button.catastro-link .mdc-button__label {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        a.mat-mdc-button.catastro-link .catastro-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
         }
     }
 }

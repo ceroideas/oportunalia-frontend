@@ -39,9 +39,7 @@ export class AppService {
   )
 
   public url = environment.url + '/assets/data/';
-  public apiKey = 'AIzaSyALrXOtjf-VGndljqeKZsA07bJJ8F0XwQw'; // paddeo
-  // public apiKey = 'AIzaSyAPyRa7V8Ngko9fTcff_HmADqAQJskhh6k'; // actual
-  // public apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko'; // no se
+  public apiKey = 'AIzaSyBemmRwBpzedSHnk871BBvdxy2LzpQ-80Q';
 
   constructor(public http:HttpClient,
               private router: Router,

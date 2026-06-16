@@ -292,7 +292,8 @@ export class HomeComponent implements OnInit {
     this.getSoonProperties();
     this.getProvinceList();
     this.getCategoryList();
-    this.openDialog();
+    // Modal academia desactivado temporalmente — descomentar para volver a mostrarlo al entrar
+    // this.openDialog();
 
     for (let i = 0; i < this.values.length; i++)
     {

@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   url: '',
+  apiUrl: 'http://127.0.0.1:8000/api',
+  apiBase: 'http://127.0.0.1:8000/',
   stripe: {
     publicKey: 'pk_test_51S9VsJDUkaprMyjuCADf4mPAqxZbsk0BUnwS2ph4RuhDFqSQ03mhGeRskRA8rkGuqelBrtVpgUQC73H1gvIeg1YU00oo2uwiVy'
   }

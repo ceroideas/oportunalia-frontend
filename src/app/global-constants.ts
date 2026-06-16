@@ -1,7 +1,6 @@
+import { environment } from '../environments/environment';
+
 export class GlobalConstants {
-  // ruta principal aplicacion
-  public static apiURL: string = "https://www.oportunalia.com/api";
-  public static apiBase: string = "https://www.oportunalia.com/";
-  // public static apiURL: string = "https://test.oportunalia.com/api";
-  // public static apiURL: string ="http://127.0.0.1:8000/api";
+  public static apiURL: string = environment.apiUrl;
+  public static apiBase: string = environment.apiBase;
 }

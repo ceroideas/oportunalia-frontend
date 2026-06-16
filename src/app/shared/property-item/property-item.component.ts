@@ -55,7 +55,7 @@ export class PropertyItemComponent implements OnInit {
     if(changes.viewColChanged){
       this.getColumnCount(changes.viewColChanged.currentValue);
       if(!changes.viewColChanged.isFirstChange()){
-        if(this.property.images.length > 1){
+        if(this.property?.images?.length > 1){
            this.directiveRef.update();
         }
       }

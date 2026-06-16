@@ -18,7 +18,7 @@ export const horizontalMenuItems = [
       new Menu (51, 'NAV.LEGAL_DISCLAIMER', '/legal-disclaimer', null, null, false, 40), */
     new Menu (60, 'NAV.ABOUT_US', null, null, null, true, 0),
       new Menu (61, 'NAV.ABOUT_US', null, 'https://oportunalia.com/oportunidades-inmobiliarias/conoce-mas/', null, false, 60),
-      new Menu (62, 'NAV.HOW_TO_BUY', null, 'https://oportunalia.com/oportunidades-inmobiliarias/como-comprar/', null, false, 60),
+      new Menu (62, 'NAV.HOW_TO_BUY', null, 'https://oportunalia.com/oportunidades-inmobiliarias/como-participar-subasta-judicial/', null, false, 60),
       new Menu (63, 'Preguntas frecuentes', null, 'https://oportunalia.com/oportunidades-inmobiliarias/faq/', null, false, 60),
       new Menu (64, 'BLOG', null, 'https://oportunalia.com/oportunidades-inmobiliarias/', null, false, 60),
     new Menu (70, 'NAV.CONTACT', '/contacto', null, null, false, 0),
@@ -44,7 +44,7 @@ export const verticalMenuItems = [
       new Menu (49, 'NAV.HOW_TO_BUY', '/como-comprar', null, null, false, 40), */
     new Menu (60, 'NAV.ABOUT_US', null, null, null, true, 0),
     new Menu (61, 'NAV.ABOUT_US', null, 'https://oportunalia.com/oportunidades-inmobiliarias/conoce-mas/', null, false, 60),
-      new Menu (62, 'NAV.HOW_TO_BUY', null, 'https://oportunalia.com/oportunidades-inmobiliarias/como-comprar/', null, false, 60),
+      new Menu (62, 'NAV.HOW_TO_BUY', null, 'https://oportunalia.com/oportunidades-inmobiliarias/como-participar-subasta-judicial/', null, false, 60),
       new Menu (63, 'Preguntas frecuentes', null, 'https://oportunalia.com/oportunidades-inmobiliarias/faq/', null, false, 60),
       new Menu (64, 'BLOG', null, 'https://oportunalia.com/oportunidades-inmobiliarias/', null, false, 60),
     new Menu (70, 'NAV.CONTACT', '/contacto', null, null, false, 0),

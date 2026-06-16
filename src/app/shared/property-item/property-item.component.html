@@ -87,7 +87,7 @@
             <!-- <div *ngIf="property.images.length == 1" class="mat-card-image w-100 m-0">
                 <img [src]="property.images[0].path">
             </div> -->
-            <div *ngIf="property.images.length >= 1" class="mat-card-image w-100 m-0">
+            <div *ngIf="property?.images?.length >= 1" class="mat-card-image w-100 m-0">
                 <div class="swiper-container" [swiper]="config">
                     <div class="swiper-wrapper">
                         <div *ngFor="let image of property.images" class="swiper-slide">

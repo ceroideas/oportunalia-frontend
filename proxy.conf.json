@@ -1,4 +1,9 @@
 {
+  "/api": {
+    "target": "https://oportunalia.com",
+    "changeOrigin": true,
+    "secure": true
+  },
   "/google-api": {
     "target": "https://maps.googleapis.com",
     "changeOrigin": true,

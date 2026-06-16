@@ -312,7 +312,7 @@
                       <div class="p-3 mt-3 text-center">
                         <!-- <p class="fs-8x fw-600 fc-primary uppercase" (click)="openDialog()" style="cursor: pointer;">Conoce el proceso de compra
                           <img src="/assets/images/icons/arrow_right.svg"></p> -->
-                        <a class="fs-8x fw-600 fc-primary uppercase" href="https://oportunalia.com/oportunidades-inmobiliarias/como-comprar" style="cursor: pointer;">Conoce el proceso de compra
+                        <a class="fs-8x fw-600 fc-primary uppercase" href="https://oportunalia.com/oportunidades-inmobiliarias/como-participar-subasta-judicial/" style="cursor: pointer;">Conoce el proceso de compra
                           <img src="/assets/images/icons/arrow_right.svg"></a>
                         <div class="p-0 pt-2 fc-primary">
                             <p class="fs-0-8x">Habla con nosotros</p>
@@ -371,6 +371,16 @@
                 <mat-card class="p-3 mt-3">
                     <div class="main-carousel mb-3">
                         <div *ngIf="property" class="control-icons">
+                            <a *ngIf="property?.catastro_url"
+                               mat-button
+                               class="catastro-link"
+                               [href]="property.catastro_url"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               matTooltip="Consultar en el Catastro">
+                                <img src="assets/catastro.jpg" alt="Catastro" class="catastro-icon">
+                            </a>
+
                             <button mat-button [disabled]="onFavorites()" (click)="addToFavorites()" matTooltip="Añadir a favoritos">
                                 <mat-icon class="m-0">favorite_border</mat-icon>
                             </button>
@@ -459,10 +469,10 @@
                   <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
                   <div *ngIf="this.userService.isLoggedIn">
                     <span *ngIf="property?.technical_archive?.path">
-                      Consulta el documento completo en <a href="https://www.oportunalia.com/documents/{{property?.technical_archive.path}}" target="_blank">Especificaciones técnicas</a>
+                      Consulta el documento completo en <a href="https://oportunalia.com/documents/{{property?.technical_archive.path}}" target="_blank">Especificaciones técnicas</a>
                     </span>
                     <span *ngIf="property?.technical_archive_two?.path">
-                      Consulta el documento completo en <a href="https://www.oportunalia.com/documents/{{property?.technical_archive_two.path}}" target="_blank">Especificaciones técnicas </a>
+                      Consulta el documento completo en <a href="https://oportunalia.com/documents/{{property?.technical_archive_two.path}}" target="_blank">Especificaciones técnicas </a>
                     </span>
                   </div>
                 </mat-card>
@@ -474,10 +484,10 @@
                   <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
                   <div *ngIf="this.userService.isLoggedIn">
                     <span *ngIf="property?.land_registry_archive?.path">
-                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.land_registry_archive.path}}" target="_blank">Documentación</a>
+                      Consulta el documento completo <a href="https://oportunalia.com/documents/{{property?.land_registry_archive.path}}" target="_blank">Documentación</a>
                     </span>
                     <span *ngIf="property?.land_registry_archive_two?.path">
-                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.land_registry_archive_two.path}}" target="_blank">Documentación</a>
+                      Consulta el documento completo <a href="https://oportunalia.com/documents/{{property?.land_registry_archive_two.path}}" target="_blank">Documentación</a>
                     </span>
                   </div>
                 </mat-card>
@@ -499,10 +509,10 @@
                   <div *ngIf="!this.userService.isLoggedIn">Para consultar el documento debes <a href="/login?redirect={{this.route.snapshot.url}}">iniciar sesión</a></div>
                   <div *ngIf="this.userService.isLoggedIn">
                     <span *ngIf="property?.conditions_archive?.path">
-                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.conditions_archive.path}}" target="_blank">Condiciones particulares</a>
+                      Consulta el documento completo <a href="https://oportunalia.com/documents/{{property?.conditions_archive.path}}" target="_blank">Condiciones particulares</a>
                     </span>
                     <span *ngIf="property?.conditions_archive_two?.path">
-                      Consulta el documento completo <a href="https://www.oportunalia.com/documents/{{property?.conditions_archive_two.path}}" target="_blank">Condiciones particulares</a>
+                      Consulta el documento completo <a href="https://oportunalia.com/documents/{{property?.conditions_archive_two.path}}" target="_blank">Condiciones particulares</a>
                     </span>
                   </div>
 
@@ -518,6 +528,7 @@
                         </google-map>
                     </mat-card-content>
                 </mat-card>
+
                 <!-- Debug -->
                 <!-- <div>
                  {{property|json}}

@@ -9,7 +9,7 @@ import { SearchProperties } from '../pages/home/interfaces/search-properties';
 })
 export class UactionsService {  
 
-  private apiKey = 'AIzaSyDsj-gbtqTAsxtWNbcqrRmE8ExatChS_Ko';
+  private apiKey = 'AIzaSyBemmRwBpzedSHnk871BBvdxy2LzpQ-80Q';
   private apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
   public parameters = {min:null,max:null,type:null,category:null,search:null};
